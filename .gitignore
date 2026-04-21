@@ -12,3 +12,6 @@ Build
 .vscode
 .vs
 .vsconfig
+
+Assembly-CSharp.csproj
+sephiroth.slnx
