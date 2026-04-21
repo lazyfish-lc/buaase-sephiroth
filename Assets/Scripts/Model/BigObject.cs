@@ -10,5 +10,6 @@ public abstract class BigObject : MonoBehaviour {
     public virtual void Start() {
         if(pastObject != null) pastObject.ownerBigObject = this;
         if(presentObject != null) presentObject.ownerBigObject = this;
+    
     }
 }
