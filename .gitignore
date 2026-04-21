@@ -1,0 +1,14 @@
+# Ignore temporaries from Unity
+Library
+Logs
+UserSettings
+Build
+[Tt]emp
+
+# Ignore temporaries from GameCI
+[Aa]rtifacts
+[Cc]odeCoverage
+
+.vscode
+.vs
+.vsconfig
