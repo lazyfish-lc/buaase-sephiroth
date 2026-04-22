@@ -1272,8 +1272,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameSceneManager
   pastMapRoot: {fileID: 1561919725}
   presentMapRoot: {fileID: 1438175150}
-  currentTimePeriod: 0
-  playerTransform: {fileID: 0}
+  isPresent: 1
 --- !u!1 &1561919725
 GameObject:
   m_ObjectHideFlags: 0
@@ -1464,7 +1463,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 23.556396, y: 0}
   m_SizeDelta: {x: 575.6851, y: 863.5276}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2015233721

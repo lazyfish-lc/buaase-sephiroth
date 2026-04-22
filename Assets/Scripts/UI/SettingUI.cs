@@ -3,29 +3,32 @@ using UnityEngine;
 public class SettingUI : MonoBehaviour
 {
     public CanvasGroup SettingCanvas;
-        void Start()
+    public static SettingUI Instance;
+    void Awake()
+    {
+        Instance = this;
+    }
+    void Start()
     {
         SettingCanvas.alpha = 0;
         SettingCanvas.interactable = false;
         SettingCanvas.blocksRaycasts = false;
     }
-
-       void Update()
+    public void OpenAndClose()
     {
-        if(Input.GetButtonDown("Setting"))
+        
+        if(SettingCanvas.alpha == 0)
         {
-            if(SettingCanvas.alpha == 0)
-            {
-                SettingCanvas.alpha = 1;
-                SettingCanvas.interactable = true;
-                SettingCanvas.blocksRaycasts = true;
-            }
-            else
-            {
-                SettingCanvas.alpha = 0;
-                SettingCanvas.interactable = false;
-                SettingCanvas.blocksRaycasts = false;
-            }
+            SettingCanvas.alpha = 1;
+            SettingCanvas.interactable = true;
+            SettingCanvas.blocksRaycasts = true;
+        }
+        else
+        {
+            SettingCanvas.alpha = 0;
+            SettingCanvas.interactable = false;
+            SettingCanvas.blocksRaycasts = false;
         }
     }
+    
 }

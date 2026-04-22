@@ -3,35 +3,32 @@ using UnityEngine;
 public class MenuUI : MonoBehaviour
 {
     public CanvasGroup MenuCanvas;
+    public static MenuUI Instance;
+    void Awake()
+    {
+        Instance = this;
+    }
     void Start()
     {
         MenuCanvas.alpha = 0;
         MenuCanvas.interactable = false;
         MenuCanvas.blocksRaycasts = false;
     }
-
-    void Update()
+    public void OpenAndClose()
     {
-        if(Input.GetButtonDown("Menu"))
+        
+        if(MenuCanvas.alpha == 0)
         {
-            if(MenuCanvas.alpha == 0)
-            {
-                MenuCanvas.alpha = 1;
-                MenuCanvas.interactable = true;
-                MenuCanvas.blocksRaycasts = true;
-            }
-            else
-            {
-                MenuCanvas.alpha = 0;
-                MenuCanvas.interactable = false;
-                MenuCanvas.blocksRaycasts = false;
-            }
+            MenuCanvas.alpha = 1;
+            MenuCanvas.interactable = true;
+            MenuCanvas.blocksRaycasts = true;
         }
-    }
-    public void Close()
-    {
-        MenuCanvas.alpha = 0;
-        MenuCanvas.interactable = false;
-        MenuCanvas.blocksRaycasts = false;
+        else
+        {
+            MenuCanvas.alpha = 0;
+            MenuCanvas.interactable = false;
+            MenuCanvas.blocksRaycasts = false;
+        }
+        
     }
 }

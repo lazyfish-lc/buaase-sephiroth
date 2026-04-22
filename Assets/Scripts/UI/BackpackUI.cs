@@ -3,29 +3,32 @@ using UnityEngine;
 public class BackpackUI : MonoBehaviour
 {
     public CanvasGroup BackpackCanvas;
-        void Start()
+    public static BackpackUI Instance;
+    void Awake()
+    {
+        Instance = this;
+    }
+    void Start()
     {
         BackpackCanvas.alpha = 0;
         BackpackCanvas.interactable = false;
         BackpackCanvas.blocksRaycasts = false;
     }
-
-       void Update()
+    public void OpenAndClose()
     {
-        if(Input.GetButtonDown("Backpack"))
+        
+        if(BackpackCanvas.alpha == 0)
         {
-            if(BackpackCanvas.alpha == 0)
-            {
-                BackpackCanvas.alpha = 1;
-                BackpackCanvas.interactable = true;
-                BackpackCanvas.blocksRaycasts = true;
-            }
-            else
-            {
-                BackpackCanvas.alpha = 0;
-                BackpackCanvas.interactable = false;
-                BackpackCanvas.blocksRaycasts = false;
-            }
+            BackpackCanvas.alpha = 1;
+            BackpackCanvas.interactable = true;
+            BackpackCanvas.blocksRaycasts = true;
         }
+        else
+        {
+            BackpackCanvas.alpha = 0;
+            BackpackCanvas.interactable = false;
+            BackpackCanvas.blocksRaycasts = false;
+        }
+        
     }
 }
