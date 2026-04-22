@@ -19,16 +19,24 @@ public class BackpackUI : MonoBehaviour
         
         if(BackpackCanvas.alpha == 0)
         {
-            BackpackCanvas.alpha = 1;
-            BackpackCanvas.interactable = true;
-            BackpackCanvas.blocksRaycasts = true;
+            Open();
         }
         else
         {
-            BackpackCanvas.alpha = 0;
-            BackpackCanvas.interactable = false;
-            BackpackCanvas.blocksRaycasts = false;
+            Close();
         }
         
+    }
+    public void Open()
+    {
+        BackpackCanvas.alpha = 1;
+        BackpackCanvas.interactable = true;
+        BackpackCanvas.blocksRaycasts = true;
+    }
+    public void Close()
+    {
+        BackpackCanvas.alpha = 0;
+        BackpackCanvas.interactable = false;
+        BackpackCanvas.blocksRaycasts = false;
     }
 }

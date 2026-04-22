@@ -19,16 +19,24 @@ public class MenuUI : MonoBehaviour
         
         if(MenuCanvas.alpha == 0)
         {
-            MenuCanvas.alpha = 1;
-            MenuCanvas.interactable = true;
-            MenuCanvas.blocksRaycasts = true;
+            Open();
         }
         else
         {
-            MenuCanvas.alpha = 0;
-            MenuCanvas.interactable = false;
-            MenuCanvas.blocksRaycasts = false;
+            Close();
         }
         
+    }
+    public void Open()
+    {
+        MenuCanvas.alpha = 1;
+        MenuCanvas.interactable = true;
+        MenuCanvas.blocksRaycasts = true;
+    }
+    public void Close()
+    {
+        MenuCanvas.alpha = 0;
+        MenuCanvas.interactable = false;
+        MenuCanvas.blocksRaycasts = false;
     }
 }

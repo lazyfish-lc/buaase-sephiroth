@@ -19,16 +19,25 @@ public class SettingUI : MonoBehaviour
         
         if(SettingCanvas.alpha == 0)
         {
-            SettingCanvas.alpha = 1;
-            SettingCanvas.interactable = true;
-            SettingCanvas.blocksRaycasts = true;
+            Open();
         }
         else
         {
-            SettingCanvas.alpha = 0;
-            SettingCanvas.interactable = false;
-            SettingCanvas.blocksRaycasts = false;
+            Close();
         }
     }
+    public void Open()
+    {
+        SettingCanvas.alpha = 1;
+        SettingCanvas.interactable = true;
+        SettingCanvas.blocksRaycasts = true;
+    }
+    public void Close()
+    {
+        SettingCanvas.alpha = 0;
+        SettingCanvas.interactable = false;
+        SettingCanvas.blocksRaycasts = false;
+    }
+
     
 }
