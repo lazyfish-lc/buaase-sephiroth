@@ -1,8 +1,8 @@
 using UnityEngine;
 
 public class PlayerSmallObject : SmallObject {
-    public float moveSpeed = 5f;
     public Rigidbody rb;
+    public PlayerObjectDynamicState playerState => (PlayerObjectDynamicState) dynamicState;
 
      public override void Start() {
         base.Start();
@@ -12,7 +12,7 @@ public class PlayerSmallObject : SmallObject {
     public override void OnMoveAction(Vector3 moveDir) {
         Vector3 direction = Vector3.zero;
         direction = moveDir.normalized;
-        rb.linearVelocity = new Vector3(direction.x * moveSpeed, rb.linearVelocity.y * moveSpeed, direction.z);
+        rb.linearVelocity = new Vector3(direction.x * playerState.moveSpeed, rb.linearVelocity.y * playerState.moveSpeed, direction.z);
     }
 
     public override void OnInteractAction() {
