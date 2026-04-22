@@ -1,3 +1,6 @@
+
+
+[System.Serializable]
 public class ObjectLabel {
     public string labelName;
     

@@ -16,6 +16,7 @@ public class SmallObjectDynamicState {
     public float currentHealth;
     // 可以根据需要添加更多动态状态字段
     public List<ObjectLabel> smallObjectLabels = new List<ObjectLabel>();
+    public Dictionary<string, SmallObjectProperty> propertyMap = new Dictionary<string, SmallObjectProperty>();
 }
 
 public class PropertyDefinition {

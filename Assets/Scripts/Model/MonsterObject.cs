@@ -1,6 +1,8 @@
 using UnityEngine;
 
 public class MonsterSmallObject : SmallObject {
+    public MonsterObjectDynamicState monsterState => (MonsterObjectDynamicState) dynamicState;
+    
     public override void OnValueModifyAction(string prop, float delta) {
         // 修改血量
         dynamicState.currentHealth += delta * 50f;
