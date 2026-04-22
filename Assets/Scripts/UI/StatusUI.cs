@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class SettingUI : MonoBehaviour
+public class StatusUI : MonoBehaviour
 {
-    public CanvasGroup SettingCanvas;
-    public static SettingUI Instance;
+    public CanvasGroup StatusCanvas;
+    public static StatusUI Instance;
     void Awake()
     {
         if(Instance != null)
@@ -23,14 +23,14 @@ public class SettingUI : MonoBehaviour
     }
     void Start()
     {
-        SettingCanvas.alpha = 0;
-        SettingCanvas.interactable = false;
-        SettingCanvas.blocksRaycasts = false;
+        StatusCanvas.alpha = 0;
+        StatusCanvas.interactable = false;
+        StatusCanvas.blocksRaycasts = false;
     }
     public void OpenAndClose()
     {
         
-        if(SettingCanvas.alpha == 0)
+        if(StatusCanvas.alpha == 0)
         {
             Open();
         }
@@ -41,15 +41,15 @@ public class SettingUI : MonoBehaviour
     }
     public void Open()
     {
-        SettingCanvas.alpha = 1;
-        SettingCanvas.interactable = true;
-        SettingCanvas.blocksRaycasts = true;
+        StatusCanvas.alpha = 1;
+        StatusCanvas.interactable = true;
+        StatusCanvas.blocksRaycasts = true;
     }
     public void Close()
     {
-        SettingCanvas.alpha = 0;
-        SettingCanvas.interactable = false;
-        SettingCanvas.blocksRaycasts = false;
+        StatusCanvas.alpha = 0;
+        StatusCanvas.interactable = false;
+        StatusCanvas.blocksRaycasts = false;
     }
 
     

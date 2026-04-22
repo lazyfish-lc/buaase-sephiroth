@@ -66,31 +66,35 @@ public class IOSubsystem : MonoBehaviour {
 
     void dealSettings() {
         if (Input.GetButtonDown(InputConfig.Settings)) {
-            // 打开设置界面
-            Debug.Log("设置被调用");
-            SettingUI.Instance.OpenAndClose();
+            if (SettingUI.Instance != null) {
+                Debug.Log("设置被调用");
+                SettingUI.Instance.OpenAndClose();
+            }
         }
     }
 
     void dealMenu() {
         if (Input.GetButtonDown(InputConfig.Menu)) {
-            // 打开菜单界面
-            Debug.Log("菜单被调用");
-            MenuUI.Instance.OpenAndClose();
+            if (MenuUI.Instance != null) {
+                Debug.Log("菜单被调用");
+                MenuUI.Instance.OpenAndClose();
+            }
         }
     }
     void dealBackpack() {
         if (Input.GetButtonDown(InputConfig.Backpack)) {
-            // 打开背包界面
-            Debug.Log("背包被调用");
-            BackpackUI.Instance.OpenAndClose();
+            if (BackpackUI.Instance != null) {
+                Debug.Log("背包被调用");
+                BackpackUI.Instance.OpenAndClose();
+            }
         }
     }
     void dealAction() {
         if (Input.GetButtonDown(InputConfig.Action)) {
-            // 触发特定动作
-            Debug.Log("动作面板被调用");
-            ActionUI.Instance.OpenAndClose();
+            if (ActionUI.Instance != null) {
+                Debug.Log("动作面板被调用");
+                ActionUI.Instance.OpenAndClose();
+            }
         }
     }
 

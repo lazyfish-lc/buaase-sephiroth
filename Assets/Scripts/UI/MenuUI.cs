@@ -1,12 +1,26 @@
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class MenuUI : MonoBehaviour
 {
     public CanvasGroup MenuCanvas;
     public static MenuUI Instance;
+    private bool isLoadingStartMenu;
     void Awake()
     {
+        if(Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
         Instance = this;
+    }
+
+    void OnDestroy()
+    {
+        if (Instance == this)
+        {
+            Instance = null;
+        }
     }
     void Start()
     {
@@ -19,16 +33,65 @@ public class MenuUI : MonoBehaviour
         
         if(MenuCanvas.alpha == 0)
         {
-            MenuCanvas.alpha = 1;
-            MenuCanvas.interactable = true;
-            MenuCanvas.blocksRaycasts = true;
+            Open();
         }
         else
         {
-            MenuCanvas.alpha = 0;
-            MenuCanvas.interactable = false;
-            MenuCanvas.blocksRaycasts = false;
+            Close();
         }
         
     }
+    public void Open()
+    {
+        MenuCanvas.alpha = 1;
+        MenuCanvas.interactable = true;
+        MenuCanvas.blocksRaycasts = true;
+    }
+    public void Close()
+    {
+        MenuCanvas.alpha = 0;
+        MenuCanvas.interactable = false;
+        MenuCanvas.blocksRaycasts = false;
+    }
+    public void OpenSetting()
+    {
+        SettingUI.Instance.OpenAndClose();
+    }
+    public void OpenStartMenu()
+    {
+        if (isLoadingStartMenu)
+        {
+            return;
+        }
+
+        isLoadingStartMenu = true;
+        Time.timeScale = 1f;
+
+        if (SettingUI.Instance != null)
+        {
+            SettingUI.Instance.Close();
+        }
+        if (BackpackUI.Instance != null)
+        {
+            BackpackUI.Instance.Close();
+        }
+        if (ActionUI.Instance != null)
+        {
+            ActionUI.Instance.Close();
+        }
+
+        Close();
+        SceneManager.LoadScene("StartMenuScene");
+        SceneManager.LoadScene("GameScene", LoadSceneMode.Additive);
+    }
+    public void Quit()
+    {
+        Application.Quit();
+    }
+    public void RestartGame()
+    {
+        //重启当前场景
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    
 }

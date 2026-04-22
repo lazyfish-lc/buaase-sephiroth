@@ -6,7 +6,20 @@ public class ActionUI : MonoBehaviour
     public static ActionUI Instance;
     void Awake()
     {
+        if(Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
         Instance = this;
+    }
+
+    void OnDestroy()
+    {
+        if (Instance == this)
+        {
+            Instance = null;
+        }
     }
     void Start()
     {
@@ -19,16 +32,24 @@ public class ActionUI : MonoBehaviour
         
         if(ActionCanvas.alpha == 0)
         {
-            ActionCanvas.alpha = 1;
-            ActionCanvas.interactable = true;
-            ActionCanvas.blocksRaycasts = true;
+            Open();
         }
         else
         {
-            ActionCanvas.alpha = 0;
-            ActionCanvas.interactable = false;
-            ActionCanvas.blocksRaycasts = false;
+            Close();
         }
+    }
+    public void Open()
+    {
+        ActionCanvas.alpha = 1;
+        ActionCanvas.interactable = true;
+        ActionCanvas.blocksRaycasts = true;
+    }
+    public void Close()
+    {
+        ActionCanvas.alpha = 0;
+        ActionCanvas.interactable = false;
+        ActionCanvas.blocksRaycasts = false;
     }
         
     
