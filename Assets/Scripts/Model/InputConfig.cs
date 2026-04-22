@@ -11,8 +11,8 @@ public enum InputActionType {
 }
 
 public static class InputConfig {
-    public const string HorizontalAxis = "Horizontal";
-    public const string VerticalAxis = "Vertical";
+    public const string Horizontal = "Horizontal";
+    public const string Vertical = "Vertical";
     public const string Interact = "Interact";
     public const string SwitchTime = "SwitchTime";
     public const string Scroll = "Mouse ScrollWheel";
