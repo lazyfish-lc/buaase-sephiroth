@@ -1,13 +1,10 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class StartMenuUI : MonoBehaviour
 {
     public CanvasGroup StartMenuCanvas;
-    void Update()
-    {
-        
-    }
     public void GameStart()
     {
         // 加载游戏场景

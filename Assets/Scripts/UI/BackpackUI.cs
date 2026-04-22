@@ -6,7 +6,20 @@ public class BackpackUI : MonoBehaviour
     public static BackpackUI Instance;
     void Awake()
     {
+        if(Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
         Instance = this;
+    }
+
+    void OnDestroy()
+    {
+        if (Instance == this)
+        {
+            Instance = null;
+        }
     }
     void Start()
     {

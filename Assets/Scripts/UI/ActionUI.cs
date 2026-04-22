@@ -6,7 +6,20 @@ public class ActionUI : MonoBehaviour
     public static ActionUI Instance;
     void Awake()
     {
+        if(Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
         Instance = this;
+    }
+
+    void OnDestroy()
+    {
+        if (Instance == this)
+        {
+            Instance = null;
+        }
     }
     void Start()
     {
