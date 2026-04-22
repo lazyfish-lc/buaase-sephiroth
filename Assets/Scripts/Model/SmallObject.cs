@@ -1,10 +1,10 @@
 using UnityEngine;
 using System.Collections.Generic;
 public abstract class SmallObject : MonoBehaviour {
-    public string objectName;
+    
     public SmallObjectStaticData staticData;
     public SmallObjectDynamicState dynamicState;
-    public BigObject ownerBigObject;
+    
     // 包含对象所有的属性映射
     public Dictionary<string, SmallObjectProperty> propertyMap = new Dictionary<string, SmallObjectProperty>();
 
@@ -13,7 +13,7 @@ public abstract class SmallObject : MonoBehaviour {
     }
 
     public virtual void Start() {
-        
+        dynamicState = new SmallObjectDynamicState();
     }
 
     private void InitializeProperties() {
@@ -47,6 +47,12 @@ public abstract class SmallObject : MonoBehaviour {
     public virtual void OnMoveAction(Vector3 moveVector) { }
 
     public void NotifyStateChange() {
-        ownerBigObject?.OnChildStateChanged(this);
+        staticData.ownerBigObject?.OnChildStateChanged(this);
     }
+
+    public virtual void ILabelOnAttacking(SmallObject target) { }
+    public virtual void ILabelOnCrash(SmallObject Obstacle) { }
+    public virtual void ILabelOnAttacked(SmallObject attacker) { }
+    public virtual void ILabelOnTick() { }
+    public virtual void ILabelOnMoving() { }
 }
