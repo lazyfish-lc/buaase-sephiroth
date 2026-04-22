@@ -6,6 +6,7 @@ on:
       - main
       - master
       - release
+      - develop
     paths:
       - 'Assets/**'
       - 'Packages/**'
