@@ -2,7 +2,8 @@ using UnityEngine;
 
 public struct InputEventData {
     public InputActionType actionType;
-    public float value;             // 用于数值修改（滚轮增量）或移动权重
-    public Vector3 mousePosition;   // 鼠标位置
-    public SmallObject target;      // 射线检测到的目标对象
+    public float value;             // 数值增量
+    public Vector3 moveVector;      // 移动向量
+    public string propertyName;     // 解决问题2：属性名称映射
+    public SmallObject target;
 }
