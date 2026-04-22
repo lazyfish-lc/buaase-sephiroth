@@ -1,59 +1,63 @@
 using UnityEngine;
-using System;
 
 public class IOSubsystem : MonoBehaviour {
     public static IOSubsystem Instance;
     
-    [Header("Settings")]
     public LayerMask interactableLayer;
-    public SmallObject playerObject; // 引用玩家对象
+    public SmallObject playerObject;
 
     void Awake() { Instance = this; }
 
     void Update() {
-        // 1. 处理映射表中的按键
-        foreach (var mapping in InputConfig.KeyMap) {
-            if (Input.GetKey(mapping.Key)) {
-                TriggerAction(mapping.Value, Input.GetKeyDown(mapping.Key));
-            }
-        }
-
-        // 2. 处理鼠标滚轮（数值修改玩法）
-        float scroll = Input.GetAxis("Mouse ScrollWheel");
-        if (Mathf.Abs(scroll) > 0.01f) {
-            TriggerValueAction(scroll);
-        }
+        dealMovement();
+        dealInteract();
+        dealSwitchTime();
+        dealScroll();
     }
 
-    private void TriggerAction(InputActionType action, bool isFirstDown) {
-        InputEventData data = new InputEventData {
-            actionType = action,
-            mousePosition = Input.mousePosition
-        };
-
-        // 确定接收者
-        if (IsMovementAction(action)) {
-            // 移动类行为发给玩家
-            playerObject?.HandleInput(data);
-        } else if (isFirstDown) {
-            // 交互类行为（仅在按下那一帧触发）发给鼠标指向的对象
-            data.target = GetObjectUnderMouse();
-            data.target?.HandleInput(data);
-            
-            // 全局行为（如切换时间）可以发给一个全局管理器或玩家
-            if (action == InputActionType.SwitchTime) {
-                GameSceneManager.Instance?.ToggleTimeVision();
+    void dealMovement() {
+        float h = Input.GetAxis(InputConfig.Horizontal);
+        float v = Input.GetAxis(InputConfig.Vertical);
+        if (Mathf.Abs(h) > 0.1f || Mathf.Abs(v) > 0.1f) {
+            InputEventData data = new InputEventData {
+                actionType = InputActionType.Movement,
+                moveVector = new Vector3(h, 0, v)
+            };
+            if (playerObject != null) {
+                playerObject.HandleInput(data);
+            } else {
+                Debug.LogWarning("玩家对象未设置，无法处理移动输入");
             }
         }
     }
 
-    private void TriggerValueAction(float scrollDelta) {
-        InputEventData data = new InputEventData {
-            actionType = InputConfig.ScrollAction,
-            value = scrollDelta,
-            target = GetObjectUnderMouse()
-        };
-        data.target?.HandleInput(data);
+    void dealInteract() {
+        if (Input.GetButtonDown(InputConfig.Interact)) {
+            SmallObject target = GetObjectUnderMouse();
+            if (target != null) {
+                InputEventData data = new InputEventData {
+                    actionType = InputActionType.Interact,
+                    target = target
+                };
+                target.HandleInput(data);
+            } else {
+                Debug.Log("没有可交互对象在鼠标下");
+            }
+        }
+    }
+
+    void dealSwitchTime() {
+        if (Input.GetButtonDown(InputConfig.SwitchTime)) {
+            GameSceneManager.Instance.ToggleTimeVision();
+        }
+    }
+
+    void dealScroll() {
+        float scrollDelta = Input.GetAxis(InputConfig.Scroll);
+        if (Mathf.Abs(scrollDelta) > 0.01f) {
+            Debug.Log("滚轮输入，增量: " + scrollDelta);
+            // TODO: 处理滚轮输入，触发数值修改事件
+        }
     }
 
     private SmallObject GetObjectUnderMouse() {
@@ -62,10 +66,5 @@ public class IOSubsystem : MonoBehaviour {
             return hit.collider.GetComponent<SmallObject>();
         }
         return null;
-    }
-
-    private bool IsMovementAction(InputActionType action) {
-        return action == InputActionType.MoveForward || action == InputActionType.MoveBackward ||
-               action == InputActionType.MoveLeft || action == InputActionType.MoveRight;
     }
 }
