@@ -2,15 +2,17 @@ using UnityEngine;
 
 public class PlayerSmallObject : SmallObject {
     public float moveSpeed = 5f;
+    public Rigidbody rb;
 
-    public override void OnMoveAction(InputActionType moveDir) {
+     public override void Start() {
+        base.Start();
+        if (rb == null) rb = GetComponent<Rigidbody>();
+    }
+
+    public override void OnMoveAction(Vector3 moveDir) {
         Vector3 direction = Vector3.zero;
-        if (moveDir == InputActionType.MoveForward) direction = Vector3.forward;
-        if (moveDir == InputActionType.MoveBackward) direction = Vector3.back;
-        if (moveDir == InputActionType.MoveLeft) direction = Vector3.left;
-        if (moveDir == InputActionType.MoveRight) direction = Vector3.right;
-        
-        transform.Translate(direction * moveSpeed * Time.deltaTime);
+        direction = moveDir.normalized;
+        rb.linearVelocity = new Vector3(direction.x * moveSpeed, rb.linearVelocity.y * moveSpeed, direction.z);
     }
 
     public override void OnInteractAction() {
