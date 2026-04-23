@@ -3,8 +3,12 @@ using UnityEngine;
 public class PlayerSmallObject : SmallObject {
     public Rigidbody2D rb;
     public PlayerView playerView;
-    public PlayerObjectDynamicState playerState => (PlayerObjectDynamicState) dynamicState;
-    public PlayerObjectStaticData playerStaticData => (PlayerObjectStaticData) staticData;
+    public PlayerObjectDynamicState playerState => dynamicState as PlayerObjectDynamicState;
+    public PlayerObjectStaticData playerStaticData => staticData as PlayerObjectStaticData;
+
+    protected override SmallObjectDynamicState CreateDynamicState() {
+        return new PlayerObjectDynamicState();
+    }
 
      public override void Start() {
         base.Start();
@@ -26,6 +30,11 @@ public class PlayerSmallObject : SmallObject {
     }
 
     public void Attack() {
+        if (playerState == null || playerStaticData == null) {
+            Debug.LogWarning("玩家状态或静态数据类型配置错误，无法攻击");
+            return;
+        }
+
         float attackSpeed = playerState.propertyMap.ContainsKey("AttackSpeed") ? playerState.propertyMap["AttackSpeed"].value : 1f;
         float cooldown = playerStaticData.baseAttackCooldown / attackSpeed;
         if (Time.time - playerState.lastAttackTime >= cooldown) {

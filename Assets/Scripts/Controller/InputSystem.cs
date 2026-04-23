@@ -29,9 +29,8 @@ public class IOSubsystem : MonoBehaviour {
     }
 
     void dealMovement() {
-        float y = Input.GetAxis(InputConfig.Horizontal);
-        float x = Input.GetAxis(InputConfig.Vertical);
-        if (Mathf.Abs(y) > 0.1f || Mathf.Abs(x) > 0.1f) {
+        float x = Input.GetAxis(InputConfig.Horizontal);
+        float y = Input.GetAxis(InputConfig.Vertical);
             InputEventData data = new InputEventData {
                 actionType = InputActionType.Movement,
                 moveVector = new Vector3(x, y, 0)
@@ -41,7 +40,7 @@ public class IOSubsystem : MonoBehaviour {
             } else {
                 Debug.LogWarning("玩家对象未设置，无法处理移动输入");
             }
-        }
+        
     }
 
     void dealInteract() {
