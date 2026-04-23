@@ -93,5 +93,20 @@ public class MenuUI : MonoBehaviour
         //重启当前场景
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
+    public void SaveGame()
+    {
+        //调用SaveManager的保存方法
+        Debug.Log("游戏已保存");
+        
+    }
+
+    public void LoadGame()
+    {
+        //调用SaveManager的加载方法
+        Debug.Log("游戏存档已加载");
+        
+        
+    }
     
 }
