@@ -8,6 +8,7 @@ public enum InputActionType {
     Interact,       // 交互
     SwitchTime,     // 切换时空
     ValueModify,     // 数值修改
+    Attack,          // 攻击
 }
 
 public static class InputConfig {
@@ -20,4 +21,5 @@ public static class InputConfig {
     public const string Menu = "Menu";
     public const string Backpack = "Backpack";
     public const string Action = "Action";
+    public const string Attack = "Attack";
 }
