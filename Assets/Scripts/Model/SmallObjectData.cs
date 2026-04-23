@@ -22,4 +22,6 @@ public class SmallObjectDynamicState {
 public class PropertyDefinition {
     public string name;
     public float initialValue;
+    public float minValue;
+    public float maxValue;
 }
