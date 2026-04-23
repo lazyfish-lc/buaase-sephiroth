@@ -1,5 +1,4 @@
 using UnityEngine;
-
 public class IOSubsystem : MonoBehaviour {
     public static IOSubsystem Instance;
     
@@ -13,10 +12,13 @@ public class IOSubsystem : MonoBehaviour {
         dealInteract();
         dealSwitchTime();
         dealScroll();
-        dealSettings();
-        dealMenu();
-        dealBackpack();
-        dealAction();
+        // 只在游戏中处理设置、菜单、背包和动作面板的输入，使用自带的场景管理器来判断当前场景，避免与自定义的GameSceneManager耦合过紧
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "GameScene") {
+            dealSettings();
+            dealMenu();
+            dealBackpack();
+            dealAction();
+        }
     }
 
     void dealMovement() {
