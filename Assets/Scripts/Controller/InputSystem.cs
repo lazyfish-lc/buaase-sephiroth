@@ -3,7 +3,7 @@ public class IOSubsystem : MonoBehaviour {
     public static IOSubsystem Instance;
     
     public LayerMask interactableLayer;
-    public SmallObject playerObject;
+    public PlayerSmallObject playerObject;
 
     void Awake() { Instance = this; }
 
@@ -12,6 +12,7 @@ public class IOSubsystem : MonoBehaviour {
         dealInteract();
         dealSwitchTime();
         dealScroll();
+        dealAttack();
         // 只在游戏中处理设置、菜单、背包和动作面板的输入，使用自带的场景管理器来判断当前场景，避免与自定义的GameSceneManager耦合过紧
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "GameScene") {
             dealSettings();
@@ -21,13 +22,19 @@ public class IOSubsystem : MonoBehaviour {
         }
     }
 
+    void dealAttack() {
+        if (Input.GetButtonDown(InputConfig.Attack)) {
+            playerObject.Attack();
+        }
+    }
+
     void dealMovement() {
-        float h = Input.GetAxis(InputConfig.Horizontal);
-        float v = Input.GetAxis(InputConfig.Vertical);
-        if (Mathf.Abs(h) > 0.1f || Mathf.Abs(v) > 0.1f) {
+        float y = Input.GetAxis(InputConfig.Horizontal);
+        float x = Input.GetAxis(InputConfig.Vertical);
+        if (Mathf.Abs(y) > 0.1f || Mathf.Abs(x) > 0.1f) {
             InputEventData data = new InputEventData {
                 actionType = InputActionType.Movement,
-                moveVector = new Vector3(h, 0, v)
+                moveVector = new Vector3(x, y, 0)
             };
             if (playerObject != null) {
                 playerObject.HandleInput(data);

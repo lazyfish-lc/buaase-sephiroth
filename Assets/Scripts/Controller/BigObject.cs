@@ -12,5 +12,10 @@ public abstract class BigObject : MonoBehaviour {
         dynamicState = new BigObjectDynamicState();
         if(staticData.pastObject != null) staticData.pastObject.staticData.ownerBigObject = this;
         if(staticData.presentObject != null) staticData.presentObject.staticData.ownerBigObject = this;
+        GameObjectManager.RegisterBigObject(this);
+    }
+
+    public virtual void OnDestroy() {
+        GameObjectManager.UnregisterBigObject(this);
     }
 }

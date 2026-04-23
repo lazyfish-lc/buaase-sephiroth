@@ -19,12 +19,9 @@ public abstract class SmallObject : MonoBehaviour {
     private void InitializeProperties() {
         // 第一步：实例化所有定义的属性（确保后面规则引用时属性已存在）
         foreach (var blueprint in staticData.propertyBlueprints) {
-            dynamicState.propertyMap[blueprint.name] = new SmallObjectProperty(blueprint.name, blueprint.initialValue);
+            dynamicState.propertyMap[blueprint.name] = new SmallObjectProperty(
+                blueprint.name, blueprint.initialValue, blueprint.minValue, blueprint.maxValue);
         }
-    }
-
-    private void ApplyRule(NumericalRule rule) {
-        // TODO: 加入规则到字典中
     }
 
     // 接收来自 IO 子系统的分发
@@ -38,7 +35,7 @@ public abstract class SmallObject : MonoBehaviour {
     public abstract void OnInteractAction();
     public virtual void OnValueModifyAction(string prop, float delta) {
         if (dynamicState.propertyMap.ContainsKey(prop)) {
-            dynamicState.propertyMap[prop].OnChanged(delta);
+            dynamicState.propertyMap[prop].SetValue(delta);
             NotifyStateChange();
         } else {
             Debug.LogWarning($"属性 {prop} 不存在于 {gameObject.name} 的属性映射中");
