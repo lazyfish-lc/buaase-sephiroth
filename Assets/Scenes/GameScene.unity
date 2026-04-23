@@ -3457,7 +3457,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 100
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -3577,7 +3577,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06f954bed5f581b49b6cacaf94ec5c04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerView
-  animator: {fileID: 0}
+  animator: {fileID: 1980002998}
 --- !u!114 &1980003000
 MonoBehaviour:
   m_ObjectHideFlags: 0

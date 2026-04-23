@@ -9,11 +9,22 @@ public abstract class SmallObject : MonoBehaviour {
     
 
     protected virtual void Awake() {
+        dynamicState = CreateDynamicState();
+        if (dynamicState == null) {
+            dynamicState = new SmallObjectDynamicState();
+            Debug.LogWarning($"{GetType().Name} CreateDynamicState 返回空，已回退为 SmallObjectDynamicState");
+        }
         InitializeProperties();
     }
 
+    protected virtual SmallObjectDynamicState CreateDynamicState() {
+        return new SmallObjectDynamicState();
+    }
+
     public virtual void Start() {
-        dynamicState = new SmallObjectDynamicState();
+        if (dynamicState == null) {
+            dynamicState = CreateDynamicState();
+        }
     }
 
     private void InitializeProperties() {
