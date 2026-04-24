@@ -4,6 +4,7 @@ public class BackpackUI : MonoBehaviour
 {
     public CanvasGroup BackpackCanvas;
     public static BackpackUI Instance;
+    public bool isOpen = false;
     void Awake()
     {
         if(Instance != null)
@@ -42,12 +43,14 @@ public class BackpackUI : MonoBehaviour
     }
     public void Open()
     {
+        isOpen = true;
         BackpackCanvas.alpha = 1;
         BackpackCanvas.interactable = true;
         BackpackCanvas.blocksRaycasts = true;
     }
     public void Close()
     {
+        isOpen = false;
         BackpackCanvas.alpha = 0;
         BackpackCanvas.interactable = false;
         BackpackCanvas.blocksRaycasts = false;

@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class MenuUI : MonoBehaviour
 {
+    public bool isOpen = false;
     public CanvasGroup MenuCanvas;
     public static MenuUI Instance;
     private bool isLoadingStartMenu;
@@ -30,7 +31,6 @@ public class MenuUI : MonoBehaviour
     }
     public void OpenAndClose()
     {
-        
         if(MenuCanvas.alpha == 0)
         {
             Open();
@@ -43,12 +43,14 @@ public class MenuUI : MonoBehaviour
     }
     public void Open()
     {
+        isOpen = true;
         MenuCanvas.alpha = 1;
         MenuCanvas.interactable = true;
         MenuCanvas.blocksRaycasts = true;
     }
     public void Close()
     {
+        isOpen = false;
         MenuCanvas.alpha = 0;
         MenuCanvas.interactable = false;
         MenuCanvas.blocksRaycasts = false;

@@ -1,24 +1,24 @@
 using UnityEngine;
 public class IOSubsystem : MonoBehaviour {
     public static IOSubsystem Instance;
-    
     public LayerMask interactableLayer;
     public PlayerSmallObject playerObject;
-
     void Awake() { Instance = this; }
-
     void Update() {
-        dealMovement();
-        dealInteract();
-        dealSwitchTime();
-        dealScroll();
-        dealAttack();
+        //鼠标下是否是UI元素，如果鼠标下是非游戏物体不触发
+        if(!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject()) {
+            dealAttack();
+        }
         // 只在游戏中处理设置、菜单、背包和动作面板的输入，使用自带的场景管理器来判断当前场景，避免与自定义的GameSceneManager耦合过紧
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "GameScene") {
             dealSettings();
             dealMenu();
             dealBackpack();
             dealAction();
+            dealMovement();
+            dealInteract();
+            dealSwitchTime();
+            dealScroll();
         }
     }
 
