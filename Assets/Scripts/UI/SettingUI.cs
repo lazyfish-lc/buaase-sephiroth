@@ -4,19 +4,20 @@ using UnityEngine.UI;
 
 public class SettingUI : MonoBehaviour
 {
+    public bool isOpen = false;
     public CanvasGroup SettingCanvas;
-
+    [Header("精灵图设置")]
     public Sprite MusicOnSprite;
     public Sprite MusicOffSprite;
     public Sprite SoundOnSprite;
-    public Sprite SoundOffSprite;
-
+    public Sprite SoundOffSprite;    
+    [Header("按钮设置")]
     public Button MusicButton;
     public Button SoundButton;
-
+    [Header("滑动条设置")]
     public Slider MusicSlider;
     public Slider SoundSlider;
-
+    [Header("文本设置")]
     public TMP_Text MusicVolumeNumber;
     public TMP_Text SoundVolumeNumber;
     private float LastMusicVolume;
@@ -81,6 +82,7 @@ public class SettingUI : MonoBehaviour
     }
     public void Open()
     {
+        isOpen = true;
         SettingCanvas.alpha = 1;
         SettingCanvas.interactable = true;
         SettingCanvas.blocksRaycasts = true;
@@ -88,6 +90,7 @@ public class SettingUI : MonoBehaviour
     }
     public void Close()
     {
+        isOpen = false;
         SettingCanvas.alpha = 0;
         SettingCanvas.interactable = false;
         SettingCanvas.blocksRaycasts = false;

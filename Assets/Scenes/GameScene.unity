@@ -616,6 +616,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BackpackUI
   BackpackCanvas: {fileID: 365638168}
+  isOpen: 0
 --- !u!1 &395181877
 GameObject:
   m_ObjectHideFlags: 0
@@ -2141,7 +2142,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 25
+  m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -2190,6 +2191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5731505760ed17b47890407834422afb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MenuUI
+  isOpen: 0
   MenuCanvas: {fileID: 1037559004}
 --- !u!1 &1045295305
 GameObject:
@@ -2776,6 +2778,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cf4cbb2599faeb4cbd280de110bcc66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SettingUI
+  isOpen: 0
   SettingCanvas: {fileID: 1193278717}
   MusicOnSprite: {fileID: 6685963406241323843, guid: 8e86ab3a0b1dc5145aa2b8268f0841cf, type: 3}
   MusicOffSprite: {fileID: -3071970588773052267, guid: 8e86ab3a0b1dc5145aa2b8268f0841cf, type: 3}
@@ -4478,6 +4481,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1980673961}
+  - component: {fileID: 1980673962}
   m_Layer: 5
   m_Name: UIManager
   m_TagString: Untagged
@@ -4505,6 +4509,22 @@ Transform:
   - {fileID: 1193278716}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1980673962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1980673960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 440f2201d83a46445b0db0291f1f30dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIManager
+  menuUI: {fileID: 1037559005}
+  settingUI: {fileID: 1193278718}
+  backpackUI: {fileID: 365638169}
+  actionUI: {fileID: 335220322}
 --- !u!1 &1999286488
 GameObject:
   m_ObjectHideFlags: 0
