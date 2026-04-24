@@ -79,6 +79,10 @@ public class MenuUI : MonoBehaviour
         {
             ActionUI.Instance.Close();
         }
+        if (StatusUI.Instance != null)
+        {
+            StatusUI.Instance.Close();
+        }
 
         Close();
         SceneManager.LoadScene("StartMenuScene");
