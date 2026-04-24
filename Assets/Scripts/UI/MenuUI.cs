@@ -82,7 +82,6 @@ public class MenuUI : MonoBehaviour
 
         Close();
         SceneManager.LoadScene("StartMenuScene");
-        SceneManager.LoadScene("GameScene", LoadSceneMode.Additive);
     }
     public void Quit()
     {
