@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,6 +17,8 @@ public class SettingUI : MonoBehaviour
     public Slider MusicSlider;
     public Slider SoundSlider;
 
+    public TMP_Text MusicVolumeNumber;
+    public TMP_Text SoundVolumeNumber;
     private float LastMusicVolume;
     private float LastSoundVolume;
 
@@ -44,6 +47,11 @@ public class SettingUI : MonoBehaviour
         SettingCanvas.alpha = 0;
         SettingCanvas.interactable = false;
         SettingCanvas.blocksRaycasts = false;
+    }
+    void Update()
+    {
+        MusicVolumeNumber.text = GetMusicVolume(MusicSlider.value).ToString();
+        SoundVolumeNumber.text = GetSoundVolume(SoundSlider.value).ToString();
     }
 
     void LoadPreferences()
@@ -147,7 +155,11 @@ public class SettingUI : MonoBehaviour
     {
         return (int)(volume * 100);
     }
-    
 
+    public void KeySetting()
+    {
+        Debug.Log("打开按键设置界面");
+        //KeySettingUI.Instance.OpenAndClose();
+    }
     
 }
