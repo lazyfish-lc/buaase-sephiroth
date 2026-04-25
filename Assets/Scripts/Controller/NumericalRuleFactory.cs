@@ -69,11 +69,8 @@ public static class NumericalRuleFactory {
                 rule.outputProperties.Add(terms[j].property);
                 rule.outputWeights.Add(terms[j].weight);
             }
-            
-            if (!rule.inputProperty.AddNumericalRule(rule)) {
-                Debug.LogWarning($"属性 {rule.inputProperty.name} 添加规则失败，守恒规则构建失败：{ruleString}");
-                return false;
-            }
+
+            rules.Add(rule);
         }
         return true;
     }
