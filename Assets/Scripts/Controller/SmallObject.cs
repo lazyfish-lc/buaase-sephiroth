@@ -88,6 +88,7 @@ public abstract class SmallObject : MonoBehaviour {
 
     protected virtual void ApplyKnockback(Vector2 force) {
         // 如果有 Rigidbody2D 则施加力
+        Debug.Log($"{staticData.objectName} 受到击退，力的大小: {force.magnitude}");
         GetComponent<Rigidbody2D>()?.AddForce(force, ForceMode2D.Impulse);
     }
 }
