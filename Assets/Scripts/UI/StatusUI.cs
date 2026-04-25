@@ -23,7 +23,7 @@ public class StatusUI : MonoBehaviour
     {
         if (player != null)
         {
-            return player.dynamicState.propertyMap.ContainsKey("HP") ? player.playerState.propertyMap["HP"].value : 0f;
+            return player.dynamicState.propertyMap.ContainsKey("Health") ? player.playerState.propertyMap["Health"].value : 0f;
         }
         return 0f;
     }
@@ -43,14 +43,14 @@ public class StatusUI : MonoBehaviour
         if (player != null)
         {
             // 超过1000血即为100%，根据实际情况调整
-            float HP = GetPlayerHealth(); // 默认值，防止属性缺失导致错误
-            if (HP > 1000f)
+            float Health = GetPlayerHealth(); // 默认值，防止属性缺失导致错误
+            if (Health > 1000f)
             {
                 HPSlider.value = 1f;
             }
             else
             {
-                HPSlider.value = HP / 1000f;
+                HPSlider.value = Health / 1000f;
             }
         }
     }
