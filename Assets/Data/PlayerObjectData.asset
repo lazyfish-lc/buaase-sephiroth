@@ -14,4 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerObjectStaticData
   objectName: Player
   ownerBigObject: {fileID: 0}
+  propertyBlueprints:
+  - name: Health
+    initialValue: 100
+    minValue: 0
+    maxValue: 99999
+  - name: ATK
+    initialValue: 30
+    minValue: 0
+    maxValue: 99999
+  - name: DEF
+    initialValue: 10
+    minValue: 0
+    maxValue: 99999
+  - name: AttackSpeed
+    initialValue: 1
+    minValue: 0
+    maxValue: 20
   baseAttackCooldown: 0.5

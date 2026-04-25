@@ -7,13 +7,16 @@ using System.Collections.Generic;
 public class SmallObjectStaticData : ScriptableObject {
     public string objectName;
     public BigObject ownerBigObject;
-    [Header("属性定义 (启动即创建)")]
-    public List<PropertyDefinition> propertyBlueprints = new List<PropertyDefinition>();
+    public List<PropertyDefinition> propertyBlueprints = new List<PropertyDefinition>() {
+        new PropertyDefinition() { name = "Health", initialValue = 100f, minValue = 0f, maxValue = 99999f },
+        new PropertyDefinition() { name = "ATK", initialValue = 30f, minValue = 0f, maxValue = 99999f },
+        new PropertyDefinition() { name = "DEF", initialValue = 10f, minValue = 0f, maxValue = 99999f },
+        new PropertyDefinition() { name = "AttackSpeed", initialValue = 1f, minValue = 0f, maxValue = 20f }
+    };
 }
 
 [Serializable]
 public class SmallObjectDynamicState {
-    public float currentHealth;
     // 可以根据需要添加更多动态状态字段
 
     public bool isDestroyed = false;
@@ -21,6 +24,7 @@ public class SmallObjectDynamicState {
     public Dictionary<string, SmallObjectProperty> propertyMap = new Dictionary<string, SmallObjectProperty>();
 }
 
+[Serializable]
 public class PropertyDefinition {
     public string name;
     public float initialValue;

@@ -63,4 +63,31 @@ public abstract class SmallObject : MonoBehaviour {
     public virtual void ILabelOnAttacked(SmallObject attacker) { }
     public virtual void ILabelOnTick() { }
     public virtual void ILabelOnMoving() { }
+
+
+    public virtual void ReceiveDamage(DamagePacket packet) {
+        Debug.Log($"{staticData.objectName} 收到了来自 {packet.attacker.staticData.objectName} 的 {packet.damageValue} 点伤害");
+
+        // 1. 修改数值（利用我们之前的数值守恒系统）
+        // 假设所有对象都有 "Health" 属性
+        dynamicState.propertyMap["Health"].value -= (packet.damageValue - dynamicState.propertyMap["DEF"].value);
+        Debug.Log($"{staticData.objectName} 的当前生命值: {dynamicState.propertyMap["Health"].value}");
+        // 2. 检查死亡
+        if (dynamicState.propertyMap["Health"].value <= 0) {
+            OnDeath();
+        }
+        
+        // 3. 执行击退（表现层逻辑）
+        ApplyKnockback(packet.knockbackForce);
+    }
+
+    protected virtual void OnDeath() {
+        dynamicState.isDestroyed = true;
+        this.gameObject.SetActive(false);
+    }
+
+    protected virtual void ApplyKnockback(Vector2 force) {
+        // 如果有 Rigidbody2D 则施加力
+        GetComponent<Rigidbody2D>()?.AddForce(force, ForceMode2D.Impulse);
+    }
 }

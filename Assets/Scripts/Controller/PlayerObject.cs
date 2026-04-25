@@ -6,6 +6,11 @@ public class PlayerSmallObject : SmallObject {
     public PlayerObjectDynamicState playerState => dynamicState as PlayerObjectDynamicState;
     public PlayerObjectStaticData playerStaticData => staticData as PlayerObjectStaticData;
 
+    public LayerMask enemyLayer; // 在 Inspector 中设置为 Enemy 层
+    public Transform hitPoint;   // 挂载在角色前方的一个空物体
+
+    public Transform sensorPivot; // 用于旋转攻击范围的父物体
+
     protected override SmallObjectDynamicState CreateDynamicState() {
         return new PlayerObjectDynamicState();
     }
@@ -55,6 +60,16 @@ public class PlayerSmallObject : SmallObject {
                 playerState.facingDirection = moveDir.y > 0 ? Orientation.Up : Orientation.Down;
             }
         }
+
+        // 修改传感器子物体的旋转，使碰撞体朝向玩家
+        float angle = 0;
+        switch (playerState.facingDirection) {
+            case Orientation.Up: angle = 180; break;
+            case Orientation.Down: angle = 0; break;
+            case Orientation.Left: angle = 270; break;
+            case Orientation.Right: angle = 90; break;
+        }
+        sensorPivot.rotation = Quaternion.Euler(0, 0, angle);
     }
 
     private Vector2 GetAnimationDirection() {
@@ -63,5 +78,28 @@ public class PlayerSmallObject : SmallObject {
         if (playerState.facingDirection == Orientation.Left) return new Vector2(-1, 0);
         if (playerState.facingDirection == Orientation.Right) return new Vector2(1, 0);
         return new Vector2(0, -1); // 默认朝下
+    }
+
+    public void ExecuteDamageDetection() {
+        // 1. 获取当前攻击力数值（符合核心玩法1）
+        float currentAtk = playerState.propertyMap.ContainsKey("ATK") ? playerState.propertyMap["ATK"].value : 10;
+
+        // 2. 物理探测（判定范围）
+        float hitRadius = 0.8f;
+        Collider2D[] hitTargets = Physics2D.OverlapCircleAll(hitPoint.position, hitRadius, enemyLayer);
+
+        // 3. 封装信息并分发
+        foreach (var targetCollider in hitTargets) {
+            SmallObject target = targetCollider.GetComponent<SmallObject>();
+            if (target != null) {
+                // 计算击退方向：从攻击者指向被攻击者
+                Vector2 knockback = (target.transform.position - transform.position).normalized * 5f;
+                
+                DamagePacket packet = new DamagePacket(this, currentAtk, knockback);
+                
+                // --- 核心步骤：信息传递 ---
+                target.ReceiveDamage(packet);
+            }
+        }
     }
 }

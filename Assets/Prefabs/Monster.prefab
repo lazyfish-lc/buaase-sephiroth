@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2621554186082448731
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1599938930160489508}
+  m_Layer: 10
+  m_Name: HitPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1599938930160489508
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2621554186082448731}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.4, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8803475475572729041}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6348409967498636545
 GameObject:
   m_ObjectHideFlags: 0
@@ -15,7 +46,7 @@ GameObject:
   - component: {fileID: 769589246924745773}
   - component: {fileID: 773403690865612332}
   - component: {fileID: 6762839985216383280}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Monster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -158,8 +189,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.015679121}
-  m_Size: {x: 1, y: 1}
+  m_Offset: {x: -0.035770774, y: 0.45287973}
+  m_Size: {x: 0.54690194, y: 1.079491}
   m_Direction: 0
 --- !u!114 &769589246924745773
 MonoBehaviour:
@@ -175,13 +206,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MonsterSmallObject
   staticData: {fileID: 11400000, guid: a87d0b222fb829d4795e309445256483, type: 2}
   dynamicState:
-    currentHealth: 0
     isDestroyed: 0
     smallObjectLabels: []
   monsterView: {fileID: 773403690865612332}
   sensorPivot: {fileID: 8803475475572729041}
   detectSensor: {fileID: 4036173514521511412}
   attackSensor: {fileID: 635764347486520377}
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  hitPoint: {fileID: 1599938930160489508}
   rb: {fileID: 2318891472865322266}
 --- !u!114 &773403690865612332
 MonoBehaviour:
@@ -196,6 +230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MonsterView
   animator: {fileID: 6762839985216383280}
+  ownerController: {fileID: 769589246924745773}
 --- !u!95 &6762839985216383280
 Animator:
   serializedVersion: 7
@@ -229,7 +264,7 @@ GameObject:
   - component: {fileID: 945115513435214419}
   - component: {fileID: 1019776426841359671}
   - component: {fileID: 4036173514521511412}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: DetectionRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -311,7 +346,7 @@ GameObject:
   - component: {fileID: 1815857214239884532}
   - component: {fileID: 635764347486520377}
   - component: {fileID: 4340647619235694996}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AttackRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -379,8 +414,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.00000023841858, y: -0.9278834}
-  m_Size: {x: 1.3919206, y: 1.6185894}
+  m_Offset: {x: 0.00000023841858, y: -0.5283812}
+  m_Size: {x: 1.3919206, y: 1.3919206}
   m_Direction: 0
 --- !u!1 &8699095882173376656
 GameObject:
@@ -391,7 +426,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8803475475572729041}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SensorPiovt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -413,5 +448,6 @@ Transform:
   m_Children:
   - {fileID: 945115513435214419}
   - {fileID: 1815857214239884532}
+  - {fileID: 1599938930160489508}
   m_Father: {fileID: 7370652505887282632}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -8,6 +8,9 @@ public class MonsterSmallObject : SmallObject {
     public MonsterObjectStaticData monsterStaticData => staticData as MonsterObjectStaticData;
     public MonsterObjectDynamicState monsterState => dynamicState as MonsterObjectDynamicState;
 
+    public LayerMask playerLayer; // 在 Inspector 中设置为 Enemy 层
+    public Transform hitPoint;   // 挂载在角色前方的一个空物体
+
     public Rigidbody2D rb;
 
     protected override void Awake() {
@@ -28,17 +31,7 @@ public class MonsterSmallObject : SmallObject {
     }
     
     public override void OnValueModifyAction(string prop, float delta) {
-        if (monsterState == null) {
-            Debug.LogWarning("怪物状态类型配置错误，无法修改数值");
-            return;
-        }
-
-        // 修改血量
-        monsterState.currentHealth += delta * 50f;
-        Debug.Log($"怪物 {staticData.objectName} 血量变更为: {monsterState.currentHealth}");
-        
-        // 此处可触发【核心玩法1：数值守恒】
-        // ValueManager.Instance.ApplyConservation(this, delta);
+        // TODO
     }
 
     public override void OnInteractAction() {
@@ -114,5 +107,27 @@ public class MonsterSmallObject : SmallObject {
         }
     }
 
+    public void ExecuteDamageDetection() {
+        // 1. 获取当前攻击力数值（符合核心玩法1）
+        float currentAtk = monsterState.propertyMap.ContainsKey("ATK") ? monsterState.propertyMap["ATK"].value : 10;
+
+        // 2. 物理探测（判定范围）
+        float hitRadius = 0.8f;
+        Collider2D[] hitTargets = Physics2D.OverlapCircleAll(hitPoint.position, hitRadius, playerLayer);
+
+        // 3. 封装信息并分发
+        foreach (var targetCollider in hitTargets) {
+            SmallObject target = targetCollider.GetComponent<SmallObject>();
+            if (target != null) {
+                // 计算击退方向：从攻击者指向被攻击者
+                Vector2 knockback = (target.transform.position - transform.position).normalized * 5f;
+                
+                DamagePacket packet = new DamagePacket(this, currentAtk, knockback);
+                
+                // --- 核心步骤：信息传递 ---
+                target.ReceiveDamage(packet);
+            }
+        }
+    }
     
 }
