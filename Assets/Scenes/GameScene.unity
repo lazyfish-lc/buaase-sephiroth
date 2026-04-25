@@ -9358,6 +9358,10 @@ PrefabInstance:
       propertyPath: dynamicState.currentHealth
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2318891472865322266, guid: d8a1dc57de2a77747b785c7f3f85ca39, type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6348409967498636545, guid: d8a1dc57de2a77747b785c7f3f85ca39, type: 3}
       propertyPath: m_Name
       value: Monster

@@ -1,9 +1,11 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;         // 必须有这个，用于 IEnumerator
 public abstract class SmallObject : MonoBehaviour {
     
     public SmallObjectStaticData staticData;
     public SmallObjectDynamicState dynamicState;
+    public bool isHurt = false; // 是否处于受击状态，受击状态下可能无法移动或攻击
     
     // 包含对象所有的属性映射
     
@@ -88,6 +90,17 @@ public abstract class SmallObject : MonoBehaviour {
 
     protected virtual void ApplyKnockback(Vector2 force) {
         // 如果有 Rigidbody2D 则施加力
+        isHurt = true;
+        Debug.Log($"{staticData.objectName} 受到击退，力的大小: {force.magnitude}, 方向: {force.normalized}");
+        Debug.Log($"玩家位置: {transform.position}, 速度: {GetComponent<Rigidbody2D>()?.linearVelocity}");
         GetComponent<Rigidbody2D>()?.AddForce(force, ForceMode2D.Impulse);
+        // 这里我们假设击退持续0.5秒，期间玩家无法控制
+        StopCoroutine("RecoverFromKnockback");
+        StartCoroutine(RecoverFromKnockback(0.25f)); // 0.25秒内不许动
+    }
+
+    private IEnumerator RecoverFromKnockback(float duration) {
+        yield return new WaitForSeconds(duration);
+        isHurt = false;
     }
 }

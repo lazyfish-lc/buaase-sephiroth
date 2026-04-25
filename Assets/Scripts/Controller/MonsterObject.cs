@@ -120,7 +120,7 @@ public class MonsterSmallObject : SmallObject {
             SmallObject target = targetCollider.GetComponent<SmallObject>();
             if (target != null) {
                 // 计算击退方向：从攻击者指向被攻击者
-                Vector2 knockback = (target.transform.position - transform.position).normalized * 5f;
+                Vector2 knockback = (target.transform.position - transform.position).normalized * 50f;
                 
                 DamagePacket packet = new DamagePacket(this, currentAtk, knockback);
                 
