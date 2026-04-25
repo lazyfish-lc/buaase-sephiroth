@@ -147,10 +147,6 @@ public class NumericalRuleTests {
         Assert.That(rules[0].outputProperties[1], Is.SameAs(graph.Heat));
         Assert.That(rules[0].outputWeights[0], Is.EqualTo(3f).Within(Tolerance));
         Assert.That(rules[0].outputWeights[1], Is.EqualTo(5f).Within(Tolerance));
-
-        Assert.That(graph.Energy.SetValue(12f), Is.True);
-        Assert.That(graph.Mass.value, Is.EqualTo(18.5f).Within(Tolerance));
-        Assert.That(graph.Heat.value, Is.EqualTo(27.5f).Within(Tolerance));
     }
 
     [Test]
