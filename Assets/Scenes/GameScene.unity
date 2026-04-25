@@ -1750,6 +1750,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BackpackUI
   BackpackCanvas: {fileID: 365638168}
+  PageNumber: {fileID: 1243352148}
   isOpen: 0
 --- !u!1001 &392456702
 PrefabInstance:
@@ -3020,7 +3021,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -495.28882, y: 99.68463}
+  m_AnchoredPosition: {x: -552.06006, y: 99.68463}
   m_SizeDelta: {x: 22, y: 38.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &660031907
@@ -3066,7 +3067,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 660031908}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 365638169}
+        m_TargetAssemblyTypeName: BackpackUI, Assembly-CSharp
+        m_MethodName: LeftPage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &660031908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5674,8 +5687,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 264.86072, y: -273.44537}
-  m_SizeDelta: {x: 190, y: 32}
+  m_AnchoredPosition: {x: 267.9043, y: -273.44537}
+  m_SizeDelta: {x: 278, y: 32}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1243352148
 MonoBehaviour:
@@ -5812,7 +5825,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -259.44946, y: 99.68463}
+  m_AnchoredPosition: {x: -196.72498, y: 99.68463}
   m_SizeDelta: {x: 22, y: 38.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1277605007
@@ -5858,7 +5871,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1277605008}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 365638169}
+        m_TargetAssemblyTypeName: BackpackUI, Assembly-CSharp
+        m_MethodName: RightPage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1277605008
 MonoBehaviour:
   m_ObjectHideFlags: 0
