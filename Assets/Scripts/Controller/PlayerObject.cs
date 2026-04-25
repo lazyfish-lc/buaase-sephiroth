@@ -11,6 +11,13 @@ public class PlayerSmallObject : SmallObject {
 
     public Transform sensorPivot; // 用于旋转攻击范围的父物体
 
+    public Vector2 linearVelocity;
+    public void Update()
+    {
+        linearVelocity = rb.linearVelocity;
+    }
+    
+
     protected override SmallObjectDynamicState CreateDynamicState() {
         return new PlayerObjectDynamicState();
     }

@@ -29,6 +29,7 @@ public class IOSubsystem : MonoBehaviour {
     }
 
     void dealMovement() {
+        if (playerObject.isHurt) return; // 受击状态下无法移动
         float x = Input.GetAxis(InputConfig.Horizontal);
         float y = Input.GetAxis(InputConfig.Vertical);
             InputEventData data = new InputEventData {
