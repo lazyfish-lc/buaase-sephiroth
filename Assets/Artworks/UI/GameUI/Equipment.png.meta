@@ -289,10 +289,10 @@ TextureImporter:
       name: Equipment_5
       rect:
         serializedVersion: 2
-        x: 79
-        y: 63
-        width: 77
-        height: 34
+        x: 112
+        y: 64
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -355,10 +355,10 @@ TextureImporter:
       name: Equipment_8
       rect:
         serializedVersion: 2
-        x: 127
-        y: 60
-        width: 6
-        height: 9
+        x: 128
+        y: 61
+        width: 4
+        height: 7
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -377,10 +377,10 @@ TextureImporter:
       name: Equipment_9
       rect:
         serializedVersion: 2
-        x: 155
-        y: 60
-        width: 5
-        height: 9
+        x: 156
+        y: 61
+        width: 4
+        height: 7
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -668,7 +668,7 @@ TextureImporter:
         width: 9
         height: 9
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -677,6 +677,28 @@ TextureImporter:
       bones: []
       spriteID: 109fe2095c324d944a06a1b999b87222
       internalID: 1761978629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Equipment_23
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 51
+        width: 21
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce4ddf721099d544994c21101d720f01
+      internalID: 1256180241
       vertices: []
       indices: 
       edges: []
@@ -711,6 +733,7 @@ TextureImporter:
       Equipment_20: -8724597279297049473
       Equipment_21: -5439441341514661981
       Equipment_22: 1761978629
+      Equipment_23: 1256180241
       Equipment_3: 3651269845224825590
       Equipment_4: 7632534064518594670
       Equipment_5: 689900267781511802
