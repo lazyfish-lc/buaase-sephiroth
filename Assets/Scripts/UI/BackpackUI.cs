@@ -14,7 +14,6 @@ public class BackpackUI : MonoBehaviour
         }
         Instance = this;
     }
-
     void OnDestroy()
     {
         if (Instance == this)
@@ -55,4 +54,6 @@ public class BackpackUI : MonoBehaviour
         BackpackCanvas.interactable = false;
         BackpackCanvas.blocksRaycasts = false;
     }
+
+
 }
