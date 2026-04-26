@@ -48,11 +48,14 @@ public class SettingUI : MonoBehaviour
         SettingCanvas.alpha = 0;
         SettingCanvas.interactable = false;
         SettingCanvas.blocksRaycasts = false;
+        LoadPreferences();
     }
     void Update()
     {
         MusicVolumeNumber.text = GetMusicVolume(MusicSlider.value).ToString();
         SoundVolumeNumber.text = GetSoundVolume(SoundSlider.value).ToString();
+        AudioManager.Instance.SetMusicVolume(MusicSlider.value);
+        AudioManager.Instance.SetSFXVolume(SoundSlider.value);
     }
 
     void LoadPreferences()
@@ -147,8 +150,6 @@ public class SettingUI : MonoBehaviour
         PlayerPrefs.SetFloat("SoundVolume", SoundSlider.value);
         PlayerPrefs.SetInt("IsMusicOn", isMusicOn ? 1 : 0);
         PlayerPrefs.SetInt("IsSoundOn", isSoundOn ? 1 : 0);
-        // 触发应用设置变化的事件（例如调整音量）
-        // AudioManager.Instance.SetMusicVolume(MusicSlider.value);
     }
     public int GetMusicVolume(float volume)
     {
