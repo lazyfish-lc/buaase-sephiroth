@@ -49,10 +49,15 @@ public class SettingUI : MonoBehaviour
         SettingCanvas.interactable = false;
         SettingCanvas.blocksRaycasts = false;
     }
-    void Update()
+    public void UpdateVolume()
     {
-        MusicVolumeNumber.text = GetMusicVolume(MusicSlider.value).ToString();
-        SoundVolumeNumber.text = GetSoundVolume(SoundSlider.value).ToString();
+        if (isOpen)
+        {
+            MusicVolumeNumber.text = GetMusicVolume(MusicSlider.value).ToString();
+            SoundVolumeNumber.text = GetSoundVolume(SoundSlider.value).ToString();
+            AudioManager.Instance.SetBGMVolume(MusicSlider.value);
+            AudioManager.Instance.SetSFXVolume(SoundSlider.value);
+        }
     }
 
     void LoadPreferences()
@@ -66,6 +71,8 @@ public class SettingUI : MonoBehaviour
         SoundButton.image.sprite = isSoundOn ? SoundOnSprite : SoundOffSprite;
         MusicSlider.interactable = isMusicOn;
         SoundSlider.interactable = isSoundOn;
+        AudioManager.Instance.SetBGMVolume(PlayerPrefs.GetFloat("MusicVolume", 0.8f));
+        AudioManager.Instance.SetSFXVolume(PlayerPrefs.GetFloat("SoundVolume", 0.8f));
     }
 
     public void OpenAndClose()
@@ -94,6 +101,7 @@ public class SettingUI : MonoBehaviour
         SettingCanvas.alpha = 0;
         SettingCanvas.interactable = false;
         SettingCanvas.blocksRaycasts = false;
+        LoadPreferences();
     }
 
     public void OpenAndCloseMusic()
@@ -147,8 +155,6 @@ public class SettingUI : MonoBehaviour
         PlayerPrefs.SetFloat("SoundVolume", SoundSlider.value);
         PlayerPrefs.SetInt("IsMusicOn", isMusicOn ? 1 : 0);
         PlayerPrefs.SetInt("IsSoundOn", isSoundOn ? 1 : 0);
-        // 触发应用设置变化的事件（例如调整音量）
-        // AudioManager.Instance.SetMusicVolume(MusicSlider.value);
     }
     public int GetMusicVolume(float volume)
     {
