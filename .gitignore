@@ -13,6 +13,5 @@ Build
 .vs
 .vsconfig
 
-Assembly-CSharp.csproj
 *.csproj
 sephiroth.slnx
