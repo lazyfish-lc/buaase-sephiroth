@@ -43,6 +43,12 @@ public class MonsterView : MonoBehaviour {
         } else {
             HealthSlider.value = health / 1000f;
         }
+        UpdateHealthBarLocation(HealthSlider.value);
     }
-    
+    public void UpdateHealthBarLocation(float Value) {
+        // 默认位置是value为1时血条中心在头顶，所有值的左端是对齐的，计算左右偏移量使其中心在头顶
+        // 乘以x缩放值
+        float offsetX = (1f - Value) * HealthSlider.GetComponent<RectTransform>().sizeDelta.x/2f * HealthSlider.GetComponent<RectTransform>().localScale.x;
+        HealthSlider.GetComponent<RectTransform>().anchoredPosition = new Vector2(offsetX, HealthSlider.GetComponent<RectTransform>().anchoredPosition.y);
+    }
 }
