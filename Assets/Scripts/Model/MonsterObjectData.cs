@@ -4,6 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "MonsterObjectData", menuName = "Game/MonsterObjectData")]
 public class MonsterObjectStaticData : SmallObjectStaticData {
     public float baseAttackCooldown = 1f;
+    public float castLockTime = 0.5f; // 施法僵直时间，怪物在这个时间内无法移动或攻击
 }
 
 [Serializable]

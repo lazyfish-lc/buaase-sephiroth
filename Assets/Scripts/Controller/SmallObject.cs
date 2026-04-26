@@ -1,13 +1,19 @@
 using UnityEngine;
 using System.Collections.Generic;
-using System.Collections;         // 必须有这个，用于 IEnumerator
-public abstract class SmallObject : MonoBehaviour {
+using System.Collections;
+using System;
+
+public abstract class SmallObject : MonoBehaviour, ILabelOwner {
     
     public SmallObjectStaticData staticData;
     public SmallObjectDynamicState dynamicState;
     
-    // 包含对象所有的属性映射
-    
+    // Events that labels can subscribe to
+    public event Action<ILabelOwner> LabelOnAttacking;
+    public event Action<ILabelOwner> LabelOnCrash;
+    public event Action<ILabelOwner> LabelOnAttacked;
+    public event Action LabelOnTick;
+    public event Action LabelOnMoving;
 
     protected virtual void Awake() {
         dynamicState = CreateDynamicState();
@@ -16,6 +22,10 @@ public abstract class SmallObject : MonoBehaviour {
             Debug.LogWarning($"{GetType().Name} CreateDynamicState 返回空，已回退为 SmallObjectDynamicState");
         }
         InitializeProperties();
+        // Attach any labels stored in dynamic state
+        if (dynamicState != null && dynamicState.smallObjectLabels != null) {
+            foreach (var label in dynamicState.smallObjectLabels) label?.AttachToOwner(this);
+        }
     }
 
     protected virtual SmallObjectDynamicState CreateDynamicState() {
@@ -59,12 +69,28 @@ public abstract class SmallObject : MonoBehaviour {
         staticData.ownerBigObject?.OnChildStateChanged(this);
     }
 
-    public virtual void ILabelOnAttacking(SmallObject target) { }
-    public virtual void ILabelOnCrash(SmallObject Obstacle) { }
-    public virtual void ILabelOnAttacked(SmallObject attacker) { }
-    public virtual void ILabelOnTick() { }
-    public virtual void ILabelOnMoving() { }
+    public virtual void ILabelOnAttacking(ILabelOwner target) { LabelOnAttacking?.Invoke(target); }
+    public virtual void ILabelOnCrash(ILabelOwner Obstacle) { LabelOnCrash?.Invoke(Obstacle); }
+    public virtual void ILabelOnAttacked(ILabelOwner attacker) { LabelOnAttacked?.Invoke(attacker); }
+    public virtual void ILabelOnTick() { LabelOnTick?.Invoke(); }
+    public virtual void ILabelOnMoving() { LabelOnMoving?.Invoke(); }
 
+    // Provide methods to add/remove labels at runtime (store in dynamicState)
+    public void AddLabel(ObjectLabel label) {
+        if (label == null) return;
+        if (dynamicState == null) dynamicState = CreateDynamicState();
+        if (dynamicState.smallObjectLabels == null) dynamicState.smallObjectLabels = new System.Collections.Generic.List<ObjectLabel>();
+        if (dynamicState.smallObjectLabels.Contains(label)) return;
+        dynamicState.smallObjectLabels.Add(label);
+        label.AttachToOwner(this);
+    }
+
+    public void RemoveLabel(ObjectLabel label) {
+        if (label == null || dynamicState == null || dynamicState.smallObjectLabels == null) return;
+        if (!dynamicState.smallObjectLabels.Contains(label)) return;
+        dynamicState.smallObjectLabels.Remove(label);
+        label.Detach();
+    }
 
     public virtual void ReceiveDamage(DamagePacket packet) {
         Debug.Log($"{staticData.objectName} 收到了来自 {packet.attacker.staticData.objectName} 的 {packet.damageValue} 点伤害");
@@ -102,5 +128,9 @@ public abstract class SmallObject : MonoBehaviour {
     private IEnumerator RecoverFromKnockback(float duration) {
         yield return new WaitForSeconds(duration);
         dynamicState.isHurt = false;
+    }
+
+    public virtual bool IsEnemy(SmallObject other) {
+        return false;
     }
 }
