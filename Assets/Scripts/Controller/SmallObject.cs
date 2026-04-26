@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections.Generic;
-using System.Collections;         // 必须有这个，用于 IEnumerator
+using System.Collections;
+using System;
+
 public abstract class SmallObject : MonoBehaviour, ILabelOwner {
     
     public SmallObjectStaticData staticData;

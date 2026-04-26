@@ -1,6 +1,6 @@
+using Unity;
+using System.Collections.Generic;
 
-
-[System.Serializable]
 public interface ILabelOnAttacking { void ILabelOnAttacking(ILabelOwner target); }
 public interface ILabelOnCrash { void ILabelOnCrash(ILabelOwner obstacle); }
 public interface ILabelOnAttacked { void ILabelOnAttacked(ILabelOwner attacker); }
