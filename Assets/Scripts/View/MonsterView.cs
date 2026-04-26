@@ -1,8 +1,9 @@
 using UnityEngine;
-
+using UnityEngine.UI;
 public class MonsterView : MonoBehaviour {
     public Animator animator;
     public SmallObject ownerController;
+    public Slider HealthSlider;
 
     public void UpdateMovement(Vector2 dir, bool isMoving) {
         animator.SetBool("IsMoving", isMoving);
@@ -26,6 +27,21 @@ public class MonsterView : MonoBehaviour {
             player.ExecuteDamageDetection();
         } else if (ownerController is MonsterSmallObject monster) {
             monster.ExecuteDamageDetection();
+        }
+    }
+    public float GetMonsterHealth() {
+        if (ownerController != null && ownerController.dynamicState.propertyMap.ContainsKey("Health")) {
+            return ownerController.dynamicState.propertyMap["Health"].value;
+        }
+        return 0f;
+    }
+    void Update() {
+        // 更新血条显示
+        float health = GetMonsterHealth();
+        if (health > 1000f) {
+            HealthSlider.value = 1f;
+        } else {
+            HealthSlider.value = health / 1000f;
         }
     }
     
