@@ -22,6 +22,8 @@ public class SmallObjectDynamicState {
     public bool isDestroyed = false;
     public List<ObjectLabel> smallObjectLabels = new List<ObjectLabel>();
     public Dictionary<string, SmallObjectProperty> propertyMap = new Dictionary<string, SmallObjectProperty>();
+    
+    public bool isHurt = false; // 是否处于受击状态，受击状态下可能无法移动或攻击
 }
 
 [Serializable]

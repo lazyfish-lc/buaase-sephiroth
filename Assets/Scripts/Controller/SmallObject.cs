@@ -5,7 +5,6 @@ public abstract class SmallObject : MonoBehaviour {
     
     public SmallObjectStaticData staticData;
     public SmallObjectDynamicState dynamicState;
-    public bool isHurt = false; // 是否处于受击状态，受击状态下可能无法移动或攻击
     
     // 包含对象所有的属性映射
     
@@ -72,7 +71,8 @@ public abstract class SmallObject : MonoBehaviour {
 
         // 1. 修改数值（利用我们之前的数值守恒系统）
         // 假设所有对象都有 "Health" 属性
-        dynamicState.propertyMap["Health"].value -= (packet.damageValue - dynamicState.propertyMap["DEF"].value);
+        float damage = Mathf.Max(packet.damageValue * 0.05f, packet.damageValue - dynamicState.propertyMap["DEF"].value); // 伤害减去防御
+        dynamicState.propertyMap["Health"].value -= damage;
         Debug.Log($"{staticData.objectName} 的当前生命值: {dynamicState.propertyMap["Health"].value}");
         // 2. 检查死亡
         if (dynamicState.propertyMap["Health"].value <= 0) {
@@ -90,7 +90,7 @@ public abstract class SmallObject : MonoBehaviour {
 
     protected virtual void ApplyKnockback(Vector2 force) {
         // 如果有 Rigidbody2D 则施加力
-        isHurt = true;
+        dynamicState.isHurt = true;
         Debug.Log($"{staticData.objectName} 受到击退，力的大小: {force.magnitude}, 方向: {force.normalized}");
         Debug.Log($"玩家位置: {transform.position}, 速度: {GetComponent<Rigidbody2D>()?.linearVelocity}");
         GetComponent<Rigidbody2D>()?.AddForce(force, ForceMode2D.Impulse);
@@ -101,6 +101,6 @@ public abstract class SmallObject : MonoBehaviour {
 
     private IEnumerator RecoverFromKnockback(float duration) {
         yield return new WaitForSeconds(duration);
-        isHurt = false;
+        dynamicState.isHurt = false;
     }
 }
