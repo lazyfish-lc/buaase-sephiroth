@@ -48,14 +48,16 @@ public class SettingUI : MonoBehaviour
         SettingCanvas.alpha = 0;
         SettingCanvas.interactable = false;
         SettingCanvas.blocksRaycasts = false;
-        LoadPreferences();
     }
-    void Update()
+    public void UpdateVolume()
     {
-        MusicVolumeNumber.text = GetMusicVolume(MusicSlider.value).ToString();
-        SoundVolumeNumber.text = GetSoundVolume(SoundSlider.value).ToString();
-        AudioManager.Instance.SetMusicVolume(MusicSlider.value);
-        AudioManager.Instance.SetSFXVolume(SoundSlider.value);
+        if (isOpen)
+        {
+            MusicVolumeNumber.text = GetMusicVolume(MusicSlider.value).ToString();
+            SoundVolumeNumber.text = GetSoundVolume(SoundSlider.value).ToString();
+            AudioManager.Instance.SetBGMVolume(MusicSlider.value);
+            AudioManager.Instance.SetSFXVolume(SoundSlider.value);
+        }
     }
 
     void LoadPreferences()
@@ -69,6 +71,8 @@ public class SettingUI : MonoBehaviour
         SoundButton.image.sprite = isSoundOn ? SoundOnSprite : SoundOffSprite;
         MusicSlider.interactable = isMusicOn;
         SoundSlider.interactable = isSoundOn;
+        AudioManager.Instance.SetBGMVolume(PlayerPrefs.GetFloat("MusicVolume", 0.8f));
+        AudioManager.Instance.SetSFXVolume(PlayerPrefs.GetFloat("SoundVolume", 0.8f));
     }
 
     public void OpenAndClose()
@@ -97,6 +101,7 @@ public class SettingUI : MonoBehaviour
         SettingCanvas.alpha = 0;
         SettingCanvas.interactable = false;
         SettingCanvas.blocksRaycasts = false;
+        LoadPreferences();
     }
 
     public void OpenAndCloseMusic()

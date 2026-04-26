@@ -1087,8 +1087,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Sephiroth.Runtime::AudioManager
   MainAudioMixer: {fileID: 24100000, guid: 44365bfdafb1b7546a89d3195104a9e4, type: 2}
-  musicSource: {fileID: 2121985165}
-  sfxSource: {fileID: 2121985164}
+  BGMSource: {fileID: 2121985165}
+  SFXSource: {fileID: 2121985164}
 --- !u!82 &2121985164
 AudioSource:
   m_ObjectHideFlags: 0
