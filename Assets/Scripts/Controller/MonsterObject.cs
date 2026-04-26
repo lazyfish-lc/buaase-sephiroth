@@ -42,7 +42,7 @@ public class MonsterSmallObject : SmallObject {
         HandleAIBehavior();
     }
 
-    private void HandleAIBehavior() {
+    protected virtual void HandleAIBehavior() {
         if (monsterState.isDestroyed) return;
         if (monsterView.IsPlayingAttack()) return; // 攻击动画播放中，暂不处理AI逻辑
         // Debug.Log($"怪物 {staticData.objectName} AI 处理，目标玩家: {(monsterState.targetPlayer != null ? monsterState.targetPlayer.name : "无")}, 是否在攻击范围: {monsterState.isPlayerInAttackRange}");
@@ -53,9 +53,12 @@ public class MonsterSmallObject : SmallObject {
 
             // 2. 攻击判断
             if (monsterState.isPlayerInAttackRange) {
-                
-                TryAttack();
-                
+                bool attackedThisFrame = TryAttack();
+                if (!attackedThisFrame) {
+                    // 冷却期间保持追击，避免在攻击范围边缘呆站。
+                    rb.linearVelocity = new Vector2(direction.x, direction.y) * monsterState.moveSpeed;
+                    monsterView.UpdateMovement(new Vector2(direction.x, direction.y), true);
+                }
             } else {
                 // 3. 移动逻辑
                 rb.linearVelocity = new Vector2(direction.x, direction.y) * monsterState.moveSpeed;
@@ -66,7 +69,7 @@ public class MonsterSmallObject : SmallObject {
         }
     }
 
-    private void UpdateMonsterOrientation(Vector3 dir) {
+    protected void UpdateMonsterOrientation(Vector3 dir) {
         // 更新朝向枚举
         if (Mathf.Abs(dir.x) > Mathf.Abs(dir.y)) {
             monsterState.currentOrientation = dir.x > 0 ? Orientation.Right : Orientation.Left;
@@ -85,7 +88,7 @@ public class MonsterSmallObject : SmallObject {
         sensorPivot.rotation = Quaternion.Euler(0, 0, angle);
     }
 
-    private void TryAttack() {
+    protected virtual bool TryAttack() {
         float attackSpeed = monsterState.propertyMap.ContainsKey("AttackSpeed") ? monsterState.propertyMap["AttackSpeed"].value : 1.0f;
         float interval = monsterStaticData.baseAttackCooldown / attackSpeed;
 
@@ -94,10 +97,13 @@ public class MonsterSmallObject : SmallObject {
             monsterView.UpdateMovement(OrientationToVector(monsterState.currentOrientation), false); // 攻击时停止移动
             rb.linearVelocity = Vector2.zero; // 攻击时停止移动
             monsterView.PlayAttack();
+            return true;
         }
+
+        return false;
     }
 
-    private Vector2 OrientationToVector(Orientation orientation) {
+    protected Vector2 OrientationToVector(Orientation orientation) {
         switch (orientation) {
             case Orientation.Up: return Vector2.up;
             case Orientation.Down: return Vector2.down;
@@ -129,5 +135,10 @@ public class MonsterSmallObject : SmallObject {
             }
         }
     }
-    
-}
+
+    public override bool IsEnemy(SmallObject other) {
+        // 怪物认为玩家是敌人
+        Debug.Log($"{staticData.objectName} 判断 {other.staticData.objectName} 是否为敌人: {1 << other.gameObject.layer == playerLayer.value}");
+        return 1 << other.gameObject.layer == playerLayer.value;
+    }
+}   

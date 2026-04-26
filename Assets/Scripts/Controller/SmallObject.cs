@@ -129,4 +129,8 @@ public abstract class SmallObject : MonoBehaviour, ILabelOwner {
         yield return new WaitForSeconds(duration);
         dynamicState.isHurt = false;
     }
+
+    public virtual bool IsEnemy(SmallObject other) {
+        return false;
+    }
 }

@@ -6,12 +6,10 @@ public class MonsterSensor : MonoBehaviour {
     public Action<Collider2D> onExit;
 
     private void OnTriggerEnter2D(Collider2D other) {
-        Debug.Log("MonsterSensor: OnTriggerEnter2D with " + other.name);
         if (other.CompareTag("Player")) onEnter?.Invoke(other);
     }
 
     private void OnTriggerExit2D(Collider2D other) {
-        Debug.Log("MonsterSensor: OnTriggerExit2D with " + other.name);
         if (other.CompareTag("Player")) onExit?.Invoke(other);
     }
 }
