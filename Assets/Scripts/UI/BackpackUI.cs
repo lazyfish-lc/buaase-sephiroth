@@ -115,10 +115,10 @@ public class BackpackUI : MonoBehaviour
             }
         }
         // 测试数据，实际使用时从 player 的状态中获取物品标签和数量
-        labelCount.Add("Health Potion", 5);
-        labelCount.Add("Mana Potion", 3);
-        labelCount.Add("Sword", 1);
-        labelCount.Add("Shield", 1);
+        //labelCount.Add("Health Potion", 5);
+        //labelCount.Add("Mana Potion", 3);
+        //labelCount.Add("Sword", 1);
+        //labelCount.Add("Shield", 1);
     }
     public void ShowBackpack()
     {
