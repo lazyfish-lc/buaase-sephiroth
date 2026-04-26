@@ -14,4 +14,4 @@ Build
 .vsconfig
 
 *.csproj
-sephiroth.slnx
+*.slnx
