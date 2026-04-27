@@ -18,6 +18,11 @@ public class BackpackUI : MonoBehaviour
 
     public int itemsPerPage ; // 每页显示的物品数量
 
+    public Image ItemImage; // 显示物品图片的UI组件
+    public TMP_Text ItemName; // 显示物品名称的UI组件
+
+    public TMP_Text ItemDescription; // 显示物品描述的UI组件
+
     private Dictionary<string, int> labelCount = new Dictionary<string, int>();// 物品标签及其数量的字典
 
     public bool isOpen = false;
