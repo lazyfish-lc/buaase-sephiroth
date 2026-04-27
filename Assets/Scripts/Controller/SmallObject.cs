@@ -48,13 +48,13 @@ public abstract class SmallObject : MonoBehaviour, ILabelOwner {
 
     // 接收来自 IO 子系统的分发
     public void HandleInput(InputEventData eventData) {
-        if (eventData.actionType == InputActionType.Interact) OnInteractAction();
+        if (eventData.actionType == InputActionType.Interact) OnInteractAction(eventData);
         if (eventData.actionType == InputActionType.Movement) OnMoveAction(eventData.moveVector);
         if (eventData.actionType == InputActionType.ValueModify) OnValueModifyAction(eventData.propertyName, eventData.value);
     }
 
     // 子类实现具体逻辑
-    public abstract void OnInteractAction();
+    public abstract void OnInteractAction(InputEventData eventData);
     public virtual void OnValueModifyAction(string prop, float delta) {
         if (dynamicState.propertyMap.ContainsKey(prop)) {
             dynamicState.propertyMap[prop].SetValue(delta);

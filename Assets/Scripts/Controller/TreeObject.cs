@@ -7,7 +7,7 @@ public class TreeSmallObject : SmallObject {
         return new TreeObjectDynamicState();
     }
 
-    public override void OnInteractAction() {
+    public override void OnInteractAction(InputEventData data) {
         if (treeState == null) {
             Debug.LogWarning("树状态类型配置错误，无法交互");
             return;

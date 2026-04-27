@@ -5574,7 +5574,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::IOSubsystem
   interactableLayer:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 3776
   playerObject: {fileID: 1980003000}
 --- !u!1 &1176230285
 GameObject:

@@ -37,7 +37,7 @@ public class PlayerSmallObject : SmallObject {
 
     }
 
-    public override void OnInteractAction() {
+    public override void OnInteractAction(InputEventData data) {
         Debug.Log("玩家尝试自我交互（如打开背包）");
     }
 
@@ -113,5 +113,11 @@ public class PlayerSmallObject : SmallObject {
     public override bool IsEnemy(SmallObject other) {
         // 玩家认为所有 MonsterObject 都是敌人
         return other.gameObject.layer == enemyLayer;
+    }
+
+    public void AddItemToBackpack(Item item) {
+        if (item == null) return;
+        playerState.itemBackpack.Add(item);
+        Debug.Log($"玩家获得了物品: {item.itemName}");
     }
 }
