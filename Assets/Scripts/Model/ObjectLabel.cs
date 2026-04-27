@@ -1,11 +1,21 @@
-using Unity;
+using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 public interface ILabelOnAttacking { void ILabelOnAttacking(ILabelOwner target); }
 public interface ILabelOnCrash { void ILabelOnCrash(ILabelOwner obstacle); }
 public interface ILabelOnAttacked { void ILabelOnAttacked(ILabelOwner attacker); }
 public interface ILabelOnTick { void ILabelOnTick(); }
 public interface ILabelOnMoving { void ILabelOnMoving(); }
+
+// 新的 Label 接口：描述该 Label 会影响哪些属性，以及对单个属性的增量值
+public interface ILabelAffectsProperty {
+    // 返回该 Label 影响的属性名集合
+    IEnumerable<string> GetAffectedPropertyNames();
+
+    // 返回对指定属性的增量（可为负），如果不影响则返回 0
+    float GetPropertyDelta(string propertyName);
+}
 
 // 统一的标签宿主接口，SmallObject 和 BigObject 都应实现此接口
 public interface ILabelOwner {
@@ -61,6 +71,12 @@ public class ObjectLabel {
         if (this is ILabelOnMoving moving) owner.LabelOnMoving -= moving.ILabelOnMoving;
 
         OnDetach(owner);
+        // 如果原 owner 是 SmallObject，则从它的 dynamicState.smallObjectLabels 中移除自身
+        var small = owner as global::SmallObject;
+        if (small != null && small.dynamicState != null && small.dynamicState.smallObjectLabels != null) {
+            small.dynamicState.smallObjectLabels.Remove(this);
+        }
+
         owner = null;
     }
 }
