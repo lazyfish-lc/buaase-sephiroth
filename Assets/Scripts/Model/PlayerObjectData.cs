@@ -17,4 +17,5 @@ public class PlayerObjectDynamicState : SmallObjectDynamicState {
     public bool isRunning = false;
     public Orientation facingDirection = Orientation.Down;
     public List<ObjectLabel> labelBackpack = new List<ObjectLabel>();
+    public List<Item> itemBackpack = new List<Item>();
 }

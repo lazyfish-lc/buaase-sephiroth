@@ -46,7 +46,13 @@ public class IOSubsystem : MonoBehaviour {
 
     void dealInteract() {
         if (Input.GetButtonDown(InputConfig.Interact)) {
+            // 如果鼠标下对应的对象处于NPC交互范围内，则触发交互事件
+            // 判断是否是处于NPC层
             SmallObject target = GetObjectUnderMouse();
+            if (target == null) {
+                Debug.Log("没有检测到鼠标下的交互对象");
+                return;
+            }
             if (target != null) {
                 InputEventData data = new InputEventData {
                     actionType = InputActionType.Interact,
@@ -108,10 +114,60 @@ public class IOSubsystem : MonoBehaviour {
     }
 
     private SmallObject GetObjectUnderMouse() {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out RaycastHit hit, 100f, interactableLayer)) {
-            return hit.collider.GetComponent<SmallObject>();
+        Camera cam = Camera.main;
+        if (cam == null) {
+            Debug.LogWarning("未找到 MainCamera，无法进行鼠标拾取");
+            return null;
         }
+
+        Vector3 screenPos = Input.mousePosition;
+        Vector3 worldPos = cam.ScreenToWorldPoint(screenPos);
+        Vector2 point2D = new Vector2(worldPos.x, worldPos.y);
+
+        // 2D场景中，鼠标拾取优先使用点重叠检测，命中更稳定。
+        Collider2D[] overlapHits = Physics2D.OverlapPointAll(point2D);
+        if (overlapHits != null && overlapHits.Length > 0) {
+            for (int i = 0; i < overlapHits.Length; i++) {
+                Collider2D col = overlapHits[i];
+                if (col == null) continue;
+
+                // 使用 LayerMask 位运算，天然兼容多层（例如 Enemy | NPC）。
+                if (!IsLayerInMask(col.gameObject.layer, interactableLayer)) {
+                    continue;
+                }
+
+                // 仅接受主物体自身碰撞体：必须是同一 GameObject 上的 SmallObject。
+                SmallObject target = col.GetComponent<SmallObject>();
+                if (target != null) {
+                    return target;
+                }
+            }
+        }
+
+        // 兜底：再尝试2D射线交点，兼容特殊碰撞体设置。
+        Ray ray = cam.ScreenPointToRay(screenPos);
+        RaycastHit2D[] rayHits = Physics2D.GetRayIntersectionAll(ray, Mathf.Infinity);
+        if (rayHits != null && rayHits.Length > 0) {
+            for (int i = 0; i < rayHits.Length; i++) {
+                Collider2D col = rayHits[i].collider;
+                if (col == null) continue;
+
+                if (!IsLayerInMask(col.gameObject.layer, interactableLayer)) {
+                    continue;
+                }
+
+                SmallObject target = col.GetComponent<SmallObject>();
+                if (target != null) {
+                    return target;
+                }
+            }
+        }
+
+        Debug.Log($"鼠标下未命中可交互对象。mask={interactableLayer.value}, point={point2D}");
         return null;
+    }
+
+    private bool IsLayerInMask(int layer, LayerMask mask) {
+        return (mask.value & (1 << layer)) != 0;
     }
 }

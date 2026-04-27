@@ -34,7 +34,7 @@ public class MonsterSmallObject : SmallObject {
         // TODO
     }
 
-    public override void OnInteractAction() {
+    public override void OnInteractAction(InputEventData data) {
         Debug.Log("对怪物进行交互（如：偷窃标签）");
     }
 

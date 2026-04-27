@@ -7,7 +7,7 @@ public class DoorSmallObject : SmallObject {
         return new DoorObjectDynamicState();
     }
 
-    public override void OnInteractAction() {
+    public override void OnInteractAction(InputEventData data) {
         if (doorState == null) {
             Debug.LogWarning("门状态类型配置错误，无法交互");
             return;

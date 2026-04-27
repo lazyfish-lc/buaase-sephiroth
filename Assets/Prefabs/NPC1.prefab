@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 1383204520630236632}
   - component: {fileID: 3100469520733757831}
   - component: {fileID: 2808996505814966658}
-  m_Layer: 7
+  - component: {fileID: 914684802298624859}
+  m_Layer: 11
   m_Name: NPC1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -180,3 +181,20 @@ CapsuleCollider2D:
   m_Offset: {x: -0.03130424, y: 0.39243215}
   m_Size: {x: 0.40347838, y: 0.96695673}
   m_Direction: 0
+--- !u!114 &914684802298624859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2727603204033389051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f76fb00e63a6898439bd0ed8ca8e6520, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Sephiroth.Runtime::NPCObject
+  staticData: {fileID: 11400000, guid: 2f66504e5c903e34fb87efbdea88c941, type: 2}
+  dynamicState:
+    isDestroyed: 0
+    smallObjectLabels: []
+    isHurt: 0
