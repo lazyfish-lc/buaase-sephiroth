@@ -100,7 +100,9 @@ public class ArcherMonsterObject : MonsterSmallObject {
 
     protected override void OnDeath() {
         Debug.Log($"{staticData.objectName} 已死亡，销毁所有相关特效");
-        currentCastingEffect?.SetActive(false); // 确保施法特效被移除
+        if (currentCastingEffect != null) {
+            Destroy(currentCastingEffect);
+        }
         base.OnDeath();
     }
 }
