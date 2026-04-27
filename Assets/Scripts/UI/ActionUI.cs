@@ -6,7 +6,15 @@ public class ActionUI : MonoBehaviour
     public CanvasGroup ActionCanvas;
     public static ActionUI Instance;
 
-    //public NPCObject currentNPC;
+    public TMP_Text ActionText;
+    public Image ActionImage;
+
+    public Button Button1;
+    public Button Button2;
+    public Button Button3;
+    public Button Button4;
+    // 重点：UI 内部持有的当前 NPC 引用
+    private NPCObject currentNPC;
     void Awake()
     {
         if(Instance != null)
@@ -54,27 +62,23 @@ public class ActionUI : MonoBehaviour
         ActionCanvas.interactable = false;
         ActionCanvas.blocksRaycasts = false;
     }
-        
-    public TMP_Text ActionText;
-    public Image ActionImage;
-
-    public Button Button1;
-    public Button Button2;
-    public Button Button3;
-    public Button Button4;
-    // 重点：UI 内部持有的当前 NPC 引用
-    /*private NPCObject currentNPC;
-
+    
     private void OnEnable() {
-        // 1. 订阅全局静态事件
+        // 1. 订阅场景中所有 NPC 的实例事件
         // 当任何 NPC 触发对话时，这个方法会被调用，且参数就是那个 NPC
-        NPCObject.OnAnyDialogueStarted += HandleDialogueStart;
-        NPCObject.OnAnyDialogueEnded += HandleDialogueEnd;
+        var npcs = FindObjectsByType<NPCObject>(FindObjectsSortMode.None);
+        foreach (var npc in npcs) {
+            npc.OnDialogueStarted += HandleDialogueStart;
+            npc.OnDialogueEnded += HandleDialogueEnd;
+        }
     }
 
     private void OnDisable() {
-        NPCObject.OnAnyDialogueStarted -= HandleDialogueStart;
-        NPCObject.OnAnyDialogueEnded -= HandleDialogueEnd;
+        var npcs = FindObjectsByType<NPCObject>(FindObjectsSortMode.None);
+        foreach (var npc in npcs) {
+            npc.OnDialogueStarted -= HandleDialogueStart;
+            npc.OnDialogueEnded -= HandleDialogueEnd;
+        }
     }
 
     private void HandleDialogueStart(NPCObject npc) {
@@ -102,7 +106,7 @@ public class ActionUI : MonoBehaviour
         }
         // 5. 处理选项生成
         ClearOptions();
-        if (currentNPC.HasOptions()) {
+        if (currentNPC.GetCurrentOptions().Count > 0) {
             var options = currentNPC.GetCurrentOptions();
             for (int i = 0; i < options.Count; i++) {
                 int index = i; // 闭包陷阱处理
@@ -144,8 +148,8 @@ public class ActionUI : MonoBehaviour
 
     // 6. 处理非选项节点的点击翻页
     public void OnBackgroundClick() {
-        if (currentNPC != null && !currentNPC.HasOptions()) {
-            currentNPC.AdvanceDialogue();
+        if (currentNPC != null && currentNPC.GetCurrentOptions().Count == 0) {
+            currentNPC.AdvanceToNextNode();
         }
     }
 
@@ -186,7 +190,7 @@ public class ActionUI : MonoBehaviour
         Debug.Log("Button 4 Clicked");
         // 在这里添加按钮4的功能逻辑，例如显示当前任务信息
     }
-    */
+    
     
     
 }
