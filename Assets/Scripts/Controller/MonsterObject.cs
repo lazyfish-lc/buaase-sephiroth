@@ -45,6 +45,7 @@ public class MonsterSmallObject : SmallObject {
     protected virtual void HandleAIBehavior() {
         if (monsterState.isDestroyed) return;
         if (monsterView.IsPlayingAttack()) return; // 攻击动画播放中，暂不处理AI逻辑
+        if (monsterState.isHurt) return; // 受击状态下暂不处理AI逻辑
         // Debug.Log($"怪物 {staticData.objectName} AI 处理，目标玩家: {(monsterState.targetPlayer != null ? monsterState.targetPlayer.name : "无")}, 是否在攻击范围: {monsterState.isPlayerInAttackRange}");
         if (monsterState.targetPlayer != null) {
             // 1. 计算朝向
