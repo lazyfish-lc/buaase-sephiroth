@@ -32,4 +32,24 @@ MonoBehaviour:
     minValue: 0
     maxValue: 20
   interactionRange: 3
-  dialogueNodes: []
+  dialogueNodes:
+  - npcContent: hello
+    hasOptions: 0
+    nextNodeIndex: 1
+    options: []
+  - npcContent: test option
+    hasOptions: 0
+    nextNodeIndex: 2
+    options:
+    - text: option 1
+      targetNodeIndex: 2
+      rewardProperty: 
+      rewardAmount: 0
+    - text: option 2
+      targetNodeIndex: 0
+      rewardProperty: 
+      rewardAmount: 0
+  - npcContent: seeyou
+    hasOptions: 0
+    nextNodeIndex: -1
+    options: []

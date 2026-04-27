@@ -1,9 +1,11 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections.Generic;
 public class ActionUI : MonoBehaviour
 {
     public CanvasGroup ActionCanvas;
+    public bool isOpen = false;
     public static ActionUI Instance;
 
     public TMP_Text ActionText;
@@ -55,12 +57,14 @@ public class ActionUI : MonoBehaviour
         ActionCanvas.alpha = 1;
         ActionCanvas.interactable = true;
         ActionCanvas.blocksRaycasts = true;
+        isOpen = true;
     }
     public void Close()
     {
         ActionCanvas.alpha = 0;
         ActionCanvas.interactable = false;
         ActionCanvas.blocksRaycasts = false;
+        isOpen = false;
     }
     
     private void OnEnable() {
@@ -95,19 +99,24 @@ public class ActionUI : MonoBehaviour
     private void RefreshUI() {
         if (currentNPC == null) return;
 
+        if (ActionText == null) {
+            Debug.LogError("ActionUI 缺少 ActionText 引用，无法刷新对话文本");
+            return;
+        }
+
         // 4. 通过接口获取数据并显示
         ActionText.text = currentNPC.GetCurrentContent();
         Sprite npcSprite = currentNPC.GetCurrentSprite();
-        if (npcSprite != null) {
+        if (ActionImage != null && npcSprite != null) {
             ActionImage.sprite = npcSprite;
             ActionImage.gameObject.SetActive(true);
-        } else {
+        } else if (ActionImage != null) {
             ActionImage.gameObject.SetActive(false);
         }
         // 5. 处理选项生成
         ClearOptions();
-        if (currentNPC.GetCurrentOptions().Count > 0) {
-            var options = currentNPC.GetCurrentOptions();
+        List<DialogueOption> options = currentNPC.GetCurrentOptions() ?? new List<DialogueOption>();
+        if (options.Count > 0) {
             for (int i = 0; i < options.Count; i++) {
                 int index = i; // 闭包陷阱处理
                 
@@ -115,21 +124,29 @@ public class ActionUI : MonoBehaviour
                 switch (index)
                 {
                     case 0:
+                        if (Button1 == null) break;
+                        Button1.GetComponentInChildren<TMP_Text>().text = options[index].text; // 设置按钮文本
                         Button1.onClick.RemoveAllListeners();
                         Button1.onClick.AddListener(() => currentNPC.SelectOption(index));
                         Button1.gameObject.SetActive(true);
                         break;
                     case 1:
+                        if (Button2 == null) break;
+                        Button2.GetComponentInChildren<TMP_Text>().text = options[index].text; // 设置按钮文本
                         Button2.onClick.RemoveAllListeners();
                         Button2.onClick.AddListener(() => currentNPC.SelectOption(index));
                         Button2.gameObject.SetActive(true);
                         break;
                     case 2:
+                        if (Button3 == null) break;
+                        Button3.GetComponentInChildren<TMP_Text>().text = options[index].text; // 设置按钮文本
                         Button3.onClick.RemoveAllListeners();
                         Button3.onClick.AddListener(() => currentNPC.SelectOption(index));
                         Button3.gameObject.SetActive(true);
                         break;
                     case 3:
+                        if (Button4 == null) break;
+                        Button4.GetComponentInChildren<TMP_Text>().text = options[index].text; // 设置按钮文本
                         Button4.onClick.RemoveAllListeners();
                         Button4.onClick.AddListener(() => currentNPC.SelectOption(index));
                         Button4.gameObject.SetActive(true);
@@ -139,16 +156,17 @@ public class ActionUI : MonoBehaviour
         }
         else {
             // 没有选项时隐藏按钮
-            Button1.gameObject.SetActive(false);
-            Button2.gameObject.SetActive(false);
-            Button3.gameObject.SetActive(false);
-            Button4.gameObject.SetActive(false);
+            if (Button1 != null) Button1.gameObject.SetActive(false);
+            if (Button2 != null) Button2.gameObject.SetActive(false);
+            if (Button3 != null) Button3.gameObject.SetActive(false);
+            if (Button4 != null) Button4.gameObject.SetActive(false);
         }
     }
 
     // 6. 处理非选项节点的点击翻页
     public void OnBackgroundClick() {
-        if (currentNPC != null && currentNPC.GetCurrentOptions().Count == 0) {
+        List<DialogueOption> options = currentNPC != null ? (currentNPC.GetCurrentOptions() ?? new List<DialogueOption>()) : null;
+        if (currentNPC != null && options.Count == 0) {
             currentNPC.AdvanceToNextNode();
         }
     }
@@ -162,10 +180,10 @@ public class ActionUI : MonoBehaviour
     }
 
     private void ClearOptions() {
-        Button1.gameObject.SetActive(false);
-        Button2.gameObject.SetActive(false);
-        Button3.gameObject.SetActive(false);
-        Button4.gameObject.SetActive(false);
+        if (Button1 != null) Button1.gameObject.SetActive(false);
+        if (Button2 != null) Button2.gameObject.SetActive(false);
+        if (Button3 != null) Button3.gameObject.SetActive(false);
+        if (Button4 != null) Button4.gameObject.SetActive(false);
     }
     public void Button1Click()
     {
