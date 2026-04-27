@@ -24,6 +24,30 @@ public class SmallObjectDynamicState {
     public Dictionary<string, SmallObjectProperty> propertyMap = new Dictionary<string, SmallObjectProperty>();
     
     public bool isHurt = false; // 是否处于受击状态，受击状态下可能无法移动或攻击
+
+    // 获取属性的最终值：基础值 + 所有挂载在该对象上的 Label 对该属性的增量影响
+    public float GetPropertyValueWithAffect(string propertyName) {
+        if (!propertyMap.ContainsKey(propertyName)) {
+            Debug.LogWarning($"尝试读取不存在的属性 {propertyName}");
+            return 0f;
+        }
+
+        float baseValue = propertyMap[propertyName].value;
+        float delta = 0f;
+        if (smallObjectLabels != null) {
+            foreach (var label in smallObjectLabels) {
+                if (label is ILabelAffectsProperty affector) {
+                    try {
+                        delta += affector.GetPropertyDelta(propertyName);
+                    } catch (System.Exception ex) {
+                        Debug.LogWarning($"Label 对属性增量计算出错: {ex}");
+                    }
+                }
+            }
+        }
+
+        return baseValue + delta;
+    }
 }
 
 [Serializable]
