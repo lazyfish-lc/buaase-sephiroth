@@ -126,7 +126,6 @@ public class BackpackUI : MonoBehaviour
         //每页显示 itemsPerPage 个物品，根据 currentPage 计算显示范围
         int startIndex = (currentPage - 1) * itemsPerPage;
         int endIndex = Mathf.Min(startIndex + itemsPerPage, labelCount.Count);
-        int currentIndex = 0;
         Debug.Log($"显示: currentPage={currentPage}, startIndex={startIndex}, endIndex={endIndex}, totalItems={labelCount.Count}");
         for (int i = 0; i < SlotList.Length; i++)
         {

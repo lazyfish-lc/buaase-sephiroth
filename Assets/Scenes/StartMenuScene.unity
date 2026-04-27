@@ -127,21 +127,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1380232333}
     m_Modifications:
-    - target: {fileID: 2681821512726733601, guid: 01668623c89ae5c41bb25b59fd3c7977, type: 3}
-      propertyPath: m_Name
-      value: SettingsText
-      objectReference: {fileID: 0}
-    - target: {fileID: 2681821512726733601, guid: 01668623c89ae5c41bb25b59fd3c7977, type: 3}
-      propertyPath: m_Layer
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 6396112865714838448, guid: 01668623c89ae5c41bb25b59fd3c7977, type: 3}
       propertyPath: m_Name
       value: SettingsButton
-      objectReference: {fileID: 0}
-    - target: {fileID: 6396112865714838448, guid: 01668623c89ae5c41bb25b59fd3c7977, type: 3}
-      propertyPath: m_Layer
-      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7193334299658721531, guid: 01668623c89ae5c41bb25b59fd3c7977, type: 3}
       propertyPath: m_Pivot.x
@@ -227,46 +215,6 @@ PrefabInstance:
       propertyPath: m_text
       value: Settings
       objectReference: {fileID: 0}
-    - target: {fileID: 8058967613479937438, guid: 01668623c89ae5c41bb25b59fd3c7977, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 8cf15c4c0980c934f968231220c5b16b, type: 2}
-    - target: {fileID: 8058967613479937438, guid: 01668623c89ae5c41bb25b59fd3c7977, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 2140032, guid: 8cf15c4c0980c934f968231220c5b16b, type: 2}
-    - target: {fileID: 8058967613479937438, guid: 01668623c89ae5c41bb25b59fd3c7977, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8433510338737593682, guid: 01668623c89ae5c41bb25b59fd3c7977, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8433510338737593682, guid: 01668623c89ae5c41bb25b59fd3c7977, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8433510338737593682, guid: 01668623c89ae5c41bb25b59fd3c7977, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 593207670}
-    - target: {fileID: 8433510338737593682, guid: 01668623c89ae5c41bb25b59fd3c7977, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8433510338737593682, guid: 01668623c89ae5c41bb25b59fd3c7977, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GameSettings
-      objectReference: {fileID: 0}
-    - target: {fileID: 8433510338737593682, guid: 01668623c89ae5c41bb25b59fd3c7977, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: StartMenuUI, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 8433510338737593682, guid: 01668623c89ae5c41bb25b59fd3c7977, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -285,21 +233,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1380232333}
     m_Modifications:
-    - target: {fileID: 2681821512726733601, guid: 01668623c89ae5c41bb25b59fd3c7977, type: 3}
-      propertyPath: m_Name
-      value: QuitText
-      objectReference: {fileID: 0}
-    - target: {fileID: 2681821512726733601, guid: 01668623c89ae5c41bb25b59fd3c7977, type: 3}
-      propertyPath: m_Layer
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 6396112865714838448, guid: 01668623c89ae5c41bb25b59fd3c7977, type: 3}
       propertyPath: m_Name
       value: QuitButton
-      objectReference: {fileID: 0}
-    - target: {fileID: 6396112865714838448, guid: 01668623c89ae5c41bb25b59fd3c7977, type: 3}
-      propertyPath: m_Layer
-      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7193334299658721531, guid: 01668623c89ae5c41bb25b59fd3c7977, type: 3}
       propertyPath: m_Pivot.x
@@ -384,46 +320,6 @@ PrefabInstance:
     - target: {fileID: 8058967613479937438, guid: 01668623c89ae5c41bb25b59fd3c7977, type: 3}
       propertyPath: m_text
       value: Quit
-      objectReference: {fileID: 0}
-    - target: {fileID: 8058967613479937438, guid: 01668623c89ae5c41bb25b59fd3c7977, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 8cf15c4c0980c934f968231220c5b16b, type: 2}
-    - target: {fileID: 8058967613479937438, guid: 01668623c89ae5c41bb25b59fd3c7977, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 2140032, guid: 8cf15c4c0980c934f968231220c5b16b, type: 2}
-    - target: {fileID: 8058967613479937438, guid: 01668623c89ae5c41bb25b59fd3c7977, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8433510338737593682, guid: 01668623c89ae5c41bb25b59fd3c7977, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8433510338737593682, guid: 01668623c89ae5c41bb25b59fd3c7977, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8433510338737593682, guid: 01668623c89ae5c41bb25b59fd3c7977, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 593207670}
-    - target: {fileID: 8433510338737593682, guid: 01668623c89ae5c41bb25b59fd3c7977, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8433510338737593682, guid: 01668623c89ae5c41bb25b59fd3c7977, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GameExit
-      objectReference: {fileID: 0}
-    - target: {fileID: 8433510338737593682, guid: 01668623c89ae5c41bb25b59fd3c7977, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: StartMenuUI, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 8433510338737593682, guid: 01668623c89ae5c41bb25b59fd3c7977, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -881,21 +777,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1380232333}
     m_Modifications:
-    - target: {fileID: 2681821512726733601, guid: 01668623c89ae5c41bb25b59fd3c7977, type: 3}
-      propertyPath: m_Name
-      value: LoadText
-      objectReference: {fileID: 0}
-    - target: {fileID: 2681821512726733601, guid: 01668623c89ae5c41bb25b59fd3c7977, type: 3}
-      propertyPath: m_Layer
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 6396112865714838448, guid: 01668623c89ae5c41bb25b59fd3c7977, type: 3}
       propertyPath: m_Name
       value: LoadButton
-      objectReference: {fileID: 0}
-    - target: {fileID: 6396112865714838448, guid: 01668623c89ae5c41bb25b59fd3c7977, type: 3}
-      propertyPath: m_Layer
-      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7193334299658721531, guid: 01668623c89ae5c41bb25b59fd3c7977, type: 3}
       propertyPath: m_Pivot.x
@@ -980,46 +864,6 @@ PrefabInstance:
     - target: {fileID: 8058967613479937438, guid: 01668623c89ae5c41bb25b59fd3c7977, type: 3}
       propertyPath: m_text
       value: Load
-      objectReference: {fileID: 0}
-    - target: {fileID: 8058967613479937438, guid: 01668623c89ae5c41bb25b59fd3c7977, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 8cf15c4c0980c934f968231220c5b16b, type: 2}
-    - target: {fileID: 8058967613479937438, guid: 01668623c89ae5c41bb25b59fd3c7977, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 2140032, guid: 8cf15c4c0980c934f968231220c5b16b, type: 2}
-    - target: {fileID: 8058967613479937438, guid: 01668623c89ae5c41bb25b59fd3c7977, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8433510338737593682, guid: 01668623c89ae5c41bb25b59fd3c7977, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8433510338737593682, guid: 01668623c89ae5c41bb25b59fd3c7977, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8433510338737593682, guid: 01668623c89ae5c41bb25b59fd3c7977, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 593207670}
-    - target: {fileID: 8433510338737593682, guid: 01668623c89ae5c41bb25b59fd3c7977, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8433510338737593682, guid: 01668623c89ae5c41bb25b59fd3c7977, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GameLoad
-      objectReference: {fileID: 0}
-    - target: {fileID: 8433510338737593682, guid: 01668623c89ae5c41bb25b59fd3c7977, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: StartMenuUI, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 8433510338737593682, guid: 01668623c89ae5c41bb25b59fd3c7977, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1327,21 +1171,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1380232333}
     m_Modifications:
-    - target: {fileID: 2681821512726733601, guid: 01668623c89ae5c41bb25b59fd3c7977, type: 3}
-      propertyPath: m_Name
-      value: 'StartText '
-      objectReference: {fileID: 0}
-    - target: {fileID: 2681821512726733601, guid: 01668623c89ae5c41bb25b59fd3c7977, type: 3}
-      propertyPath: m_Layer
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 6396112865714838448, guid: 01668623c89ae5c41bb25b59fd3c7977, type: 3}
       propertyPath: m_Name
       value: StartButton
-      objectReference: {fileID: 0}
-    - target: {fileID: 6396112865714838448, guid: 01668623c89ae5c41bb25b59fd3c7977, type: 3}
-      propertyPath: m_Layer
-      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7193334299658721531, guid: 01668623c89ae5c41bb25b59fd3c7977, type: 3}
       propertyPath: m_Pivot.x
@@ -1422,46 +1254,6 @@ PrefabInstance:
     - target: {fileID: 7193334299658721531, guid: 01668623c89ae5c41bb25b59fd3c7977, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8058967613479937438, guid: 01668623c89ae5c41bb25b59fd3c7977, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 8cf15c4c0980c934f968231220c5b16b, type: 2}
-    - target: {fileID: 8058967613479937438, guid: 01668623c89ae5c41bb25b59fd3c7977, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 2140032, guid: 8cf15c4c0980c934f968231220c5b16b, type: 2}
-    - target: {fileID: 8058967613479937438, guid: 01668623c89ae5c41bb25b59fd3c7977, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8433510338737593682, guid: 01668623c89ae5c41bb25b59fd3c7977, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8433510338737593682, guid: 01668623c89ae5c41bb25b59fd3c7977, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8433510338737593682, guid: 01668623c89ae5c41bb25b59fd3c7977, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 593207670}
-    - target: {fileID: 8433510338737593682, guid: 01668623c89ae5c41bb25b59fd3c7977, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8433510338737593682, guid: 01668623c89ae5c41bb25b59fd3c7977, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GameStart
-      objectReference: {fileID: 0}
-    - target: {fileID: 8433510338737593682, guid: 01668623c89ae5c41bb25b59fd3c7977, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: StartMenuUI, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 8433510338737593682, guid: 01668623c89ae5c41bb25b59fd3c7977, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
