@@ -19,6 +19,8 @@ public class NPCObject : SmallObject {
 
     // --- 给 UI 调用的数据接口 (Getter) ---
     public string GetCurrentContent() => NPCData.dialogueNodes[NPCState.currentNodeIndex].npcContent;
+
+    public Sprite GetCurrentSprite() => gameObject.GetComponent<SpriteRenderer>()?.sprite;
     public List<DialogueOption> GetCurrentOptions() => NPCData.dialogueNodes[NPCState.currentNodeIndex].options;
     public bool CurrentNodeHasOptions() => NPCData.dialogueNodes[NPCState.currentNodeIndex].hasOptions;
     public bool IsInConversation() => NPCState.isInConversation;

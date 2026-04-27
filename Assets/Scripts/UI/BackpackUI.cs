@@ -18,6 +18,11 @@ public class BackpackUI : MonoBehaviour
 
     public int itemsPerPage ; // 每页显示的物品数量
 
+    public Image ItemImage; // 显示物品图片的UI组件
+    public TMP_Text ItemName; // 显示物品名称的UI组件
+
+    public TMP_Text ItemDescription; // 显示物品描述的UI组件
+
     private Dictionary<string, int> labelCount = new Dictionary<string, int>();// 物品标签及其数量的字典
 
     public bool isOpen = false;
@@ -126,7 +131,6 @@ public class BackpackUI : MonoBehaviour
         //每页显示 itemsPerPage 个物品，根据 currentPage 计算显示范围
         int startIndex = (currentPage - 1) * itemsPerPage;
         int endIndex = Mathf.Min(startIndex + itemsPerPage, labelCount.Count);
-        int currentIndex = 0;
         Debug.Log($"显示: currentPage={currentPage}, startIndex={startIndex}, endIndex={endIndex}, totalItems={labelCount.Count}");
         for (int i = 0; i < SlotList.Length; i++)
         {
