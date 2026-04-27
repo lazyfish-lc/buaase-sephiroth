@@ -6,6 +6,7 @@ public class CastingEffectView : MonoBehaviour {
 
     // 由“生成动画”的第 N 帧触发
     public void OnFireFrame() {
+        Debug.Log("CastingEffectView: OnFireFrame triggered");
         if (owner != null) {
             owner.FireProjectile(); // 通知怪物：可以发射法球了
         }

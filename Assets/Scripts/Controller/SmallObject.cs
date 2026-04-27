@@ -103,6 +103,7 @@ public abstract class SmallObject : MonoBehaviour, ILabelOwner {
         // 2. 检查死亡
         if (dynamicState.propertyMap["Health"].value <= 0) {
             OnDeath();
+            return; // 死亡后不执行击退
         }
         
         // 3. 执行击退（表现层逻辑）
