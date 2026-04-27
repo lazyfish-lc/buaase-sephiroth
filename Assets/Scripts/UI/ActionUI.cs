@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class ActionUI : MonoBehaviour
 {
     public CanvasGroup ActionCanvas;
+    public bool isOpen = false;
     public static ActionUI Instance;
 
     public TMP_Text ActionText;
@@ -56,12 +57,14 @@ public class ActionUI : MonoBehaviour
         ActionCanvas.alpha = 1;
         ActionCanvas.interactable = true;
         ActionCanvas.blocksRaycasts = true;
+        isOpen = true;
     }
     public void Close()
     {
         ActionCanvas.alpha = 0;
         ActionCanvas.interactable = false;
         ActionCanvas.blocksRaycasts = false;
+        isOpen = false;
     }
     
     private void OnEnable() {
@@ -122,24 +125,28 @@ public class ActionUI : MonoBehaviour
                 {
                     case 0:
                         if (Button1 == null) break;
+                        Button1.GetComponentInChildren<TMP_Text>().text = options[index].text; // 设置按钮文本
                         Button1.onClick.RemoveAllListeners();
                         Button1.onClick.AddListener(() => currentNPC.SelectOption(index));
                         Button1.gameObject.SetActive(true);
                         break;
                     case 1:
                         if (Button2 == null) break;
+                        Button2.GetComponentInChildren<TMP_Text>().text = options[index].text; // 设置按钮文本
                         Button2.onClick.RemoveAllListeners();
                         Button2.onClick.AddListener(() => currentNPC.SelectOption(index));
                         Button2.gameObject.SetActive(true);
                         break;
                     case 2:
                         if (Button3 == null) break;
+                        Button3.GetComponentInChildren<TMP_Text>().text = options[index].text; // 设置按钮文本
                         Button3.onClick.RemoveAllListeners();
                         Button3.onClick.AddListener(() => currentNPC.SelectOption(index));
                         Button3.gameObject.SetActive(true);
                         break;
                     case 3:
                         if (Button4 == null) break;
+                        Button4.GetComponentInChildren<TMP_Text>().text = options[index].text; // 设置按钮文本
                         Button4.onClick.RemoveAllListeners();
                         Button4.onClick.AddListener(() => currentNPC.SelectOption(index));
                         Button4.gameObject.SetActive(true);

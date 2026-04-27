@@ -9,6 +9,10 @@ public class IOSubsystem : MonoBehaviour {
         if(!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject()) {
             dealAttack();
         }
+        // 如果鼠标下是UI元素，并且是Action面板的背景，则触发动作面板的点击事件
+        if (UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject() && ActionUI.Instance != null && ActionUI.Instance.isOpen) {
+            dealActionClick();
+        }
         // 只在游戏中处理设置、菜单、背包和动作面板的输入，使用自带的场景管理器来判断当前场景，避免与自定义的GameSceneManager耦合过紧
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "GameScene") {
             dealSettings();
@@ -109,6 +113,15 @@ public class IOSubsystem : MonoBehaviour {
             if (ActionUI.Instance != null) {
                 Debug.Log("动作面板被调用");
                 ActionUI.Instance.OpenAndClose();
+            }
+        }
+    }
+
+    void dealActionClick() {
+        if (Input.GetButtonDown(InputConfig.ActionClick)) {
+            if (ActionUI.Instance != null) {
+                Debug.Log("动作面板被调用");
+                ActionUI.Instance.OnBackgroundClick();
             }
         }
     }
