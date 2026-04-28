@@ -29,6 +29,20 @@ public abstract class BigObject : MonoBehaviour, ILabelOwner {
         if(staticData.presentObject != null) staticData.presentObject.staticData.ownerBigObject = this;
         GameObjectManager.RegisterBigObject(this);
 
+        // 根据静态数据中的 labelBlueprints 初始化 labels（使用 LabelFactory）
+        if (staticData != null && staticData.labelBlueprints != null) {
+            if (dynamicState.bigObjectLabels == null) dynamicState.bigObjectLabels = new System.Collections.Generic.List<ObjectLabel>();
+            foreach (var desc in staticData.labelBlueprints) {
+                if (string.IsNullOrWhiteSpace(desc)) continue;
+                try {
+                    var lbl = LabelFactory.Build(desc);
+                    if (lbl != null) dynamicState.bigObjectLabels.Add(lbl);
+                } catch (Exception ex) {
+                    Debug.LogWarning($"无法根据 blueprint 创建 BigObject Label '{desc}': {ex.Message}");
+                }
+            }
+        }
+
         // 挂载已经配置在 dynamicState 中的 labels
         if (dynamicState != null && dynamicState.bigObjectLabels != null) {
             foreach (var label in dynamicState.bigObjectLabels) label?.AttachToOwner(this);

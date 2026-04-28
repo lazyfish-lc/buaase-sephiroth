@@ -6,8 +6,10 @@ using UnityEngine;
 public class HardLabel : ObjectLabel, ILabelAffectsProperty {
     private float DEFDelta = 10f;
     public HardLabel() {
-        this.labelName = "坚硬";
     }
+
+    // 自定义类名显示：同类所有实例共享该名称
+    public override string labelName => "Hard";
 
     public IEnumerable<string> GetAffectedPropertyNames() {
         yield return "DEF";
@@ -23,8 +25,10 @@ public class HardLabel : ObjectLabel, ILabelAffectsProperty {
 public class FragileLabel : ObjectLabel, ILabelAffectsProperty {
     private float DEFDelta = -10f;
     public FragileLabel() {
-        this.labelName = "易碎";
     }
+
+    // 自定义类名显示：同类所有实例共享该名称
+    public override string labelName => "Fragile";
 
     public IEnumerable<string> GetAffectedPropertyNames() {
         yield return "DEF";
