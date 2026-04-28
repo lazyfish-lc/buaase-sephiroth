@@ -54,12 +54,11 @@ public class BackpackUI : MonoBehaviour
     void Start()
     {
         BackpackCanvas.gameObject.SetActive(false);
-        UpdateBackpack();
     }
     public void OpenAndClose()
     {
         
-        if(BackpackCanvas.gameObject.activeSelf == false)
+        if(!isOpen)
         {
             Open();
         }

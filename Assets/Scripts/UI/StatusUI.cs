@@ -6,6 +6,7 @@ public class StatusUI : MonoBehaviour
     public static StatusUI Instance;
     public PlayerSmallObject player;
 
+    public bool isopen = false;
     public Slider HPSlider;
 
     
@@ -54,7 +55,7 @@ public class StatusUI : MonoBehaviour
     public void OpenAndClose()
     {
         
-        if(StatusCanvas.alpha == 0)
+        if(!isopen)
         {
             Open();
         }
@@ -66,10 +67,12 @@ public class StatusUI : MonoBehaviour
     public void Open()
     {
         StatusCanvas.gameObject.SetActive(true);
+        isopen = true;
     }
     public void Close()
     {
         StatusCanvas.gameObject.SetActive(false);
+        isopen = false;
     }
 
     

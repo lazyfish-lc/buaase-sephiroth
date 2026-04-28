@@ -29,7 +29,7 @@ public class MenuUI : MonoBehaviour
     }
     public void OpenAndClose()
     {
-        if(MenuCanvas.gameObject.activeSelf == false)
+        if(!isOpen)
         {
             Open();
         }
