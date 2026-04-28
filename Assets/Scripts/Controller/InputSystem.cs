@@ -14,14 +14,53 @@ public class IOSubsystem : MonoBehaviour {
             dealActionClick();
         }
         // 只在游戏中处理设置、菜单、背包和动作面板的输入，使用自带的场景管理器来判断当前场景，避免与自定义的GameSceneManager耦合过紧
-        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "GameScene") {
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "StartMenuScene") {
             dealSettings();
             dealMenu();
             dealBackpack();
             dealMovement();
             dealInteract();
+            dealShowLabel();
             dealSwitchTime();
             dealScroll();
+        }
+    }
+
+    void dealShowLabel() {
+        // 按下 L 键：从玩家附近的可交互对象中选择距离玩家最近的对象触发显示标签
+        if (Input.GetKeyDown(KeyCode.L)) {
+            if (playerObject == null) {
+                Debug.LogWarning("玩家对象未设置，无法查找附近对象");
+                return;
+            }
+
+            Vector2 center = playerObject.transform.position;
+            float searchRadius = 3f; // 可根据需要调整或暴露为字段
+
+            Collider2D[] hits = Physics2D.OverlapCircleAll(center, searchRadius, interactableLayer);
+            SmallObject nearest = null;
+            float bestDist = float.MaxValue;
+
+            if (hits != null) {
+                foreach (var col in hits) {
+                    if (col == null) continue;
+                    var so = col.GetComponent<SmallObject>();
+                    if (so == null) continue;
+
+                    float d = ((Vector2)so.transform.position - center).sqrMagnitude;
+                    if (d < bestDist) {
+                        bestDist = d;
+                        nearest = so;
+                    }
+                }
+            }
+
+            if (nearest != null) {
+                Debug.Log($"选择最近对象 {nearest.name}（距玩家 {Mathf.Sqrt(bestDist):F2}）激活显示标签");
+                nearest.OnActivateShowLabel();
+            } else {
+                Debug.Log("玩家附近未找到可触发显示标签的对象");
+            }
         }
     }
 
@@ -33,6 +72,7 @@ public class IOSubsystem : MonoBehaviour {
 
     void dealMovement() {
         if (playerObject.playerState.isHurt) return; // 受击状态下无法移动
+        Debug.Log("处理移动输入");
         float x = Input.GetAxis(InputConfig.Horizontal);
         float y = Input.GetAxis(InputConfig.Vertical);
             InputEventData data = new InputEventData {
