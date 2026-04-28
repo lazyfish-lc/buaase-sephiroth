@@ -35,9 +35,6 @@ public class StatusUI : MonoBehaviour
             Instance = null;
         }
     }
-    void Start()
-    {
-    }
     void Update()
     {
         if (player != null)
@@ -68,15 +65,11 @@ public class StatusUI : MonoBehaviour
     }
     public void Open()
     {
-        StatusCanvas.alpha = 1;
-        StatusCanvas.interactable = true;
-        StatusCanvas.blocksRaycasts = true;
+        StatusCanvas.gameObject.SetActive(true);
     }
     public void Close()
     {
-        StatusCanvas.alpha = 0;
-        StatusCanvas.interactable = false;
-        StatusCanvas.blocksRaycasts = false;
+        StatusCanvas.gameObject.SetActive(false);
     }
 
     

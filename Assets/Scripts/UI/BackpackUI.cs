@@ -44,15 +44,13 @@ public class BackpackUI : MonoBehaviour
     }
     void Start()
     {
-        BackpackCanvas.alpha = 0;
-        BackpackCanvas.interactable = false;
-        BackpackCanvas.blocksRaycasts = false;
+        BackpackCanvas.gameObject.SetActive(false);
         UpdatePageNumber();
     }
     public void OpenAndClose()
     {
         
-        if(BackpackCanvas.alpha == 0)
+        if(BackpackCanvas.gameObject.activeSelf == false)
         {
             Open();
         }
@@ -65,18 +63,14 @@ public class BackpackUI : MonoBehaviour
     public void Open()
     {
         isOpen = true;
-        BackpackCanvas.alpha = 1;
-        BackpackCanvas.interactable = true;
-        BackpackCanvas.blocksRaycasts = true;
+        BackpackCanvas.gameObject.SetActive(true);
         UpdateBackpack();
         ShowBackpack();
     }
     public void Close()
     {
         isOpen = false;
-        BackpackCanvas.alpha = 0;
-        BackpackCanvas.interactable = false;
-        BackpackCanvas.blocksRaycasts = false;
+        BackpackCanvas.gameObject.SetActive(false);
     }
 
     public void UpdatePageNumber()

@@ -20,8 +20,6 @@ public static class InputConfig {
     public const string Settings = "Settings";
     public const string Menu = "Menu";
     public const string Backpack = "Backpack";
-    public const string Action = "Action";
     public const string Attack = "Attack";
-
     public const string ActionClick = "ActionClick";
 }

@@ -18,7 +18,6 @@ public class IOSubsystem : MonoBehaviour {
             dealSettings();
             dealMenu();
             dealBackpack();
-            dealAction();
             dealMovement();
             dealInteract();
             dealSwitchTime();
@@ -105,14 +104,6 @@ public class IOSubsystem : MonoBehaviour {
             if (BackpackUI.Instance != null) {
                 Debug.Log("背包被调用");
                 BackpackUI.Instance.OpenAndClose();
-            }
-        }
-    }
-    void dealAction() {
-        if (Input.GetButtonDown(InputConfig.Action)) {
-            if (ActionUI.Instance != null) {
-                Debug.Log("动作面板被调用");
-                ActionUI.Instance.OpenAndClose();
             }
         }
     }
