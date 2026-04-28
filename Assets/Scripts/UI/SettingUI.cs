@@ -76,7 +76,7 @@ public class SettingUI : MonoBehaviour
     public void OpenAndClose()
     {
         
-        if(SettingCanvas.gameObject.activeSelf == false)
+        if(!isOpen)
         {
             Open();
         }

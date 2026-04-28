@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using UnityEngine.PlayerLoop;
 public class TagUI : MonoBehaviour
 {
     public CanvasGroup TagCanvas;
@@ -45,12 +46,11 @@ public class TagUI : MonoBehaviour
     void Start()
     {
         TagCanvas.gameObject.SetActive(false);
-        UpdatePageNumber();
     }
     public void OpenAndClose()
     {
         
-        if(TagCanvas.gameObject.activeSelf == false)
+        if(!isOpen)
         {
             Open();
         }
@@ -64,7 +64,6 @@ public class TagUI : MonoBehaviour
     {
         isOpen = true;
         TagCanvas.gameObject.SetActive(true);
-        UpdateTag();
         ShowTag();
     }
     public void Close()
@@ -72,17 +71,11 @@ public class TagUI : MonoBehaviour
         isOpen = false;
         TagCanvas.gameObject.SetActive(false);
     }
-
-    public void UpdatePageNumber()
-    {
-        PageNumber.text = $"PAGE: {currentPage}/{totalPages}";
-    }
     public void RightPage()
     {
         if(currentPage < totalPages)
         {
             currentPage++;
-            UpdatePageNumber();
             ShowTag();
         }
     }
@@ -91,14 +84,18 @@ public class TagUI : MonoBehaviour
         if(currentPage > 1)
         {
             currentPage--;
-            UpdatePageNumber();
             ShowTag();
         }
     }
 
+    public void UpdatePageNumber()
+    {
+        PageNumber.text = $"PAGE: {currentPage}/{totalPages}";
+    }
     //标签显示方法
     public void UpdateTag()
     {
+        UpdatePageNumber();
         List<ObjectLabel> labels = player.playerState.smallObjectLabels;
         // 分页显示逻辑,将列表分成多页，每页显示 itemsPerPage 个物品，相同标签记录数量
         labelCount.Clear();
@@ -113,14 +110,10 @@ public class TagUI : MonoBehaviour
                 labelCount[label.labelName] = 1;
             }
         }
-        // 测试数据，实际使用时从 player 的状态中获取物品标签和数量
-        //labelCount.Add("Health Potion", 5);
-        //labelCount.Add("Mana Potion", 3);
-        //labelCount.Add("Sword", 1);
-        //labelCount.Add("Shield", 1);
     }
     public void ShowTag()
     {
+        UpdateTag();
         //使用字典显示对应页码的物品标签和数量
         //每页显示 itemsPerPage 个物品，根据 currentPage 计算显示范围
         int startIndex = (currentPage - 1) * itemsPerPage;
