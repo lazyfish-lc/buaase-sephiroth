@@ -41,7 +41,9 @@ MonoBehaviour:
   - LockLabel()
   - FragileLabel()
   itemBackpackBlueprints:
-  - itemName: coin
-  - itemName: coin
-  - itemName: trash
-  - itemName: zzy
+  - itemName: sword
+  - itemName: "\u8840\u74F6"
+  - itemName: "\u8840\u74F6"
+  - itemName: "\u84DD\u74F6"
+  - itemName: "\u8840\u74F6"
+  - itemName: "\u84DD\u74F6"

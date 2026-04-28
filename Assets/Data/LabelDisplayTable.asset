@@ -13,12 +13,15 @@ MonoBehaviour:
   m_Name: LabelDisplayTable
   m_EditorClassIdentifier: Sephiroth.Runtime::LabelDisplayInfo
   labelInfos:
-  - name: HardLabel
+  - name: Hard
+    icon: {fileID: -5113566502125748040, guid: 2f3fe4fc287cadc40a0cdc0bbd5cdd68, type: 3}
+    description: "\u575A\u786C\u7684\u6807\u7B7E"
+  - name: Fragile
+    icon: {fileID: -424002214725761297, guid: 2f3fe4fc287cadc40a0cdc0bbd5cdd68, type: 3}
+    description: "\u6613\u788E\u7684\u6807\u7B7E"
+  - name: Lock
+    icon: {fileID: 4807340787445404411, guid: 2f3fe4fc287cadc40a0cdc0bbd5cdd68, type: 3}
+    description: "\u4E0A\u9501\u7684\u6807\u7B7E"
+  - name: 
     icon: {fileID: 0}
-    description: "Hard\u7684Label"
-  - name: FragileLabel
-    icon: {fileID: 0}
-    description: "Fragile\u7684Label"
-  - name: LockLabel
-    icon: {fileID: 0}
-    description: "Lock\u7684Label"
+    description: 

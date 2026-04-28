@@ -13,15 +13,12 @@ MonoBehaviour:
   m_Name: ItemDisplayTable
   m_EditorClassIdentifier: Sephiroth.Runtime::ItemDisplayInfo
   itemInfos:
-  - name: coin
-    icon: {fileID: 0}
-    description: "\u786C\u5E01"
-  - name: trash
-    icon: {fileID: 0}
-    description: "\u5783\u573E"
-  - name: zzy
-    icon: {fileID: 0}
-    description: "\u53E4\u660E\u5730\u604B"
-  - name: 
-    icon: {fileID: 0}
-    description: 
+  - name: sword
+    icon: {fileID: -8369547123586657644, guid: 7745bae0a365b7d4d8375e0fb7a637ea, type: 3}
+    description: "\u6751\u597D\u5251"
+  - name: "\u8840\u74F6"
+    icon: {fileID: 6519190929727653930, guid: 7745bae0a365b7d4d8375e0fb7a637ea, type: 3}
+    description: "\u53EA\u662F\u53EF\u53E3\u53EF\u4E50"
+  - name: "\u84DD\u74F6"
+    icon: {fileID: 3605249943430155902, guid: 7745bae0a365b7d4d8375e0fb7a637ea, type: 3}
+    description: "\u53EA\u662F\u767E\u4E8B\u53EF\u4E50"

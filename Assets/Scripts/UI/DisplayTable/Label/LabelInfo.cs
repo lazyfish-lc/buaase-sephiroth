@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class LabelInfo {
-    public string name;
-    public Sprite icon;
-    public string description;
+// 继承自DisplayInfo，包含了name、icon和description属性
+public class LabelInfo : DisplayInfo {
+    
 }
    
