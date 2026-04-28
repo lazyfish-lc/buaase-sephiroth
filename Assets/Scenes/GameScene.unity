@@ -1845,7 +1845,7 @@ GameObject:
   - component: {fileID: 300176971}
   - component: {fileID: 300176975}
   m_Layer: 5
-  m_Name: TagCanvas
+  m_Name: LabelCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1955,11 +1955,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 300176968}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2258d3a4a00912c4f97586f0facfcaa8, type: 3}
+  m_Script: {fileID: 11500000, guid: 2decd15eb94830e4b80fcdbaf0ab99d6, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Sephiroth.Runtime::TagUI
-  TagCanvas: {fileID: 300176971}
-  player: {fileID: 1980003000}
+  m_EditorClassIdentifier: Sephiroth.Runtime::LabelUI
+  LabelCanvas: {fileID: 300176971}
   SlotList:
   - {fileID: 219491396}
   - {fileID: 1023900118}
@@ -1985,9 +1984,9 @@ MonoBehaviour:
   currentPage: 1
   totalPages: 10
   itemsPerPage: 20
-  ItemImage: {fileID: 492136157}
-  ItemName: {fileID: 463105399}
-  ItemDescription: {fileID: 1061764467}
+  DisplayImage: {fileID: 492136157}
+  DisplayName: {fileID: 463105399}
+  DisplayDescription: {fileID: 1061764467}
   isOpen: 0
 --- !u!1 &335220316
 GameObject:
@@ -3174,7 +3173,7 @@ GameObject:
   - component: {fileID: 463105400}
   - component: {fileID: 463105399}
   m_Layer: 5
-  m_Name: ItemName
+  m_Name: DisplayName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3566,7 +3565,7 @@ GameObject:
   - component: {fileID: 492136158}
   - component: {fileID: 492136157}
   m_Layer: 5
-  m_Name: ItemImage
+  m_Name: DisplayImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5963,7 +5962,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 300176975}
-        m_TargetAssemblyTypeName: TagUI, Sephiroth.Runtime
+        m_TargetAssemblyTypeName: LabelUI, Sephiroth.Runtime
         m_MethodName: RightPage
         m_Mode: 1
         m_Arguments:
@@ -7075,7 +7074,7 @@ GameObject:
   - component: {fileID: 1061764468}
   - component: {fileID: 1061764467}
   m_Layer: 5
-  m_Name: ItemDescription
+  m_Name: DisplayDescription
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8037,7 +8036,7 @@ GameObject:
   - component: {fileID: 1189797638}
   - component: {fileID: 1189797637}
   m_Layer: 5
-  m_Name: TagTitle
+  m_Name: LabelTitle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8840,7 +8839,7 @@ GameObject:
   - component: {fileID: 1352997196}
   - component: {fileID: 1352997195}
   m_Layer: 5
-  m_Name: TagpackPanel
+  m_Name: LabelpackPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11156,7 +11155,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 156308020088560111, guid: 3f5e37461831eb04e97c1614ff34ee96, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: TagUI, Sephiroth.Runtime
+      value: LabelUI, Sephiroth.Runtime
       objectReference: {fileID: 0}
     - target: {fileID: 477192735815475006, guid: 3f5e37461831eb04e97c1614ff34ee96, type: 3}
       propertyPath: m_Sprite
@@ -11244,7 +11243,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5270849577407079799, guid: 3f5e37461831eb04e97c1614ff34ee96, type: 3}
       propertyPath: m_Name
-      value: TagCloseButton
+      value: LabelCloseButton
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12557,7 +12556,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 300176975}
-        m_TargetAssemblyTypeName: TagUI, Sephiroth.Runtime
+        m_TargetAssemblyTypeName: LabelUI, Sephiroth.Runtime
         m_MethodName: LeftPage
         m_Mode: 1
         m_Arguments:
