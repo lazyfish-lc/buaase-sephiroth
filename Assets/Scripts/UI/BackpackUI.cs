@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using System;
 public class BackpackUI : MonoBehaviour
 {
     public CanvasGroup BackpackCanvas;
@@ -23,7 +24,14 @@ public class BackpackUI : MonoBehaviour
 
     public TMP_Text ItemDescription; // 显示物品描述的UI组件
 
-    private Dictionary<string, int> labelCount = new Dictionary<string, int>();// 物品标签及其数量的字典
+
+    public Button LabelButton; // 显示标签的按钮
+    public Button ItemButton; // 显示物品的按钮
+
+    private Dictionary<string, int> LabelCount = new Dictionary<string, int>();// 物品标签及其数量的字典
+    private Dictionary<string, int> ItemCount = new Dictionary<string, int>();// 物品及其数量的字典
+
+    private String currentDisplayType = "Label"; // 当前显示类型，"Label" 或 "Item"
 
     public bool isOpen = false;
     void Awake()
@@ -65,7 +73,7 @@ public class BackpackUI : MonoBehaviour
         isOpen = true;
         BackpackCanvas.gameObject.SetActive(true);
         UpdateBackpack();
-        ShowBackpack();
+        
     }
     public void Close()
     {
@@ -83,7 +91,7 @@ public class BackpackUI : MonoBehaviour
         {
             currentPage++;
             UpdatePageNumber();
-            ShowBackpack();
+            
         }
     }
     public void LeftPage()
@@ -92,40 +100,86 @@ public class BackpackUI : MonoBehaviour
         {
             currentPage--;
             UpdatePageNumber();
-            ShowBackpack();
+            
         }
     }
 
     //背包物品显示方法
     public void UpdateBackpack()
     {
-        List<ObjectLabel> labels = player.playerState.smallObjectLabels;
-        // 分页显示逻辑,将列表分成多页，每页显示 itemsPerPage 个物品，相同标签记录数量
-        labelCount.Clear();
-        foreach (var label in labels)
+        List<ObjectLabel> Labels = new List<ObjectLabel>();// = player.playerState.smallObjectLabels;
+        List<Item> Items = new List<Item>();// = player.playerState.smallObjectItems;
+        //分页显示逻辑,将列表分成多页，每页显示 itemsPerPage 个物品，相同标签记录数量
+        LabelCount.Clear();
+        foreach (var label in Labels)
         {
-            if (labelCount.ContainsKey(label.labelName))
+            if (LabelCount.ContainsKey(label.labelName))
             {
-                labelCount[label.labelName]++;
+                LabelCount[label.labelName]++;
             }
             else
             {
-                labelCount[label.labelName] = 1;
+                LabelCount[label.labelName] = 1;
+            }
+        }
+        ItemCount.Clear();
+        foreach (var item in Items)        {
+            if (ItemCount.ContainsKey(item.itemName))
+            {
+                ItemCount[item.itemName]++;
+            }
+            else
+            {
+                ItemCount[item.itemName] = 1;
             }
         }
         // 测试数据，实际使用时从 player 的状态中获取物品标签和数量
-        //labelCount.Add("Health Potion", 5);
-        //labelCount.Add("Mana Potion", 3);
-        //labelCount.Add("Sword", 1);
-        //labelCount.Add("Shield", 1);
+        //LabelCount.Add("Health Potion", 5);
+        //LabelCount.Add("Mana Potion", 3);
+        //LabelCount.Add("Sword", 1);
+        //LabelCount.Add("Shield", 1);
     }
-    public void ShowBackpack()
+    public void ShowBackpack(String Type)
     {
+        if(Type == "Label")
+        {
+            ShowBackpackLabel();
+        }
+        else if(Type == "Item")
+        {
+            ShowBackpackItem();
+        }
+
+    }
+    public void ShowBackpackItem()
+    {
+        currentDisplayType = "Item";
         //使用字典显示对应页码的物品标签和数量
         //每页显示 itemsPerPage 个物品，根据 currentPage 计算显示范围
         int startIndex = (currentPage - 1) * itemsPerPage;
-        int endIndex = Mathf.Min(startIndex + itemsPerPage, labelCount.Count);
-        Debug.Log($"显示: currentPage={currentPage}, startIndex={startIndex}, endIndex={endIndex}, totalItems={labelCount.Count}");
+        int endIndex = Mathf.Min(startIndex + itemsPerPage, ItemCount.Count);
+        Debug.Log($"显示: currentPage={currentPage}, startIndex={startIndex}, endIndex={endIndex}, totalItems={ItemCount.Count}");
+        for (int i = 0; i < SlotList.Length; i++)
+        {
+            // 子对象命名是 "Slot1", "Slot2", ..., "Slot35"，根据索引清空显示
+            SlotList[i].GetComponentInChildren<TMP_Text>().text = "";
+        }   
+        for (int i = startIndex; i < endIndex; i++)
+        {
+            var item = new List<KeyValuePair<string, int>>(ItemCount)[i];
+            Debug.Log($"显示物品: {item.Key} x{item.Value}");
+            SlotList[i].GetComponentInChildren<TMP_Text>().text = $"{item.Value}";
+        }
+
+    }
+    public void ShowBackpackLabel()
+    {
+        currentDisplayType = "Label";
+        //使用字典显示对应页码的物品标签和数量
+        //每页显示 itemsPerPage 个物品，根据 currentPage 计算显示范围
+        int startIndex = (currentPage - 1) * itemsPerPage;
+        int endIndex = Mathf.Min(startIndex + itemsPerPage, LabelCount.Count);
+        Debug.Log($"显示: currentPage={currentPage}, startIndex={startIndex}, endIndex={endIndex}, totalItems={LabelCount.Count}");
         for (int i = 0; i < SlotList.Length; i++)
         {
             // 子对象命名是 "Slot1", "Slot2", ..., "Slot35"，根据索引清空显示
@@ -133,15 +187,11 @@ public class BackpackUI : MonoBehaviour
         }
         for (int i = startIndex; i < endIndex; i++)
         {
-            var item = new List<KeyValuePair<string, int>>(labelCount)[i];
+            var item = new List<KeyValuePair<string, int>>(LabelCount)[i];
             Debug.Log($"显示物品: {item.Key} x{item.Value}");
             SlotList[i].GetComponentInChildren<TMP_Text>().text = $"{item.Value}";
         }
-
     }
-
-
-
 }
 
 
