@@ -31,6 +31,7 @@ MonoBehaviour:
     initialValue: 1
     minValue: 0
     maxValue: 20
+  labelBlueprints: []
   interactionRange: 3
   dialogueNodes:
   - npcContent: hello

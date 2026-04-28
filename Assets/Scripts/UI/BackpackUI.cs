@@ -108,8 +108,20 @@ public class BackpackUI : MonoBehaviour
         // 更新页码
         UpdatePageNumber();
         // 获取物品标签和物品列表
-        List<ObjectLabel> Labels = new List<ObjectLabel>();// = player.playerState.smallObjectLabels;
-        List<Item> Items = new List<Item>();// = player.playerState.smallObjectItems;
+        List<ObjectLabel> Labels = player.playerState.labelBackpack;
+        // 输出列表
+        Debug.Log("标签列表:");
+        foreach (var label in Labels)
+        {
+            Debug.Log($"  {label.labelName}");
+        }
+        List<Item> Items = player.playerState.itemBackpack;
+        // 输出列表
+        Debug.Log("物品列表:");
+        foreach (var item in Items)
+        {
+            Debug.Log($"  {item.itemName}");
+        }
         //分页显示逻辑,将列表分成多页，每页显示 itemsPerPage 个物品，相同标签记录数量
         LabelCount.Clear();
         foreach (var label in Labels)

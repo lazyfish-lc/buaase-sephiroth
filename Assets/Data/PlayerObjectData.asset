@@ -31,4 +31,17 @@ MonoBehaviour:
     initialValue: 1
     minValue: 0
     maxValue: 20
+  labelBlueprints: []
   baseAttackCooldown: 0.5
+  labelBackpackBlueprints:
+  - HardLabel()
+  - FragileLabel()
+  - LockLabel()
+  - LockLabel()
+  - LockLabel()
+  - FragileLabel()
+  itemBackpackBlueprints:
+  - itemName: coin
+  - itemName: coin
+  - itemName: trash
+  - itemName: zzy

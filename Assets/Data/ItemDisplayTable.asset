@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcec3c070c76c154681f93d355ff4a18, type: 3}
+  m_Name: ItemDisplayTable
+  m_EditorClassIdentifier: Sephiroth.Runtime::ItemDisplayInfo
+  itemInfos:
+  - name: coin
+    icon: {fileID: 0}
+    description: "\u786C\u5E01"
+  - name: trash
+    icon: {fileID: 0}
+    description: "\u5783\u573E"
+  - name: zzy
+    icon: {fileID: 0}
+    description: "\u53E4\u660E\u5730\u604B"
+  - name: 
+    icon: {fileID: 0}
+    description: 
