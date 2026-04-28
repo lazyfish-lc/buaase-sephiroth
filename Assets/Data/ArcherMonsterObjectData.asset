@@ -31,5 +31,10 @@ MonoBehaviour:
     initialValue: 1
     minValue: 0
     maxValue: 20
+  labelBlueprints:
+  - FragileLabel()
+  - FragileLabel()
+  - FragileLabel()
+  - FragileLabel()
   baseAttackCooldown: 5
   castLockTime: 0.5

@@ -31,4 +31,8 @@ MonoBehaviour:
     initialValue: 1
     minValue: 0
     maxValue: 20
+  labelBlueprints:
+  - LockLabel()
+  - HardLabel()
   baseAttackCooldown: 1
+  castLockTime: 2

@@ -28,7 +28,7 @@ public class IOSubsystem : MonoBehaviour {
 
     void dealShowLabel() {
         // 按下 L 键：从玩家附近的可交互对象中选择距离玩家最近的对象触发显示标签
-        if (Input.GetKeyDown(KeyCode.L)) {
+        if (Input.GetButtonDown(InputConfig.Label)) {
             if (playerObject == null) {
                 Debug.LogWarning("玩家对象未设置，无法查找附近对象");
                 return;
@@ -45,7 +45,7 @@ public class IOSubsystem : MonoBehaviour {
                 foreach (var col in hits) {
                     if (col == null) continue;
                     var so = col.GetComponent<SmallObject>();
-                    if (so == null) continue;
+                    if (so == null || so == playerObject) continue;
 
                     float d = ((Vector2)so.transform.position - center).sqrMagnitude;
                     if (d < bestDist) {
@@ -72,7 +72,7 @@ public class IOSubsystem : MonoBehaviour {
 
     void dealMovement() {
         if (playerObject.playerState.isHurt) return; // 受击状态下无法移动
-        Debug.Log("处理移动输入");
+        //Debug.Log("处理移动输入");
         float x = Input.GetAxis(InputConfig.Horizontal);
         float y = Input.GetAxis(InputConfig.Vertical);
             InputEventData data = new InputEventData {

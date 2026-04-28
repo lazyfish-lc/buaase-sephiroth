@@ -26,6 +26,9 @@ public class LabelUI : MonoBehaviour
     private String currentDisplayType = "Label"; // 当前显示类型，"Label" 或 "Item"
 
     public bool isOpen = false;
+
+    private SmallObject currentSmallObject; // 当前显示标签的物体引用
+    
     void Awake()
     {
         if(Instance != null)
@@ -44,8 +47,10 @@ public class LabelUI : MonoBehaviour
     }
     void Start()
     {
-        cleanDisplay();
-        LabelCanvas.gameObject.SetActive(false);
+        //不可见且不可交互
+        LabelCanvas.alpha = 0;
+        LabelCanvas.interactable = false;
+        LabelCanvas.blocksRaycasts = false;
     }
     public void OpenAndClose()
     {
@@ -62,15 +67,20 @@ public class LabelUI : MonoBehaviour
     }
     public void Open()
     {
+        cleanDisplay();
         isOpen = true;
-        LabelCanvas.gameObject.SetActive(true);
+        LabelCanvas.alpha = 1;
+        LabelCanvas.interactable = true;
+        LabelCanvas.blocksRaycasts = true;
         ShowBackpack(currentDisplayType);
         
     }
     public void Close()
     {
         isOpen = false;
-        LabelCanvas.gameObject.SetActive(false);
+        LabelCanvas.alpha = 0;
+        LabelCanvas.interactable = false;
+        LabelCanvas.blocksRaycasts = false;
     }
     public void RightPage()
     {
@@ -93,6 +103,29 @@ public class LabelUI : MonoBehaviour
     {
         PageNumber.text = $"PAGE: {currentPage}/{totalPages}";
     }
+    private void OnEnable() {
+        // 1. 订阅场景中所有 NPC 的实例事件
+        // 当任何 NPC 触发对话时，这个方法会被调用，且参数就是那个 NPC
+        var Smalls = FindObjectsByType<SmallObject>(FindObjectsSortMode.None);
+        foreach (var Small in Smalls) {
+            Small.OnShowLabel += HandleLabel;
+        }
+    }
+
+    private void OnDisable() {
+        var Smalls = FindObjectsByType<SmallObject>(FindObjectsSortMode.None);
+        foreach (var Small in Smalls) {
+            Small.OnShowLabel -= HandleLabel;
+        }
+    }
+
+    private void HandleLabel(SmallObject Small) {
+        // 2. 捕获 NPC 引用
+        currentSmallObject = Small;
+        Debug.Log("HandleLabel(");
+        Open();
+    }
+
 
     //背包物品显示方法
     public void UpdateBackpack()
@@ -100,7 +133,7 @@ public class LabelUI : MonoBehaviour
         // 更新页码
         UpdatePageNumber();
         // 获取物品标签和物品列表
-        List<ObjectLabel> Labels = new List<ObjectLabel>();
+        List<ObjectLabel> Labels = currentSmallObject.dynamicState.smallObjectLabels;
         // 输出列表
         Debug.Log("标签列表:");
         foreach (var label in Labels)
@@ -121,9 +154,9 @@ public class LabelUI : MonoBehaviour
             }
         }
         // 测试数据，实际使用时从 player 的状态中获取物品标签和数量
-        LabelCount.Add("Hard", 5);
-        LabelCount.Add("Lock", 3);
-        LabelCount.Add("Fragile", 1);
+        //LabelCount.Add("Hard", 5);
+        //LabelCount.Add("Lock", 3);
+        //LabelCount.Add("Fragile", 1);
     }
     public void ShowBackpack(String Type)
     {

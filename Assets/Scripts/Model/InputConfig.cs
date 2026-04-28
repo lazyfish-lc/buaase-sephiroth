@@ -22,4 +22,5 @@ public static class InputConfig {
     public const string Backpack = "Backpack";
     public const string Attack = "Attack";
     public const string ActionClick = "ActionClick";
+    public const string Label = "Label";
 }

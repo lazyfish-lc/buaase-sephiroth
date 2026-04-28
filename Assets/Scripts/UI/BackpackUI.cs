@@ -51,7 +51,6 @@ public class BackpackUI : MonoBehaviour
     void Start()
     {
         BackpackCanvas.gameObject.SetActive(false);
-        cleanDisplay();
     }
     public void OpenAndClose()
     {
@@ -68,6 +67,7 @@ public class BackpackUI : MonoBehaviour
     }
     public void Open()
     {
+        cleanDisplay();
         isOpen = true;
         BackpackCanvas.gameObject.SetActive(true);
         ShowBackpack(currentDisplayType);
