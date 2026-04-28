@@ -1,4 +1,7 @@
 using UnityEngine;
+using System.Collections.Generic;
+using System.Collections;
+using System;
 
 public class PlayerSmallObject : SmallObject {
     public Rigidbody2D rb;
@@ -15,6 +18,29 @@ public class PlayerSmallObject : SmallObject {
     public void Update()
     {
         linearVelocity = rb.linearVelocity;
+    }
+
+    protected override void Awake() {
+        base.Awake();
+        if (playerStaticData != null && playerStaticData.labelBackpackBlueprints != null) {
+            if (playerState.labelBackpack == null) playerState.labelBackpack = new List<ObjectLabel>();
+            foreach (var desc in playerStaticData.labelBackpackBlueprints) {
+                if (string.IsNullOrWhiteSpace(desc)) continue;
+                try {
+                    var lbl = LabelFactory.Build(desc);
+                    if (lbl != null) playerState.labelBackpack.Add(lbl);
+                } catch (Exception ex) {
+                    Debug.LogWarning($"无法根据 blueprint 创建 Label '{desc}': {ex.Message}");
+                }
+            }
+        }
+        if (playerStaticData != null && playerStaticData.itemBackpackBlueprints != null) {
+            if (playerState.itemBackpack == null) playerState.itemBackpack = new List<Item>();
+            foreach (var item in playerStaticData.itemBackpackBlueprints) {
+                if (item == null || string.IsNullOrWhiteSpace(item.itemName)) continue;
+                playerState.itemBackpack.Add(new Item { itemName = item.itemName });
+            }
+        }
     }
     
 

@@ -20,12 +20,9 @@ public class BackpackUI : MonoBehaviour
 
     public int itemsPerPage ; // 每页显示的物品数量
 
-    public Image ItemImage; // 显示物品图片的UI组件
-    public TMP_Text ItemName; // 显示物品名称的UI组件
-
-    public TMP_Text ItemDescription; // 显示物品描述的UI组件
-
-
+    public Image DisplayImage; // 显示物品图片的UI组件,初始为透明
+    public TMP_Text DisplayName;// 显示物品名称的UI组件
+    public TMP_Text DisplayDescription; // 显示物品描述的UI组件
     public Button LabelButton; // 显示标签的按钮
     public Button ItemButton; // 显示物品的按钮
 
@@ -70,6 +67,7 @@ public class BackpackUI : MonoBehaviour
     }
     public void Open()
     {
+        cleanDisplay();
         isOpen = true;
         BackpackCanvas.gameObject.SetActive(true);
         ShowBackpack(currentDisplayType);
@@ -108,8 +106,20 @@ public class BackpackUI : MonoBehaviour
         // 更新页码
         UpdatePageNumber();
         // 获取物品标签和物品列表
-        List<ObjectLabel> Labels = new List<ObjectLabel>();// = player.playerState.smallObjectLabels;
-        List<Item> Items = new List<Item>();// = player.playerState.smallObjectItems;
+        List<ObjectLabel> Labels = player.playerState.labelBackpack;
+        // 输出列表
+        Debug.Log("标签列表:");
+        foreach (var label in Labels)
+        {
+            Debug.Log($"  {label.labelName}");
+        }
+        List<Item> Items = player.playerState.itemBackpack;
+        // 输出列表
+        Debug.Log("物品列表:");
+        foreach (var item in Items)
+        {
+            Debug.Log($"  {item.itemName}");
+        }
         //分页显示逻辑,将列表分成多页，每页显示 itemsPerPage 个物品，相同标签记录数量
         LabelCount.Clear();
         foreach (var label in Labels)
@@ -145,56 +155,38 @@ public class BackpackUI : MonoBehaviour
         UpdateBackpack();
         if(Type == "Label")
         {
-            ShowBackpackLabel();
+            ShowBackpackwith(Type, LabelCount);
         }
         else if(Type == "Item")
         {
-            ShowBackpackItem();
+            ShowBackpackwith(Type, ItemCount);
         }
 
     }
-    public void ShowBackpackItem()
+    public void ShowBackpackwith(String Type,Dictionary<string, int> Count)
     {
-        currentDisplayType = "Item";
-        Debug.Log("背包：显示物品");
+        currentDisplayType = Type;
+        Debug.Log("背包：显示" + Type);
         //使用字典显示对应页码的物品标签和数量
         //每页显示 itemsPerPage 个物品，根据 currentPage 计算显示范围
         int startIndex = (currentPage - 1) * itemsPerPage;
-        int endIndex = Mathf.Min(startIndex + itemsPerPage, ItemCount.Count);
-        Debug.Log($"显示: currentPage={currentPage}, startIndex={startIndex}, endIndex={endIndex}, totalItems={ItemCount.Count}");
+        int endIndex = Mathf.Min(startIndex + itemsPerPage, Count.Count);
+        Debug.Log($"显示: currentPage={currentPage}, startIndex={startIndex}, endIndex={endIndex}, totalItems={Count.Count}");
         for (int i = 0; i < SlotList.Length; i++)
         {
             // 子对象命名是 "Slot1", "Slot2", ..., "Slot35"，根据索引清空显示
-            SlotList[i].GetComponentInChildren<TMP_Text>().text = "";
+            CleanSlot(i);
         }   
         for (int i = startIndex; i < endIndex; i++)
         {
-            var item = new List<KeyValuePair<string, int>>(ItemCount)[i];
+            var item = new List<KeyValuePair<string, int>>(Count)[i];
             Debug.Log($"显示物品: {item.Key} x{item.Value}");
-            SlotList[i].GetComponentInChildren<TMP_Text>().text = $"{item.Value}";
+            if (i - startIndex < SlotList.Length) // 确保不超过格子数量
+            {
+                LinkSlot(i - startIndex, item.Key, item.Value);
+            }
         }
 
-    }
-    public void ShowBackpackLabel()
-    {
-        currentDisplayType = "Label";
-        Debug.Log("背包：显示标签");
-        //使用字典显示对应页码的物品标签和数量
-        //每页显示 itemsPerPage 个物品，根据 currentPage 计算显示范围
-        int startIndex = (currentPage - 1) * itemsPerPage;
-        int endIndex = Mathf.Min(startIndex + itemsPerPage, LabelCount.Count);
-        Debug.Log($"显示: currentPage={currentPage}, startIndex={startIndex}, endIndex={endIndex}, totalItems={LabelCount.Count}");
-        for (int i = 0; i < SlotList.Length; i++)
-        {
-            // 子对象命名是 "Slot1", "Slot2", ..., "Slot35"，根据索引清空显示
-            SlotList[i].GetComponentInChildren<TMP_Text>().text = "";
-        }
-        for (int i = startIndex; i < endIndex; i++)
-        {
-            var item = new List<KeyValuePair<string, int>>(LabelCount)[i];
-            Debug.Log($"显示物品: {item.Key} x{item.Value}");
-            SlotList[i].GetComponentInChildren<TMP_Text>().text = $"{item.Value}";
-        }
     }
     public void SwitchToLabel()
     {
@@ -205,6 +197,44 @@ public class BackpackUI : MonoBehaviour
     {
         currentPage = 1; // 切换显示类型时重置页码
         ShowBackpack("Item");
+    }
+
+    void CleanSlot(int index)
+    {
+        SlotList[index].GetComponentInChildren<TMP_Text>().text = "";
+        SlotList[index].GetComponentInChildren<Slot>().Clean("", currentDisplayType, index, OnSlotClicked);
+    }
+    void LinkSlot(int index, string name, int count)
+    {
+        SlotList[index].GetComponentInChildren<TMP_Text>().text = $"{count}";
+        SlotList[index].GetComponentInChildren<Slot>().Setup(name, currentDisplayType, index, OnSlotClicked);
+    }
+    // 点击回调，参数为被点击格子的索引
+    void OnSlotClicked(int index)
+    {
+        DisplayInfo clickedInfo = SlotList[index].GetComponentInChildren<Slot>().GetCurrentData();
+        if (clickedInfo != null)
+        {
+            
+            Debug.Log($"点击了格子 [{index}]：物品 = {clickedInfo.name}");
+            DisplayImage.color = new Color(1, 1, 1, 1); // 设置为不透明
+            DisplayImage.sprite = clickedInfo.icon;
+            DisplayName.text = clickedInfo.name;
+            DisplayDescription.text = clickedInfo.description;
+
+            // 这里可以触发信息面板显示、使用物品等逻辑
+        }
+        else
+        {
+            Debug.Log($"格子 [{index}] 为空");
+            cleanDisplay();
+        }
+    }
+    void cleanDisplay()
+    {
+        DisplayImage.color = new Color(1, 1, 1, 0); // 初始为透明
+        DisplayName.text = "";
+        DisplayDescription.text = "";
     }
 }
 
