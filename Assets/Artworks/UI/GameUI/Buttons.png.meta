@@ -1163,10 +1163,10 @@ TextureImporter:
       name: Buttons_21
       rect:
         serializedVersion: 2
-        x: 50
-        y: 415
-        width: 44
-        height: 17
+        x: 55
+        y: 416
+        width: 42
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1185,10 +1185,10 @@ TextureImporter:
       name: Buttons_22
       rect:
         serializedVersion: 2
-        x: 50
-        y: 399
-        width: 44
-        height: 17
+        x: 55
+        y: 400
+        width: 42
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1207,10 +1207,10 @@ TextureImporter:
       name: Buttons_23
       rect:
         serializedVersion: 2
-        x: 98
-        y: 399
-        width: 44
-        height: 34
+        x: 99
+        y: 416
+        width: 42
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -5009,6 +5009,28 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Buttons_196
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 400
+        width: 42
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6b641cc58a19fb4a8c6073d30d289ed
+      internalID: -977631029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -5131,6 +5153,7 @@ TextureImporter:
       Buttons_193: -5522555166730669408
       Buttons_194: -2701316470536314115
       Buttons_195: -84595390618493213
+      Buttons_196: -977631029
       Buttons_2: -5402412272178277761
       Buttons_20: 6246160581572741293
       Buttons_21: 7671842712487638309
