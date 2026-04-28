@@ -4309,7 +4309,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 365638169}
         m_TargetAssemblyTypeName: BackpackUI, Sephiroth.Runtime
-        m_MethodName: ShowBackpackItem
+        m_MethodName: SwitchToItem
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4373,8 +4373,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 421.23, y: 191.7}
-  m_SizeDelta: {x: 310, y: 72}
+  m_AnchoredPosition: {x: 399.8, y: 187.6}
+  m_SizeDelta: {x: 200, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &571719146
 GameObject:
@@ -5983,8 +5983,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 111.22998, y: 191.7}
-  m_SizeDelta: {x: 310, y: 72}
+  m_AnchoredPosition: {x: 138.7, y: 187.6}
+  m_SizeDelta: {x: 200, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &833366521
 MonoBehaviour:
@@ -6070,7 +6070,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 365638169}
         m_TargetAssemblyTypeName: BackpackUI, Sephiroth.Runtime
-        m_MethodName: ShowBackpackLabel
+        m_MethodName: SwitchToLabel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
