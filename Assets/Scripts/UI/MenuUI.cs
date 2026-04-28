@@ -25,13 +25,11 @@ public class MenuUI : MonoBehaviour
     }
     void Start()
     {
-        MenuCanvas.alpha = 0;
-        MenuCanvas.interactable = false;
-        MenuCanvas.blocksRaycasts = false;
+        MenuCanvas.gameObject.SetActive(false);
     }
     public void OpenAndClose()
     {
-        if(MenuCanvas.alpha == 0)
+        if(MenuCanvas.gameObject.activeSelf == false)
         {
             Open();
         }
@@ -44,16 +42,12 @@ public class MenuUI : MonoBehaviour
     public void Open()
     {
         isOpen = true;
-        MenuCanvas.alpha = 1;
-        MenuCanvas.interactable = true;
-        MenuCanvas.blocksRaycasts = true;
+        MenuCanvas.gameObject.SetActive(true);
     }
     public void Close()
     {
         isOpen = false;
-        MenuCanvas.alpha = 0;
-        MenuCanvas.interactable = false;
-        MenuCanvas.blocksRaycasts = false;
+        MenuCanvas.gameObject.SetActive(false);
     }
     public void OpenSetting()
     {

@@ -45,9 +45,7 @@ public class SettingUI : MonoBehaviour
     }
     void Start()
     {
-        SettingCanvas.alpha = 0;
-        SettingCanvas.interactable = false;
-        SettingCanvas.blocksRaycasts = false;
+        SettingCanvas.gameObject.SetActive(false);
     }
     public void UpdateVolume()
     {
@@ -78,7 +76,7 @@ public class SettingUI : MonoBehaviour
     public void OpenAndClose()
     {
         
-        if(SettingCanvas.alpha == 0)
+        if(SettingCanvas.gameObject.activeSelf == false)
         {
             Open();
         }
@@ -90,17 +88,13 @@ public class SettingUI : MonoBehaviour
     public void Open()
     {
         isOpen = true;
-        SettingCanvas.alpha = 1;
-        SettingCanvas.interactable = true;
-        SettingCanvas.blocksRaycasts = true;
+        SettingCanvas.gameObject.SetActive(true);
         LoadPreferences();
     }
     public void Close()
     {
         isOpen = false;
-        SettingCanvas.alpha = 0;
-        SettingCanvas.interactable = false;
-        SettingCanvas.blocksRaycasts = false;
+        SettingCanvas.gameObject.SetActive(false);
         LoadPreferences();
     }
 

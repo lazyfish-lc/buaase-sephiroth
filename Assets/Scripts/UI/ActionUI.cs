@@ -36,14 +36,12 @@ public class ActionUI : MonoBehaviour
     }
     void Start()
     {
-        ActionCanvas.alpha = 0;
-        ActionCanvas.interactable = false;
-        ActionCanvas.blocksRaycasts = false;
+        ActionCanvas.gameObject.SetActive(false);
     }
     public void OpenAndClose()
     {
         
-        if(ActionCanvas.alpha == 0)
+        if(ActionCanvas.gameObject.activeSelf == false)
         {
             Open();
         }
@@ -54,16 +52,12 @@ public class ActionUI : MonoBehaviour
     }
     public void Open()
     {
-        ActionCanvas.alpha = 1;
-        ActionCanvas.interactable = true;
-        ActionCanvas.blocksRaycasts = true;
+        ActionCanvas.gameObject.SetActive(true);
         isOpen = true;
     }
     public void Close()
     {
-        ActionCanvas.alpha = 0;
-        ActionCanvas.interactable = false;
-        ActionCanvas.blocksRaycasts = false;
+        ActionCanvas.gameObject.SetActive(false);
         isOpen = false;
     }
     
