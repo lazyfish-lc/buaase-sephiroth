@@ -14,7 +14,7 @@ public class IOSubsystem : MonoBehaviour {
             dealActionClick();
         }
         // 只在游戏中处理设置、菜单、背包和动作面板的输入，使用自带的场景管理器来判断当前场景，避免与自定义的GameSceneManager耦合过紧
-        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "GameScene") {
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "StartMenuScene") {
             dealSettings();
             dealMenu();
             dealBackpack();
@@ -72,6 +72,7 @@ public class IOSubsystem : MonoBehaviour {
 
     void dealMovement() {
         if (playerObject.playerState.isHurt) return; // 受击状态下无法移动
+        Debug.Log("处理移动输入");
         float x = Input.GetAxis(InputConfig.Horizontal);
         float y = Input.GetAxis(InputConfig.Vertical);
             InputEventData data = new InputEventData {
