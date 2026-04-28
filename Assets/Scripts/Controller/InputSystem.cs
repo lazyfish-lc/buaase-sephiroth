@@ -20,8 +20,47 @@ public class IOSubsystem : MonoBehaviour {
             dealBackpack();
             dealMovement();
             dealInteract();
+            dealShowLabel();
             dealSwitchTime();
             dealScroll();
+        }
+    }
+
+    void dealShowLabel() {
+        // 按下 L 键：从玩家附近的可交互对象中选择距离玩家最近的对象触发显示标签
+        if (Input.GetKeyDown(KeyCode.L)) {
+            if (playerObject == null) {
+                Debug.LogWarning("玩家对象未设置，无法查找附近对象");
+                return;
+            }
+
+            Vector2 center = playerObject.transform.position;
+            float searchRadius = 3f; // 可根据需要调整或暴露为字段
+
+            Collider2D[] hits = Physics2D.OverlapCircleAll(center, searchRadius, interactableLayer);
+            SmallObject nearest = null;
+            float bestDist = float.MaxValue;
+
+            if (hits != null) {
+                foreach (var col in hits) {
+                    if (col == null) continue;
+                    var so = col.GetComponent<SmallObject>();
+                    if (so == null) continue;
+
+                    float d = ((Vector2)so.transform.position - center).sqrMagnitude;
+                    if (d < bestDist) {
+                        bestDist = d;
+                        nearest = so;
+                    }
+                }
+            }
+
+            if (nearest != null) {
+                Debug.Log($"选择最近对象 {nearest.name}（距玩家 {Mathf.Sqrt(bestDist):F2}）激活显示标签");
+                nearest.OnActivateShowLabel();
+            } else {
+                Debug.Log("玩家附近未找到可触发显示标签的对象");
+            }
         }
     }
 
