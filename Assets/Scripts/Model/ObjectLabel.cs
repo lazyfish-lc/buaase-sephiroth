@@ -28,7 +28,13 @@ public interface ILabelOwner {
 
 [System.Serializable]
 public class ObjectLabel {
-    public string labelName;
+    // 每个具体标签类的所有实例共享该名称（默认使用类名），
+    // 保持与现有代码中通过实例访问 `labelName` 的方式兼容。
+    public virtual string labelName {
+        get {
+            return this.GetType().Name;
+        }
+    }
 
     [System.NonSerialized]
     public ILabelOwner owner;

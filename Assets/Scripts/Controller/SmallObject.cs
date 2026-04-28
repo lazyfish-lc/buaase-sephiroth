@@ -22,6 +22,19 @@ public abstract class SmallObject : MonoBehaviour, ILabelOwner {
             Debug.LogWarning($"{GetType().Name} CreateDynamicState 返回空，已回退为 SmallObjectDynamicState");
         }
         InitializeProperties();
+        // 根据静态数据中的 labelBlueprints 初始化标签（使用 LabelFactory 通过字符串创建实例）
+        if (staticData != null && staticData.labelBlueprints != null) {
+            if (dynamicState.smallObjectLabels == null) dynamicState.smallObjectLabels = new List<ObjectLabel>();
+            foreach (var desc in staticData.labelBlueprints) {
+                if (string.IsNullOrWhiteSpace(desc)) continue;
+                try {
+                    var lbl = LabelFactory.Build(desc);
+                    if (lbl != null) dynamicState.smallObjectLabels.Add(lbl);
+                } catch (Exception ex) {
+                    Debug.LogWarning($"无法根据 blueprint 创建 Label '{desc}': {ex.Message}");
+                }
+            }
+        }
         // Attach any labels stored in dynamic state
         if (dynamicState != null && dynamicState.smallObjectLabels != null) {
             foreach (var label in dynamicState.smallObjectLabels) label?.AttachToOwner(this);

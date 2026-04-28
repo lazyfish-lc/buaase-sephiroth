@@ -13,6 +13,8 @@ public class SmallObjectStaticData : ScriptableObject {
         new PropertyDefinition() { name = "DEF", initialValue = 10f, minValue = 0f, maxValue = 99999f },
         new PropertyDefinition() { name = "AttackSpeed", initialValue = 1f, minValue = 0f, maxValue = 20f }
     };
+    // 在资源中记录该 SmallObject 初始化时需挂载的标签描述（通过 LabelFactory 创建）
+    public List<string> labelBlueprints = new List<string>();
 }
 
 [Serializable]

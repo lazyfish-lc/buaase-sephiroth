@@ -3,6 +3,8 @@ using UnityEngine;
 
 [Serializable]
 public class LockLabel : ObjectLabel {
+    // 自定义类名显示：同类所有实例共享该名称
+    public override string labelName => "Lock";
     // 标识当前是否被锁定
     public bool IsLocked { get; private set; } = true;
     // 创建的子物体，用于阻挡其他对象
