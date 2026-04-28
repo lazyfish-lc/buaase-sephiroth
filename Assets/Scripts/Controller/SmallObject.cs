@@ -110,7 +110,7 @@ public abstract class SmallObject : MonoBehaviour, ILabelOwner {
 
         // 1. 修改数值（利用我们之前的数值守恒系统）
         // 假设所有对象都有 "Health" 属性
-        float damage = Mathf.Max(packet.damageValue * 0.05f, packet.damageValue - dynamicState.propertyMap["DEF"].value); // 伤害减去防御
+        float damage = Mathf.Max(packet.damageValue * 0.05f, packet.damageValue - dynamicState.GetPropertyValueWithAffect("DEF")); // 伤害减去防御
         dynamicState.propertyMap["Health"].value -= damage;
         Debug.Log($"{staticData.objectName} 的当前生命值: {dynamicState.propertyMap["Health"].value}");
         // 2. 检查死亡
