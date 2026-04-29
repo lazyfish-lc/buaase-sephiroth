@@ -76,21 +76,21 @@ public class PropertyUI : MonoBehaviour
         // 当任何SmallObject触发属性显示时，这个方法会被调用，且参数就是那个SmallObject
         var Smalls = FindObjectsByType<SmallObject>(FindObjectsSortMode.None);
         foreach (var Small in Smalls) {
-            //Small.OnShowProperty += HandleProperty;
+            Small.OnShowProperty += HandleProperty;
         }
     }
 
     private void OnDisable() {
         var Smalls = FindObjectsByType<SmallObject>(FindObjectsSortMode.None);
         foreach (var Small in Smalls) {
-            //Small.OnShowProperty -= HandleProperty;
+            Small.OnShowProperty -= HandleProperty;
         }
     }
 
     private void HandleProperty(SmallObject Small) {
         // 2. 捕获SmallObject引用
         currentSmallObject = Small;
-        Debug.Log("HandleProperty(");
+        Debug.Log("HandleProperty(" + Small.name + ")");
         Open();
     }
     public void ShowProperty()
@@ -101,22 +101,28 @@ public class PropertyUI : MonoBehaviour
             if (info != null)
             {
                 DisplayImage.color = new Color(1, 1, 1, 1); // 设置为不透明
-                DisplayImage.sprite = currentSmallObject.GetComponent<SpriteRenderer>().sprite; // 数据不存储，直接获取显示物体的图片
+                DisplayImage.sprite = currentSmallObject.GetComponent<SpriteRenderer>()?.sprite; // 数据不存储，直接获取显示物体的图片
                 DisplayName.text = info.name;
                 DisplayDescription.text = info.description;
                 // 这里可以根据实际需求将 SmallObject 的属性显示在输入框中
                 // 先获取 SmallObject 的属性数量（默认不超过8个）
-                var properties = currentSmallObject.GetType().GetFields().Where(f => f.IsPublic).ToArray();
+                // 拿取所有
+                // 前面为名字称，后面为属性值
+                Dictionary<string, SmallObjectProperty> propertiesDict = currentSmallObject.dynamicState.propertyMap;
+                var properties = propertiesDict.Values.ToArray();
                 // 然后将属性值显示在输入框中，多出的输入框整个不显示
                 for (int i = 0; i < inputFields.Length; i++)
                 {
                     if (i < properties.Length)
                     {
-                        var value = properties[i].GetValue(currentSmallObject);
-                        DisplayProperties[i].text = properties[i].Name; // 显示属性名称
+                        // 拆分显示：属性名称和属性值分开显示，属性名称显示在 DisplayProperties 中，属性值显示在 inputFields 中
+                        var value = properties[i].value;
+                        DisplayProperties[i].text = properties[i].name; // 显示属性名称
                         DisplayProperties[i].gameObject.SetActive(true); // 显示属性名称
-                        inputFields[i].text = value != null ? value.ToString() : ""; // 显示属性值
+                        inputFields[i].text = value.ToString(); // 显示属性值
                         inputFields[i].gameObject.SetActive(true); // 显示输入框
+                        Debug.Log($"显示属性 {properties[i].name} 的值 {value} 在输入框中");
+                        
                     }
                     else
                     {
@@ -149,6 +155,7 @@ public class PropertyUI : MonoBehaviour
         {
             DisplayProperties[i].text = "";
             DisplayProperties[i].gameObject.SetActive(false);
+            // 在子对象text area的placeholder中显示提示文本
             inputFields[i].text = "";
             inputFields[i].gameObject.SetActive(false);
         }
@@ -158,9 +165,23 @@ public class PropertyUI : MonoBehaviour
         if (currentSmallObject != null)
         {
             // 这里可以根据实际需求将输入框的内容保存到 SmallObject 的属性中
-            // 例如：
-            // currentSmallObject.property1 = InputField1.text;
-            // currentSmallObject.property2 = InputField2.text;
+            // 注意类别识别和转换
+            var properties = currentSmallObject.dynamicState.propertyMap.Values.ToArray();
+            for (int i = 0; i < properties.Length && i < inputFields.Length; i++)
+            {
+                string inputValue = inputFields[i].text; // 获取输入框中的文本
+                try
+                {
+                    // 尝试将输入值转换为属性的类型
+                    float convertedValue = float.Parse(inputValue); // 目前仅支持 float 类型，后续可以扩展支持其他类型
+                    properties[i].SetValue(convertedValue);
+                    Debug.Log($"已将输入值 '{inputValue}' 转换为float并保存到属性 {properties[i].name}");
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError($"无法将输入值 '{inputValue}' 转换为 float 类型，保存属性 {properties[i].name} 失败。错误信息: {e.Message}");
+                }
+            }
             // ...
             Debug.Log("属性已保存");
         }
