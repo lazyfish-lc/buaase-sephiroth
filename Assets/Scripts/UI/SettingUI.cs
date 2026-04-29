@@ -47,7 +47,7 @@ public class SettingUI : MonoBehaviour
     {
         SettingCanvas.gameObject.SetActive(false);
     }
-    public void UpdateVolume()
+    public void Update()
     {
         if (isOpen)
         {
