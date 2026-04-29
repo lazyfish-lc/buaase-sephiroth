@@ -10,7 +10,7 @@ public class LabelUI : MonoBehaviour
     public CanvasGroup LabelCanvas;
     public static LabelUI Instance;
 
-    public GameObject[] SlotList; // 存放物品槽的父对象，假设有 35 个子对象命名为 "Slot1", "Slot2", ..., "Slot35"
+    public GameObject[] SlotList; // 存放物品槽的父对象，假设有 10个子对象命名为 "Slot1", "Slot2", ..., "Slot35"
 
     public TMP_Text PageNumber;
 
@@ -107,8 +107,8 @@ public class LabelUI : MonoBehaviour
         PageNumber.text = $"PAGE: {currentPage}/{totalPages}";
     }
     private void OnEnable() {
-        // 1. 订阅场景中所有 NPC 的实例事件
-        // 当任何 NPC 触发对话时，这个方法会被调用，且参数就是那个 NPC
+        // 1. 订阅场景中所有SmallObject的事件
+        // 这里假设SmallObject有一个事件OnShowLabel，当需要显示标签时触发，传递SmallObject的引用
         var Smalls = FindObjectsByType<SmallObject>(FindObjectsSortMode.None);
         foreach (var Small in Smalls) {
             Small.OnShowLabel += HandleLabel;
@@ -123,7 +123,7 @@ public class LabelUI : MonoBehaviour
     }
 
     private void HandleLabel(SmallObject Small) {
-        // 2. 捕获 NPC 引用
+        // 2. 捕获SmallObject引用
         currentSmallObject = Small;
         Debug.Log("HandleLabel(");
         Open();

@@ -7,7 +7,7 @@ public class DisplayTable : MonoBehaviour
 {
     public LabelDisplayTable labelDisplayTable;
     public ItemDisplayTable itemDisplayTable;
-
+    public SmallObjectDisplayTable smallObjectDisplayTable;
     public static DisplayTable Instance;
 
     void Awake()
@@ -37,7 +37,15 @@ public class DisplayTable : MonoBehaviour
         {
             return GetLabelInfo(name);
         }
-        return null;
+        else if(type == "SmallObject")
+        {
+            return GetSmallObjectInfo(name);
+        }
+        else
+        {
+            Debug.LogWarning($"未知的类型 {type}，无法获取显示信息");
+            return null;
+        }
     }
 
     private ItemInfo GetItemInfo(string itemName)
@@ -47,6 +55,10 @@ public class DisplayTable : MonoBehaviour
     private LabelInfo GetLabelInfo(string labelName)
     {
         return labelDisplayTable.labelInfos.Find(info => info.name == labelName);
+    }
+    private SmallObjectInfo GetSmallObjectInfo(string smallObjectName)
+    {
+        return smallObjectDisplayTable.smallObjectInfos.Find(info => info.name == smallObjectName);
     }
     
 }
