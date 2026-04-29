@@ -23,4 +23,5 @@ public static class InputConfig {
     public const string Attack = "Attack";
     public const string ActionClick = "ActionClick";
     public const string Label = "Label";
+    public const KeyCode ShowPropertyKey = KeyCode.P;
 }

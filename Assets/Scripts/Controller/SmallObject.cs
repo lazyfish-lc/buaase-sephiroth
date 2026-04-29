@@ -16,6 +16,7 @@ public abstract class SmallObject : MonoBehaviour, ILabelOwner {
     public event Action LabelOnMoving;
 
     public event Action<SmallObject> OnShowLabel;
+    public event Action<SmallObject> OnShowProperty;
     protected virtual void Awake() {
         dynamicState = CreateDynamicState();
         if (dynamicState == null) {
@@ -105,6 +106,24 @@ public abstract class SmallObject : MonoBehaviour, ILabelOwner {
     // 实际激活事件（独立方法以便子类扩展）
     public virtual void ActivateShowLabel() {
         OnShowLabel?.Invoke(this);
+    }
+
+    // 尝试在有玩家在附近时激活显示属性（默认范围 2f）
+    public virtual void OnActivateShowProperty() {
+        var player = IOSubsystem.Instance?.playerObject;
+        if (player == null) return;
+        float dist = Vector3.Distance(transform.position, player.transform.position);
+        float range = 2f;
+        if (dist <= range) {
+            ActivateShowProperty();
+        } else {
+            Debug.Log("尝试显示属性但玩家不在范围内");
+        }
+    }
+
+    // 实际激活属性显示事件（独立方法以便子类扩展）
+    public virtual void ActivateShowProperty() {
+        OnShowProperty?.Invoke(this);
     }
 
     // Provide methods to add/remove labels at runtime (store in dynamicState)
