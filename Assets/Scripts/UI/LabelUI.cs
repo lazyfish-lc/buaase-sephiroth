@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using System;
 using UnityEngine.PlayerLoop;
+using System.Linq;
 public class LabelUI : MonoBehaviour
 {
     public CanvasGroup LabelCanvas;
@@ -28,6 +29,8 @@ public class LabelUI : MonoBehaviour
     public bool isOpen = false;
 
     private SmallObject currentSmallObject; // 当前显示标签的物体引用
+
+    public bool IsLabelModeOpen => isOpen && currentDisplayType == "Label";
     
     void Awake()
     {
@@ -167,15 +170,64 @@ public class LabelUI : MonoBehaviour
         }
 
     }
+
+    public bool TryReceiveLabelFromPlayer(ObjectLabel label)
+    {
+        if (!isOpen || currentSmallObject == null || label == null)
+        {
+            return false;
+        }
+
+        if (currentSmallObject.dynamicState == null)
+        {
+            currentSmallObject.dynamicState = new SmallObjectDynamicState();
+        }
+        if (currentSmallObject.dynamicState.smallObjectLabels == null)
+        {
+            currentSmallObject.dynamicState.smallObjectLabels = new List<ObjectLabel>();
+        }
+        if (!currentSmallObject.dynamicState.smallObjectLabels.Contains(label))
+        {
+            currentSmallObject.dynamicState.smallObjectLabels.Add(label);
+        }
+
+        label.AttachToOwner(currentSmallObject);
+        return true;
+    }
+
+    public bool TryTransferLabelToPlayer(string labelName, PlayerSmallObject player)
+    {
+        if (!isOpen || currentSmallObject == null || player == null)
+        {
+            return false;
+        }
+
+        var labels = currentSmallObject.dynamicState?.smallObjectLabels;
+        if (labels == null)
+        {
+            return false;
+        }
+
+        var label = labels.Find(lbl => lbl != null && lbl.labelName == labelName);
+        if (label == null)
+        {
+            return false;
+        }
+
+        label.Detach();
+        player.playerState.labelBackpack.Add(label);
+        return true;
+    }
     public void ShowBackpackwith(String Type,Dictionary<string, int> Count)
     {
         currentDisplayType = Type;
         Debug.Log("背包：显示" + Type);
         //使用字典显示对应页码的物品标签和数量
         //每页显示 itemsPerPage 个物品，根据 currentPage 计算显示范围
+        var ordered = Count.OrderBy(pair => pair.Key, StringComparer.Ordinal).ToList();
         int startIndex = (currentPage - 1) * itemsPerPage;
-        int endIndex = Mathf.Min(startIndex + itemsPerPage, Count.Count);
-        Debug.Log($"显示: currentPage={currentPage}, startIndex={startIndex}, endIndex={endIndex}, totalItems={Count.Count}");
+        int endIndex = Mathf.Min(startIndex + itemsPerPage, ordered.Count);
+        Debug.Log($"显示: currentPage={currentPage}, startIndex={startIndex}, endIndex={endIndex}, totalItems={ordered.Count}");
         for (int i = 0; i < SlotList.Length; i++)
         {
             // 子对象命名是 "Slot1", "Slot2", ..., "Slot35"，根据索引清空显示
@@ -183,7 +235,7 @@ public class LabelUI : MonoBehaviour
         }   
         for (int i = startIndex; i < endIndex; i++)
         {
-            var item = new List<KeyValuePair<string, int>>(Count)[i];
+            var item = ordered[i];
             Debug.Log($"显示物品: {item.Key} x{item.Value}");
             if (i - startIndex < SlotList.Length) // 确保不超过格子数量
             {
@@ -208,7 +260,6 @@ public class LabelUI : MonoBehaviour
         DisplayInfo clickedInfo = SlotList[index].GetComponentInChildren<Slot>().GetCurrentData();
         if (clickedInfo != null)
         {
-            
             Debug.Log($"点击了格子 [{index}]：物品 = {clickedInfo.name}");
             DisplayImage.color = new Color(1, 1, 1, 1); // 设置为不透明
             DisplayImage.sprite = clickedInfo.icon;

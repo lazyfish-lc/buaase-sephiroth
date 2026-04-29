@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using System;
 using UnityEngine.PlayerLoop;
+using System.Linq;
 public class BackpackUI : MonoBehaviour
 {
     public CanvasGroup BackpackCanvas;
@@ -32,6 +33,8 @@ public class BackpackUI : MonoBehaviour
     private String currentDisplayType = "Label"; // 当前显示类型，"Label" 或 "Item"
 
     public bool isOpen = false;
+
+    public bool IsLabelModeOpen => isOpen && currentDisplayType == "Label";
     void Awake()
     {
         if(Instance != null)
@@ -169,9 +172,10 @@ public class BackpackUI : MonoBehaviour
         Debug.Log("背包：显示" + Type);
         //使用字典显示对应页码的物品标签和数量
         //每页显示 itemsPerPage 个物品，根据 currentPage 计算显示范围
+        var ordered = Count.OrderBy(pair => pair.Key, StringComparer.Ordinal).ToList();
         int startIndex = (currentPage - 1) * itemsPerPage;
-        int endIndex = Mathf.Min(startIndex + itemsPerPage, Count.Count);
-        Debug.Log($"显示: currentPage={currentPage}, startIndex={startIndex}, endIndex={endIndex}, totalItems={Count.Count}");
+        int endIndex = Mathf.Min(startIndex + itemsPerPage, ordered.Count);
+        Debug.Log($"显示: currentPage={currentPage}, startIndex={startIndex}, endIndex={endIndex}, totalItems={ordered.Count}");
         for (int i = 0; i < SlotList.Length; i++)
         {
             // 子对象命名是 "Slot1", "Slot2", ..., "Slot35"，根据索引清空显示
@@ -179,7 +183,7 @@ public class BackpackUI : MonoBehaviour
         }   
         for (int i = startIndex; i < endIndex; i++)
         {
-            var item = new List<KeyValuePair<string, int>>(Count)[i];
+            var item = ordered[i];
             Debug.Log($"显示物品: {item.Key} x{item.Value}");
             if (i - startIndex < SlotList.Length) // 确保不超过格子数量
             {
