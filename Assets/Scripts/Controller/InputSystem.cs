@@ -44,7 +44,7 @@ public class IOSubsystem : MonoBehaviour {
 
     void dealShowProperty() {
         // 按下 P 键：从玩家附近的可交互对象中选择距离玩家最近的对象触发显示属性
-        if (Input.GetKeyDown(InputConfig.ShowPropertyKey)) {
+        if (Input.GetButtonDown(InputConfig.Property)) {
             SmallObject nearest = FindNearestInteractableObject(3f);
 
             if (nearest != null) {

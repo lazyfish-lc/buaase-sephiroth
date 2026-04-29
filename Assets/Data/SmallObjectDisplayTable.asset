@@ -12,4 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08f6a6b5bfc405943bff1c5c38be2292, type: 3}
   m_Name: SmallObjectDisplayTable
   m_EditorClassIdentifier: Sephiroth.Runtime::SmallObjectDisplayTable
-  smallObjectInfos: []
+  smallObjectInfos:
+  - name: Monster1
+    icon: {fileID: 0}
+    description: "\u5438\u8840\u9B3C"
+  - name: Monster2
+    icon: {fileID: 0}
+    description: "\u5438\u8840\u9B3C\u6CD5\u5E08"
+  - name: NPC
+    icon: {fileID: 0}
+    description: npc
