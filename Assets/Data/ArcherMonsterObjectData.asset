@@ -31,6 +31,10 @@ MonoBehaviour:
     initialValue: 1
     minValue: 0
     maxValue: 20
+  - name: moveSpeed
+    initialValue: 2
+    minValue: 0
+    maxValue: 50
   labelBlueprints:
   - FragileLabel()
   - FragileLabel()

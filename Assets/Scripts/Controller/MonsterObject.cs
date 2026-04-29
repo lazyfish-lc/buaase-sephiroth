@@ -57,12 +57,12 @@ public class MonsterSmallObject : SmallObject {
                 bool attackedThisFrame = TryAttack();
                 if (!attackedThisFrame) {
                     // 冷却期间保持追击，避免在攻击范围边缘呆站。
-                    rb.linearVelocity = new Vector2(direction.x, direction.y) * monsterState.moveSpeed;
+                    rb.linearVelocity = new Vector2(direction.x, direction.y) * monsterState.propertyMap["moveSpeed"].value;
                     monsterView.UpdateMovement(new Vector2(direction.x, direction.y), true);
                 }
             } else {
                 // 3. 移动逻辑
-                rb.linearVelocity = new Vector2(direction.x, direction.y) * monsterState.moveSpeed;
+                rb.linearVelocity = new Vector2(direction.x, direction.y) * monsterState.propertyMap["moveSpeed"].value;
                 monsterView.UpdateMovement(new Vector2(direction.x, direction.y), true);
             }
         } else {
