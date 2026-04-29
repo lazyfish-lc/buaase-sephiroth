@@ -120,6 +120,7 @@ public class ActionUI : MonoBehaviour
                 
                 //绑定按钮1-4的点击事件
                 if (index < Buttons.Length) {
+                    Buttons[index].GetComponentInChildren<TMP_Text>().text = options[index].text; // 设置按钮文本
                     Buttons[index].gameObject.SetActive(true);
                     Buttons[index].onClick.RemoveAllListeners();
                     Buttons[index].onClick.AddListener(() => {
