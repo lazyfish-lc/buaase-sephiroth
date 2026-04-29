@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 384988330255408680}
   - component: {fileID: 7971711699152502211}
   - component: {fileID: 6099336117968850752}
+  - component: {fileID: 5911550114426282807}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -166,6 +167,7 @@ MonoBehaviour:
   dynamicState:
     isDestroyed: 0
     smallObjectLabels: []
+    isHurt: 0
   rb: {fileID: 1377186722902957110}
   playerView: {fileID: 7971711699152502211}
   enemyLayer:
@@ -173,6 +175,7 @@ MonoBehaviour:
     m_Bits: 1024
   hitPoint: {fileID: 2435546783638844553}
   sensorPivot: {fileID: 8121286637750139319}
+  linearVelocity: {x: 0, y: 0}
 --- !u!114 &7971711699152502211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,6 +227,19 @@ CapsuleCollider2D:
   m_Offset: {x: -0.007193327, y: 0.393746}
   m_Size: {x: 0.44529104, y: 0.85182935}
   m_Direction: 0
+--- !u!114 &5911550114426282807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 428893834184496047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9415d0b4d2f830e479f844af24cd3c27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Sephiroth.Runtime::HeightMember
+  currentLevel: 0
 --- !u!1 &4009020050639222334
 GameObject:
   m_ObjectHideFlags: 0
@@ -283,7 +299,7 @@ Transform:
   m_GameObject: {fileID: 4624220710011380401}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.4, z: -10}
+  m_LocalPosition: {x: -17.523266, y: -5.2967787, z: -31.006395}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -324,7 +340,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 0.64
+  orthographic size: 15.457713
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2

@@ -9,7 +9,6 @@ public class MonsterObjectStaticData : SmallObjectStaticData {
 
 [Serializable]
 public class MonsterObjectDynamicState : SmallObjectDynamicState {
-    public float moveSpeed = 2f;
     public float lastAttackTime = -Mathf.Infinity;
     public bool isPlayerInAttackRange = false;
     public Transform targetPlayer;

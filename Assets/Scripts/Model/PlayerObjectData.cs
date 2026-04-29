@@ -14,7 +14,6 @@ public class PlayerObjectStaticData : SmallObjectStaticData {
 
 [Serializable]
 public class PlayerObjectDynamicState : SmallObjectDynamicState {
-    public float moveSpeed = 5f;
 
     public float lastAttackTime = -Mathf.Infinity;
     public bool isRunning = false;

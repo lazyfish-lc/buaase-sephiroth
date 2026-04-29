@@ -56,7 +56,7 @@ public class PlayerSmallObject : SmallObject {
     public override void OnMoveAction(Vector3 moveDir) {
         Vector3 direction = Vector3.zero;
         direction = moveDir.normalized;
-        rb.linearVelocity = new Vector2(direction.x * playerState.moveSpeed, direction.y * playerState.moveSpeed);
+        rb.linearVelocity = new Vector2(direction.x * playerState.propertyMap["moveSpeed"].value, direction.y * playerState.propertyMap["moveSpeed"].value);
         playerState.isRunning = rb.linearVelocity.magnitude > 0.1f;
         UpdateOrientation(moveDir);
         playerView.UpdateMovement(GetAnimationDirection(), playerState.isRunning);
