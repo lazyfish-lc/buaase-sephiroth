@@ -88,10 +88,15 @@ public class Slot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
         dragIcon = new GameObject("DragIcon");
         dragIcon.transform.SetParent(rootCanvas.transform, false);
         dragRect = dragIcon.AddComponent<RectTransform>();
+        var dragCanvas = dragIcon.AddComponent<Canvas>();
+        dragCanvas.overrideSorting = true;
+        dragCanvas.sortingLayerID = rootCanvas.sortingLayerID;
+        dragCanvas.sortingOrder = 10000;
         var image = dragIcon.AddComponent<Image>();
         image.raycastTarget = false;
         image.sprite = currentData.icon;
         image.preserveAspect = true;
+        dragIcon.transform.SetAsLastSibling();
         if (iconImage != null)
         {
             var size = iconImage.rectTransform.rect.size;
