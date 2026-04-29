@@ -2,7 +2,8 @@
     "name": "Sephiroth.Runtime",
     "rootNamespace": "",
     "references": [
-        "Unity.TextMeshPro"
+        "Unity.TextMeshPro",
+        "Unity.RenderPipelines.Universal.Runtime"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
