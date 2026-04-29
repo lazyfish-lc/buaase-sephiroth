@@ -1,0 +1,174 @@
+using UnityEngine;
+using TMPro;
+using System.Collections.Generic;
+using UnityEngine.UI;
+using System;
+using UnityEngine.PlayerLoop;
+using System.Linq;
+public class PropertyUI : MonoBehaviour
+{
+    public CanvasGroup PropertyCanvas;
+    public static PropertyUI Instance;
+    public Image DisplayImage; // 显示对象的图片的UI组件,初始为透明
+    public TMP_Text DisplayName;// 显示对象名称的UI组件
+    public TMP_Text DisplayDescription; // 显示对象描述的UI组件
+
+    public TMP_Text[] DisplayProperties; // 显示对象属性的文本数组，假设最多显示8个属性
+    public TMP_InputField[] inputFields; // 显示对象属性的输入框数组，假设最多显示8个属性
+    public Button SaveButton; // 保存按钮的UI组件
+    public bool isOpen = false;
+    private SmallObject currentSmallObject; // 当前显示标签的物体引用    
+    void Awake()
+    {
+        if(Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+    }
+    void OnDestroy()
+    {
+        if (Instance == this)
+        {
+            Instance = null;
+        }
+    }
+    void Start()
+    {
+        //不可见且不可交互
+       PropertyCanvas.alpha = 0;
+       PropertyCanvas.interactable = false;
+       PropertyCanvas.blocksRaycasts = false;
+    }
+    public void OpenAndClose()
+    {
+        
+        if(!isOpen)
+        {
+            Open();
+        }
+        else
+        {
+            Close();
+        }
+        
+    }
+    public void Open()
+    {
+        cleanDisplay();
+        isOpen = true;
+        PropertyCanvas.alpha = 1;
+        PropertyCanvas.interactable = true;
+        PropertyCanvas.blocksRaycasts = true;
+        ShowProperty();
+        
+    }
+    public void Close()
+    {
+        isOpen = false;
+        PropertyCanvas.alpha = 0;
+        PropertyCanvas.interactable = false;
+        PropertyCanvas.blocksRaycasts = false;
+    }
+    private void OnEnable() {
+        // 1. 订阅场景中所有SmallObject的事件
+        // 当任何SmallObject触发属性显示时，这个方法会被调用，且参数就是那个SmallObject
+        var Smalls = FindObjectsByType<SmallObject>(FindObjectsSortMode.None);
+        foreach (var Small in Smalls) {
+            //Small.OnShowProperty += HandleProperty;
+        }
+    }
+
+    private void OnDisable() {
+        var Smalls = FindObjectsByType<SmallObject>(FindObjectsSortMode.None);
+        foreach (var Small in Smalls) {
+            //Small.OnShowProperty -= HandleProperty;
+        }
+    }
+
+    private void HandleProperty(SmallObject Small) {
+        // 2. 捕获SmallObject引用
+        currentSmallObject = Small;
+        Debug.Log("HandleProperty(");
+        Open();
+    }
+    public void ShowProperty()
+    {
+        if (currentSmallObject != null)
+        {
+            var info = DisplayTable.Instance.GetDisplayInfo(currentSmallObject.name, "SmallObject");
+            if (info != null)
+            {
+                DisplayImage.color = new Color(1, 1, 1, 1); // 设置为不透明
+                DisplayImage.sprite = currentSmallObject.GetComponent<SpriteRenderer>().sprite; // 数据不存储，直接获取显示物体的图片
+                DisplayName.text = info.name;
+                DisplayDescription.text = info.description;
+                // 这里可以根据实际需求将 SmallObject 的属性显示在输入框中
+                // 先获取 SmallObject 的属性数量（默认不超过8个）
+                var properties = currentSmallObject.GetType().GetFields().Where(f => f.IsPublic).ToArray();
+                // 然后将属性值显示在输入框中，多出的输入框整个不显示
+                for (int i = 0; i < inputFields.Length; i++)
+                {
+                    if (i < properties.Length)
+                    {
+                        var value = properties[i].GetValue(currentSmallObject);
+                        DisplayProperties[i].text = properties[i].Name; // 显示属性名称
+                        DisplayProperties[i].gameObject.SetActive(true); // 显示属性名称
+                        inputFields[i].text = value != null ? value.ToString() : ""; // 显示属性值
+                        inputFields[i].gameObject.SetActive(true); // 显示输入框
+                    }
+                    else
+                    {
+                        inputFields[i].text = "";
+                        inputFields[i].gameObject.SetActive(false); // 隐藏输入框
+                        DisplayProperties[i].text = "";
+                        DisplayProperties[i].gameObject.SetActive(false); // 隐藏属性名称
+                    }
+                }
+            }
+            else
+            {
+                Debug.LogWarning($"未找到物体 {currentSmallObject.name} 的显示信息");
+                cleanDisplay();
+            }
+        }
+        else
+        {
+            Debug.LogWarning("当前没有 SmallObject 可显示");
+            cleanDisplay();
+        }
+    }
+    void cleanDisplay()
+    {
+        DisplayImage.color = new Color(1, 1, 1, 0); // 初始为透明
+        DisplayName.text = "";
+        DisplayDescription.text = "";
+        // 隐藏所有属性名称和输入框
+        for (int i = 0; i < DisplayProperties.Length; i++)
+        {
+            DisplayProperties[i].text = "";
+            DisplayProperties[i].gameObject.SetActive(false);
+            inputFields[i].text = "";
+            inputFields[i].gameObject.SetActive(false);
+        }
+    }
+    public void SaveProperties()
+    {
+        if (currentSmallObject != null)
+        {
+            // 这里可以根据实际需求将输入框的内容保存到 SmallObject 的属性中
+            // 例如：
+            // currentSmallObject.property1 = InputField1.text;
+            // currentSmallObject.property2 = InputField2.text;
+            // ...
+            Debug.Log("属性已保存");
+        }
+        else
+        {
+            Debug.LogWarning("没有 SmallObject 可保存属性");
+        }
+    }
+}
+
+

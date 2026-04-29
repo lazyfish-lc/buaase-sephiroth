@@ -11,10 +11,7 @@ public class ActionUI : MonoBehaviour
     public TMP_Text ActionText;
     public Image ActionImage;
 
-    public Button Button1;
-    public Button Button2;
-    public Button Button3;
-    public Button Button4;
+    public Button[] Buttons; // 存放选项按钮的数组，假设有4个按钮命名为 "Button1", "Button2", "Button3", "Button4"
     // 重点：UI 内部持有的当前 NPC 引用
     private NPCObject currentNPC;
     void Awake()
@@ -122,45 +119,23 @@ public class ActionUI : MonoBehaviour
                 int index = i; // 闭包陷阱处理
                 
                 //绑定按钮1-4的点击事件
-                switch (index)
-                {
-                    case 0:
-                        if (Button1 == null) break;
-                        Button1.GetComponentInChildren<TMP_Text>().text = options[index].text; // 设置按钮文本
-                        Button1.onClick.RemoveAllListeners();
-                        Button1.onClick.AddListener(() => currentNPC.SelectOption(index));
-                        Button1.gameObject.SetActive(true);
-                        break;
-                    case 1:
-                        if (Button2 == null) break;
-                        Button2.GetComponentInChildren<TMP_Text>().text = options[index].text; // 设置按钮文本
-                        Button2.onClick.RemoveAllListeners();
-                        Button2.onClick.AddListener(() => currentNPC.SelectOption(index));
-                        Button2.gameObject.SetActive(true);
-                        break;
-                    case 2:
-                        if (Button3 == null) break;
-                        Button3.GetComponentInChildren<TMP_Text>().text = options[index].text; // 设置按钮文本
-                        Button3.onClick.RemoveAllListeners();
-                        Button3.onClick.AddListener(() => currentNPC.SelectOption(index));
-                        Button3.gameObject.SetActive(true);
-                        break;
-                    case 3:
-                        if (Button4 == null) break;
-                        Button4.GetComponentInChildren<TMP_Text>().text = options[index].text; // 设置按钮文本
-                        Button4.onClick.RemoveAllListeners();
-                        Button4.onClick.AddListener(() => currentNPC.SelectOption(index));
-                        Button4.gameObject.SetActive(true);
-                        break;
+                if (index < Buttons.Length) {
+                    Buttons[index].GetComponentInChildren<TMP_Text>().text = options[index].text; // 设置按钮文本
+                    Buttons[index].gameObject.SetActive(true);
+                    Buttons[index].onClick.RemoveAllListeners();
+                    Buttons[index].onClick.AddListener(() => {
+                        currentNPC.SelectOption(index);
+                    });
                 }
             }
         }
         else {
             // 没有选项时隐藏按钮
-            if (Button1 != null) Button1.gameObject.SetActive(false);
-            if (Button2 != null) Button2.gameObject.SetActive(false);
-            if (Button3 != null) Button3.gameObject.SetActive(false);
-            if (Button4 != null) Button4.gameObject.SetActive(false);
+            for (int i = 0; i < Buttons.Length; i++) {
+                if (Buttons[i] != null) {
+                    Buttons[i].gameObject.SetActive(false);
+                }
+            }
         }
     }
 
@@ -181,35 +156,11 @@ public class ActionUI : MonoBehaviour
     }
 
     private void ClearOptions() {
-        if (Button1 != null) Button1.gameObject.SetActive(false);
-        if (Button2 != null) Button2.gameObject.SetActive(false);
-        if (Button3 != null) Button3.gameObject.SetActive(false);
-        if (Button4 != null) Button4.gameObject.SetActive(false);
+        for (int i = 0; i < Buttons.Length; i++) {
+            if (Buttons[i] != null) {
+                Buttons[i].gameObject.SetActive(false);
+            }
+        }
     }
-    public void Button1Click()
-    {
-        Debug.Log("Button 1 Clicked");
-        // 在这里添加按钮1的功能逻辑，例如与当前NPC交互
-        // if (currentNPC != null) {
-        //     currentNPC.Interact();
-        // }
-    }
-    public void Button2Click()
-    {
-        Debug.Log("Button 2 Clicked");
-        // 在这里添加按钮2的功能逻辑，例如打开一个新的UI界面
-    }
-    public void Button3Click()
-    {
-        Debug.Log("Button 3 Clicked");
-        // 在这里添加按钮3的功能逻辑，例如执行一个特殊技能
-    }
-    public void Button4Click()
-    {
-        Debug.Log("Button 4 Clicked");
-        // 在这里添加按钮4的功能逻辑，例如显示当前任务信息
-    }
-    
-    
     
 }

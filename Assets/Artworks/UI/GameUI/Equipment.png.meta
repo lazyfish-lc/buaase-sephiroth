@@ -223,9 +223,9 @@ TextureImporter:
       name: Equipment_2
       rect:
         serializedVersion: 2
-        x: 6
+        x: 17
         y: 106
-        width: 150
+        width: 139
         height: 87
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -399,13 +399,13 @@ TextureImporter:
       name: Equipment_10
       rect:
         serializedVersion: 2
-        x: 6
-        y: 10
-        width: 36
-        height: 28
+        x: 7
+        y: 11
+        width: 34
+        height: 26
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 5, y: 4, z: 5, w: 5}
       customData: 
       outline: []
       physicsShape: []
@@ -685,10 +685,10 @@ TextureImporter:
       name: Equipment_23
       rect:
         serializedVersion: 2
-        x: 128
-        y: 51
-        width: 21
-        height: 7
+        x: 64
+        y: 98
+        width: 39
+        height: 6
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -709,10 +709,10 @@ TextureImporter:
         serializedVersion: 2
         x: 37
         y: 98
-        width: 14
+        width: 23
         height: 6
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

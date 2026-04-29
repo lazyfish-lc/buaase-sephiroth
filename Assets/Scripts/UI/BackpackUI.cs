@@ -12,7 +12,7 @@ public class BackpackUI : MonoBehaviour
 
     public PlayerSmallObject player;
 
-    public GameObject[] SlotList; // 存放物品槽的父对象，假设有 35 个子对象命名为 "Slot1", "Slot2", ..., "Slot35"
+    public GameObject[] SlotList; // 存放物品槽的父对象，假设有 28 个子对象命名为 "Slot1", "Slot2", ..., "Slot35"
 
     public TMP_Text PageNumber;
 
