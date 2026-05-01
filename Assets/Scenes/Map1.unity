@@ -31414,6 +31414,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7716125731293671569, guid: dc2d95e659af822488ede5948bf9a3f5, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7716125731293671569, guid: dc2d95e659af822488ede5948bf9a3f5, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9085909530214034646, guid: dc2d95e659af822488ede5948bf9a3f5, type: 3}
       propertyPath: m_Name
       value: InputField1
@@ -31425,20 +31433,9 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: dc2d95e659af822488ede5948bf9a3f5, type: 3}
 --- !u!224 &329123241 stripped
 RectTransform:
-  m_CorrespondingSourceObject: {fileID: 4088628625801061224, guid: dc2d95e659af822488ede5948bf9a3f5, type: 3}
+  m_CorrespondingSourceObject: {fileID: 7716125731293671569, guid: dc2d95e659af822488ede5948bf9a3f5, type: 3}
   m_PrefabInstance: {fileID: 329123240}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &329123242 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2595142252050763122, guid: dc2d95e659af822488ede5948bf9a3f5, type: 3}
-  m_PrefabInstance: {fileID: 329123240}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TMP_InputField
 --- !u!1 &333690269
 GameObject:
   m_ObjectHideFlags: 0
@@ -33672,6 +33669,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7716125731293671569, guid: dc2d95e659af822488ede5948bf9a3f5, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7716125731293671569, guid: dc2d95e659af822488ede5948bf9a3f5, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9085909530214034646, guid: dc2d95e659af822488ede5948bf9a3f5, type: 3}
       propertyPath: m_Name
       value: InputField6
@@ -33683,20 +33688,9 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: dc2d95e659af822488ede5948bf9a3f5, type: 3}
 --- !u!224 &640902112 stripped
 RectTransform:
-  m_CorrespondingSourceObject: {fileID: 4088628625801061224, guid: dc2d95e659af822488ede5948bf9a3f5, type: 3}
+  m_CorrespondingSourceObject: {fileID: 7716125731293671569, guid: dc2d95e659af822488ede5948bf9a3f5, type: 3}
   m_PrefabInstance: {fileID: 640902111}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &640902113 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2595142252050763122, guid: dc2d95e659af822488ede5948bf9a3f5, type: 3}
-  m_PrefabInstance: {fileID: 640902111}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TMP_InputField
 --- !u!1 &641040623
 GameObject:
   m_ObjectHideFlags: 0
@@ -34708,7 +34702,7 @@ Transform:
   m_GameObject: {fileID: 784310697}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.05, y: -0.62, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -93279,6 +93273,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7716125731293671569, guid: dc2d95e659af822488ede5948bf9a3f5, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7716125731293671569, guid: dc2d95e659af822488ede5948bf9a3f5, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9085909530214034646, guid: dc2d95e659af822488ede5948bf9a3f5, type: 3}
       propertyPath: m_Name
       value: InputField7
@@ -93290,20 +93292,9 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: dc2d95e659af822488ede5948bf9a3f5, type: 3}
 --- !u!224 &823206650 stripped
 RectTransform:
-  m_CorrespondingSourceObject: {fileID: 4088628625801061224, guid: dc2d95e659af822488ede5948bf9a3f5, type: 3}
+  m_CorrespondingSourceObject: {fileID: 7716125731293671569, guid: dc2d95e659af822488ede5948bf9a3f5, type: 3}
   m_PrefabInstance: {fileID: 823206649}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &823206651 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2595142252050763122, guid: dc2d95e659af822488ede5948bf9a3f5, type: 3}
-  m_PrefabInstance: {fileID: 823206649}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TMP_InputField
 --- !u!1001 &824916761
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -93374,6 +93365,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6570828460476805728, guid: 81c58f910b3e61b4f9d570a099ab5bb7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9021166477336117749, guid: 81c58f910b3e61b4f9d570a099ab5bb7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9021166477336117749, guid: 81c58f910b3e61b4f9d570a099ab5bb7, type: 3}
+      propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -100513,6 +100512,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7716125731293671569, guid: dc2d95e659af822488ede5948bf9a3f5, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7716125731293671569, guid: dc2d95e659af822488ede5948bf9a3f5, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9085909530214034646, guid: dc2d95e659af822488ede5948bf9a3f5, type: 3}
       propertyPath: m_Name
       value: InputField3
@@ -100524,20 +100531,9 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: dc2d95e659af822488ede5948bf9a3f5, type: 3}
 --- !u!224 &1252376744 stripped
 RectTransform:
-  m_CorrespondingSourceObject: {fileID: 4088628625801061224, guid: dc2d95e659af822488ede5948bf9a3f5, type: 3}
+  m_CorrespondingSourceObject: {fileID: 7716125731293671569, guid: dc2d95e659af822488ede5948bf9a3f5, type: 3}
   m_PrefabInstance: {fileID: 1252376743}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1252376745 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2595142252050763122, guid: dc2d95e659af822488ede5948bf9a3f5, type: 3}
-  m_PrefabInstance: {fileID: 1252376743}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TMP_InputField
 --- !u!1 &1259636259
 GameObject:
   m_ObjectHideFlags: 0
@@ -102306,14 +102302,14 @@ MonoBehaviour:
   - {fileID: 1551752816}
   - {fileID: 951685416}
   inputFields:
-  - {fileID: 329123242}
-  - {fileID: 1999994809}
-  - {fileID: 1252376745}
-  - {fileID: 1922769641}
-  - {fileID: 1771158484}
-  - {fileID: 640902113}
-  - {fileID: 823206651}
-  - {fileID: 2008913284}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   SaveButton: {fileID: 1281659290}
   isOpen: 0
 --- !u!225 &1426392634
@@ -105186,6 +105182,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7716125731293671569, guid: dc2d95e659af822488ede5948bf9a3f5, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7716125731293671569, guid: dc2d95e659af822488ede5948bf9a3f5, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9085909530214034646, guid: dc2d95e659af822488ede5948bf9a3f5, type: 3}
       propertyPath: m_Name
       value: InputField5
@@ -105197,20 +105201,9 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: dc2d95e659af822488ede5948bf9a3f5, type: 3}
 --- !u!224 &1771158483 stripped
 RectTransform:
-  m_CorrespondingSourceObject: {fileID: 4088628625801061224, guid: dc2d95e659af822488ede5948bf9a3f5, type: 3}
+  m_CorrespondingSourceObject: {fileID: 7716125731293671569, guid: dc2d95e659af822488ede5948bf9a3f5, type: 3}
   m_PrefabInstance: {fileID: 1771158482}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1771158484 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2595142252050763122, guid: dc2d95e659af822488ede5948bf9a3f5, type: 3}
-  m_PrefabInstance: {fileID: 1771158482}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TMP_InputField
 --- !u!1001 &1776215810
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -105944,7 +105937,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 329123241}
   - {fileID: 1999994808}
   - {fileID: 1252376744}
   - {fileID: 1922769640}
@@ -105952,6 +105944,7 @@ RectTransform:
   - {fileID: 640902112}
   - {fileID: 823206650}
   - {fileID: 2008913283}
+  - {fileID: 329123241}
   m_Father: {fileID: 1885353315}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -106277,6 +106270,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7716125731293671569, guid: dc2d95e659af822488ede5948bf9a3f5, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7716125731293671569, guid: dc2d95e659af822488ede5948bf9a3f5, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9085909530214034646, guid: dc2d95e659af822488ede5948bf9a3f5, type: 3}
       propertyPath: m_Name
       value: InputField4
@@ -106288,20 +106289,9 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: dc2d95e659af822488ede5948bf9a3f5, type: 3}
 --- !u!224 &1922769640 stripped
 RectTransform:
-  m_CorrespondingSourceObject: {fileID: 4088628625801061224, guid: dc2d95e659af822488ede5948bf9a3f5, type: 3}
+  m_CorrespondingSourceObject: {fileID: 7716125731293671569, guid: dc2d95e659af822488ede5948bf9a3f5, type: 3}
   m_PrefabInstance: {fileID: 1922769639}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1922769641 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2595142252050763122, guid: dc2d95e659af822488ede5948bf9a3f5, type: 3}
-  m_PrefabInstance: {fileID: 1922769639}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TMP_InputField
 --- !u!1 &1927554585
 GameObject:
   m_ObjectHideFlags: 0
@@ -107000,6 +106990,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7716125731293671569, guid: dc2d95e659af822488ede5948bf9a3f5, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7716125731293671569, guid: dc2d95e659af822488ede5948bf9a3f5, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9085909530214034646, guid: dc2d95e659af822488ede5948bf9a3f5, type: 3}
       propertyPath: m_Name
       value: InputField2
@@ -107011,20 +107009,9 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: dc2d95e659af822488ede5948bf9a3f5, type: 3}
 --- !u!224 &1999994808 stripped
 RectTransform:
-  m_CorrespondingSourceObject: {fileID: 4088628625801061224, guid: dc2d95e659af822488ede5948bf9a3f5, type: 3}
+  m_CorrespondingSourceObject: {fileID: 7716125731293671569, guid: dc2d95e659af822488ede5948bf9a3f5, type: 3}
   m_PrefabInstance: {fileID: 1999994807}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1999994809 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2595142252050763122, guid: dc2d95e659af822488ede5948bf9a3f5, type: 3}
-  m_PrefabInstance: {fileID: 1999994807}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TMP_InputField
 --- !u!1 &2001213560
 GameObject:
   m_ObjectHideFlags: 0
@@ -107282,6 +107269,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7716125731293671569, guid: dc2d95e659af822488ede5948bf9a3f5, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7716125731293671569, guid: dc2d95e659af822488ede5948bf9a3f5, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9085909530214034646, guid: dc2d95e659af822488ede5948bf9a3f5, type: 3}
       propertyPath: m_Name
       value: InputField8
@@ -107293,20 +107288,9 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: dc2d95e659af822488ede5948bf9a3f5, type: 3}
 --- !u!224 &2008913283 stripped
 RectTransform:
-  m_CorrespondingSourceObject: {fileID: 4088628625801061224, guid: dc2d95e659af822488ede5948bf9a3f5, type: 3}
+  m_CorrespondingSourceObject: {fileID: 7716125731293671569, guid: dc2d95e659af822488ede5948bf9a3f5, type: 3}
   m_PrefabInstance: {fileID: 2008913282}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2008913284 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2595142252050763122, guid: dc2d95e659af822488ede5948bf9a3f5, type: 3}
-  m_PrefabInstance: {fileID: 2008913282}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TMP_InputField
 --- !u!1 &2025754527
 GameObject:
   m_ObjectHideFlags: 0
