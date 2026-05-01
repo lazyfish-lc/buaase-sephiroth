@@ -138,7 +138,7 @@ public class PlayerSmallObject : SmallObject {
 
     public override bool IsEnemy(SmallObject other) {
         // 玩家认为所有 MonsterObject 都是敌人
-        return other.gameObject.layer == enemyLayer;
+        return other.gameObject.layer == enemyLayer || other is DoorSmallObject; 
     }
 
     public void AddItemToBackpack(Item item) {
