@@ -65,6 +65,14 @@ public class LockLabel : ObjectLabel {
         }
 
         IsLocked = true;
+
+        // 如果挂载到门对象上，保证门处于关闭状态并刷新门的锁碰撞体
+        var door = owner as global::DoorSmallObject;
+        if (door != null && door.doorState != null) {
+            door.doorState.isOpen = false;
+            door.RefreshLockCollider();
+            door.NotifyStateChange();
+        }
     }
 
     // 在卸载时移除组件引用并解锁
@@ -86,6 +94,14 @@ public class LockLabel : ObjectLabel {
         }
 
         IsLocked = false;
+
+        // 如果从门对象上移除，恢复门为开启状态并刷新门的锁碰撞体
+        var door = owner as global::DoorSmallObject;
+        if (door != null && door.doorState != null) {
+            door.doorState.isOpen = true;
+            door.RefreshLockCollider();
+            door.NotifyStateChange();
+        }
     }
 
     // 对外调用以解锁并从对象上移除标签
