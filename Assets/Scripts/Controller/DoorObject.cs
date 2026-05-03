@@ -8,6 +8,10 @@ public class DoorSmallObject : SmallObject {
     public Tilemap lockedTilemap;
     // 展示门处于开启时的瓦片图层
     public Tilemap openTilemap;
+    // 展示门处于被锁定时的瓦片头顶图层
+    public Tilemap lockedTilemapTop;
+    // 展示门处于开启时的瓦片头顶图层
+    public Tilemap openTilemapTop;
     public DoorStaticData doorStaticData => staticData as DoorStaticData;
     public DoorObjectDynamicState doorState => dynamicState as DoorObjectDynamicState;
     
@@ -86,5 +90,7 @@ public class DoorSmallObject : SmallObject {
         bool showLock = IsLocked();
         if (lockedTilemap != null) lockedTilemap.gameObject.SetActive(showLock);
         if (openTilemap != null) openTilemap.gameObject.SetActive(!showLock);
+        if (lockedTilemapTop != null) lockedTilemapTop.gameObject.SetActive(showLock);
+        if (openTilemapTop != null) openTilemapTop.gameObject.SetActive(!showLock);
     }
 }
