@@ -1,8 +1,13 @@
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class DoorSmallObject : SmallObject {
     // 当对象被上锁时使用的碰撞体（由编辑器或运行时赋值）
     public BoxCollider2D lockCollider;
+    // 展示门处于被锁定时的瓦片图层
+    public Tilemap lockedTilemap;
+    // 展示门处于开启时的瓦片图层
+    public Tilemap openTilemap;
     public DoorStaticData doorStaticData => staticData as DoorStaticData;
     public DoorObjectDynamicState doorState => dynamicState as DoorObjectDynamicState;
     
@@ -63,5 +68,23 @@ public class DoorSmallObject : SmallObject {
         lockCollider.enabled = true;
         // 门打开时不阻挡（触发器）；门关闭时阻挡实体碰撞
         lockCollider.isTrigger = doorState.isOpen;
+        // 同步瓦片显示
+        RefreshTilemaps();
+    }
+
+    // 返回当前对象是否被 LockLabel 锁住
+    private bool IsLocked() {
+        if (dynamicState == null || dynamicState.smallObjectLabels == null) return false;
+        foreach (var lbl in dynamicState.smallObjectLabels) {
+            if (lbl is global::LockLabel lockLbl && lockLbl.IsLocked) return true;
+        }
+        return false;
+    }
+
+    // 根据门的锁定/开启状态显示对应的 Tilemap
+    public void RefreshTilemaps() {
+        bool showLock = IsLocked();
+        if (lockedTilemap != null) lockedTilemap.gameObject.SetActive(showLock);
+        if (openTilemap != null) openTilemap.gameObject.SetActive(!showLock);
     }
 }

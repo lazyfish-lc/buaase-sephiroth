@@ -24,7 +24,7 @@ MonoBehaviour:
     minValue: 0
     maxValue: 99999
   - name: DEF
-    initialValue: 19
+    initialValue: 20
     minValue: 0
     maxValue: 99999
   - name: AttackSpeed
@@ -34,4 +34,4 @@ MonoBehaviour:
   labelBlueprints:
   - HardLabel()
   - LockLabel()
-  initiallyOpen: 0
+  initiallyOpen: 1
