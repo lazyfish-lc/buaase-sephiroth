@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
+  m_Name: candle1
+  m_EditorClassIdentifier: Unity.2D.Tilemap.Extras::UnityEngine.Tilemaps.AnimatedTile
+  m_AnimatedSprites:
+  - {fileID: 7457898849070156403, guid: e3bd932b36c17bc4c882a7e24332e03d, type: 3}
+  - {fileID: 3122655143602342741, guid: e3bd932b36c17bc4c882a7e24332e03d, type: 3}
+  - {fileID: 7734794942079549178, guid: e3bd932b36c17bc4c882a7e24332e03d, type: 3}
+  - {fileID: -3253981810064845659, guid: e3bd932b36c17bc4c882a7e24332e03d, type: 3}
+  - {fileID: 9081455251082315214, guid: e3bd932b36c17bc4c882a7e24332e03d, type: 3}
+  - {fileID: 5789506983370548545, guid: e3bd932b36c17bc4c882a7e24332e03d, type: 3}
+  m_MinSpeed: 1
+  m_MaxSpeed: 1
+  m_AnimationStartTime: 0
+  m_AnimationStartFrame: 0
+  m_TileColliderType: 0
+  m_TileAnimationFlags: 0
