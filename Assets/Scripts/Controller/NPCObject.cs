@@ -12,6 +12,7 @@ public class NPCObject : SmallObject {
 
     private NPCStaticData NPCData => (NPCStaticData)staticData;
     private NPCDynamicState NPCState => (NPCDynamicState)dynamicState;
+    public PlayerSmallObject CurrentInteractingPlayer => NPCState.currentInteractingPlayer;
 
     protected override SmallObjectDynamicState CreateDynamicState() {
         return new NPCDynamicState();
@@ -46,6 +47,7 @@ public class NPCObject : SmallObject {
         ActiveNPC = this;
         
         OnDialogueStarted?.Invoke(this);
+        ExecuteCurrentNodeActions();
         OnNodeChanged?.Invoke();
     }
 
@@ -82,7 +84,20 @@ public class NPCObject : SmallObject {
             EndConversation();
         } else {
             NPCState.currentNodeIndex = nodeIndex;
+            ExecuteCurrentNodeActions();
             OnNodeChanged?.Invoke();
+        }
+    }
+
+    private void ExecuteCurrentNodeActions() {
+        if (NPCData == null || NPCData.dialogueNodes == null) return;
+        if (NPCState.currentNodeIndex < 0 || NPCState.currentNodeIndex >= NPCData.dialogueNodes.Count) return;
+
+        DialogueNode node = NPCData.dialogueNodes[NPCState.currentNodeIndex];
+        if (node == null || node.enterActions == null) return;
+
+        foreach (var action in node.enterActions) {
+            action?.Execute(this);
         }
     }
 
@@ -95,7 +110,7 @@ public class NPCObject : SmallObject {
 
     // --- 距离检测：玩家走远自动关闭 ---
     private void Update() {
-        if (NPCState.isInConversation) {
+        if (NPCState.isInConversation && NPCState.currentInteractingPlayer != null) {
             float dist = Vector3.Distance(transform.position, NPCState.currentInteractingPlayer.transform.position);
             if (dist > NPCData.interactionRange) {
                 EndConversation();

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class DoorSmallObject : SmallObject {
+public class DoorSmallObject : SmallObject, IDialogueActionReceiver {
     // 当对象被上锁时使用的碰撞体（由编辑器或运行时赋值）
     public BoxCollider2D lockCollider;
     // 展示门处于被锁定时的瓦片图层
@@ -34,9 +34,59 @@ public class DoorSmallObject : SmallObject {
             return;
         }
 
+        ToggleDoor();
+        NotifyStateChange();
+    }
+
+    public string DialogueActionId => doorStaticData != null && !string.IsNullOrWhiteSpace(doorStaticData.doorName)
+        ? doorStaticData.doorName
+        : staticData != null && !string.IsNullOrWhiteSpace(staticData.objectName)
+            ? staticData.objectName
+            : gameObject.name;
+
+    public void ReceiveDialogueAction() {
+        OpenDoor();
+    }
+
+    private global::LockLabel FindLockLabel() {
+        if (dynamicState?.smallObjectLabels == null) return null;
+
+        foreach (var label in dynamicState.smallObjectLabels) {
+            if (label is global::LockLabel lockLabel) {
+                return lockLabel;
+            }
+        }
+
+        return null;
+    }
+
+    public void ToggleDoor() {
+        if (doorState == null) return;
+
         doorState.isOpen = !doorState.isOpen;
         Debug.Log("门状态: " + (doorState.isOpen ? "开启" : "关闭"));
-        // 切换门状态后刷新锁碰撞体的可用性
+        RefreshLockCollider();
+    }
+
+    public void OpenDoor() {
+        if (doorState == null) return;
+
+        var lockLabel = FindLockLabel();
+        if (lockLabel == null) {
+            Debug.LogWarning($"{gameObject.name} 未找到 LockLabel，无法通过标签打开门");
+            return;
+        }
+
+        lockLabel.Open();
+        Debug.Log("门通过 LockLabel 打开");
+    }
+
+    public void CloseDoor() {
+        if (doorState == null) return;
+        if (!doorState.isOpen) return;
+
+        doorState.isOpen = false;
+        Debug.Log("门状态: 关闭");
         RefreshLockCollider();
         NotifyStateChange();
     }
