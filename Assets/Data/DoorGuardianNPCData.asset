@@ -51,4 +51,4 @@ MonoBehaviour:
   - KeyPartA
   - KeyPartB
   - KeyPartC
-  startNodeIfHasRequiredItems: -1
+  startNodeIfHasRequiredItems: 1
