@@ -12,6 +12,7 @@ public class NPCObject : SmallObject {
 
     private NPCStaticData NPCData => (NPCStaticData)staticData;
     private NPCDynamicState NPCState => (NPCDynamicState)dynamicState;
+    public PlayerSmallObject CurrentInteractingPlayer => NPCState.currentInteractingPlayer;
 
     protected override SmallObjectDynamicState CreateDynamicState() {
         return new NPCDynamicState();
@@ -41,11 +42,37 @@ public class NPCObject : SmallObject {
 
     private void StartConversation() {
         NPCState.isInConversation = true;
-        NPCState.currentNodeIndex = 0;
         NPCState.currentInteractingPlayer = IOSubsystem.Instance.playerObject;
         ActiveNPC = this;
-        
+
+        // 如果配置了 requiredItems，则检查玩家是否满足条件以决定起始节点
+        int startIndex = 0;
+        if (NPCData != null && NPCData.requiredItems != null && NPCData.requiredItems.Count > 0) {
+            bool hasAll = false;
+            var player = NPCState.currentInteractingPlayer;
+            if (player != null && player.playerState != null && player.playerState.itemBackpack != null) {
+                hasAll = true;
+                foreach (var req in NPCData.requiredItems) {
+                    bool found = false;
+                    foreach (var it in player.playerState.itemBackpack) {
+                        if (it != null && string.Equals(it.itemName, req, StringComparison.Ordinal)) {
+                            found = true; break;
+                        }
+                    }
+                    if (!found) { hasAll = false; break; }
+                }
+            }
+
+            if (hasAll && NPCData.startNodeIfHasRequiredItems >= 0) startIndex = NPCData.startNodeIfHasRequiredItems;
+            else startIndex = 0;
+        } else {
+            startIndex = 0;
+        }
+
+        NPCState.currentNodeIndex = startIndex;
+
         OnDialogueStarted?.Invoke(this);
+        ExecuteCurrentNodeActions();
         OnNodeChanged?.Invoke();
     }
 
@@ -82,7 +109,20 @@ public class NPCObject : SmallObject {
             EndConversation();
         } else {
             NPCState.currentNodeIndex = nodeIndex;
+            ExecuteCurrentNodeActions();
             OnNodeChanged?.Invoke();
+        }
+    }
+
+    private void ExecuteCurrentNodeActions() {
+        if (NPCData == null || NPCData.dialogueNodes == null) return;
+        if (NPCState.currentNodeIndex < 0 || NPCState.currentNodeIndex >= NPCData.dialogueNodes.Count) return;
+
+        DialogueNode node = NPCData.dialogueNodes[NPCState.currentNodeIndex];
+        if (node == null || node.enterActions == null) return;
+
+        foreach (var action in node.enterActions) {
+            action?.Execute(this);
         }
     }
 
@@ -95,7 +135,7 @@ public class NPCObject : SmallObject {
 
     // --- 距离检测：玩家走远自动关闭 ---
     private void Update() {
-        if (NPCState.isInConversation) {
+        if (NPCState.isInConversation && NPCState.currentInteractingPlayer != null) {
             float dist = Vector3.Distance(transform.position, NPCState.currentInteractingPlayer.transform.position);
             if (dist > NPCData.interactionRange) {
                 EndConversation();

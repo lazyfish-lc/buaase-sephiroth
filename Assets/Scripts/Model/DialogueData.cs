@@ -16,4 +16,5 @@ public class DialogueNode {
     public bool hasOptions;         // 是否包含选项（若无则点击背景进入下一句）
     public int nextNodeIndex;       // hasOptions为false时的默认跳转节点
     public List<DialogueOption> options;
+    public List<DialogueNodeActionSO> enterActions = new List<DialogueNodeActionSO>();
 }

@@ -3,6 +3,8 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "DoorObjectData", menuName = "Game/DoorStaticData")]
 public class DoorStaticData : SmallObjectStaticData {
+    [Header("Door Dialogue")]
+    public string doorName = "Door"; // 门名称，同时作为对话事件接收名称
     public bool initiallyOpen = false; // 门初始状态
 }
 

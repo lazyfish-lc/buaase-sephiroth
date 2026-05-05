@@ -105,6 +105,11 @@ public class LockLabel : ObjectLabel {
     }
 
     // 对外调用以解锁并从对象上移除标签
+    public void Open() {
+        Unlock();
+    }
+
+    // 对外调用以解锁并从对象上移除标签
     public void Unlock() {
         if (owner != null) {
             // Detach 会从 small.dynamicState.smallObjectLabels 中移除并解绑事件
