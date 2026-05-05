@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 079da9934063b964ba5a8b422561fd73, type: 3}
+  m_Name: MonsterWithKeyPartBObjectData
+  m_EditorClassIdentifier: Sephiroth.Runtime::MonsterObjectStaticData
+  objectName: 
+  ownerBigObject: {fileID: 0}
+  propertyBlueprints:
+  - name: Health
+    initialValue: 30
+    minValue: 0
+    maxValue: 99999
+  - name: ATK
+    initialValue: 20
+    minValue: 0
+    maxValue: 99999
+  - name: DEF
+    initialValue: 10
+    minValue: 0
+    maxValue: 99999
+  - name: AttackSpeed
+    initialValue: 1
+    minValue: 0
+    maxValue: 20
+  - name: moveSpeed
+    initialValue: 5
+    minValue: 0
+    maxValue: 50
+  labelBlueprints: []
+  baseAttackCooldown: 1
+  castLockTime: 2
+  dropItemBlueprints:
+  - itemName: KeyPartB

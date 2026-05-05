@@ -38,6 +38,28 @@ public class MonsterSmallObject : SmallObject {
         Debug.Log("对怪物进行交互（如：偷窃标签）");
     }
 
+    public override void ReceiveDamage(DamagePacket packet) {
+        // 记录最后的攻击者以便死亡时处理掉落
+        if (monsterState != null) {
+            monsterState.lastAttacker = packet.attacker;
+        }
+
+        base.ReceiveDamage(packet);
+    }
+
+    protected override void OnDeath() {
+        // 发放掉落给最后的攻击者（若为玩家）
+        var attacker = monsterState?.lastAttacker as PlayerSmallObject;
+        if (attacker != null && monsterStaticData != null && monsterStaticData.dropItemBlueprints != null) {
+            foreach (var bp in monsterStaticData.dropItemBlueprints) {
+                if (bp == null || string.IsNullOrWhiteSpace(bp.itemName)) continue;
+                attacker.AddItemToBackpack(new Item { itemName = bp.itemName });
+            }
+        }
+
+        base.OnDeath();
+    }
+
     private void Update() {
         HandleAIBehavior();
     }

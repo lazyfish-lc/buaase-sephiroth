@@ -10,7 +10,8 @@ public interface IDialogueActionReceiver {
 
 public enum DialogueActionKind {
     TriggerReceiver = 0,
-    GiveItem = 1
+    GiveItem = 1,
+    RemoveItems = 2
 }
 
 // 单一的可配置对话动作 SO（避免使用继承，改用枚举区分类型）
@@ -24,6 +25,8 @@ public class DialogueNodeActionSO : ScriptableObject {
     [Header("Give Item (when kind == GiveItem)")]
     public string itemName;
     public int amount = 1;
+    [Header("Remove Items (when kind == RemoveItems)")]
+    public List<string> itemsToRemove = new List<string>();
 
     // 执行动作：由枚举分支决定行为
     public void Execute(NPCObject npc) {
@@ -33,6 +36,9 @@ public class DialogueNodeActionSO : ScriptableObject {
                 break;
             case DialogueActionKind.GiveItem:
                 ExecuteGiveItem(npc);
+                break;
+            case DialogueActionKind.RemoveItems:
+                ExecuteRemoveItems(npc);
                 break;
             default:
                 Debug.LogWarning($"未知的 DialogueActionKind: {kind}");
@@ -75,5 +81,35 @@ public class DialogueNodeActionSO : ScriptableObject {
         }
 
         Debug.Log($"对话动作发放物品：{itemName} x{amount}");
+    }
+
+    private void ExecuteRemoveItems(NPCObject npc) {
+        if (npc == null || npc.CurrentInteractingPlayer == null) {
+            Debug.LogWarning("DialogueNodeActionSO RemoveItems 执行失败：没有可用的交互玩家");
+            return;
+        }
+
+        var player = npc.CurrentInteractingPlayer;
+        if (player.playerState == null || player.playerState.itemBackpack == null) {
+            Debug.LogWarning("玩家背包为空，无法移除物品");
+            return;
+        }
+
+        foreach (var name in itemsToRemove) {
+            if (string.IsNullOrWhiteSpace(name)) continue;
+
+            bool removed = false;
+            for (int i = 0; i < player.playerState.itemBackpack.Count; i++) {
+                var it = player.playerState.itemBackpack[i];
+                if (it != null && string.Equals(it.itemName, name, System.StringComparison.Ordinal)) {
+                    player.playerState.itemBackpack.RemoveAt(i);
+                    removed = true;
+                    Debug.Log($"从玩家背包移除了物品: {name}");
+                    break;
+                }
+            }
+
+            if (!removed) Debug.LogWarning($"尝试移除物品但未发现：{name}");
+        }
     }
 }

@@ -36,7 +36,7 @@ MonoBehaviour:
   dialogueNodes:
   - npcContent: Give me the key and I'll let you out
     hasOptions: 0
-    nextNodeIndex: 1
+    nextNodeIndex: -1
     options: []
     enterActions: []
   - npcContent: Now you can get out of here.
@@ -44,4 +44,11 @@ MonoBehaviour:
     nextNodeIndex: -1
     options: []
     enterActions:
+    - {fileID: 11400000, guid: cb732e94ef90b0443a34ba962422d77d, type: 2}
+    - {fileID: 11400000, guid: be21f74ced3005040a288e358cc639e1, type: 2}
     - {fileID: 11400000, guid: 879c6aef452348f4687de970f2be32c7, type: 2}
+  requiredItems:
+  - KeyPartA
+  - KeyPartB
+  - KeyPartC
+  startNodeIfHasRequiredItems: -1
