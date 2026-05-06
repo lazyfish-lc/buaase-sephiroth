@@ -69,7 +69,6 @@ public class TorchObject : SmallObject {
 
     // 交互时切换状态（可按需修改）
     public override void OnInteractAction(InputEventData data) {
-        if (HasGlowLabel()) Extinguish();
-        else LightUp();
+        // 先啥都不做
     }
 }
