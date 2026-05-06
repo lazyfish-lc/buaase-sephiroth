@@ -28,31 +28,29 @@ public class IOSubsystem : MonoBehaviour {
     }
 
     void dealShowLabel() {
-        // 按下 L 键：从玩家附近的可交互对象中选择距离玩家最近的对象触发显示标签
+        // 按下 L 键：仅对鼠标下的可交互对象触发显示标签
         if (Input.GetButtonDown(InputConfig.Label)) {
-            SmallObject nearest = FindNearestInteractableObject(3f);
+            SmallObject target = GetObjectUnderMouse();
 
-            if (nearest != null) {
-                float dist = Vector2.Distance(playerObject.transform.position, nearest.transform.position);
-                Debug.Log($"选择最近对象 {nearest.name}（距玩家 {dist:F2}）激活显示标签");
-                nearest.OnActivateShowLabel();
+            if (target != null) {
+                Debug.Log($"鼠标下对象 {target.name} 激活显示标签");
+                target.OnActivateShowLabel();
             } else {
-                Debug.Log("玩家附近未找到可触发显示标签的对象");
+                Debug.Log("鼠标下未找到可触发显示标签的对象");
             }
         }
     }
 
     void dealShowProperty() {
-        // 按下 P 键：从玩家附近的可交互对象中选择距离玩家最近的对象触发显示属性
+        // 按下 P 键：仅对鼠标下的可交互对象触发显示属性
         if (Input.GetButtonDown(InputConfig.Property)) {
-            SmallObject nearest = FindNearestInteractableObject(3f);
+            SmallObject target = GetObjectUnderMouse();
 
-            if (nearest != null) {
-                float dist = Vector2.Distance(playerObject.transform.position, nearest.transform.position);
-                Debug.Log($"选择最近对象 {nearest.name}（距玩家 {dist:F2}）激活显示属性");
-                nearest.OnActivateShowProperty();
+            if (target != null) {
+                Debug.Log($"鼠标下对象 {target.name} 激活显示属性");
+                target.OnActivateShowProperty();
             } else {
-                Debug.Log("玩家附近未找到可触发显示属性的对象");
+                Debug.Log("鼠标下未找到可触发显示属性的对象");
             }
         }
     }
