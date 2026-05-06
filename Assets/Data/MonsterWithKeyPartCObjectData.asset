@@ -40,3 +40,4 @@ MonoBehaviour:
   castLockTime: 2
   dropItemBlueprints:
   - itemName: KeyPartC
+  animatorController: {fileID: 9100000, guid: 4b9b95d97070f38429667de82dcd28de, type: 2}
