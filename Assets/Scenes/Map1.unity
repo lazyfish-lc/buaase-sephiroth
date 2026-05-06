@@ -104694,7 +104694,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StatusUI
   StatusCanvas: {fileID: 1191894810}
-  player: {fileID: 0}
+  player: {fileID: 265253214}
   isopen: 0
   HPSlider: {fileID: 114714809}
 --- !u!225 &1191894810
