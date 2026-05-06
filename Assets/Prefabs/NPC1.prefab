@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3100469520733757831}
   - component: {fileID: 2808996505814966658}
   - component: {fileID: 914684802298624859}
+  - component: {fileID: 6155091860913898271}
   m_Layer: 11
   m_Name: NPC1
   m_TagString: Untagged
@@ -105,7 +106,7 @@ Animator:
   m_GameObject: {fileID: 2727603204033389051}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c6d3c9c2bbaf7f5419109f53b2c0a2dc, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -198,3 +199,17 @@ MonoBehaviour:
     isDestroyed: 0
     smallObjectLabels: []
     isHurt: 0
+  view: {fileID: 6155091860913898271}
+--- !u!114 &6155091860913898271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2727603204033389051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f802bd8517acf4479673e5c2d936bac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Sephiroth.Runtime::NPCView
+  animator: {fileID: 1383204520630236632}

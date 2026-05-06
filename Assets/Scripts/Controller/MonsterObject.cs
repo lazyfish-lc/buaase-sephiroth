@@ -24,6 +24,9 @@ public class MonsterSmallObject : SmallObject {
         attackSensor.onEnter = (col) => monsterState.isPlayerInAttackRange = true;
         attackSensor.onExit = (col) => monsterState.isPlayerInAttackRange = false;
         rb = GetComponent<Rigidbody2D>();
+        if (monsterStaticData != null && monsterView != null) {
+            monsterView.SetController(monsterStaticData.animatorController);
+        }
     }
     
     protected override SmallObjectDynamicState CreateDynamicState() {

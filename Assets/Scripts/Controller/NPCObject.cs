@@ -14,8 +14,19 @@ public class NPCObject : SmallObject {
     private NPCDynamicState NPCState => (NPCDynamicState)dynamicState;
     public PlayerSmallObject CurrentInteractingPlayer => NPCState.currentInteractingPlayer;
 
+    public NPCView view;
+
     protected override SmallObjectDynamicState CreateDynamicState() {
         return new NPCDynamicState();
+    }
+
+    protected override void Awake() {
+        base.Awake();
+
+        // 2. 核心修改：从静态数据初始化动画表现
+        if (staticData != null && view != null) {
+            view.SetController(NPCData.animatorController);
+        }
     }
 
     // --- 给 UI 调用的数据接口 (Getter) ---

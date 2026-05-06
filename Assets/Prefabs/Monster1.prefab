@@ -408,7 +408,7 @@ MonoBehaviour:
   dynamicState:
     isDestroyed: 0
     smallObjectLabels: []
-  isHurt: 0
+    isHurt: 0
   monsterView: {fileID: 773403690865612332}
   sensorPivot: {fileID: 8803475475572729041}
   detectSensor: {fileID: 4036173514521511412}
@@ -443,7 +443,7 @@ Animator:
   m_GameObject: {fileID: 6348409967498636545}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4b9b95d97070f38429667de82dcd28de, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
