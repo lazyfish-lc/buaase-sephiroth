@@ -10,6 +10,7 @@ public class NPCStaticData : SmallObjectStaticData {
     public List<string> requiredItems = new List<string>();
     // 当玩家满足 requiredItems 时，从该节点开始对话（-1 表示使用默认 0）
     public int startNodeIfHasRequiredItems = -1;
+    public RuntimeAnimatorController animatorController;
 }
 
 [Serializable]

@@ -40,6 +40,7 @@ MonoBehaviour:
     hasOptions: 0
     nextNodeIndex: 1
     options: []
+    enterActions: []
   - npcContent: test option
     hasOptions: 0
     nextNodeIndex: 2
@@ -52,7 +53,12 @@ MonoBehaviour:
       targetNodeIndex: 0
       rewardProperty: 
       rewardAmount: 0
+    enterActions: []
   - npcContent: seeyou
     hasOptions: 0
     nextNodeIndex: -1
     options: []
+    enterActions: []
+  requiredItems: []
+  startNodeIfHasRequiredItems: -1
+  animatorController: {fileID: 9100000, guid: c6d3c9c2bbaf7f5419109f53b2c0a2dc, type: 2}

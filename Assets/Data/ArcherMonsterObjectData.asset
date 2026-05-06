@@ -42,3 +42,5 @@ MonoBehaviour:
   - FragileLabel()
   baseAttackCooldown: 5
   castLockTime: 0.5
+  dropItemBlueprints: []
+  animatorController: {fileID: 9100000, guid: bf539ad8ecf8d6d4dbf1d8e0a1a4d791, type: 2}

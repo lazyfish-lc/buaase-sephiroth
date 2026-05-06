@@ -5,6 +5,12 @@ public class MonsterView : MonoBehaviour {
     public SmallObject ownerController;
     public Slider HealthSlider;
 
+    public void SetController(RuntimeAnimatorController controller) {
+        if (animator != null && controller != null) {
+            animator.runtimeAnimatorController = controller;
+        }
+    }
+
     public void UpdateMovement(Vector2 dir, bool isMoving) {
         animator.SetBool("IsMoving", isMoving);
         animator.SetFloat("DirX", dir.x);
