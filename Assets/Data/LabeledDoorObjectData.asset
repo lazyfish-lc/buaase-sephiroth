@@ -34,5 +34,5 @@ MonoBehaviour:
   labelBlueprints:
   - HardLabel()
   - LockLabel()
-  doorName: LabeledDoorChapter1
-  initiallyOpen: 1
+  doorName: KeyChapter1
+  initiallyOpen: 0
