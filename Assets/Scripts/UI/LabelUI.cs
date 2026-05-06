@@ -75,7 +75,7 @@ public class LabelUI : MonoBehaviour
         LabelCanvas.alpha = 1;
         LabelCanvas.interactable = true;
         LabelCanvas.blocksRaycasts = true;
-        ShowBackpack(currentDisplayType);
+        ShowLabel(currentDisplayType);
         
     }
     public void Close()
@@ -90,7 +90,7 @@ public class LabelUI : MonoBehaviour
         if(currentPage < totalPages)
         {
             currentPage++;
-            ShowBackpack(currentDisplayType);
+            ShowLabel(currentDisplayType);
         }
     }
     public void LeftPage()
@@ -98,7 +98,7 @@ public class LabelUI : MonoBehaviour
         if(currentPage > 1)
         {
             currentPage--;
-            ShowBackpack(currentDisplayType);
+            ShowLabel(currentDisplayType);
             
         }
     }

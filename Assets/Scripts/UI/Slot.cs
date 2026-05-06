@@ -177,7 +177,7 @@ public class Slot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
             {
                 sourceBackpack.player.playerState.labelBackpack.Remove(label);
                 sourceBackpack.ShowBackpack("Label");
-                targetLabel.ShowBackpack("Label");
+                targetLabel.ShowLabel("Label");
             }
             return;
         }
@@ -191,7 +191,7 @@ public class Slot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 
             if (sourceLabel.TryTransferLabelToPlayer(sourceSlot.CurrentName, targetBackpack.player))
             {
-                sourceLabel.ShowBackpack("Label");
+                sourceLabel.ShowLabel("Label");
                 targetBackpack.ShowBackpack("Label");
             }
         }
