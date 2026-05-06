@@ -75,7 +75,7 @@ public class LabelUI : MonoBehaviour
         LabelCanvas.alpha = 1;
         LabelCanvas.interactable = true;
         LabelCanvas.blocksRaycasts = true;
-        ShowBackpack(currentDisplayType);
+        ShowLabel(currentDisplayType);
         
     }
     public void Close()
@@ -90,7 +90,7 @@ public class LabelUI : MonoBehaviour
         if(currentPage < totalPages)
         {
             currentPage++;
-            ShowBackpack(currentDisplayType);
+            ShowLabel(currentDisplayType);
         }
     }
     public void LeftPage()
@@ -98,7 +98,7 @@ public class LabelUI : MonoBehaviour
         if(currentPage > 1)
         {
             currentPage--;
-            ShowBackpack(currentDisplayType);
+            ShowLabel(currentDisplayType);
             
         }
     }
@@ -131,11 +131,11 @@ public class LabelUI : MonoBehaviour
 
 
     //背包物品显示方法
-    public void UpdateBackpack()
+    public void UpdateLabelDisplay()
     {
         // 更新页码
         UpdatePageNumber();
-        // 获取物品标签和物品列表
+        // 获取交互对象标签列表
         List<ObjectLabel> Labels = currentSmallObject.dynamicState.smallObjectLabels;
         // 输出列表
         Debug.Log("标签列表:");
@@ -161,12 +161,12 @@ public class LabelUI : MonoBehaviour
         //LabelCount.Add("Lock", 3);
         //LabelCount.Add("Fragile", 1);
     }
-    public void ShowBackpack(String Type)
+    public void ShowLabel(String Type)
     {
-        UpdateBackpack();
+        UpdateLabelDisplay();
         if(Type == "Label")
         {
-            ShowBackpackwith(Type, LabelCount);
+            ShowLabelWith(Type, LabelCount);
         }
 
     }
@@ -218,10 +218,10 @@ public class LabelUI : MonoBehaviour
         player.playerState.labelBackpack.Add(label);
         return true;
     }
-    public void ShowBackpackwith(String Type,Dictionary<string, int> Count)
+    public void ShowLabelWith(String Type,Dictionary<string, int> Count)
     {
         currentDisplayType = Type;
-        Debug.Log("背包：显示" + Type);
+        Debug.Log("标签：显示" + Type);
         //使用字典显示对应页码的物品标签和数量
         //每页显示 itemsPerPage 个物品，根据 currentPage 计算显示范围
         var ordered = Count.OrderBy(pair => pair.Key, StringComparer.Ordinal).ToList();
@@ -236,7 +236,7 @@ public class LabelUI : MonoBehaviour
         for (int i = startIndex; i < endIndex; i++)
         {
             var item = ordered[i];
-            Debug.Log($"显示物品: {item.Key} x{item.Value}");
+            Debug.Log($"显示标签: {item.Key} x{item.Value}");
             if (i - startIndex < SlotList.Length) // 确保不超过格子数量
             {
                 LinkSlot(i - startIndex, item.Key, item.Value);

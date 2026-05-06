@@ -8,7 +8,7 @@ public class StartMenuUI : MonoBehaviour
     public void GameStart()
     {
         // 加载游戏场景
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("Map1");
     }
     public void GameLoad()
     {
