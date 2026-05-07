@@ -227,8 +227,8 @@ public class NumericalRuleTests {
         DoorSmallObject pastObject = CreateSmallObject("Past");
         DoorSmallObject presentObject = CreateSmallObject("Present");
 
-        bigObject.staticData.pastObject = pastObject;
-        bigObject.staticData.presentObject = presentObject;
+        bigObject.pastObject = pastObject;
+        bigObject.presentObject = presentObject;
         GameObjectManager.RegisterBigObject(bigObjectName, bigObject);
         registeredBigObjectNames.Add(bigObjectName);
 
