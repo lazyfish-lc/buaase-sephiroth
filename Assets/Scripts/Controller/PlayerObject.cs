@@ -146,13 +146,4 @@ public class PlayerSmallObject : SmallObject {
         playerState.itemBackpack.Add(item);
         Debug.Log($"玩家获得了物品: {item.itemName}");
     }
-
-    public bool containsTruthLens() {
-        foreach (var item in playerState.itemBackpack) {
-            if (item.itemName == "TruthLens") {
-                return true;
-            }
-        }
-        return false;
-    }
 }

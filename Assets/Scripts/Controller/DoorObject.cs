@@ -24,7 +24,6 @@ public class DoorSmallObject : SmallObject, IDialogueActionReceiver {
         if (doorState != null) {
             doorState.isOpen = doorStaticData.initiallyOpen;
         }
-        Debug.Log("DoorSmallObject Awake: " + gameObject.name + ", 初始状态: " + (doorState != null && doorState.isOpen ? "开启" : "关闭"));
         // 根据初始状态刷新锁碰撞体
         RefreshLockCollider();
     }
@@ -35,8 +34,8 @@ public class DoorSmallObject : SmallObject, IDialogueActionReceiver {
             return;
         }
 
-        // OpenDoor();
-        // NotifyStateChange();
+        ToggleDoor();
+        NotifyStateChange();
     }
 
     public string DialogueActionId => doorStaticData != null && !string.IsNullOrWhiteSpace(doorStaticData.doorName)
@@ -47,7 +46,6 @@ public class DoorSmallObject : SmallObject, IDialogueActionReceiver {
 
     public void ReceiveDialogueAction() {
         OpenDoor();
-        NotifyStateChange();
     }
 
     private global::LockLabel FindLockLabel() {
@@ -72,7 +70,6 @@ public class DoorSmallObject : SmallObject, IDialogueActionReceiver {
 
     public void OpenDoor() {
         if (doorState == null) return;
-        if (doorState.isOpen) return;
 
         var lockLabel = FindLockLabel();
         if (lockLabel == null) {
