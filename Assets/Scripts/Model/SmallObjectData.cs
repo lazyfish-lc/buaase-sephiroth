@@ -6,7 +6,6 @@ using System.Collections.Generic;
 [CreateAssetMenu(fileName = "SmallObjectData", menuName = "Game/SmallObjectData")]
 public class SmallObjectStaticData : ScriptableObject {
     public string objectName;
-    public BigObject ownerBigObject;
     public List<PropertyDefinition> propertyBlueprints = new List<PropertyDefinition>() {
         new PropertyDefinition() { name = "Health", initialValue = 100f, minValue = 0f, maxValue = 99999f },
         new PropertyDefinition() { name = "ATK", initialValue = 30f, minValue = 0f, maxValue = 99999f },

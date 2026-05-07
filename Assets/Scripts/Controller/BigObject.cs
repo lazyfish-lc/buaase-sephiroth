@@ -28,8 +28,8 @@ public abstract class BigObject : MonoBehaviour, ILabelOwner {
 
     public virtual void Start() {
         dynamicState = new BigObjectDynamicState();
-        if(pastObject != null) pastObject.staticData.ownerBigObject = this;
-        if(presentObject != null) presentObject.staticData.ownerBigObject = this;
+        if(pastObject != null) pastObject.ownerBigObject = this;
+        if(presentObject != null) presentObject.ownerBigObject = this;
         GameObjectManager.RegisterBigObject(this);
 
         // 根据静态数据中的 labelBlueprints 初始化 labels（使用 LabelFactory）

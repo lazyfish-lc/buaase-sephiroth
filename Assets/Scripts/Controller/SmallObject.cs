@@ -7,6 +7,7 @@ public abstract class SmallObject : MonoBehaviour, ILabelOwner {
     
     public SmallObjectStaticData staticData;
     public SmallObjectDynamicState dynamicState;
+    public BigObject ownerBigObject;
     
     // Events that labels can subscribe to
     public event Action<ILabelOwner> LabelOnAttacking;
@@ -81,7 +82,7 @@ public abstract class SmallObject : MonoBehaviour, ILabelOwner {
     public virtual void OnMoveAction(Vector3 moveVector) { }
 
     public void NotifyStateChange() {
-        staticData.ownerBigObject?.OnChildStateChanged(this);
+        ownerBigObject?.OnChildStateChanged(this);
     }
 
     public virtual void ILabelOnAttacking(ILabelOwner target) { LabelOnAttacking?.Invoke(target); }

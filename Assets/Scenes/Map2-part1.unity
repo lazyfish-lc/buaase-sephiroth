@@ -52989,6 +52989,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 384988330255408680, guid: 81c58f910b3e61b4f9d570a099ab5bb7, type: 3}
+      propertyPath: ownerBigObject
+      value: 
+      objectReference: {fileID: 368350007}
     - target: {fileID: 428893834184496047, guid: 81c58f910b3e61b4f9d570a099ab5bb7, type: 3}
       propertyPath: m_Name
       value: Player
@@ -53769,6 +53773,10 @@ PrefabInstance:
       propertyPath: staticData
       value: 
       objectReference: {fileID: 11400000, guid: 8de45e4b6bb5ec744bc5cbc307d4c9b0, type: 2}
+    - target: {fileID: 2493025526342578279, guid: 2b730894d576c7c42b60d9d38d2594e1, type: 3}
+      propertyPath: ownerBigObject
+      value: 
+      objectReference: {fileID: 729042515}
     - target: {fileID: 7876843964057045340, guid: 2b730894d576c7c42b60d9d38d2594e1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 28.91834
@@ -316198,6 +316206,10 @@ PrefabInstance:
       propertyPath: staticData
       value: 
       objectReference: {fileID: 11400000, guid: 369d89e026d87d64babd4e42675183f6, type: 2}
+    - target: {fileID: 1807577217069808904, guid: de0fa9ed55e301548ae0a93f04f3f88f, type: 3}
+      propertyPath: ownerBigObject
+      value: 
+      objectReference: {fileID: 770546722}
     - target: {fileID: 5029285395181616015, guid: de0fa9ed55e301548ae0a93f04f3f88f, type: 3}
       propertyPath: m_Name
       value: NPC2
@@ -319600,6 +319612,10 @@ PrefabInstance:
       propertyPath: staticData
       value: 
       objectReference: {fileID: 11400000, guid: 0cb9659f55ea34d41814b61f18c686b2, type: 2}
+    - target: {fileID: 5847594213405841770, guid: 213b5038c08510d42a44641e94fcf7a6, type: 3}
+      propertyPath: ownerBigObject
+      value: 
+      objectReference: {fileID: 477839407}
     - target: {fileID: 6686049448232022102, guid: 213b5038c08510d42a44641e94fcf7a6, type: 3}
       propertyPath: m_SortingOrder
       value: 5
@@ -382135,6 +382151,10 @@ PrefabInstance:
       propertyPath: staticData
       value: 
       objectReference: {fileID: 11400000, guid: de0081c142c3ecb4b9f62a5648e2956f, type: 2}
+    - target: {fileID: 2493025526342578279, guid: 5cca7895e49895c4eb76d30bf596eb70, type: 3}
+      propertyPath: ownerBigObject
+      value: 
+      objectReference: {fileID: 303537418}
     - target: {fileID: 3794595552119072108, guid: 5cca7895e49895c4eb76d30bf596eb70, type: 3}
       propertyPath: m_Controller
       value: 
