@@ -2,9 +2,10 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SettingUI : MonoBehaviour
+public class SettingUI : FatherUI
 {
-    public bool isOpen = false;
+    public static SettingUI Instance;
+    public static bool isOpen = false;
     public CanvasGroup SettingCanvas;
     [Header("精灵图设置")]
     public Sprite MusicOnSprite;
@@ -22,12 +23,9 @@ public class SettingUI : MonoBehaviour
     public TMP_Text SoundVolumeNumber;
     private float LastMusicVolume;
     private float LastSoundVolume;
-
     private bool isMusicOn;
     private bool isSoundOn;
-
-    public static SettingUI Instance;
-    void Awake()
+        void Awake()
     {
         if(Instance != null)
         {
@@ -57,7 +55,6 @@ public class SettingUI : MonoBehaviour
             AudioManager.Instance.SetSFXVolume(SoundSlider.value);
         }
     }
-
     void LoadPreferences()
     {
         // 音乐和音效
@@ -72,7 +69,6 @@ public class SettingUI : MonoBehaviour
         AudioManager.Instance.SetBGMVolume(PlayerPrefs.GetFloat("MusicVolume", 0.8f));
         AudioManager.Instance.SetSFXVolume(PlayerPrefs.GetFloat("SoundVolume", 0.8f));
     }
-
     public void OpenAndClose()
     {
         
@@ -87,17 +83,18 @@ public class SettingUI : MonoBehaviour
     }
     public void Open()
     {
+        PlayOpenSFX();
         isOpen = true;
         SettingCanvas.gameObject.SetActive(true);
         LoadPreferences();
     }
     public void Close()
     {
+        PlayCloseSFX();
         isOpen = false;
         SettingCanvas.gameObject.SetActive(false);
         LoadPreferences();
     }
-
     public void OpenAndCloseMusic()
     {
         if(isMusicOn)
@@ -115,9 +112,7 @@ public class SettingUI : MonoBehaviour
             MusicSlider.value = LastMusicVolume;
             MusicSlider.interactable = true;
         }
-
     }
-
     public void OpenAndCloseSound()
     {
         if(isSoundOn)
@@ -137,9 +132,9 @@ public class SettingUI : MonoBehaviour
         }
         
     }
-
     public void Save()
     {
+        PlayClickSFX();
         // 保存设置逻辑（例如保存到PlayerPrefs）
         Debug.Log("设置已保存");
         //保存音量设置
@@ -158,9 +153,9 @@ public class SettingUI : MonoBehaviour
     {
         return (int)(volume * 100);
     }
-
     public void KeySetting()
     {
+        PlayClickSFX();
         Debug.Log("打开按键设置界面");
         //KeySettingUI.Instance.OpenAndClose();
     }

@@ -1,10 +1,10 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-public class MenuUI : MonoBehaviour
+public class MenuUI : FatherUI
 {
+    public static MenuUI Instance;
     public bool isOpen = false;
     public CanvasGroup MenuCanvas;
-    public static MenuUI Instance;
     private bool isLoadingStartMenu;
     void Awake()
     {
@@ -14,8 +14,8 @@ public class MenuUI : MonoBehaviour
             return;
         }
         Instance = this;
-    }
 
+    }
     void OnDestroy()
     {
         if (Instance == this)
@@ -41,17 +41,20 @@ public class MenuUI : MonoBehaviour
     }
     public void Open()
     {
+        PlayOpenSFX();
         isOpen = true;
         MenuCanvas.gameObject.SetActive(true);
     }
     public void Close()
     {
+        PlayCloseSFX();
         isOpen = false;
         MenuCanvas.gameObject.SetActive(false);
     }
     public void OpenSetting()
     {
         SettingUI.Instance.OpenAndClose();
+        PlayClickSFX();
     }
     public void OpenStartMenu()
     {
@@ -59,10 +62,9 @@ public class MenuUI : MonoBehaviour
         {
             return;
         }
-
         isLoadingStartMenu = true;
-        Time.timeScale = 1f;
-
+        PlayClickSFX();
+        Time.timeScale = 1f; // 确保时间流逝正常
         if (SettingUI.Instance != null)
         {
             SettingUI.Instance.Close();
@@ -79,22 +81,32 @@ public class MenuUI : MonoBehaviour
         {
             StatusUI.Instance.Close();
         }
-
+        if (PropertyUI.Instance != null)
+        {
+            PropertyUI.Instance.Close();
+        }
+        if (LabelUI.Instance != null)
+        {
+            LabelUI.Instance.Close();
+        }
+        
         Close();
         SceneManager.LoadScene("StartMenuScene");
     }
     public void Quit()
     {
         Application.Quit();
+        PlayClickSFX();
     }
     public void RestartGame()
     {
         //重启当前场景
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        PlayClickSFX();
     }
-
     public void SaveGame()
     {
+        PlayClickSFX();
         if (SaveManager.Instance == null) {
             Debug.LogWarning("SaveManager 未配置，无法保存游戏");
             return;
@@ -103,9 +115,9 @@ public class MenuUI : MonoBehaviour
         SaveManager.Instance.SaveGame();
         Debug.Log("游戏已保存");
     }
-
     public void LoadGame()
     {
+        PlayClickSFX();
         if (SaveManager.Instance == null) {
             Debug.LogWarning("SaveManager 未配置，无法加载存档");
             return;
@@ -113,7 +125,6 @@ public class MenuUI : MonoBehaviour
 
         SaveManager.Instance.LoadGame();
         Debug.Log("游戏存档已加载");
-        
     }
     
 }

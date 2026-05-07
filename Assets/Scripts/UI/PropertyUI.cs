@@ -5,18 +5,16 @@ using UnityEngine.UI;
 using System;
 using UnityEngine.PlayerLoop;
 using System.Linq;
-public class PropertyUI : MonoBehaviour
-{
-    public CanvasGroup PropertyCanvas;
+public class PropertyUI : FatherUI{
     public static PropertyUI Instance;
+    public CanvasGroup PropertyCanvas;
     public Image DisplayImage; // 显示对象的图片的UI组件,初始为透明
     public TMP_Text DisplayName;// 显示对象名称的UI组件
     public TMP_Text DisplayDescription; // 显示对象描述的UI组件
-
     public TMP_Text[] DisplayProperties; // 显示对象属性的文本数组，假设最多显示8个属性
     public TMP_InputField[] inputFields; // 显示对象属性的输入框数组，假设最多显示8个属性
     public Button SaveButton; // 保存按钮的UI组件
-    public bool isOpen = false;
+    public static bool isOpen = false;
     private SmallObject currentSmallObject; // 当前显示标签的物体引用    
     void Awake()
     {
@@ -56,6 +54,7 @@ public class PropertyUI : MonoBehaviour
     }
     public void Open()
     {
+        PlayOpenSFX();
         cleanDisplay();
         isOpen = true;
         PropertyCanvas.alpha = 1;
@@ -66,6 +65,7 @@ public class PropertyUI : MonoBehaviour
     }
     public void Close()
     {
+        PlayCloseSFX();
         isOpen = false;
         PropertyCanvas.alpha = 0;
         PropertyCanvas.interactable = false;
@@ -79,14 +79,12 @@ public class PropertyUI : MonoBehaviour
             Small.OnShowProperty += HandleProperty;
         }
     }
-
     private void OnDisable() {
         var Smalls = FindObjectsByType<SmallObject>(FindObjectsSortMode.None);
         foreach (var Small in Smalls) {
             Small.OnShowProperty -= HandleProperty;
         }
     }
-
     private void HandleProperty(SmallObject Small) {
         // 2. 捕获SmallObject引用
         currentSmallObject = Small;
@@ -162,6 +160,7 @@ public class PropertyUI : MonoBehaviour
     }
     public void SaveProperties()
     {
+        PlayClickSFX();
         if (currentSmallObject != null)
         {
             // 这里可以根据实际需求将输入框的内容保存到 SmallObject 的属性中
@@ -191,5 +190,3 @@ public class PropertyUI : MonoBehaviour
         }
     }
 }
-
-
