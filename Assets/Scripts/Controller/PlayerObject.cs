@@ -52,7 +52,7 @@ public class PlayerSmallObject : SmallObject {
         base.Start();
         if (rb == null) rb = GetComponent<Rigidbody2D>();
         // 玩家初始位置
-        string exitName = PlayerPrefs.GetString("LastExitName", "DefaultExit");
+        string exitName = PlayerPrefs.GetString("LastExitName", "Exit_Default");
         GameObject exitPoint = GameObject.Find(exitName);
         
         if(exitPoint != null)

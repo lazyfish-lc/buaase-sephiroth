@@ -7622,6 +7622,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb4376cd95596954e80ea5700ced0d2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Sephiroth.Runtime::SwitchScene
+  locationName: Exit_Guild
   sceneName: Map2-part1
 --- !u!61 &1419265210
 BoxCollider2D:
