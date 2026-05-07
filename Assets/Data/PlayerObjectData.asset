@@ -36,7 +36,7 @@ MonoBehaviour:
     minValue: 0
     maxValue: 50
   - name: Luck
-    initialValue: 49
+    initialValue: 0
     minValue: 0
     maxValue: 99999
   labelBlueprints: []
