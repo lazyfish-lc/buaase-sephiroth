@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2716b9197589a9b4ebc9867440969c23, type: 3}
+  m_Name: LiuBeiNPCData
+  m_EditorClassIdentifier: Sephiroth.Runtime::NPCStaticData
+  objectName: 
+  ownerBigObject: {fileID: 0}
+  propertyBlueprints: []
+  labelBlueprints: []
+  interactionRange: 3
+  dialogueNodes:
+  - npcContent: "\u597D\u98CE\u554A\u3002"
+    hasOptions: 0
+    nextNodeIndex: 1
+    options: []
+    enterActions: []
+  - npcContent: "\u6709\u9053\u662F\uFF0C\u98CE\u4ECE\u864E\uFF0C\u4E91\u4ECE\u9F99\uFF0C\u9F99\u864E\u82F1\u96C4\u50B2\u82CD\u7A79\u3002"
+    hasOptions: 0
+    nextNodeIndex: -1
+    options: []
+    enterActions:
+    - {fileID: 0}
+  requiredItems: []
+  startNodeIfHasRequiredItems: -1
+  animatorController: {fileID: 22100000, guid: 48e70e544f731d040940f13edd531eb0, type: 2}

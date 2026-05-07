@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2716b9197589a9b4ebc9867440969c23, type: 3}
+  m_Name: OldBuilding2SceneNPCData
+  m_EditorClassIdentifier: Sephiroth.Runtime::NPCStaticData
+  objectName: 
+  ownerBigObject: {fileID: 0}
+  propertyBlueprints: []
+  labelBlueprints: []
+  interactionRange: 5
+  dialogueNodes:
+  - npcContent: "\u5E94\u8BE5\u662F\u96D5\u523B\u7740\u795E\u660E\u7684\u96D5\u50CF\u3002"
+    hasOptions: 0
+    nextNodeIndex: 1
+    options: []
+    enterActions: []
+  - npcContent: "\u53EF\u60DC\u5E74\u4E45\u5931\u4FEE\uFF0C\u6751\u5B50\u91CC\u4E5F\u6CA1\u4EBA\u77E5\u9053\u96D5\u523B\u7684\u662F\u8C01\uFF0C\u8C01\u96D5\u523B\u7684\u5B83\u3002"
+    hasOptions: 0
+    nextNodeIndex: -1
+    options: []
+    enterActions: []
+  requiredItems: []
+  startNodeIfHasRequiredItems: -1
+  animatorController: {fileID: 0}
