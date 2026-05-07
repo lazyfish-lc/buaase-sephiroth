@@ -6791,8 +6791,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a9180de395a99048bac526a6c645d2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameSceneManager
-  pastMapRoot: {fileID: 0}
-  presentMapRoot: {fileID: 0}
+  pastMapRoot: {fileID: 1041885376}
+  presentMapRoot: {fileID: 1085434057}
   isPresent: 1
 --- !u!1 &1292872888
 GameObject:

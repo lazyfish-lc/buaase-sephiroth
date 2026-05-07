@@ -87,7 +87,7 @@ public class SaveManager : MonoBehaviour {
             objectStates = new List<SmallObjectSaveData>()
         };
 
-        var smallObjects = FindObjectsByType<SmallObject>(FindObjectsSortMode.None);
+        var smallObjects = FindAllSmallObjects();
         foreach (var small in smallObjects) {
             if (small == null) {
                 continue;
@@ -162,7 +162,7 @@ public class SaveManager : MonoBehaviour {
             GameSceneManager.Instance.SetTimeVision(package.isPresentTime);
         }
 
-        var smallObjects = FindObjectsByType<SmallObject>(FindObjectsSortMode.None);
+        var smallObjects = FindAllSmallObjects();
         var map = new Dictionary<string, SmallObject>(StringComparer.Ordinal);
         foreach (var small in smallObjects) {
             if (small == null || string.IsNullOrWhiteSpace(small.persistID)) {
@@ -396,5 +396,27 @@ public class SaveManager : MonoBehaviour {
             default:
                 return Vector2.zero;
         }
+    }
+
+    private SmallObject[] FindAllSmallObjects() {
+#if UNITY_2022_2_OR_NEWER
+        return FindObjectsByType<SmallObject>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+#else
+        var all = Resources.FindObjectsOfTypeAll<SmallObject>();
+        var result = new List<SmallObject>();
+        foreach (var obj in all) {
+            if (obj == null) {
+                continue;
+            }
+            if (!obj.gameObject.scene.IsValid()) {
+                continue;
+            }
+            if ((obj.hideFlags & HideFlags.HideAndDontSave) != 0) {
+                continue;
+            }
+            result.Add(obj);
+        }
+        return result.ToArray();
+#endif
     }
 }
