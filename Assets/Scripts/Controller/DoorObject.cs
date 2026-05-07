@@ -34,7 +34,7 @@ public class DoorSmallObject : SmallObject, IDialogueActionReceiver {
             return;
         }
 
-        ToggleDoor();
+        OpenDoor();
         NotifyStateChange();
     }
 
@@ -138,6 +138,7 @@ public class DoorSmallObject : SmallObject, IDialogueActionReceiver {
     // 根据门的锁定/开启状态显示对应的 Tilemap
     public void RefreshTilemaps() {
         bool showLock = IsLocked();
+        Debug.Log($"刷新门的瓦片显示，IsLocked={showLock}");
         if (lockedTilemap != null) lockedTilemap.gameObject.SetActive(showLock);
         if (openTilemap != null) openTilemap.gameObject.SetActive(!showLock);
         if (lockedTilemapTop != null) lockedTilemapTop.gameObject.SetActive(showLock);
