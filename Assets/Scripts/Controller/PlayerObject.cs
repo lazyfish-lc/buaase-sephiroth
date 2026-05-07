@@ -4,6 +4,7 @@ using System.Collections;
 using System;
 [Serializable]
 public class PlayerSmallObject : SmallObject {
+    public LifeSFXPlayer SFXPlayer; // 用于播放攻击、受伤等音效
     public Rigidbody2D rb;
     public PlayerView playerView;
     public PlayerObjectDynamicState playerState => dynamicState as PlayerObjectDynamicState;
@@ -15,9 +16,29 @@ public class PlayerSmallObject : SmallObject {
     public Transform sensorPivot; // 用于旋转攻击范围的父物体
 
     public Vector2 linearVelocity;
+
+    // 跑步音效相关
+    private Vector3 lastPosition;
+    public float stepCycle = 0.5f;     // 脚步循环间隔（秒）
+    private float nextStepTime;
     public void Update()
     {
         linearVelocity = rb.linearVelocity;
+        // 跑步音效播放
+        // 计算当前速度
+        CharacterController controller = GetComponent<CharacterController>();
+        float currentSpeed = (transform.position - lastPosition).magnitude / Time.deltaTime;
+        lastPosition = transform.position;
+
+        // 如果速度超过跑步阈值，并且到达下一次播放脚步的时间
+        if (currentSpeed > 5.0f && Time.time >= nextStepTime)
+        {
+            // 播放音效
+            SFXPlayer.PlayWalkSFX();
+            // 计算下次播放脚步的时间
+            nextStepTime = Time.time + stepCycle;
+        }
+        // 可选：添加走路逻辑（速度>0且为走路状态时播放walkClip）
     }
 
     protected override void Awake() {
@@ -49,6 +70,7 @@ public class PlayerSmallObject : SmallObject {
     }
 
      public override void Start() {
+        lastPosition = transform.position;
         base.Start();
         if (rb == null) rb = GetComponent<Rigidbody2D>();
         // 玩家初始位置
@@ -59,6 +81,11 @@ public class PlayerSmallObject : SmallObject {
         {
             transform.position = exitPoint.transform.position;
         }
+    }
+    public override void ReceiveDamage(DamagePacket packet)
+    {
+        SFXPlayer.PlayHurtSFX(); // 播放受伤音效
+        base.ReceiveDamage(packet);
     }
 
     public override void OnMoveAction(Vector3 moveDir) {
@@ -88,6 +115,7 @@ public class PlayerSmallObject : SmallObject {
             Debug.Log("玩家攻击！");
             // 这里可以添加攻击逻辑，比如检测附近的敌人并造成伤害
             playerView.PlayAttack(playerState.isRunning);
+            SFXPlayer.PlayAttackSFX(); // 播放攻击音效
         } else {
             Debug.Log("攻击冷却中...");
         }

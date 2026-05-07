@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 384988330255408680}
   - component: {fileID: 7971711699152502211}
   - component: {fileID: 6099336117968850752}
+  - component: {fileID: 9184811450230211310}
   - component: {fileID: 5911550114426282807}
   m_Layer: 9
   m_Name: Player
@@ -168,6 +169,7 @@ MonoBehaviour:
     isDestroyed: 0
     smallObjectLabels: []
     isHurt: 0
+  SFXPlayer: {fileID: 9184811450230211310}
   rb: {fileID: 1377186722902957110}
   playerView: {fileID: 7971711699152502211}
   enemyLayer:
@@ -176,6 +178,7 @@ MonoBehaviour:
   hitPoint: {fileID: 2435546783638844553}
   sensorPivot: {fileID: 8121286637750139319}
   linearVelocity: {x: 0, y: 0}
+  stepCycle: 0.5
 --- !u!114 &7971711699152502211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,6 +230,22 @@ CapsuleCollider2D:
   m_Offset: {x: -0.043843508, y: 0.44829345}
   m_Size: {x: 0.7139783, y: 1.1488321}
   m_Direction: 0
+--- !u!114 &9184811450230211310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 428893834184496047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3551bcdf771acd74daa09ebf65ac1443, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Sephiroth.Runtime::LifeSFXPlayer
+  AttackSFX: {fileID: 8300000, guid: 83161aeb54863f24f9832bf0903359da, type: 3}
+  HurtSFX: {fileID: 8300000, guid: acc981a04e6ec6244821609852574311, type: 3}
+  SepakSFX: {fileID: 0}
+  WalkSFX: {fileID: 8300000, guid: 15b38c5a9d5c948469d7b4f1cc669fe1, type: 3}
 --- !u!114 &5911550114426282807
 MonoBehaviour:
   m_ObjectHideFlags: 0

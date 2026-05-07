@@ -167,7 +167,7 @@ public class Slot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
                 return;
             }
 
-            var label = sourceBackpack.player?.playerState?.labelBackpack?.Find(lbl => lbl != null && lbl.labelName == sourceSlot.CurrentName);
+            var label = UIManager.Instance.player?.playerState?.labelBackpack?.Find(lbl => lbl != null && lbl.labelName == sourceSlot.CurrentName);
             if (label == null)
             {
                 return;
@@ -175,7 +175,7 @@ public class Slot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 
             if (targetLabel.TryReceiveLabelFromPlayer(label))
             {
-                sourceBackpack.player.playerState.labelBackpack.Remove(label);
+                UIManager.Instance.player.playerState.labelBackpack.Remove(label);
                 sourceBackpack.ShowBackpack("Label");
                 targetLabel.ShowLabel("Label");
             }
@@ -189,7 +189,7 @@ public class Slot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
                 return;
             }
 
-            if (sourceLabel.TryTransferLabelToPlayer(sourceSlot.CurrentName, targetBackpack.player))
+            if (sourceLabel.TryTransferLabelToPlayer(sourceSlot.CurrentName, UIManager.Instance.player))
             {
                 sourceLabel.ShowLabel("Label");
                 targetBackpack.ShowBackpack("Label");

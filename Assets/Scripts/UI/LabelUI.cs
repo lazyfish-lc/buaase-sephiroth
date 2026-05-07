@@ -5,33 +5,23 @@ using UnityEngine.UI;
 using System;
 using UnityEngine.PlayerLoop;
 using System.Linq;
-public class LabelUI : MonoBehaviour
+public class LabelUI : FatherUI
 {
-    public CanvasGroup LabelCanvas;
     public static LabelUI Instance;
-
+    public CanvasGroup LabelCanvas;
     public GameObject[] SlotList; // 存放物品槽的父对象，假设有 10个子对象命名为 "Slot1", "Slot2", ..., "Slot35"
-
     public TMP_Text PageNumber;
-
     public int currentPage;
     public int totalPages;
-
     public int itemsPerPage ; // 每页显示的物品数量
-
     public Image DisplayImage; // 显示物品图片的UI组件,初始为透明
     public TMP_Text DisplayName;// 显示物品名称的UI组件
     public TMP_Text DisplayDescription; // 显示物品描述的UI组件
     private Dictionary<string, int> LabelCount = new Dictionary<string, int>();// 物品标签及其数量的字典
-
     private String currentDisplayType = "Label"; // 当前显示类型，"Label" 或 "Item"
-
-    public bool isOpen = false;
-
+    public static bool isOpen = false;
     private SmallObject currentSmallObject; // 当前显示标签的物体引用
-
     public bool IsLabelModeOpen => isOpen && currentDisplayType == "Label";
-    
     void Awake()
     {
         if(Instance != null)
@@ -70,7 +60,7 @@ public class LabelUI : MonoBehaviour
     }
     public void Open()
     {
-        cleanDisplay();
+        PlayOpenSFX();
         isOpen = true;
         LabelCanvas.alpha = 1;
         LabelCanvas.interactable = true;
@@ -80,6 +70,7 @@ public class LabelUI : MonoBehaviour
     }
     public void Close()
     {
+        PlayCloseSFX();
         isOpen = false;
         LabelCanvas.alpha = 0;
         LabelCanvas.interactable = false;
@@ -87,6 +78,7 @@ public class LabelUI : MonoBehaviour
     }
     public void RightPage()
     {
+        PlayClickSFX();
         if(currentPage < totalPages)
         {
             currentPage++;
@@ -95,6 +87,7 @@ public class LabelUI : MonoBehaviour
     }
     public void LeftPage()
     {
+        PlayClickSFX();
         if(currentPage > 1)
         {
             currentPage--;
@@ -102,7 +95,7 @@ public class LabelUI : MonoBehaviour
             
         }
     }
-        public void UpdatePageNumber()
+    public void UpdatePageNumber()
     {
         PageNumber.text = $"PAGE: {currentPage}/{totalPages}";
     }
@@ -114,22 +107,18 @@ public class LabelUI : MonoBehaviour
             Small.OnShowLabel += HandleLabel;
         }
     }
-
     private void OnDisable() {
         var Smalls = FindObjectsByType<SmallObject>(FindObjectsSortMode.None);
         foreach (var Small in Smalls) {
             Small.OnShowLabel -= HandleLabel;
         }
     }
-
     private void HandleLabel(SmallObject Small) {
         // 2. 捕获SmallObject引用
         currentSmallObject = Small;
         Debug.Log("HandleLabel(");
         Open();
     }
-
-
     //背包物品显示方法
     public void UpdateLabelDisplay()
     {
@@ -168,16 +157,13 @@ public class LabelUI : MonoBehaviour
         {
             ShowLabelWith(Type, LabelCount);
         }
-
     }
-
     public bool TryReceiveLabelFromPlayer(ObjectLabel label)
     {
         if (!isOpen || currentSmallObject == null || label == null)
         {
             return false;
         }
-
         if (currentSmallObject.dynamicState == null)
         {
             currentSmallObject.dynamicState = new SmallObjectDynamicState();
@@ -190,32 +176,29 @@ public class LabelUI : MonoBehaviour
         {
             currentSmallObject.dynamicState.smallObjectLabels.Add(label);
         }
-
         label.AttachToOwner(currentSmallObject);
+        PlayClickSFX();
         return true;
     }
-
     public bool TryTransferLabelToPlayer(string labelName, PlayerSmallObject player)
     {
         if (!isOpen || currentSmallObject == null || player == null)
         {
             return false;
         }
-
         var labels = currentSmallObject.dynamicState?.smallObjectLabels;
         if (labels == null)
         {
             return false;
         }
-
         var label = labels.Find(lbl => lbl != null && lbl.labelName == labelName);
         if (label == null)
         {
             return false;
         }
-
         label.Detach();
         player.playerState.labelBackpack.Add(label);
+        PlayClickSFX();
         return true;
     }
     public void ShowLabelWith(String Type,Dictionary<string, int> Count)
@@ -242,7 +225,6 @@ public class LabelUI : MonoBehaviour
                 LinkSlot(i - startIndex, item.Key, item.Value);
             }
         }
-
     }
     void CleanSlot(int index)
     {
@@ -257,6 +239,7 @@ public class LabelUI : MonoBehaviour
     // 点击回调，参数为被点击格子的索引
     void OnSlotClicked(int index)
     {
+        PlayClickSFX();
         DisplayInfo clickedInfo = SlotList[index].GetComponentInChildren<Slot>().GetCurrentData();
         if (clickedInfo != null)
         {
@@ -265,7 +248,6 @@ public class LabelUI : MonoBehaviour
             DisplayImage.sprite = clickedInfo.icon;
             DisplayName.text = clickedInfo.name;
             DisplayDescription.text = clickedInfo.description;
-
             // 这里可以触发信息面板显示、使用物品等逻辑
         }
         else
@@ -281,5 +263,3 @@ public class LabelUI : MonoBehaviour
         DisplayDescription.text = "";
     }
 }
-
-

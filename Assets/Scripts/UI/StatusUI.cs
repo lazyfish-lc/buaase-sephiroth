@@ -1,15 +1,11 @@
 using UnityEngine;
 using UnityEngine.UI;
-public class StatusUI : MonoBehaviour
-{
-    public CanvasGroup StatusCanvas;
+public class StatusUI : FatherUI
+{   
     public static StatusUI Instance;
-    public PlayerSmallObject player;
-
-    public bool isopen = false;
+    public CanvasGroup StatusCanvas;
+    public static bool isOpen = false;
     public Slider HPSlider;
-
-    
     void Awake()
     {
         if(Instance != null)
@@ -19,16 +15,6 @@ public class StatusUI : MonoBehaviour
         }
         Instance = this;
     }
-
-    public float GetPlayerHealth()
-    {
-        if (player != null)
-        {
-            return player.dynamicState.propertyMap.ContainsKey("Health") ? player.playerState.propertyMap["Health"].value : 0f;
-        }
-        return 0f;
-    }
-
     void OnDestroy()
     {
         if (Instance == this)
@@ -36,9 +22,17 @@ public class StatusUI : MonoBehaviour
             Instance = null;
         }
     }
+    public float GetPlayerHealth()
+    {
+        if (UIManager.Instance.player != null)
+        {
+            return UIManager.Instance.player.dynamicState.propertyMap.ContainsKey("Health") ? UIManager.Instance.player.playerState.propertyMap["Health"].value : 0f;
+        }
+        return 0f;
+    }
     void Update()
     {
-        if (player != null)
+        if (UIManager.Instance.player != null)
         {
             // 超过1000血即为100%，根据实际情况调整
             float Health = GetPlayerHealth(); // 默认值，防止属性缺失导致错误
@@ -55,7 +49,7 @@ public class StatusUI : MonoBehaviour
     public void OpenAndClose()
     {
         
-        if(!isopen)
+        if(!isOpen)
         {
             Open();
         }
@@ -66,14 +60,15 @@ public class StatusUI : MonoBehaviour
     }
     public void Open()
     {
+        PlayOpenSFX();
         StatusCanvas.gameObject.SetActive(true);
-        isopen = true;
+        isOpen = true;
     }
     public void Close()
     {
+        PlayCloseSFX();
         StatusCanvas.gameObject.SetActive(false);
-        isopen = false;
+        isOpen = false;
     }
-
     
 }

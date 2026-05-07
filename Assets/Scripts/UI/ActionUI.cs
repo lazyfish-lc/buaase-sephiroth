@@ -2,15 +2,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
-public class ActionUI : MonoBehaviour
+public class ActionUI : FatherUI
 {
-    public CanvasGroup ActionCanvas;
-    public bool isOpen = false;
     public static ActionUI Instance;
-
+    public CanvasGroup ActionCanvas;
+    public static bool isOpen = false;
     public TMP_Text ActionText;
     public Image ActionImage;
-
     public Button[] Buttons; // 存放选项按钮的数组，假设有4个按钮命名为 "Button1", "Button2", "Button3", "Button4"
     // 重点：UI 内部持有的当前 NPC 引用
     private NPCObject currentNPC;
@@ -23,7 +21,6 @@ public class ActionUI : MonoBehaviour
         }
         Instance = this;
     }
-
     void OnDestroy()
     {
         if (Instance == this)
@@ -52,6 +49,7 @@ public class ActionUI : MonoBehaviour
     }
     public void Open()
     {
+        PlayOpenSFX();
         ActionCanvas.alpha = 1;
         ActionCanvas.interactable = true;
         ActionCanvas.blocksRaycasts = true;
@@ -59,6 +57,7 @@ public class ActionUI : MonoBehaviour
     }
     public void Close()
     {
+        PlayCloseSFX();
         ActionCanvas.alpha = 0;
         ActionCanvas.interactable = false;
         ActionCanvas.blocksRaycasts = false;
@@ -74,7 +73,6 @@ public class ActionUI : MonoBehaviour
             npc.OnDialogueEnded += HandleDialogueEnd;
         }
     }
-
     private void OnDisable() {
         var npcs = FindObjectsByType<NPCObject>(FindObjectsSortMode.None);
         foreach (var npc in npcs) {
@@ -82,26 +80,21 @@ public class ActionUI : MonoBehaviour
             npc.OnDialogueEnded -= HandleDialogueEnd;
         }
     }
-
     private void HandleDialogueStart(NPCObject npc) {
         // 2. 捕获 NPC 引用
         currentNPC = npc;
         Open();
-
         // 3. 订阅该特定 NPC 的节点变化事件
         currentNPC.OnNodeChanged += RefreshUI;
         
         RefreshUI();
     }
-
     private void RefreshUI() {
         if (currentNPC == null) return;
-
         if (ActionText == null) {
             Debug.LogError("ActionUI 缺少 ActionText 引用，无法刷新对话文本");
             return;
         }
-
         // 4. 通过接口获取数据并显示
         ActionText.text = currentNPC.GetCurrentContent();
         Sprite npcSprite = currentNPC.GetCurrentSprite();
@@ -124,6 +117,7 @@ public class ActionUI : MonoBehaviour
                     Buttons[index].gameObject.SetActive(true);
                     Buttons[index].onClick.RemoveAllListeners();
                     Buttons[index].onClick.AddListener(() => {
+                        PlayClickSFX();
                         currentNPC.SelectOption(index);
                     });
                 }
@@ -138,15 +132,14 @@ public class ActionUI : MonoBehaviour
             }
         }
     }
-
     // 6. 处理非选项节点的点击翻页
     public void OnBackgroundClick() {
+        PlayClickSFX();
         List<DialogueOption> options = currentNPC != null ? (currentNPC.GetCurrentOptions() ?? new List<DialogueOption>()) : null;
         if (currentNPC != null && options.Count == 0) {
             currentNPC.AdvanceToNextNode();
         }
     }
-
     private void HandleDialogueEnd() {
         if (currentNPC != null) {
             currentNPC.OnNodeChanged -= RefreshUI;
@@ -154,7 +147,6 @@ public class ActionUI : MonoBehaviour
         currentNPC = null;
         Close();
     }
-
     private void ClearOptions() {
         for (int i = 0; i < Buttons.Length; i++) {
             if (Buttons[i] != null) {

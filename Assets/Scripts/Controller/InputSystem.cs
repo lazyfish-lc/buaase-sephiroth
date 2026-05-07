@@ -10,7 +10,7 @@ public class IOSubsystem : MonoBehaviour {
             dealAttack();
         }
         // 如果鼠标下是UI元素，并且是Action面板的背景，则触发动作面板的点击事件
-        if (UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject() && ActionUI.Instance != null && ActionUI.Instance.isOpen) {
+        if (UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject() && ActionUI.Instance != null && ActionUI.isOpen) {
             dealActionClick();
         }
         // 只在游戏中处理设置、菜单、背包和动作面板的输入，使用自带的场景管理器来判断当前场景，避免与自定义的GameSceneManager耦合过紧

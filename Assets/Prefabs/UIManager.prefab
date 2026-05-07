@@ -1012,6 +1012,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3451951160716108738}
   - component: {fileID: 8830523292602972659}
+  - component: {fileID: 2858181751139748842}
   m_Layer: 5
   m_Name: UIManager
   m_TagString: Untagged
@@ -1054,10 +1055,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 440f2201d83a46445b0db0291f1f30dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIManager
+  SFXPlayer: {fileID: 2858181751139748842}
   menuUI: {fileID: 2778122333941945603}
   settingUI: {fileID: 9121054977896561935}
   backpackUI: {fileID: 3915673867584306863}
   actionUI: {fileID: 3391492654351947271}
+  statusUI: {fileID: 1247653223617902109}
+  propertyUI: {fileID: 5672924851993827074}
+  labelUI: {fileID: 953668398591376048}
+--- !u!114 &2858181751139748842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1084579817415817067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01f46cb4a9da0a34dac767e31a21d4b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Sephiroth.Runtime::UISFXPlayer
+  OpenSFX: {fileID: 8300000, guid: 58da25ec3c91bf440b7105163bb00cf0, type: 3}
+  CloseSFX: {fileID: 8300000, guid: 7f19fd57127e7ae42a475b32c73a8a11, type: 3}
+  ClickSFX: {fileID: 8300000, guid: bd7cd8483208d78419e92c98c498e142, type: 3}
 --- !u!1 &1194627644762188808
 GameObject:
   m_ObjectHideFlags: 0
@@ -1278,6 +1298,7 @@ GameObject:
   - component: {fileID: 2953367604897186021}
   - component: {fileID: 8523375542969006228}
   - component: {fileID: 1053180276675219711}
+  - component: {fileID: 2716605787794924892}
   - component: {fileID: 953668398591376048}
   m_Layer: 5
   m_Name: LabelCanvas
@@ -1381,6 +1402,21 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &2716605787794924892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1423498145564341838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01f46cb4a9da0a34dac767e31a21d4b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Sephiroth.Runtime::UISFXPlayer
+  OpenSFX: {fileID: 8300000, guid: 58da25ec3c91bf440b7105163bb00cf0, type: 3}
+  CloseSFX: {fileID: 8300000, guid: 7f19fd57127e7ae42a475b32c73a8a11, type: 3}
+  ClickSFX: {fileID: 8300000, guid: bd7cd8483208d78419e92c98c498e142, type: 3}
 --- !u!114 &953668398591376048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1558,6 +1594,7 @@ GameObject:
   - component: {fileID: 797834417478752014}
   - component: {fileID: 4350222551420406995}
   - component: {fileID: 3969149070941765447}
+  - component: {fileID: 8682389496095344844}
   - component: {fileID: 3915673867584306863}
   m_Layer: 5
   m_Name: BackpackCanvas
@@ -1661,6 +1698,21 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &8682389496095344844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1568835620533816294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01f46cb4a9da0a34dac767e31a21d4b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Sephiroth.Runtime::UISFXPlayer
+  OpenSFX: {fileID: 8300000, guid: 58da25ec3c91bf440b7105163bb00cf0, type: 3}
+  CloseSFX: {fileID: 8300000, guid: 7f19fd57127e7ae42a475b32c73a8a11, type: 3}
+  ClickSFX: {fileID: 8300000, guid: bd7cd8483208d78419e92c98c498e142, type: 3}
 --- !u!114 &3915673867584306863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1727,6 +1779,7 @@ GameObject:
   - component: {fileID: 804256441381512358}
   - component: {fileID: 6687040796976046497}
   - component: {fileID: 2842485062346813702}
+  - component: {fileID: 6555495796796189876}
   - component: {fileID: 1247653223617902109}
   m_Layer: 5
   m_Name: StatusCanvas
@@ -1830,6 +1883,21 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &6555495796796189876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2027175430953067199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01f46cb4a9da0a34dac767e31a21d4b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Sephiroth.Runtime::UISFXPlayer
+  OpenSFX: {fileID: 8300000, guid: 58da25ec3c91bf440b7105163bb00cf0, type: 3}
+  CloseSFX: {fileID: 8300000, guid: 7f19fd57127e7ae42a475b32c73a8a11, type: 3}
+  ClickSFX: {fileID: 8300000, guid: bd7cd8483208d78419e92c98c498e142, type: 3}
 --- !u!114 &1247653223617902109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1859,6 +1927,7 @@ GameObject:
   - component: {fileID: 8141738652644254190}
   - component: {fileID: 8382579595413806156}
   - component: {fileID: 3806950916203881493}
+  - component: {fileID: 3222122620635552848}
   - component: {fileID: 9121054977896561935}
   m_Layer: 5
   m_Name: SettingsCanvas
@@ -1962,6 +2031,21 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &3222122620635552848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2062355077691160891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01f46cb4a9da0a34dac767e31a21d4b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Sephiroth.Runtime::UISFXPlayer
+  OpenSFX: {fileID: 8300000, guid: 58da25ec3c91bf440b7105163bb00cf0, type: 3}
+  CloseSFX: {fileID: 8300000, guid: 7f19fd57127e7ae42a475b32c73a8a11, type: 3}
+  ClickSFX: {fileID: 8300000, guid: bd7cd8483208d78419e92c98c498e142, type: 3}
 --- !u!114 &9121054977896561935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2934,6 +3018,7 @@ GameObject:
   - component: {fileID: 8663169631046103743}
   - component: {fileID: 2182233830107596307}
   - component: {fileID: 8250500734961504206}
+  - component: {fileID: 3914528549824323967}
   - component: {fileID: 5672924851993827074}
   m_Layer: 5
   m_Name: PropertyCanvas
@@ -3037,6 +3122,21 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &3914528549824323967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3051846455563123518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01f46cb4a9da0a34dac767e31a21d4b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Sephiroth.Runtime::UISFXPlayer
+  OpenSFX: {fileID: 8300000, guid: 58da25ec3c91bf440b7105163bb00cf0, type: 3}
+  CloseSFX: {fileID: 8300000, guid: 7f19fd57127e7ae42a475b32c73a8a11, type: 3}
+  ClickSFX: {fileID: 8300000, guid: bd7cd8483208d78419e92c98c498e142, type: 3}
 --- !u!114 &5672924851993827074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4362,6 +4462,7 @@ GameObject:
   - component: {fileID: 6700144541012689719}
   - component: {fileID: 3478565011105846373}
   - component: {fileID: 496646587528414880}
+  - component: {fileID: 1401756434723484702}
   - component: {fileID: 2778122333941945603}
   m_Layer: 5
   m_Name: MenuCanvas
@@ -4465,6 +4566,21 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &1401756434723484702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6423429852357539656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01f46cb4a9da0a34dac767e31a21d4b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Sephiroth.Runtime::UISFXPlayer
+  OpenSFX: {fileID: 8300000, guid: 58da25ec3c91bf440b7105163bb00cf0, type: 3}
+  CloseSFX: {fileID: 8300000, guid: 7f19fd57127e7ae42a475b32c73a8a11, type: 3}
+  ClickSFX: {fileID: 8300000, guid: bd7cd8483208d78419e92c98c498e142, type: 3}
 --- !u!114 &2778122333941945603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6989,6 +7105,7 @@ GameObject:
   - component: {fileID: 4206226336491696311}
   - component: {fileID: 2547755450899682071}
   - component: {fileID: 5137961367829093298}
+  - component: {fileID: 8746121262024007674}
   - component: {fileID: 3391492654351947271}
   m_Layer: 5
   m_Name: ActionCanvas
@@ -7092,6 +7209,21 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &8746121262024007674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9201730835942894620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01f46cb4a9da0a34dac767e31a21d4b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Sephiroth.Runtime::UISFXPlayer
+  OpenSFX: {fileID: 8300000, guid: 58da25ec3c91bf440b7105163bb00cf0, type: 3}
+  CloseSFX: {fileID: 8300000, guid: 7f19fd57127e7ae42a475b32c73a8a11, type: 3}
+  ClickSFX: {fileID: 8300000, guid: bd7cd8483208d78419e92c98c498e142, type: 3}
 --- !u!114 &3391492654351947271
 MonoBehaviour:
   m_ObjectHideFlags: 0
