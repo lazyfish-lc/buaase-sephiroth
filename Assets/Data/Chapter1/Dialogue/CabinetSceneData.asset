@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2716b9197589a9b4ebc9867440969c23, type: 3}
+  m_Name: CabinetSceneData
+  m_EditorClassIdentifier: Sephiroth.Runtime::NPCStaticData
+  objectName: 
+  ownerBigObject: {fileID: 0}
+  propertyBlueprints: []
+  labelBlueprints: []
+  interactionRange: 3
+  dialogueNodes:
+  - npcContent: "\u67DC\u5B50\u4E0A\u6709\u4E00\u4E9B\u98DF\u7269\uFF0C\u5728\u91CC\u9762\u5F85\u4E0A\u51E0\u5929\u8FD8\u662F\u8DB3\u591F\u7684"
+    hasOptions: 0
+    nextNodeIndex: -1
+    options: []
+    enterActions: []
+  requiredItems: []
+  startNodeIfHasRequiredItems: -1
+  animatorController: {fileID: 0}
