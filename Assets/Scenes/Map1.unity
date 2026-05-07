@@ -215,6 +215,10 @@ PrefabInstance:
       propertyPath: staticData
       value: 
       objectReference: {fileID: 11400000, guid: 37dca8ed8edcf4449a20d1423816105b, type: 2}
+    - target: {fileID: 1223396074769899780, guid: d8a1dc57de2a77747b785c7f3f85ca39, type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4030374957698711210, guid: d8a1dc57de2a77747b785c7f3f85ca39, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -34736,6 +34740,10 @@ PrefabInstance:
     - target: {fileID: 7010900511884479555, guid: 03bdb7225f7a67f469d2af80d5355666, type: 3}
       propertyPath: m_Name
       value: Monster3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7546711231410850849, guid: 03bdb7225f7a67f469d2af80d5355666, type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8388647516472322554, guid: 03bdb7225f7a67f469d2af80d5355666, type: 3}
       propertyPath: m_AnchorMax.x
@@ -93755,6 +93763,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7431463823126186457, guid: 1a44e6c56c2c3d642a6f7219322bc93b, type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7774192944375904043, guid: 1a44e6c56c2c3d642a6f7219322bc93b, type: 3}
       propertyPath: m_Name
       value: Monster2
@@ -99995,6 +100007,10 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: -0.92069054
       objectReference: {fileID: 0}
+    - target: {fileID: 1223396074769899780, guid: d8a1dc57de2a77747b785c7f3f85ca39, type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4030374957698711210, guid: d8a1dc57de2a77747b785c7f3f85ca39, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -100568,6 +100584,10 @@ PrefabInstance:
       propertyPath: staticData
       value: 
       objectReference: {fileID: 11400000, guid: bbdaafea2b0776f4f9df42810ab29220, type: 2}
+    - target: {fileID: 1223396074769899780, guid: d8a1dc57de2a77747b785c7f3f85ca39, type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4030374957698711210, guid: d8a1dc57de2a77747b785c7f3f85ca39, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -105507,6 +105527,10 @@ PrefabInstance:
       propertyPath: staticData
       value: 
       objectReference: {fileID: 11400000, guid: fed930185fbb32643af74d47f33661c1, type: 2}
+    - target: {fileID: 1223396074769899780, guid: d8a1dc57de2a77747b785c7f3f85ca39, type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4030374957698711210, guid: d8a1dc57de2a77747b785c7f3f85ca39, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -107900,6 +107924,10 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: -0.92069054
       objectReference: {fileID: 0}
+    - target: {fileID: 1223396074769899780, guid: d8a1dc57de2a77747b785c7f3f85ca39, type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4030374957698711210, guid: d8a1dc57de2a77747b785c7f3f85ca39, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -108393,6 +108421,10 @@ PrefabInstance:
     - target: {fileID: 7010900511884479555, guid: 03bdb7225f7a67f469d2af80d5355666, type: 3}
       propertyPath: m_Name
       value: Monster4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7546711231410850849, guid: 03bdb7225f7a67f469d2af80d5355666, type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8388647516472322554, guid: 03bdb7225f7a67f469d2af80d5355666, type: 3}
       propertyPath: m_AnchorMax.x

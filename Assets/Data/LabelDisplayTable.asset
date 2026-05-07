@@ -24,4 +24,4 @@ MonoBehaviour:
     description: "\u4E0A\u9501\u7684\u6807\u7B7E"
   - name: Glow
     icon: {fileID: -7035624447169631724, guid: 7036dcaf5893f8c46893752596b08261, type: 3}
-    description: "\u4E0A\u9501\u7684\u6807\u7B7E"
+    description: "\u53D1\u5149\u7684\u6807\u7B7E"
