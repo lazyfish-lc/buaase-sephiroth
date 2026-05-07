@@ -34,21 +34,21 @@ MonoBehaviour:
   labelBlueprints: []
   interactionRange: 3
   dialogueNodes:
-  - npcContent: Give me the key and I'll let you out
+  - npcContent: Give me the part
     hasOptions: 0
     nextNodeIndex: -1
     options: []
     enterActions: []
-  - npcContent: Now you can get out of here.
+  - npcContent: Here is the lens.
     hasOptions: 0
     nextNodeIndex: -1
     options: []
     enterActions:
-    - {fileID: 11400000, guid: cb732e94ef90b0443a34ba962422d77d, type: 2}
-    - {fileID: 11400000, guid: be21f74ced3005040a288e358cc639e1, type: 2}
-    - {fileID: 11400000, guid: 879c6aef452348f4687de970f2be32c7, type: 2}
+    - {fileID: 11400000, guid: 53646c93b840cec489ed8892501cd2cd, type: 2}
+    - {fileID: 11400000, guid: 066e57b519a422d4f939a0080c506502, type: 2}
   requiredItems:
-  - KeyPartA
-  - KeyPartB
-  - KeyPartC
+  - LensPartA
+  - LensPartB
+  - LensPartC
   startNodeIfHasRequiredItems: 1
+  animatorController: {fileID: 0}

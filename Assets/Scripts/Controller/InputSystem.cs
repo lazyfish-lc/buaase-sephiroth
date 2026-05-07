@@ -19,16 +19,74 @@ public class IOSubsystem : MonoBehaviour {
             dealMenu();
             dealBackpack();
             dealMovement();
+            dealSecondaryInteract();
             dealInteract();
             dealShowLabel();
             dealShowProperty();
             dealSwitchTime();
-            dealScroll();
+            // dealScroll();
+        }
+    }
+
+    // 处理鼠标右键（Secondary / 右键）交互：当玩家右键某对象且拥有与之匹配的物品名时，触发该对象的对话动作
+    void dealSecondaryInteract() {
+        if (Input.GetButtonDown(InputConfig.Interact)) {
+            SmallObject target = GetObjectUnderMouse();
+            if (target == null) {
+                Debug.Log("右键未命中可交互对象");
+                return;
+            }
+
+            var player = playerObject;
+            if (player == null) {
+                Debug.LogWarning("玩家对象未设置，无法处理右键交互");
+                return;
+            }
+
+            // 可被对话动作触发的对象实现了 IDialogueActionReceiver
+            if (target is IDialogueActionReceiver receiver) {
+                // 距离限制：与显示标签一致，要求玩家在附近（2f）
+                float dist = Vector3.Distance(target.transform.position, player.transform.position);
+                if (dist > 3f) {
+                    Debug.Log("玩家距离目标过远，无法通过右键触发");
+                    return;
+                }
+
+                if (player.playerState == null || player.playerState.itemBackpack == null) {
+                    Debug.Log("玩家背包不可用，无法进行钥匙匹配");
+                    return;
+                }
+
+                string receiverId = receiver.DialogueActionId;
+                bool hasMatch = false;
+                foreach (var it in player.playerState.itemBackpack) {
+                    if (it != null && string.Equals(it.itemName, receiverId, System.StringComparison.Ordinal)) {
+                        hasMatch = true; break;
+                    }
+                }
+
+                if (hasMatch) {
+                    Debug.Log($"检测到匹配钥匙 '{receiverId}'，触发对话动作");
+                    receiver.ReceiveDialogueAction();
+                } else {
+                    Debug.Log($"未在玩家背包中找到匹配钥匙: {receiverId}");
+                }
+            } else {
+                Debug.Log("右键对象不可被对话动作触发");
+            }
         }
     }
 
     void dealShowLabel() {
         // 按下 L 键：仅对鼠标下的可交互对象触发显示标签
+        if (playerObject == null) {
+            Debug.LogWarning("玩家对象未设置，无法处理显示标签输入");
+            return;
+        }
+        if (!playerObject.containsTruthLens()) {
+            Debug.Log("玩家没有真理棱镜，无法触发显示标签");
+            return;
+        }
         if (Input.GetButtonDown(InputConfig.Label)) {
             SmallObject target = GetObjectUnderMouse();
 
