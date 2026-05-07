@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 7707445231148042641}
   - component: {fileID: 7949514283205300823}
   - component: {fileID: 3100469520733757831}
-  - component: {fileID: 3596968405016254740}
   - component: {fileID: 914684802298624859}
+  - component: {fileID: 7770719882572543473}
   m_Layer: 11
   m_Name: SceneNPC
   m_TagString: Untagged
@@ -82,7 +82,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -2
   m_MaskInteraction: 0
   m_Sprite: {fileID: 763929398795411213, guid: c1148ef28d7513740a9f0f1ed4713b85, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -103,6 +103,7 @@ Rigidbody2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2727603204033389051}
   m_BodyType: 2
+  m_BodyType: 2
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -121,8 +122,26 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!58 &3596968405016254740
-CircleCollider2D:
+--- !u!114 &914684802298624859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2727603204033389051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f76fb00e63a6898439bd0ed8ca8e6520, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Sephiroth.Runtime::NPCObject
+  staticData: {fileID: 11400000, guid: 2f66504e5c903e34fb87efbdea88c941, type: 2}
+  dynamicState:
+    isDestroyed: 0
+    smallObjectLabels: []
+    isHurt: 0
+  view: {fileID: 0}
+--- !u!61 &7770719882572543473
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -156,22 +175,14 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.25
---- !u!114 &914684802298624859
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2727603204033389051}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f76fb00e63a6898439bd0ed8ca8e6520, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Sephiroth.Runtime::NPCObject
-  staticData: {fileID: 11400000, guid: 5b2b144195bc0674ca0c31a02ecb0ae0, type: 2}
-  dynamicState:
-    isDestroyed: 0
-    smallObjectLabels: []
-    isHurt: 0
-  view: {fileID: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.296875, y: 0.296875}
+    newSize: {x: 1, y: 2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 0.296875, y: 0.296875}
+  m_EdgeRadius: 0
