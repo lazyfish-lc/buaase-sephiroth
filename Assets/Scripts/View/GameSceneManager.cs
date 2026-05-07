@@ -8,9 +8,15 @@ public class GameSceneManager : MonoBehaviour {
 
     void Awake() { Instance = this; }
 
+    public void SetTimeVision(bool present) {
+        isPresent = present;
+        if (pastMapRoot != null) pastMapRoot.SetActive(!isPresent);
+        if (presentMapRoot != null) presentMapRoot.SetActive(isPresent);
+    }
+
     public void ToggleTimeVision() {
         isPresent = !isPresent;
-        pastMapRoot.SetActive(!isPresent);
-        presentMapRoot.SetActive(isPresent);
+        if (pastMapRoot != null) pastMapRoot.SetActive(!isPresent);
+        if (presentMapRoot != null) presentMapRoot.SetActive(isPresent);
     }
 }

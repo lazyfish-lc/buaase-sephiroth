@@ -95,16 +95,24 @@ public class MenuUI : MonoBehaviour
 
     public void SaveGame()
     {
-        //调用SaveManager的保存方法
+        if (SaveManager.Instance == null) {
+            Debug.LogWarning("SaveManager 未配置，无法保存游戏");
+            return;
+        }
+
+        SaveManager.Instance.SaveGame();
         Debug.Log("游戏已保存");
-        
     }
 
     public void LoadGame()
     {
-        //调用SaveManager的加载方法
+        if (SaveManager.Instance == null) {
+            Debug.LogWarning("SaveManager 未配置，无法加载存档");
+            return;
+        }
+
+        SaveManager.Instance.LoadGame();
         Debug.Log("游戏存档已加载");
-        
         
     }
     

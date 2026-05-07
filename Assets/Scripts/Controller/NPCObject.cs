@@ -37,6 +37,20 @@ public class NPCObject : SmallObject {
     public List<DialogueOption> GetCurrentOptions() => NPCData.dialogueNodes[NPCState.currentNodeIndex].options;
     public bool CurrentNodeHasOptions() => NPCData.dialogueNodes[NPCState.currentNodeIndex].hasOptions;
     public bool IsInConversation() => NPCState.isInConversation;
+    public int GetCurrentNodeIndex() => NPCState.currentNodeIndex;
+
+    public void ApplySaveState(bool isInConversation, int nodeIndex, PlayerSmallObject player) {
+        NPCState.isInConversation = isInConversation;
+
+        int maxIndex = 0;
+        if (NPCData != null && NPCData.dialogueNodes != null && NPCData.dialogueNodes.Count > 0) {
+            maxIndex = NPCData.dialogueNodes.Count - 1;
+        }
+        NPCState.currentNodeIndex = Mathf.Clamp(nodeIndex, 0, maxIndex);
+
+        NPCState.currentInteractingPlayer = isInConversation ? player : null;
+        ActiveNPC = isInConversation ? this : null;
+    }
 
     // --- 核心交互逻辑入口 ---
     public override void OnInteractAction(InputEventData data) {

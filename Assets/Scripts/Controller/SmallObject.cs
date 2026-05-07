@@ -18,7 +18,22 @@ public abstract class SmallObject : MonoBehaviour, ILabelOwner {
 
     public event Action<SmallObject> OnShowLabel;
     public event Action<SmallObject> OnShowProperty;
+
+    public string persistID; // 用于存档系统唯一标识该 SmallObject 实例
+
+#if UNITY_EDITOR
+    private void OnValidate() {
+        if (string.IsNullOrWhiteSpace(persistID)) {
+            persistID = System.Guid.NewGuid().ToString("N");
+            UnityEditor.EditorUtility.SetDirty(this);
+        }
+    }
+#endif
     protected virtual void Awake() {
+        if (string.IsNullOrWhiteSpace(persistID)) {
+            persistID = System.Guid.NewGuid().ToString("N");
+            Debug.LogWarning($"{name} 缺少 persistID，已在运行时生成：{persistID}");
+        }
         dynamicState = CreateDynamicState();
         if (dynamicState == null) {
             dynamicState = new SmallObjectDynamicState();
