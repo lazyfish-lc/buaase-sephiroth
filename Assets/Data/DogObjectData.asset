@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 921ce49f9132d5b45bfca9cebe5948e5, type: 3}
-  m_Name: PlayerObjectData
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerObjectStaticData
-  objectName: Player
+  m_Script: {fileID: 11500000, guid: 079da9934063b964ba5a8b422561fd73, type: 3}
+  m_Name: DogObjectData
+  m_EditorClassIdentifier: Assembly-CSharp::MonsterObjectStaticData
+  objectName: Dog
   ownerBigObject: {fileID: 0}
   propertyBlueprints:
   - name: Health
@@ -32,26 +32,13 @@ MonoBehaviour:
     minValue: 0
     maxValue: 20
   - name: moveSpeed
-    initialValue: 5
+    initialValue: 2
     minValue: 0
     maxValue: 50
-  - name: Luck
-    initialValue: 49
-    minValue: 0
-    maxValue: 99999
-  labelBlueprints: []
-  baseAttackCooldown: 0.5
-  labelBackpackBlueprints:
+  labelBlueprints:
   - HardLabel()
-  - FragileLabel()
-  - LockLabel()
-  - LockLabel()
-  - LockLabel()
-  - FragileLabel()
-  itemBackpackBlueprints:
-  - itemName: sword
-  - itemName: "\u8840\u74F6"
-  - itemName: "\u8840\u74F6"
-  - itemName: "\u84DD\u74F6"
-  - itemName: "\u8840\u74F6"
-  - itemName: "\u84DD\u74F6"
+  - DocileLabel()
+  baseAttackCooldown: 1
+  castLockTime: 2
+  dropItemBlueprints: []
+  animatorController: {fileID: 9100000, guid: 4b9b95d97070f38429667de82dcd28de, type: 2}
