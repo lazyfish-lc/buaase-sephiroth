@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 using System;
-
+[Serializable]
 public class PlayerSmallObject : SmallObject {
     public Rigidbody2D rb;
     public PlayerView playerView;

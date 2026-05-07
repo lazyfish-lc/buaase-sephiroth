@@ -6,6 +6,9 @@ public abstract class BigObject : MonoBehaviour, ILabelOwner {
     public BigObjectStaticData staticData;
     public BigObjectDynamicState dynamicState;
 
+    public SmallObject pastObject;
+    public SmallObject presentObject;
+
     // Label 事件（实现 ILabelOwner）
     public event Action<ILabelOwner> LabelOnAttacking;
     public event Action<ILabelOwner> LabelOnCrash;
@@ -25,8 +28,8 @@ public abstract class BigObject : MonoBehaviour, ILabelOwner {
 
     public virtual void Start() {
         dynamicState = new BigObjectDynamicState();
-        if(staticData.pastObject != null) staticData.pastObject.staticData.ownerBigObject = this;
-        if(staticData.presentObject != null) staticData.presentObject.staticData.ownerBigObject = this;
+        if(pastObject != null) pastObject.staticData.ownerBigObject = this;
+        if(presentObject != null) presentObject.staticData.ownerBigObject = this;
         GameObjectManager.RegisterBigObject(this);
 
         // 根据静态数据中的 labelBlueprints 初始化 labels（使用 LabelFactory）

@@ -65,13 +65,13 @@ public static class GameObjectManager {
             return false;
         }
 
-        if (IsSameSmallObjectName(bigObject.staticData.pastObject, smallObjectName)) {
-            smallObject = bigObject.staticData.pastObject;
+        if (IsSameSmallObjectName(bigObject.pastObject, smallObjectName)) {
+            smallObject = bigObject.pastObject;
             return true;
         }
 
-        if (IsSameSmallObjectName(bigObject.staticData.presentObject, smallObjectName)) {
-            smallObject = bigObject.staticData.presentObject;
+        if (IsSameSmallObjectName(bigObject.presentObject, smallObjectName)) {
+            smallObject = bigObject.presentObject;
             return true;
         }
 

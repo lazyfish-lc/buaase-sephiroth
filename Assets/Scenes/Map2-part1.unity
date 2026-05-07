@@ -52753,6 +52753,104 @@ Transform:
   - {fileID: 598968717}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &303537416
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 303537417}
+  - component: {fileID: 303537418}
+  m_Layer: 0
+  m_Name: NPC6BigObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &303537417
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 303537416}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1233710427}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &303537418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 303537416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7012b34974219fa4ca6256abca2cdaca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Sephiroth.Runtime::NPCBigObject
+  staticData: {fileID: 11400000, guid: d8527ebc7e53f1348949d89eb38c55a0, type: 2}
+  dynamicState:
+    bigObjectLabels: []
+  pastObject: {fileID: 1712554953}
+  presentObject: {fileID: 1712554953}
+--- !u!1 &368350005
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 368350006}
+  - component: {fileID: 368350007}
+  m_Layer: 0
+  m_Name: PlayerBigObejct
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &368350006
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 368350005}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1233710427}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &368350007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 368350005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 371a8ebf0cde24247b5a25d00376d3c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Sephiroth.Runtime::PlayerBigObject
+  staticData: {fileID: 11400000, guid: fbbbe4a2cc697664aa25afd658411efc, type: 2}
+  dynamicState:
+    bigObjectLabels: []
+  pastObject: {fileID: 2002992765}
+  presentObject: {fileID: 2002992765}
 --- !u!1 &378551035
 GameObject:
   m_ObjectHideFlags: 0
@@ -52940,6 +53038,55 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81c58f910b3e61b4f9d570a099ab5bb7, type: 3}
+--- !u!1 &477839405
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 477839406}
+  - component: {fileID: 477839407}
+  m_Layer: 0
+  m_Name: NPC3BigObejct
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &477839406
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 477839405}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1233710427}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &477839407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 477839405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7012b34974219fa4ca6256abca2cdaca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Sephiroth.Runtime::NPCBigObject
+  staticData: {fileID: 11400000, guid: 7d71fe2f5f0179c49865f592558711c6, type: 2}
+  dynamicState:
+    bigObjectLabels: []
+  pastObject: {fileID: 1461157690}
+  presentObject: {fileID: 1461157690}
 --- !u!1 &598968716
 GameObject:
   m_ObjectHideFlags: 0
@@ -53676,6 +53823,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7876843964057045340, guid: 2b730894d576c7c42b60d9d38d2594e1, type: 3}
   m_PrefabInstance: {fileID: 628114685}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &628114687 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2493025526342578279, guid: 2b730894d576c7c42b60d9d38d2594e1, type: 3}
+  m_PrefabInstance: {fileID: 628114685}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f76fb00e63a6898439bd0ed8ca8e6520, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Sephiroth.Runtime::NPCObject
 --- !u!1 &652503136
 GameObject:
   m_ObjectHideFlags: 0
@@ -305937,6 +306095,104 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &729042513
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 729042514}
+  - component: {fileID: 729042515}
+  m_Layer: 0
+  m_Name: NPC4BigObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &729042514
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 729042513}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1233710427}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &729042515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 729042513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7012b34974219fa4ca6256abca2cdaca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Sephiroth.Runtime::NPCBigObject
+  staticData: {fileID: 11400000, guid: b9df378770fd1464f92a62b979671781, type: 2}
+  dynamicState:
+    bigObjectLabels: []
+  pastObject: {fileID: 628114687}
+  presentObject: {fileID: 628114687}
+--- !u!1 &770546720
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 770546721}
+  - component: {fileID: 770546722}
+  m_Layer: 0
+  m_Name: NPC2BigObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &770546721
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 770546720}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1233710427}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &770546722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 770546720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7012b34974219fa4ca6256abca2cdaca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Sephiroth.Runtime::NPCBigObject
+  staticData: {fileID: 11400000, guid: 6f36a9b9b6a9c09478fb34002b740f60, type: 2}
+  dynamicState:
+    bigObjectLabels: []
+  pastObject: {fileID: 1157741594}
+  presentObject: {fileID: 1157741594}
 --- !u!1 &781506451
 GameObject:
   m_ObjectHideFlags: 0
@@ -315995,6 +316251,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de0fa9ed55e301548ae0a93f04f3f88f, type: 3}
+--- !u!114 &1157741594 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1807577217069808904, guid: de0fa9ed55e301548ae0a93f04f3f88f, type: 3}
+  m_PrefabInstance: {fileID: 1157741593}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f76fb00e63a6898439bd0ed8ca8e6520, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Sephiroth.Runtime::NPCObject
 --- !u!4 &1182292373 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8365747392109381028, guid: de0fa9ed55e301548ae0a93f04f3f88f, type: 3}
@@ -317477,6 +317744,42 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb67bf315107c5b4da85f849ce26827a, type: 3}
+--- !u!1 &1233710426
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1233710427}
+  m_Layer: 0
+  m_Name: BigObejctList
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1233710427
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1233710426}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -30.06595, y: -9.21765, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 368350006}
+  - {fileID: 477839406}
+  - {fileID: 303537417}
+  - {fileID: 770546721}
+  - {fileID: 729042514}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1246584874
 GameObject:
   m_ObjectHideFlags: 0
@@ -319306,6 +319609,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 213b5038c08510d42a44641e94fcf7a6, type: 3}
+--- !u!114 &1461157690 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5847594213405841770, guid: 213b5038c08510d42a44641e94fcf7a6, type: 3}
+  m_PrefabInstance: {fileID: 1461157689}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f76fb00e63a6898439bd0ed8ca8e6520, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Sephiroth.Runtime::NPCObject
 --- !u!1 &1506669428
 GameObject:
   m_ObjectHideFlags: 0
@@ -381879,6 +382193,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7876843964057045340, guid: 5cca7895e49895c4eb76d30bf596eb70, type: 3}
   m_PrefabInstance: {fileID: 1712554951}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1712554953 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2493025526342578279, guid: 5cca7895e49895c4eb76d30bf596eb70, type: 3}
+  m_PrefabInstance: {fileID: 1712554951}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f76fb00e63a6898439bd0ed8ca8e6520, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Sephiroth.Runtime::NPCObject
 --- !u!1 &1759212869
 GameObject:
   m_ObjectHideFlags: 0
@@ -387654,3 +387979,4 @@ SceneRoots:
   - {fileID: 1124776057}
   - {fileID: 956028667}
   - {fileID: 617375214}
+  - {fileID: 1233710427}
