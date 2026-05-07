@@ -22,3 +22,18 @@ MonoBehaviour:
   - name: "\u84DD\u74F6"
     icon: {fileID: 3605249943430155902, guid: 7745bae0a365b7d4d8375e0fb7a637ea, type: 3}
     description: "\u53EA\u662F\u767E\u4E8B\u53EF\u4E50"
+  - name: TruthLens
+    icon: {fileID: 8978743727367540467, guid: c1535a95ad37d3f469b7599e144684c2, type: 3}
+    description: "\u771F\u7406\u900F\u955C - \u6D1E\u6089\u4E16\u754C\u7684\u6784\u6210"
+  - name: LensPartA
+    icon: {fileID: -8565037548407736960, guid: c1535a95ad37d3f469b7599e144684c2, type: 3}
+    description: "\u4E00\u5757\u4E0D\u77E5\u540D\u7684\u73BB\u7483\u788E\u7247\uFF0C\u4F3C\u4E4E\u662F\u539F\u672C\u7684\u4E09\u5206\u4E4B\u4E00"
+  - name: LensPartB
+    icon: {fileID: 1925759326, guid: c1535a95ad37d3f469b7599e144684c2, type: 3}
+    description: "\u4E00\u5757\u4E0D\u77E5\u540D\u7684\u73BB\u7483\u788E\u7247\uFF0C\u4F3C\u4E4E\u662F\u539F\u672C\u7684\u4E09\u5206\u4E4B\u4E00"
+  - name: LensPartC
+    icon: {fileID: -1631308994, guid: c1535a95ad37d3f469b7599e144684c2, type: 3}
+    description: "\u4E00\u5757\u4E0D\u77E5\u540D\u7684\u73BB\u7483\u788E\u7247\uFF0C\u4F3C\u4E4E\u662F\u539F\u672C\u7684\u4E09\u5206\u4E4B\u4E00"
+  - name: KeyChapter1
+    icon: {fileID: 3736144612295991437, guid: 360371061fdbf8c439e71484f09b516f, type: 3}
+    description: "\u94A5\u5319\uFF0C\u4F3C\u4E4E\u80FD\u6253\u5F00\u67D0\u4E9B\u95E8"
