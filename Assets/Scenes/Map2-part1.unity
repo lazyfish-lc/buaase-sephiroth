@@ -52635,6 +52635,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 956028667}
     m_Modifications:
     - target: {fileID: 914684802298624859, guid: f8a6accd49debea4b99ba76f115a83e3, type: 3}
+      propertyPath: persistID
+      value: 347ce91176da456097274701a14c6b7a2
+      objectReference: {fileID: 0}
+    - target: {fileID: 914684802298624859, guid: f8a6accd49debea4b99ba76f115a83e3, type: 3}
       propertyPath: staticData
       value: 
       objectReference: {fileID: 11400000, guid: 572dcaab1170f644b8359ab1877fa2bf, type: 2}
@@ -306241,6 +306245,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 956028667}
     m_Modifications:
     - target: {fileID: 914684802298624859, guid: f8a6accd49debea4b99ba76f115a83e3, type: 3}
+      propertyPath: persistID
+      value: 347ce91176da456097274701a14c6b7a3
+      objectReference: {fileID: 0}
+    - target: {fileID: 914684802298624859, guid: f8a6accd49debea4b99ba76f115a83e3, type: 3}
       propertyPath: staticData
       value: 
       objectReference: {fileID: 11400000, guid: 10b7a888cccb3ba408163215ccf07ede, type: 2}
@@ -380772,12 +380780,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 956028667}
     m_Modifications:
     - target: {fileID: 914684802298624859, guid: f8a6accd49debea4b99ba76f115a83e3, type: 3}
+      propertyPath: persistID
+      value: 347ce91176da456097274701a14c6b7a1
+      objectReference: {fileID: 0}
+    - target: {fileID: 914684802298624859, guid: f8a6accd49debea4b99ba76f115a83e3, type: 3}
       propertyPath: staticData
       value: 
       objectReference: {fileID: 11400000, guid: a49583b59d1a8554991e105fdd3d6a38, type: 2}
     - target: {fileID: 2727603204033389051, guid: f8a6accd49debea4b99ba76f115a83e3, type: 3}
       propertyPath: m_Name
       value: OldBuilding2Scene
+      objectReference: {fileID: 0}
+    - target: {fileID: 2727603204033389051, guid: f8a6accd49debea4b99ba76f115a83e3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3596968405016254740, guid: f8a6accd49debea4b99ba76f115a83e3, type: 3}
       propertyPath: m_Radius

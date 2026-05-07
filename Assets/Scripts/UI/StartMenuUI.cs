@@ -14,7 +14,12 @@ public class StartMenuUI : MonoBehaviour
     {
         // 继续游戏逻辑（例如加载存档）
         Debug.Log("继续游戏被调用");
-        //SceneManager.LoadScene("LoadScene");
+        if (SaveManager.Instance == null) {
+            Debug.LogWarning("SaveManager 未配置，无法加载存档");
+            return;
+        }
+
+        SaveManager.Instance.LoadGame();
     }
     public void GameSettings()
     {
