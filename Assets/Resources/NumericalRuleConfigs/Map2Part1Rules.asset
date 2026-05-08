@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fb7ad9188259f449849bf73fa3022ff, type: 3}
   m_Name: Map2Part1Rules
   m_EditorClassIdentifier: Sephiroth.Runtime::SceneNumericalRuleConfig
-  sceneName: 
+  sceneName: Map2-part1
   ruleStrings: []

@@ -37,3 +37,6 @@ MonoBehaviour:
   - name: KeyChapter1
     icon: {fileID: 3736144612295991437, guid: 360371061fdbf8c439e71484f09b516f, type: 3}
     description: "\u94A5\u5319\uFF0C\u4F3C\u4E4E\u80FD\u6253\u5F00\u67D0\u4E9B\u95E8"
+  - name: LuckCoin
+    icon: {fileID: 1029129698335283115, guid: 9896c5803c9ba774a9acb3a0d78f3780, type: 3}
+    description: "\u94A5\u5319\uFF0C\u4F3C\u4E4E\u80FD\u6253\u5F00\u67D0\u4E9B\u95E8"
