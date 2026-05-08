@@ -128,7 +128,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!95 &8945621481581062704
 Animator:
@@ -169,6 +169,8 @@ MonoBehaviour:
     isDestroyed: 0
     smallObjectLabels: []
     isHurt: 0
+  ownerBigObject: {fileID: 0}
+  persistID: c7bb58f7411842ca8ce6e71f2a44793c
   SFXPlayer: {fileID: 9184811450230211310}
   rb: {fileID: 1377186722902957110}
   playerView: {fileID: 7971711699152502211}

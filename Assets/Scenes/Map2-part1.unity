@@ -6125,26 +6125,6 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
-  - first: {x: -36, y: 18, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 51
-      m_TileSpriteIndex: 51
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 3
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: -35, y: 18, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 50
-      m_TileSpriteIndex: 49
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 3
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
   - first: {x: -24, y: 18, z: 0}
     second:
       serializedVersion: 2
@@ -8407,9 +8387,9 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: 77ad0f7fb1842dc43a38388855d46c85, type: 2}
   - m_RefCount: 10
     m_Data: {fileID: 11400000, guid: af40cf4ff1b1d7a46a6871b68a3d6d63, type: 2}
-  - m_RefCount: 11
+  - m_RefCount: 10
     m_Data: {fileID: 11400000, guid: ae932f55d0b9ab144869d8f97f94b230, type: 2}
-  - m_RefCount: 11
+  - m_RefCount: 10
     m_Data: {fileID: 11400000, guid: 111ac9447ad31074a846c6b90bd8d5b1, type: 2}
   - m_RefCount: 2
     m_Data: {fileID: 11400000, guid: 834e418da34b5cd4caea0e2f24631ad0, type: 2}
@@ -8626,11 +8606,11 @@ Tilemap:
     m_Data: {fileID: 1042249990, guid: 6ad813e58b48e854ba9935b8ec621a0a, type: 3}
   - m_RefCount: 10
     m_Data: {fileID: 1333999413, guid: 6ad813e58b48e854ba9935b8ec621a0a, type: 3}
-  - m_RefCount: 11
+  - m_RefCount: 10
     m_Data: {fileID: 550249916, guid: 6ad813e58b48e854ba9935b8ec621a0a, type: 3}
   - m_RefCount: 10
     m_Data: {fileID: -534449574, guid: 6ad813e58b48e854ba9935b8ec621a0a, type: 3}
-  - m_RefCount: 11
+  - m_RefCount: 10
     m_Data: {fileID: 122689306, guid: 6ad813e58b48e854ba9935b8ec621a0a, type: 3}
   - m_RefCount: 2
     m_Data: {fileID: 461016685, guid: 6ad813e58b48e854ba9935b8ec621a0a, type: 3}
@@ -8749,7 +8729,7 @@ Tilemap:
   - m_RefCount: 6
     m_Data: {fileID: -1930381944, guid: 6ad813e58b48e854ba9935b8ec621a0a, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 515
+  - m_RefCount: 513
     m_Data:
       e00: 1
       e01: 0
@@ -8774,7 +8754,7 @@ Tilemap:
     m_Data: {r: NaN, g: NaN, b: NaN, a: NaN}
   - m_RefCount: 0
     m_Data: {r: 5e-44, g: 5e-44, b: 5e-44, a: 5e-44}
-  - m_RefCount: 515
+  - m_RefCount: 513
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 6
@@ -316904,7 +316884,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f453f694addf4275988fac205bc91968, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineConfiner2D
-  BoundingShape2D: {fileID: 0}
+  BoundingShape2D: {fileID: 617375215}
   Damping: 0.5
   SlowingDistance: 5
   OversizeWindow:
