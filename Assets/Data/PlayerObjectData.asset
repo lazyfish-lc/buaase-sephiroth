@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: PlayerObjectData
   m_EditorClassIdentifier: Assembly-CSharp::PlayerObjectStaticData
   objectName: Player
-  ownerBigObject: {fileID: 0}
   propertyBlueprints:
   - name: Health
     initialValue: 1000
@@ -36,7 +35,7 @@ MonoBehaviour:
     minValue: 0
     maxValue: 50
   - name: Luck
-    initialValue: 0
+    initialValue: 100
     minValue: 0
     maxValue: 99999
   labelBlueprints: []
