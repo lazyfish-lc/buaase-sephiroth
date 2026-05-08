@@ -15,7 +15,7 @@ public class GlowLabel : ObjectLabel {
 
     // 使用中文名称以便在编辑器中更直观
     public override string labelName {
-        get { return "glow"; }
+        get { return "Glow"; }
     }
 
     public override void OnAttach(ILabelOwner owner) {
