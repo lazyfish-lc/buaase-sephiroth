@@ -39,3 +39,63 @@ public class FragileLabel : ObjectLabel, ILabelAffectsProperty {
         return 0f;
     }
 }
+
+[Serializable]
+public class DocileLabel : ObjectLabel, ILabelOnTick {
+    public override string labelName => "Docile";
+
+    public void ILabelOnTick() {
+        var dog = owner as DogObject;
+        if (dog == null) return;
+
+        var player = dog.CurrentPlayer;
+        if (player == null) return;
+
+        float luck = GetPlayerLuck(player);
+        if (luck < dog.LuckThreshold) {
+            dog.ReplaceLabel(this, new BerserkLabel());
+        }
+    }
+
+    private float GetPlayerLuck(PlayerSmallObject player) {
+        if (player == null || player.playerState == null) {
+            return 0f;
+        }
+
+        if (player.playerState.propertyMap != null && player.playerState.propertyMap.TryGetValue("Luck", out var luckProp)) {
+            return luckProp.value;
+        }
+
+        return 0f;
+    }
+}
+
+[Serializable]
+public class BerserkLabel : ObjectLabel, ILabelOnTick {
+    public override string labelName => "Berserk";
+
+    public void ILabelOnTick() {
+        var dog = owner as DogObject;
+        if (dog == null) return;
+
+        var player = dog.CurrentPlayer;
+        if (player == null) return;
+
+        float luck = GetPlayerLuck(player);
+        if (luck > dog.LuckThreshold) {
+            dog.ReplaceLabel(this, new DocileLabel());
+        }
+    }
+
+    private float GetPlayerLuck(PlayerSmallObject player) {
+        if (player == null || player.playerState == null) {
+            return 0f;
+        }
+
+        if (player.playerState.propertyMap != null && player.playerState.propertyMap.TryGetValue("Luck", out var luckProp)) {
+            return luckProp.value;
+        }
+
+        return 0f;
+    }
+}
