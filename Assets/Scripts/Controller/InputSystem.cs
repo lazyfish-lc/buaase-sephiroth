@@ -32,11 +32,13 @@ public class IOSubsystem : MonoBehaviour {
         if (Input.GetButtonDown(InputConfig.Label)) {
             SmallObject target = GetObjectUnderMouse();
 
-            if (target != null) {
-                Debug.Log($"鼠标下对象 {target.name} 激活显示标签");
-                target.OnActivateShowLabel();
-            } else {
-                Debug.Log("鼠标下未找到可触发显示标签的对象");
+            if (playerObject != null && playerObject.HasItemInBackpack("TruthLens")) {
+                if (target != null) {
+                    Debug.Log($"鼠标下对象 {target.name} 激活显示标签");
+                    target.OnActivateShowLabel();
+                } else {
+                    Debug.Log("鼠标下未找到可触发显示标签的对象");
+                }
             }
         }
     }
