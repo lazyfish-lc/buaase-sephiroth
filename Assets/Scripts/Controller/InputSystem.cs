@@ -13,8 +13,8 @@ public class IOSubsystem : MonoBehaviour {
         if (UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject() && ActionUI.Instance != null && ActionUI.isOpen) {
             dealActionClick();
         }
-        // 只在游戏中处理设置、菜单、背包和动作面板的输入，使用自带的场景管理器来判断当前场景，避免与自定义的GameSceneManager耦合过紧
-        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "StartMenuScene") {
+        // 只在游戏中处理设置、菜单、背包和动作面板的输入
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "StartMenuScene" && LoadingUI.Instance != null && !LoadingUI.isLoading) {
             dealSettings();
             dealMenu();
             dealBackpack();

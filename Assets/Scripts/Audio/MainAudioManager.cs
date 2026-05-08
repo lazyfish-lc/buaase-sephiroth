@@ -74,4 +74,9 @@ public class AudioManager : MonoBehaviour
         if (clip == null) return;
         SFXSource.PlayOneShot(clip);
     }
+    public void Stop()
+    {
+        BGMSource.Stop();
+        SFXSource.Stop();
+    }
 }

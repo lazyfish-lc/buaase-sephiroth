@@ -9,7 +9,7 @@ public class StartMenuUI : FatherUI
     {
         // 加载游戏场景
         PlayClickSFX();
-        SceneManager.LoadScene("Map1");
+        FindFirstObjectByType<LoadingUI>().LoadScene("Map1");
     }
     public void GameLoad()
     {
@@ -28,7 +28,7 @@ public class StartMenuUI : FatherUI
         // 打开主设置界面
         Debug.Log("主设置被调用");
         PlayClickSFX();
-        //SceneManager.LoadScene("SettingsScene");
+        //FindFirstObjectByType<LoadingUI>().LoadScene("SettingsScene");
 
     }
     public void GameExit()

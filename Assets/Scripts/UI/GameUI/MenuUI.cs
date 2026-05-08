@@ -91,7 +91,7 @@ public class MenuUI : FatherUI
         }
         
         Close();
-        SceneManager.LoadScene("StartMenuScene");
+        FindFirstObjectByType<LoadingUI>().LoadScene("StartMenuScene");
     }
     public void Quit()
     {
@@ -101,7 +101,7 @@ public class MenuUI : FatherUI
     public void RestartGame()
     {
         //重启当前场景
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        FindFirstObjectByType<LoadingUI>().LoadScene(SceneManager.GetActiveScene().name);
         PlayClickSFX();
     }
     public void SaveGame()
