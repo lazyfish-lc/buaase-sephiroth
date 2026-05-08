@@ -30,9 +30,7 @@ MonoBehaviour:
     initialValue: 1
     minValue: 0
     maxValue: 20
-  labelBlueprints:
-  - HardLabel()
-  - HardLabel()
+  labelBlueprints: []
   interactionRange: 3
   dialogueNodes:
   - npcContent: "\u8BF7\u51FA\u793A\u901A\u884C\u8BC1\uFF01"
