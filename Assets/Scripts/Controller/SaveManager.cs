@@ -65,7 +65,7 @@ public class SaveManager : MonoBehaviour {
             pendingLoad = package;
             isLoadingSave = true;
             SceneManager.sceneLoaded += OnSceneLoaded;
-            SceneManager.LoadScene(package.sceneName);
+            FindFirstObjectByType<LoadingUI>().LoadScene(package.sceneName);
             return;
         }
 
