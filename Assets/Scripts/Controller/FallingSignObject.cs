@@ -15,6 +15,7 @@ public class FallingSignObject : SmallObject {
     [SerializeField] private float impactKnockback = 35f;
     [SerializeField] private bool dropOnlyOnce = true;
     [SerializeField] private float detectionCheckInterval = 0.05f;
+    [SerializeField] private float luckThreshold = 20f;
 
     private bool isArmed;
     private bool isDropping;
@@ -137,7 +138,10 @@ public class FallingSignObject : SmallObject {
         if (!isArmed || isDropping || (hasDropped && dropOnlyOnce)) return;
 
         if (triggerType == "进入") {
-            Debug.Log($"{gameObject.name} 检测到玩家进入触发区，开始掉落");
+            float luck = GetPlayerLuck(player);
+            if (luck > luckThreshold) return;
+
+            Debug.Log($"{gameObject.name} 检测到玩家进入触发区（幸运值:{luck}≤{luckThreshold}），开始掉落");
             StartCoroutine(DropAfterDelay());
         }
     }
