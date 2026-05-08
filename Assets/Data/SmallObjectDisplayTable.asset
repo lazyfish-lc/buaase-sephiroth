@@ -31,3 +31,6 @@ MonoBehaviour:
   - name: Monster5
     icon: {fileID: 0}
     description: "\u7194\u5CA9\u53F2\u83B1\u59C6"
+  - name: Player
+    icon: {fileID: 0}
+    description: "\u73A9\u5BB6"
