@@ -457,6 +457,7 @@ MonoBehaviour:
     m_Bits: 512
   hitPoint: {fileID: 1599938930160489508}
   rb: {fileID: 2318891472865322266}
+  navMeshAgent: {fileID: 0}
   luckThreshold: 50
   chaseSpeed: 3.5
   berserkSpeedMultiplier: 1.5

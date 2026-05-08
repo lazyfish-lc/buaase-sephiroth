@@ -126,7 +126,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8956657257984082875}
-  m_BodyType: 0
+  m_BodyType: 2
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -199,6 +199,8 @@ MonoBehaviour:
     isDestroyed: 0
     smallObjectLabels: []
     isHurt: 0
+  ownerBigObject: {fileID: 0}
+  persistID: e360a5a8ab884f74a0e38273fea8a489
   view: {fileID: 6302767683279945129}
 --- !u!114 &6302767683279945129
 MonoBehaviour:

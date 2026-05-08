@@ -17,21 +17,34 @@ MonoBehaviour:
   labelBlueprints: []
   interactionRange: 3
   dialogueNodes:
-  - npcContent: "111\u8001\u767B\u7206\u70B9\u91D1\u5E01"
+  - npcContent: "\u6CA1\u94B1\u53EF\u522B\u60F3\u5728\u6211\u8FD9\u635E\u597D\u5904\uFF01"
+    hasOptions: 0
+    nextNodeIndex: 3
+    options: []
+    enterActions: []
+  - npcContent: "\u6CA1\u94B1\u4F60\u6765\u5E72\u561B"
     hasOptions: 0
     nextNodeIndex: -1
     options: []
     enterActions: []
-  - npcContent: "222\u7ED9\u4F60\u715E\u7B14\u901A\u884C\u8BC1"
+  - npcContent: Man!What can I say!
     hasOptions: 0
     nextNodeIndex: -1
     options: []
-    enterActions:
-    - {fileID: 11400000, guid: 30088523ed3d6b445bd785395f97019b, type: 2}
-    - {fileID: 11400000, guid: 214513d2496179442b69e1db391350d8, type: 2}
-  requiredItems:
-  - GoodLuckCoin
-  - GoodLuckCoin
-  - GoodLuckCoin
+    enterActions: []
+  - npcContent: 
+    hasOptions: 0
+    nextNodeIndex: -1
+    options:
+    - text: "\u628A\u94B1\u7ED9\u4ED6"
+      targetNodeIndex: 2
+      rewardProperty: 
+      rewardAmount: 0
+    - text: "\u4E0D\u7ED9\u4ED6\u94B1"
+      targetNodeIndex: 1
+      rewardProperty: 
+      rewardAmount: 0
+    enterActions: []
+  requiredItems: []
   startNodeIfHasRequiredItems: 1
   animatorController: {fileID: 22100000, guid: 9c723a452275876458d7877a115c6097, type: 2}

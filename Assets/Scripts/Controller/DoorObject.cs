@@ -12,6 +12,7 @@ public class DoorSmallObject : SmallObject, IDialogueActionReceiver {
     public Tilemap lockedTilemapTop;
     // 展示门处于开启时的瓦片头顶图层
     public Tilemap openTilemapTop;
+    [SerializeField] private string requiredItemName;
     public DoorStaticData doorStaticData => staticData as DoorStaticData;
     public DoorObjectDynamicState doorState => dynamicState as DoorObjectDynamicState;
     
@@ -34,6 +35,11 @@ public class DoorSmallObject : SmallObject, IDialogueActionReceiver {
             return;
         }
 
+        if (!HasRequiredItem()) {
+            Debug.Log($"玩家背包缺少 {requiredItemName}，无法打开门");
+            return;
+        }
+
         OpenDoor();
         NotifyStateChange();
     }
@@ -45,7 +51,19 @@ public class DoorSmallObject : SmallObject, IDialogueActionReceiver {
             : gameObject.name;
 
     public void ReceiveDialogueAction() {
+        if (!HasRequiredItem()) {
+            Debug.Log($"玩家背包缺少 {requiredItemName}，无法打开门");
+            return;
+        }
+
         OpenDoor();
+    }
+
+    private bool HasRequiredItem() {
+        if (string.IsNullOrWhiteSpace(requiredItemName)) return true;
+        var player = IOSubsystem.Instance?.playerObject;
+        if (player == null) return false;
+        return player.HasItemInBackpack(requiredItemName);
     }
 
     private global::LockLabel FindLockLabel() {

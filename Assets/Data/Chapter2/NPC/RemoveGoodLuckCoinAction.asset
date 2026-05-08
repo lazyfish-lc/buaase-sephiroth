@@ -17,6 +17,6 @@ MonoBehaviour:
   itemName: 
   amount: 1
   itemsToRemove:
-  - GoodLuckCoin
-  - GoodLuckCoin
-  - GoodLuckCoin
+  - LuckCoin
+  - LuckCoin
+  - LuckCoin
