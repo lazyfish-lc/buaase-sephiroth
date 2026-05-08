@@ -51,6 +51,9 @@ public class PlayerSmallObject : SmallObject {
      public override void Start() {
         base.Start();
         if (rb == null) rb = GetComponent<Rigidbody2D>();
+        if (SaveManager.Instance != null && SaveManager.Instance.IsLoadingSave) {
+            return;
+        }
         // 玩家初始位置
         string exitName = PlayerPrefs.GetString("LastExitName", "Exit_Default");
         GameObject exitPoint = GameObject.Find(exitName);

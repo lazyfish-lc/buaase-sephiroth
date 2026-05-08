@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -11,6 +12,10 @@ public class SaveManager : MonoBehaviour {
     [SerializeField] private string saveFileName = "save.json";
 
     private GameSavePackage pendingLoad;
+    private bool isLoadingSave;
+    private Coroutine loadingFlagRoutine;
+
+    public bool IsLoadingSave => isLoadingSave;
 
     private void Awake() {
         if (Instance != null) {
@@ -58,22 +63,40 @@ public class SaveManager : MonoBehaviour {
         string currentScene = SceneManager.GetActiveScene().name;
         if (!string.Equals(currentScene, package.sceneName, StringComparison.Ordinal)) {
             pendingLoad = package;
+            isLoadingSave = true;
             SceneManager.sceneLoaded += OnSceneLoaded;
             SceneManager.LoadScene(package.sceneName);
             return;
         }
 
+        isLoadingSave = true;
         ApplySavePackage(package);
+        ScheduleClearLoadingFlag();
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
         SceneManager.sceneLoaded -= OnSceneLoaded;
         if (pendingLoad == null) {
+            isLoadingSave = false;
             return;
         }
 
         ApplySavePackage(pendingLoad);
         pendingLoad = null;
+        ScheduleClearLoadingFlag();
+    }
+
+    private void ScheduleClearLoadingFlag() {
+        if (loadingFlagRoutine != null) {
+            StopCoroutine(loadingFlagRoutine);
+        }
+        loadingFlagRoutine = StartCoroutine(ClearLoadingFlagAfterFrame());
+    }
+
+    private IEnumerator ClearLoadingFlagAfterFrame() {
+        yield return null;
+        isLoadingSave = false;
+        loadingFlagRoutine = null;
     }
 
     private string GetSavePath(string fileName) {
