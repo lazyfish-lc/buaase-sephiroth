@@ -61,6 +61,7 @@ public class LabelUI : FatherUI
     public void Open()
     {
         PlayOpenSFX();
+        cleanDisplay();
         isOpen = true;
         LabelCanvas.alpha = 1;
         LabelCanvas.interactable = true;
