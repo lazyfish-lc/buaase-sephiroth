@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using NUnit.Framework;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -11,8 +12,15 @@ public class NumericalRuleTests {
     private readonly List<Object> createdAssets = new List<Object>();
     private readonly List<string> registeredBigObjectNames = new List<string>();
 
+    [SetUp]
+    public void SetUp() {
+        ResetRuleManager();
+    }
+
     [TearDown]
     public void TearDown() {
+        ResetRuleManager();
+
         foreach (string bigObjectName in registeredBigObjectNames) {
             GameObjectManager.UnregisterBigObject(bigObjectName);
         }
@@ -31,135 +39,199 @@ public class NumericalRuleTests {
     }
 
     [Test]
-    public void SmallObjectPropertySetValue_WhenValueIsValid_UpdatesValueAndNotifiesRules() {
+    public void SmallObjectPropertySetValue_WhenNoRuleExists_UpdatesValueWithinRange() {
         SmallObjectProperty property = new SmallObjectProperty("energy", 5f, 0f, 10f);
-        RecordingRule rule = new RecordingRule();
-        Assert.That(property.AddNumericalRule(rule), Is.True);
+
+        bool result = property.SetValue(7f);
+
+        Assert.That(result, Is.True);
+        Assert.That(property.value, Is.EqualTo(7f).Within(Tolerance));
+    }
+
+    [Test]
+    public void SmallObjectPropertySetValue_WhenValueIsOutOfRange_RejectsModification() {
+        SmallObjectProperty property = new SmallObjectProperty("energy", 5f, 0f, 10f);
+
+        bool result = property.SetValue(11f);
+
+        Assert.That(result, Is.False);
+        Assert.That(property.value, Is.EqualTo(5f).Within(Tolerance));
+    }
+
+    [Test]
+    public void NumericalModificationRequest_AddModification_WhenPropertyRepeats_RejectsDuplicateProperty() {
+        SmallObjectProperty property = new SmallObjectProperty("energy", 5f, 0f, 10f);
+        NumericalModificationRequest request = new NumericalModificationRequest();
+
+        Assert.That(request.AddModification(property, 6f), Is.True);
+        Assert.That(request.AddModification(property, 7f), Is.False);
+        Assert.That(request.Count, Is.EqualTo(1));
+    }
+
+    [Test]
+    public void NumericalRuleManagerTryApplyModificationRequest_WhenSingleRegisteredRuleAccepts_ModifiesProperty() {
+        SmallObjectProperty property = new SmallObjectProperty("energy", 5f, 0f, 10f);
+        RecordingRule rule = new RecordingRule(new[] { property });
+
+        NumericalRuleManager.RegisterRule(rule);
 
         bool result = property.SetValue(7f);
 
         Assert.That(result, Is.True);
         Assert.That(property.value, Is.EqualTo(7f).Within(Tolerance));
         Assert.That(rule.CheckValidCallCount, Is.EqualTo(1));
-        Assert.That(rule.NotifyCallCount, Is.EqualTo(1));
-        Assert.That(rule.LastCheckOldValue, Is.EqualTo(5f).Within(Tolerance));
-        Assert.That(rule.LastCheckNewValue, Is.EqualTo(7f).Within(Tolerance));
-        Assert.That(rule.LastNotifyOldValue, Is.EqualTo(5f).Within(Tolerance));
-        Assert.That(rule.LastNotifyNewValue, Is.EqualTo(7f).Within(Tolerance));
+        Assert.That(rule.ApplyCallCount, Is.EqualTo(1));
+        Assert.That(rule.LastRequestedValue(property), Is.EqualTo(7f).Within(Tolerance));
     }
 
     [Test]
-    public void SmallObjectPropertySetValue_WhenValueIsOutOfRange_RejectsBeforeCheckingRules() {
+    public void NumericalRuleManagerTryApplyModificationRequest_WhenRuleRejects_LeavesValueUnchanged() {
         SmallObjectProperty property = new SmallObjectProperty("energy", 5f, 0f, 10f);
-        RecordingRule rule = new RecordingRule();
-        Assert.That(property.AddNumericalRule(rule), Is.True);
+        RecordingRule rule = new RecordingRule(new[] { property }) {
+            IsValid = false
+        };
 
-        bool result = property.SetValue(11f);
-
-        Assert.That(result, Is.False);
-        Assert.That(property.value, Is.EqualTo(5f).Within(Tolerance));
-        Assert.That(rule.CheckValidCallCount, Is.EqualTo(0));
-        Assert.That(rule.NotifyCallCount, Is.EqualTo(0));
-    }
-
-    [Test]
-    public void SmallObjectPropertySetValue_WhenRuleRejects_LeavesValueAndDoesNotNotify() {
-        SmallObjectProperty property = new SmallObjectProperty("energy", 5f, 0f, 10f);
-        RecordingRule rule = new RecordingRule { IsValid = false };
-        Assert.That(property.AddNumericalRule(rule), Is.True);
+        NumericalRuleManager.RegisterRule(rule);
 
         bool result = property.SetValue(7f);
 
         Assert.That(result, Is.False);
         Assert.That(property.value, Is.EqualTo(5f).Within(Tolerance));
         Assert.That(rule.CheckValidCallCount, Is.EqualTo(1));
-        Assert.That(rule.NotifyCallCount, Is.EqualTo(0));
+        Assert.That(rule.ApplyCallCount, Is.EqualTo(0));
     }
 
     [Test]
-    public void MaintainConstantRuleNotify_DistributesInputDeltaAcrossOutputsByWeight() {
+    public void NumericalRuleManagerRegisterRule_WhenScopesOverlap_RejectsSecondRule() {
+        SmallObjectProperty property = new SmallObjectProperty("energy", 5f, 0f, 10f);
+        RecordingRule firstRule = new RecordingRule(new[] { property });
+        RecordingRule secondRule = new RecordingRule(new[] { property });
+
+        NumericalRuleManager.RegisterRule(firstRule);
+        NumericalRuleManager.RegisterRule(secondRule);
+
+        Assert.That(GetRegisteredRules(), Has.Count.EqualTo(1));
+
+        bool result = property.SetValue(7f);
+
+        Assert.That(result, Is.True);
+        Assert.That(firstRule.ApplyCallCount, Is.EqualTo(1));
+        Assert.That(secondRule.ApplyCallCount, Is.EqualTo(0));
+    }
+
+    [Test]
+    public void NumericalMaintainConstantRule_CheckValidAndApply_WhenWeightedDeltaNeedsCompensation_DistributesChange() {
         SmallObjectProperty input = new SmallObjectProperty("input", 10f, 0f, 100f);
         SmallObjectProperty outputA = new SmallObjectProperty("outputA", 20f, 0f, 100f);
         SmallObjectProperty outputB = new SmallObjectProperty("outputB", 30f, 0f, 100f);
-        RecordingRule outputRule = new RecordingRule();
-        Assert.That(outputA.AddNumericalRule(outputRule), Is.True);
 
-        NumericalMaintainConstantRule rule = new NumericalMaintainConstantRule {
-            inputProperty = input,
-            inputWeight = 2f,
-            outputProperties = new List<SmallObjectProperty> { outputA, outputB },
-            outputWeights = new List<float> { 1f, 3f }
-        };
+        NumericalMaintainConstantRule rule = CreateMaintainConstantRule(
+            new[] { input, outputA, outputB },
+            new[] { 2f, 1f, 3f }
+        );
 
-        rule.Notify(10f, 14f);
+        NumericalRuleManager.RegisterRule(rule);
 
+        bool result = input.SetValue(14f);
+
+        Assert.That(result, Is.True);
+        Assert.That(input.value, Is.EqualTo(14f).Within(Tolerance));
         Assert.That(outputA.value, Is.EqualTo(18f).Within(Tolerance));
-        Assert.That(outputB.value, Is.EqualTo(24f).Within(Tolerance));
-        Assert.That(outputRule.NotifyCallCount, Is.EqualTo(0));
+        Assert.That(outputB.value, Is.EqualTo(28f).Within(Tolerance));
     }
 
     [Test]
-    public void MaintainConstantRuleNotify_WhenOutputWouldExceedBounds_DoesNotModifyOutputs() {
-        SmallObjectProperty outputA = new SmallObjectProperty("outputA", 2f, 0f, 10f);
-        SmallObjectProperty outputB = new SmallObjectProperty("outputB", 8f, 0f, 10f);
+    public void NumericalMaintainConstantRule_WhenDirectWeightedDeltaIsZero_OnlyAppliesRequestedValues() {
+        SmallObjectProperty inputA = new SmallObjectProperty("inputA", 10f, 0f, 100f);
+        SmallObjectProperty inputB = new SmallObjectProperty("inputB", 20f, 0f, 100f);
+        SmallObjectProperty output = new SmallObjectProperty("output", 30f, 0f, 100f);
 
-        NumericalMaintainConstantRule rule = new NumericalMaintainConstantRule {
-            inputWeight = 1f,
-            outputProperties = new List<SmallObjectProperty> { outputA, outputB },
-            outputWeights = new List<float> { 1f, 1f }
-        };
+        NumericalMaintainConstantRule rule = CreateMaintainConstantRule(
+            new[] { inputA, inputB, output },
+            new[] { 2f, 1f, 3f }
+        );
 
-        rule.Notify(0f, 20f);
+        NumericalRuleManager.RegisterRule(rule);
 
-        Assert.That(outputA.value, Is.EqualTo(2f).Within(Tolerance));
-        Assert.That(outputB.value, Is.EqualTo(8f).Within(Tolerance));
+        NumericalModificationRequest request = new NumericalModificationRequest();
+        Assert.That(request.AddModification(inputA, 12f), Is.True);
+        Assert.That(request.AddModification(inputB, 16f), Is.True);
+
+        bool result = NumericalRuleManager.TryApplyModificationRequest(request);
+
+        Assert.That(result, Is.True);
+        Assert.That(inputA.value, Is.EqualTo(12f).Within(Tolerance));
+        Assert.That(inputB.value, Is.EqualTo(16f).Within(Tolerance));
+        Assert.That(output.value, Is.EqualTo(30f).Within(Tolerance));
     }
 
     [Test]
-    public void MaintainConstantRuleNotify_WhenOutputWeightsSumToZero_DoesNotModifyOutputs() {
+    public void NumericalMaintainConstantRule_WhenUnmodifiedWeightSumIsZero_RejectsModification() {
+        SmallObjectProperty input = new SmallObjectProperty("input", 10f, 0f, 100f);
         SmallObjectProperty outputA = new SmallObjectProperty("outputA", 20f, 0f, 100f);
         SmallObjectProperty outputB = new SmallObjectProperty("outputB", 30f, 0f, 100f);
 
-        NumericalMaintainConstantRule rule = new NumericalMaintainConstantRule {
-            inputWeight = 1f,
-            outputProperties = new List<SmallObjectProperty> { outputA, outputB },
-            outputWeights = new List<float> { 1f, -1f }
-        };
+        NumericalMaintainConstantRule rule = CreateMaintainConstantRule(
+            new[] { input, outputA, outputB },
+            new[] { 1f, 1f, -1f }
+        );
 
-        rule.Notify(10f, 14f);
+        NumericalRuleManager.RegisterRule(rule);
 
+        bool result = input.SetValue(14f);
+
+        Assert.That(result, Is.False);
+        Assert.That(input.value, Is.EqualTo(10f).Within(Tolerance));
         Assert.That(outputA.value, Is.EqualTo(20f).Within(Tolerance));
         Assert.That(outputB.value, Is.EqualTo(30f).Within(Tolerance));
     }
 
     [Test]
-    public void NumericalRuleFactoryBuildMaintainConstantRule_CreatesRuleForEachTermAndAttachesInputs() {
+    public void NumericalMaintainConstantRule_WhenCompensationExceedsBounds_RejectsModification() {
+        SmallObjectProperty input = new SmallObjectProperty("input", 10f, 0f, 100f);
+        SmallObjectProperty outputA = new SmallObjectProperty("outputA", 1f, 0f, 2f);
+        SmallObjectProperty outputB = new SmallObjectProperty("outputB", 1f, 0f, 2f);
+
+        NumericalMaintainConstantRule rule = CreateMaintainConstantRule(
+            new[] { input, outputA, outputB },
+            new[] { 1f, 1f, 1f }
+        );
+
+        NumericalRuleManager.RegisterRule(rule);
+
+        bool result = input.SetValue(5f);
+
+        Assert.That(result, Is.False);
+        Assert.That(input.value, Is.EqualTo(10f).Within(Tolerance));
+        Assert.That(outputA.value, Is.EqualTo(1f).Within(Tolerance));
+        Assert.That(outputB.value, Is.EqualTo(1f).Within(Tolerance));
+    }
+
+    [Test]
+    public void NumericalRuleFactoryBuildMaintainConstantRule_CreatesSingleRuleWithAllManagedProperties() {
         PropertyGraph graph = CreateRegisteredPropertyGraph();
         string ruleString = $"2*{graph.BigObjectName}.Past.energy + 3*{graph.BigObjectName}.Present.mass + 5*{graph.BigObjectName}.Present.heat = 100";
 
         bool result = NumericalRuleFactory.BuildMaintainConstantRule(ruleString, out List<NumericalMaintainConstantRule> rules);
 
         Assert.That(result, Is.True);
-        Assert.That(rules, Has.Count.EqualTo(3));
-        Assert.That(rules[0].inputProperty, Is.SameAs(graph.Energy));
-        Assert.That(rules[0].inputWeight, Is.EqualTo(2f).Within(Tolerance));
-        Assert.That(rules[0].outputProperties[0], Is.SameAs(graph.Mass));
-        Assert.That(rules[0].outputProperties[1], Is.SameAs(graph.Heat));
-        Assert.That(rules[0].outputWeights[0], Is.EqualTo(3f).Within(Tolerance));
-        Assert.That(rules[0].outputWeights[1], Is.EqualTo(5f).Within(Tolerance));
+        Assert.That(rules, Has.Count.EqualTo(1));
+        Assert.That(rules[0].GetManagedProperties(), Has.Count.EqualTo(3));
+        Assert.That(rules[0].GetManagedProperties()[0], Is.SameAs(graph.Energy));
+        Assert.That(rules[0].GetManagedProperties()[1], Is.SameAs(graph.Mass));
+        Assert.That(rules[0].GetManagedProperties()[2], Is.SameAs(graph.Heat));
     }
 
     [Test]
-    public void NumericalRuleFactoryBuildRule_WhenMaintainRuleIsValid_ReturnsBaseRuleList() {
+    public void NumericalRuleFactoryBuildRule_WhenExpressionIsValid_ReturnsBaseRuleList() {
         PropertyGraph graph = CreateRegisteredPropertyGraph();
         string ruleString = $"1*{graph.BigObjectName}.Past.energy + 1*{graph.BigObjectName}.Present.mass = 30";
 
         bool result = NumericalRuleFactory.BuildRule(ruleString, out List<NumericalRule> rules);
 
         Assert.That(result, Is.True);
-        Assert.That(rules, Has.Count.EqualTo(2));
+        Assert.That(rules, Has.Count.EqualTo(1));
         Assert.That(rules[0], Is.TypeOf<NumericalMaintainConstantRule>());
-        Assert.That(rules[1], Is.TypeOf<NumericalMaintainConstantRule>());
     }
 
     [TestCase("")]
@@ -173,35 +245,7 @@ public class NumericalRuleTests {
     }
 
     [Test]
-    public void NumericalRuleManagerRegisterRule_AttachesRuleToInputProperty() {
-        SmallObjectProperty property = new SmallObjectProperty("energy", 5f, 0f, 10f);
-        RecordingRule rule = new RecordingRule { inputProperty = property };
-
-        NumericalRuleManager.RegisterRule(rule);
-
-        Assert.That(property.SetValue(6f), Is.True);
-        Assert.That(rule.NotifyCallCount, Is.EqualTo(1));
-        Assert.That(rule.LastNotifyOldValue, Is.EqualTo(5f).Within(Tolerance));
-        Assert.That(rule.LastNotifyNewValue, Is.EqualTo(6f).Within(Tolerance));
-    }
-
-    [Test]
-    public void NumericalRuleManagerRegisterRules_AttachesEveryRuleToItsInputProperty() {
-        SmallObjectProperty firstProperty = new SmallObjectProperty("first", 1f, 0f, 10f);
-        SmallObjectProperty secondProperty = new SmallObjectProperty("second", 2f, 0f, 10f);
-        RecordingRule firstRule = new RecordingRule { inputProperty = firstProperty };
-        RecordingRule secondRule = new RecordingRule { inputProperty = secondProperty };
-
-        NumericalRuleManager.RegisterRules(new List<NumericalRule> { firstRule, secondRule });
-
-        Assert.That(firstProperty.SetValue(3f), Is.True);
-        Assert.That(secondProperty.SetValue(4f), Is.True);
-        Assert.That(firstRule.NotifyCallCount, Is.EqualTo(1));
-        Assert.That(secondRule.NotifyCallCount, Is.EqualTo(1));
-    }
-
-    [Test]
-    public void NumericalRuleManagerBuildAndRegisterRules_WithValidRuleString_AttachesBuiltRules() {
+    public void NumericalRuleManagerBuildAndRegisterRules_WithValidRuleString_EnablesPropertyModification() {
         PropertyGraph graph = CreateRegisteredPropertyGraph();
         string ruleString = $"1*{graph.BigObjectName}.Past.energy + 1*{graph.BigObjectName}.Present.mass = 30";
 
@@ -214,11 +258,29 @@ public class NumericalRuleTests {
     [Test]
     public void NumericalRuleManagerGuardClauses_DoNotThrowForInvalidInputs() {
         Assert.DoesNotThrow(() => NumericalRuleManager.RegisterRule(null));
-        Assert.DoesNotThrow(() => NumericalRuleManager.RegisterRule(new NumericalRule()));
         Assert.DoesNotThrow(() => NumericalRuleManager.RegisterRules(null));
         Assert.DoesNotThrow(() => NumericalRuleManager.RegisterRules(new List<NumericalRule>()));
         Assert.DoesNotThrow(() => NumericalRuleManager.BuildAndRegisterRules(null));
         Assert.DoesNotThrow(() => NumericalRuleManager.BuildAndRegisterRules(""));
+        Assert.DoesNotThrow(() => NumericalRuleManager.TryModifyProperty(null, 1f));
+        Assert.DoesNotThrow(() => NumericalRuleManager.TryApplyModificationRequest(null));
+    }
+
+    private static NumericalMaintainConstantRule CreateMaintainConstantRule(IReadOnlyList<SmallObjectProperty> properties, IReadOnlyList<float> weights) {
+        NumericalMaintainConstantRule rule = new NumericalMaintainConstantRule();
+        rule.Initialize(new List<SmallObjectProperty>(properties), new List<float>(weights));
+        return rule;
+    }
+
+    private static List<NumericalRule> GetRegisteredRules() {
+        FieldInfo field = typeof(NumericalRuleManager).GetField("rules", BindingFlags.NonPublic | BindingFlags.Static);
+        Assert.That(field, Is.Not.Null, "未找到 NumericalRuleManager.rules 字段");
+        return (List<NumericalRule>)field.GetValue(null);
+    }
+
+    private static void ResetRuleManager() {
+        List<NumericalRule> rules = GetRegisteredRules();
+        rules.Clear();
     }
 
     private PropertyGraph CreateRegisteredPropertyGraph() {
@@ -275,25 +337,59 @@ public class NumericalRuleTests {
     }
 
     private sealed class RecordingRule : NumericalRule {
+        private readonly List<SmallObjectProperty> managedProperties = new List<SmallObjectProperty>();
+        private readonly Dictionary<SmallObjectProperty, float> requestedValues = new Dictionary<SmallObjectProperty, float>();
+
         public bool IsValid = true;
         public int CheckValidCallCount;
-        public int NotifyCallCount;
-        public float LastCheckOldValue;
-        public float LastCheckNewValue;
-        public float LastNotifyOldValue;
-        public float LastNotifyNewValue;
+        public int ApplyCallCount;
 
-        public override bool CheckValid(float oldValue, float newValue) {
+        public RecordingRule(IEnumerable<SmallObjectProperty> properties) {
+            if (properties == null) {
+                return;
+            }
+
+            foreach (SmallObjectProperty property in properties) {
+                if (property == null || managedProperties.Contains(property)) {
+                    continue;
+                }
+
+                managedProperties.Add(property);
+            }
+        }
+
+        public override IReadOnlyList<SmallObjectProperty> GetManagedProperties() {
+            return managedProperties;
+        }
+
+        public override bool CheckValid(NumericalModificationRequest request) {
             CheckValidCallCount++;
-            LastCheckOldValue = oldValue;
-            LastCheckNewValue = newValue;
+            requestedValues.Clear();
+
+            if (request != null) {
+                foreach (SmallObjectProperty property in managedProperties) {
+                    if (request.TryGetModification(property, out float newValue)) {
+                        requestedValues[property] = newValue;
+                    }
+                }
+            }
+
             return IsValid;
         }
 
-        public override void Notify(float oldValue, float newValue) {
-            NotifyCallCount++;
-            LastNotifyOldValue = oldValue;
-            LastNotifyNewValue = newValue;
+        public override void Apply(NumericalModificationRequest request) {
+            ApplyCallCount++;
+
+            for (int i = 0; i < managedProperties.Count; i++) {
+                SmallObjectProperty property = managedProperties[i];
+                if (request != null && request.TryGetModification(property, out float newValue)) {
+                    property.SetValueWithoutNotify(newValue);
+                }
+            }
+        }
+
+        public float LastRequestedValue(SmallObjectProperty property) {
+            return requestedValues.TryGetValue(property, out float value) ? value : float.NaN;
         }
     }
 

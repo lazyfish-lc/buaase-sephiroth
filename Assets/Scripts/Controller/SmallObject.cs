@@ -88,8 +88,9 @@ public abstract class SmallObject : MonoBehaviour, ILabelOwner {
     public abstract void OnInteractAction(InputEventData eventData);
     public virtual void OnValueModifyAction(string prop, float delta) {
         if (dynamicState.propertyMap.ContainsKey(prop)) {
-            dynamicState.propertyMap[prop].SetValue(delta);
-            NotifyStateChange();
+            if (NumericalRuleManager.TryModifyProperty(dynamicState.propertyMap[prop], delta)) {
+                NotifyStateChange();
+            }
         } else {
             Debug.LogWarning($"属性 {prop} 不存在于 {gameObject.name} 的属性映射中");
         }

@@ -27,7 +27,7 @@ public static class NumericalRuleFactory {
     /// 解析格式：
     /// <ConstantValue> * <BigObjectName>.<SmallObjectName>.<PropertyName>
     /// { + <ConstantValue> * <BigObjectName>.<SmallObjectName>.<PropertyName> } = CONST
-    /// 为每个输入属性生成一条 NumericalMaintainConstantRule
+    /// 为整条恒等式生成一条 NumericalMaintainConstantRule
     /// </summary>
     public static bool BuildMaintainConstantRule(string ruleString, out List<NumericalMaintainConstantRule> rules) {
         rules = new List<NumericalMaintainConstantRule>();
@@ -55,23 +55,21 @@ public static class NumericalRuleFactory {
             return false;
         }
 
+        List<SmallObjectProperty> properties = new List<SmallObjectProperty>();
+        List<float> weights = new List<float>();
         for (int i = 0; i < terms.Count; i++) {
-            NumericalMaintainConstantRule rule = new NumericalMaintainConstantRule {
-                inputProperty = terms[i].property,
-                inputWeight = terms[i].weight
-            };
-
-            for (int j = 0; j < terms.Count; j++) {
-                if (i == j) {
-                    continue;
-                }
-
-                rule.outputProperties.Add(terms[j].property);
-                rule.outputWeights.Add(terms[j].weight);
-            }
-
-            rules.Add(rule);
+            properties.Add(terms[i].property);
+            weights.Add(terms[i].weight);
         }
+
+        NumericalMaintainConstantRule rule = new NumericalMaintainConstantRule();
+        rule.Initialize(properties, weights);
+        if (rule.GetManagedProperties() == null || rule.GetManagedProperties().Count == 0) {
+            Debug.LogWarning($"守恒规则初始化失败：{ruleString}");
+            return false;
+        }
+
+        rules.Add(rule);
         return true;
     }
 
