@@ -11,8 +11,8 @@ public class NPCObject : SmallObject {
     public event Action OnDialogueEnded;
     public event Action OnNodeChanged;
 
-    private NPCStaticData NPCData => (NPCStaticData)staticData;
-    private NPCDynamicState NPCState => (NPCDynamicState)dynamicState;
+    protected NPCStaticData NPCData => (NPCStaticData)staticData;
+    protected NPCDynamicState NPCState => (NPCDynamicState)dynamicState;
     public PlayerSmallObject CurrentInteractingPlayer => NPCState.currentInteractingPlayer;
 
     public NPCView view;
@@ -56,50 +56,57 @@ public class NPCObject : SmallObject {
     public override void OnInteractAction(InputEventData data) {
         // 假设 InputConfig 映射：Interact 对应键盘E，value == 1 对应鼠标右键
         if (data.actionType == InputActionType.Interact) {
-            float dist = Vector3.Distance(transform.position, IOSubsystem.Instance.playerObject.transform.position);
-            if (dist <= NPCData.interactionRange) {
-                Debug.Log("玩家尝试与NPC交互，距离合法，进入对话");
-                if (!NPCState.isInConversation) StartConversation();
-            } else {
-                Debug.Log("玩家尝试与NPC交互，但距离过远");
-            }
+            TryStartConversation();
         }
     }
 
-    private void StartConversation() {
+    protected virtual bool TryStartConversation() {
+        if (NPCState.isInConversation) return false;
+
+        float dist = Vector3.Distance(transform.position, IOSubsystem.Instance.playerObject.transform.position);
+        if (dist > NPCData.interactionRange) {
+            Debug.Log("玩家尝试与NPC交互，但距离过远");
+            return false;
+        }
+
+        Debug.Log("玩家尝试与NPC交互，距离合法，进入对话");
+        StartConversation();
+        return true;
+    }
+
+    protected virtual void StartConversation() {
         NPCState.isInConversation = true;
         NPCState.currentInteractingPlayer = IOSubsystem.Instance.playerObject;
         ActiveNPC = this;
 
-        // 如果配置了 requiredItems，则检查玩家是否满足条件以决定起始节点
-        int startIndex = 0;
-        if (NPCData != null && NPCData.requiredItems != null && NPCData.requiredItems.Count > 0) {
-            bool hasAll = false;
-            var player = NPCState.currentInteractingPlayer;
-            if (player != null && player.playerState != null && player.playerState.itemBackpack != null) {
-                hasAll = true;
-                foreach (var req in NPCData.requiredItems) {
-                    bool found = false;
-                    foreach (var it in player.playerState.itemBackpack) {
-                        if (it != null && string.Equals(it.itemName, req, StringComparison.Ordinal)) {
-                            found = true; break;
-                        }
-                    }
-                    if (!found) { hasAll = false; break; }
-                }
-            }
-
-            if (hasAll && NPCData.startNodeIfHasRequiredItems >= 0) startIndex = NPCData.startNodeIfHasRequiredItems;
-            else startIndex = 0;
-        } else {
-            startIndex = 0;
-        }
-
-        NPCState.currentNodeIndex = startIndex;
+        NPCState.currentNodeIndex = ResolveStartNodeIndex();
 
         OnDialogueStarted?.Invoke(this);
         ExecuteCurrentNodeActions();
         OnNodeChanged?.Invoke();
+    }
+
+    protected virtual int ResolveStartNodeIndex() {
+        // 如果配置了 requiredItems，则检查玩家是否满足条件以决定起始节点
+        int startIndex = 0;
+        if (NPCData != null && NPCData.requiredItems != null && NPCData.requiredItems.Count > 0) {
+            bool hasAll = true;
+            var player = NPCState.currentInteractingPlayer;
+            if (player != null) {
+                foreach (var req in NPCData.requiredItems) {
+                    if (!player.HasItemInBackpack(req)) {
+                        hasAll = false;
+                        break;
+                    }
+                }
+            } else {
+                hasAll = false;
+            }
+
+            if (hasAll && NPCData.startNodeIfHasRequiredItems >= 0) startIndex = NPCData.startNodeIfHasRequiredItems;
+        }
+
+        return startIndex;
     }
 
     // --- 给 UI 调用的逻辑接口 (Setter/Trigger) ---

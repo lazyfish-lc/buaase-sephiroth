@@ -185,4 +185,51 @@ public class PlayerSmallObject : SmallObject {
         playerState.itemBackpack.Add(item);
         Debug.Log($"玩家获得了物品: {item.itemName}");
     }
+
+    public bool HasItemInBackpack(string itemName) {
+        if (string.IsNullOrWhiteSpace(itemName)) return false;
+        if (playerState == null || playerState.itemBackpack == null) return false;
+
+        foreach (var item in playerState.itemBackpack) {
+            if (item != null && string.Equals(item.itemName, itemName, System.StringComparison.Ordinal)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public bool RemoveItemFromBackpack(string itemName, int amount = 1) {
+        if (string.IsNullOrWhiteSpace(itemName) || amount <= 0) return false;
+        if (playerState == null || playerState.itemBackpack == null) return false;
+
+        int removedCount = 0;
+        for (int i = playerState.itemBackpack.Count - 1; i >= 0 && removedCount < amount; i--) {
+            var item = playerState.itemBackpack[i];
+            if (item != null && string.Equals(item.itemName, itemName, System.StringComparison.Ordinal)) {
+                playerState.itemBackpack.RemoveAt(i);
+                removedCount++;
+            }
+        }
+
+        if (removedCount > 0) {
+            Debug.Log($"玩家背包中移除了 {itemName} x{removedCount}");
+            return true;
+        }
+
+        Debug.LogWarning($"尝试移除物品但未找到：{itemName}");
+        return false;
+    }
+
+    public bool TryGetPropertyValue(string propertyName, out float value, bool includeLabelAffect = true) {
+        value = 0f;
+        if (string.IsNullOrWhiteSpace(propertyName)) return false;
+        if (playerState == null || playerState.propertyMap == null) return false;
+        if (!playerState.propertyMap.ContainsKey(propertyName)) return false;
+
+        value = includeLabelAffect
+            ? playerState.GetPropertyValueWithAffect(propertyName)
+            : playerState.propertyMap[propertyName].value;
+        return true;
+    }
 }
