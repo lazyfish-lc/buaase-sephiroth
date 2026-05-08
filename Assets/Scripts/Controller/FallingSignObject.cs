@@ -136,9 +136,8 @@ public class FallingSignObject : SmallObject {
     private void HandlePlayerTrigger(PlayerSmallObject player, string triggerType) {
         if (!isArmed || isDropping || (hasDropped && dropOnlyOnce)) return;
 
-        float luck = GetPlayerLuck(player);
-        if (Mathf.Approximately(luck, 0f)) {
-            Debug.Log($"{gameObject.name} 检测到玩家{triggerType}触发区，Luck=0，开始掉落");
+        if (triggerType == "进入") {
+            Debug.Log($"{gameObject.name} 检测到玩家进入触发区，开始掉落");
             StartCoroutine(DropAfterDelay());
         }
     }
