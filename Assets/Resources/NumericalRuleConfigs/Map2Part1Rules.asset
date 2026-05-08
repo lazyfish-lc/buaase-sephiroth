@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Sephiroth.Runtime::SceneNumericalRuleConfig
   sceneName: Map2-part1
   ruleStrings:
-  - 2 * PlayerBigObejct.Player.Luck + 2 * PlayerBigObejct.Player.ATK + 1 * PlayerBigObejct.Player.Health
+  - 2 * PlayerBigObject.Player.Luck + 2 * PlayerBigObject.Player.ATK + 1 * PlayerBigObject.Player.Health
     + 2 * NPC3BigObject.NPC3.Luck = CONST

@@ -52802,7 +52802,7 @@ GameObject:
   - component: {fileID: 368350006}
   - component: {fileID: 368350007}
   m_Layer: 0
-  m_Name: PlayerBigObejct
+  m_Name: PlayerBigObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53042,7 +53042,7 @@ GameObject:
   - component: {fileID: 477839406}
   - component: {fileID: 477839407}
   m_Layer: 0
-  m_Name: NPC3BigObejct
+  m_Name: NPC3BigObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
