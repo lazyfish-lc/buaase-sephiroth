@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: DoorGuardianNPCData
   m_EditorClassIdentifier: Sephiroth.Runtime::NPCStaticData
   objectName: DoorGuardian
-  ownerBigObject: {fileID: 0}
   propertyBlueprints:
   - name: Health
     initialValue: 100
@@ -34,12 +33,17 @@ MonoBehaviour:
   labelBlueprints: []
   interactionRange: 3
   dialogueNodes:
-  - npcContent: Give me the part
+  - npcContent: "\u4F60\u80FD\u770B\u5230\u5417\uFF1F\u8FD9\u4E2A\u4E16\u754C\u7684\u6784\u6210"
+    hasOptions: 0
+    nextNodeIndex: 1
+    options: []
+    enterActions: []
+  - npcContent: "\u6536\u96C6\u771F\u7406\u900F\u955C\u7684\u788E\u7247\uFF0C\u6211\u5C06\u7ED9\u4F60\u770B\u6E05\u4E16\u754C\u7684\u529B\u91CF"
     hasOptions: 0
     nextNodeIndex: -1
     options: []
     enterActions: []
-  - npcContent: Here is the lens.
+  - npcContent: "\u53BB\u63A2\u5BFB\u8FD9\u4E2A\u4E16\u754C\u5427\u3002"
     hasOptions: 0
     nextNodeIndex: -1
     options: []
@@ -50,5 +54,5 @@ MonoBehaviour:
   - LensPartA
   - LensPartB
   - LensPartC
-  startNodeIfHasRequiredItems: 1
+  startNodeIfHasRequiredItems: 2
   animatorController: {fileID: 0}
