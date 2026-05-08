@@ -89,6 +89,10 @@ public class MenuUI : FatherUI
         {
             LabelUI.Instance.Close();
         }
+        if (KeysetUI.Instance != null)
+        {
+            KeysetUI.Instance.Close();
+        }
         
         Close();
         FindFirstObjectByType<LoadingUI>().LoadScene("StartMenuScene");

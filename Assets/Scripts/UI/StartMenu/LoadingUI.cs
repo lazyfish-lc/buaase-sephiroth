@@ -12,15 +12,18 @@ public class LoadingUI : MonoBehaviour
     public GameObject loadingCanvas;      // 整个加载界面根物体
     public Slider progressBar;           // 可选进度条
     public TMP_Text loadingText;             // 可选文字提示
+    public Image circleOverlay;          // 圆形遮罩（全屏Image，无须手动挂材质）
 
     [Header("设置")]
     public float fakeLoadDuration = 1f;  // 假进度持续时长（秒）
+    public float circleTransitionDuration = 1f; // 转场时长（秒）
 
     public static bool isLoading = false;
 
     private Coroutine dotsCoroutine;
     private string loadingBaseText = "加载中";
-    private readonly WaitForSeconds dotsInterval = new WaitForSeconds(1f / 6f); // 一秒六个点
+    private readonly WaitForSeconds dotsInterval = new WaitForSeconds(1f / 6f);
+    private Material circleMaterial;
 
     void Awake()
     {
@@ -39,6 +42,21 @@ public class LoadingUI : MonoBehaviour
         // 初始状态下隐藏加载界面
         if (loadingCanvas != null)
             loadingCanvas.SetActive(false);
+
+        if (circleOverlay != null)
+        {
+            Shader shader = Shader.Find("UI/CircleReveal");
+            if (shader != null)
+            {
+                circleMaterial = new Material(shader);
+                circleOverlay.material = circleMaterial;
+            }
+            else
+            {
+                Debug.LogWarning("LoadingUI: 未找到 Shader 'UI/CircleReveal'，圆形转场将不可用");
+            }
+            circleOverlay.gameObject.SetActive(false);
+        }
     }
 
     /// <summary>
@@ -48,8 +66,13 @@ public class LoadingUI : MonoBehaviour
     {
         if (loadingCanvas != null)
             loadingCanvas.SetActive(true);
+        if (progressBar != null)
+            progressBar.gameObject.SetActive(true);
         if (loadingText != null)
-            loadingText.text = loadingBaseText; // 初始瞬间显示"加载中"
+        {
+            loadingText.gameObject.SetActive(true);
+            loadingText.text = loadingBaseText;
+        }
         if (dotsCoroutine == null)
             dotsCoroutine = StartCoroutine(DotsAnimationCoroutine());
     }
@@ -89,13 +112,64 @@ public class LoadingUI : MonoBehaviour
     public void LoadScene(string sceneName)
     {
         if (isLoading) return;
-        AudioManager.Instance.Stop(); // 切场景前停止所有音乐和音效
+        AudioManager.Instance.Stop();
+
+        // 同步设置初始状态，下一帧协程直接开始动画，消除延迟
+        if (loadingCanvas != null)
+            loadingCanvas.SetActive(true);
+        if (circleOverlay != null && circleMaterial != null)
+        {
+            circleOverlay.gameObject.SetActive(true);
+            circleMaterial.SetFloat("_Radius", 1f);
+            circleMaterial.SetFloat("_AspectRatio", (float)Screen.width / Screen.height);
+        }
+
         StartCoroutine(LoadSceneAsyncCoroutine(sceneName));
+    }
+
+    // 圆形缩小（iris out）：radius 1→0，靠外越快
+    private IEnumerator CircleOutCoroutine()
+    {
+        if (circleMaterial == null || circleOverlay == null) yield break;
+
+        float startTime = Time.time;
+        while (Time.time - startTime < circleTransitionDuration)
+        {
+            float t = (Time.time - startTime) / circleTransitionDuration;
+            float val = (1f - t) * (1f - t) * (1f - t); // 三次 ease-out：靠外更快
+            circleMaterial.SetFloat("_Radius", val);
+            yield return null;
+        }
+        circleMaterial.SetFloat("_Radius", 0f);
+    }
+
+    // 圆形扩大（iris in）：radius 0→1，靠外越快
+    private IEnumerator CircleInCoroutine()
+    {
+        if (circleMaterial == null || circleOverlay == null) yield break;
+
+        float startTime = Time.time;
+        while (Time.time - startTime < circleTransitionDuration)
+        {
+            float t = (Time.time - startTime) / circleTransitionDuration;
+            float val = t * t * t; // 三次 ease-in：靠外更快
+            circleMaterial.SetFloat("_Radius", val);
+            yield return null;
+        }
+        circleMaterial.SetFloat("_Radius", 1f);
+
+        circleOverlay.gameObject.SetActive(false);
+        if (loadingCanvas != null)
+            loadingCanvas.SetActive(false);
     }
 
     private IEnumerator LoadSceneAsyncCoroutine(string sceneName)
     {
         isLoading = true;
+
+        // 入场：圆形缩小
+        yield return StartCoroutine(CircleOutCoroutine());
+
         Show();
 
         AsyncOperation async = SceneManager.LoadSceneAsync(sceneName);
@@ -119,13 +193,11 @@ public class LoadingUI : MonoBehaviour
         // 阶段2: 检查实际加载进度
         if (async.progress >= 0.9f)
         {
-            // 快于一秒：瞬间完成
             if (progressBar != null)
                 progressBar.value = 1f;
         }
         else
         {
-            // 慢于一秒：显示真实进度 50%→90%
             while (async.progress < 0.9f)
             {
                 float displayProgress = 0.5f + async.progress * (0.9f - 0.5f) / 0.9f;
@@ -138,13 +210,22 @@ public class LoadingUI : MonoBehaviour
                 progressBar.value = 0.9f;
         }
 
+        // 激活场景（遮罩全黑，玩家看不到）
         async.allowSceneActivation = true;
-
-        // 注意：新场景激活后，当前 GameObject 依然存在（因为 DontDestroyOnLoad）
-        // 但我们需要在新场景完全加载后自动隐藏加载界面
-        // 方法1：等待一帧，让新场景的 Start 执行
         yield return null;
-        Hide();
+
+        // 隐藏加载UI元素，但保持canvas开启（圆形遮罩需要渲染）
+        if (dotsCoroutine != null)
+        {
+            StopCoroutine(dotsCoroutine);
+            dotsCoroutine = null;
+        }
+        if (progressBar != null) progressBar.gameObject.SetActive(false);
+        if (loadingText != null) loadingText.gameObject.SetActive(false);
+
+        // 退场：圆形扩大揭示新场景（末尾会关闭canvas）
+        yield return StartCoroutine(CircleInCoroutine());
+
         isLoading = false;
     }
 }
