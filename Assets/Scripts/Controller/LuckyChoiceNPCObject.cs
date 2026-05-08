@@ -54,10 +54,8 @@ public class LuckyChoiceNPCObject : NPCObject {
         }
 
         float newLuck = luckValue - rule.luckCost;
-        if (!luckProp.SetValue(newLuck)) {
-            TransitionToInsufficientNode();
-            return;
-        }
+        luckProp.value = newLuck;
+        Debug.Log($"玩家 {player.name} 选择了选项 {optionIndex}，消耗了 {rule.luckCost} 点幸运值，剩余幸运值 {newLuck}");
 
         GiveLuckItems(player, rule.rewardAmount);
 
