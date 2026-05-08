@@ -163,9 +163,8 @@ public class PropertyUI : FatherUI{
         PlayClickSFX();
         if (currentSmallObject != null)
         {
-            // 这里可以根据实际需求将输入框的内容保存到 SmallObject 的属性中
-            // 注意类别识别和转换
             var properties = currentSmallObject.dynamicState.propertyMap.Values.ToArray();
+            NumericalModificationRequest request = new NumericalModificationRequest();
             for (int i = 0; i < properties.Length && i < inputFields.Length; i++)
             {
                 string inputValue = inputFields[i].text; // 获取输入框中的文本
@@ -173,13 +172,16 @@ public class PropertyUI : FatherUI{
                 {
                     // 尝试将输入值转换为属性的类型
                     float convertedValue = float.Parse(inputValue); // 目前仅支持 float 类型，后续可以扩展支持其他类型
-                    properties[i].SetValue(convertedValue);
+                    request.AddModification(properties[i], convertedValue);
                     Debug.Log($"已将输入值 '{inputValue}' 转换为float并保存到属性 {properties[i].name}");
                 }
                 catch (Exception e)
                 {
                     Debug.LogError($"无法将输入值 '{inputValue}' 转换为 float 类型，保存属性 {properties[i].name} 失败。错误信息: {e.Message}");
                 }
+            }
+            if (request.Count > 0) {
+                NumericalRuleManager.TryApplyModificationRequest(request);
             }
             // ...
             Debug.Log("属性已保存");
