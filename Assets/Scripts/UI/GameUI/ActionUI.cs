@@ -117,7 +117,6 @@ public class ActionUI : FatherUI
                     Buttons[index].gameObject.SetActive(true);
                     Buttons[index].onClick.RemoveAllListeners();
                     Buttons[index].onClick.AddListener(() => {
-                        PlayClickSFX();
                         currentNPC.SelectOption(index);
                     });
                 }

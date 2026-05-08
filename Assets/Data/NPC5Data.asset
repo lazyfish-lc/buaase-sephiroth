@@ -55,15 +55,15 @@ MonoBehaviour:
     hasOptions: 0
     nextNodeIndex: -1
     options:
-    - text: "\u82B1\u8D39100\u70B9Luck\u503C\u83B7\u5F9720\u4E2ALuckCoin"
+    - text: "\u82B1\u8D39100\u70B9Luck\u503C\\n\u83B7\u5F9720\u4E2ALuckCoin"
       targetNodeIndex: 3
       rewardProperty: 
       rewardAmount: 0
-    - text: "\u82B1\u8D3950\u70B9Luck\u503C\u83B7\u5F9710\u4E2ALuckCoin"
+    - text: "\u82B1\u8D3950\u70B9Luck\u503C\\n\u83B7\u5F9710\u4E2ALuckCoin"
       targetNodeIndex: 3
       rewardProperty: 
       rewardAmount: 0
-    - text: "\u82B1\u8D3920\u70B9Luck\u503C\u83B7\u5F974\u4E2ALuckCoin"
+    - text: "\u82B1\u8D3920\u70B9Luck\u503C\\n\u83B7\u5F974\u4E2ALuckCoin"
       targetNodeIndex: 3
       rewardProperty: 
       rewardAmount: 0
