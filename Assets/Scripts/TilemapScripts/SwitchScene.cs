@@ -10,6 +10,8 @@ public class SwitchScene : MonoBehaviour
         Debug.Log("触发场景切换");
         if (collision.gameObject.CompareTag("Player"))
         {
+            var player = collision.GetComponent<PlayerSmallObject>();
+            PlayerSceneStateCache.Capture(player);
             // 切换到下一个场景
             Debug.Log("切换到下一个场景");
             // 例如，用 "LastExitName" 作为键，存储值 "Exit_House1"
