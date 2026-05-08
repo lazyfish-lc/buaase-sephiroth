@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fb7ad9188259f449849bf73fa3022ff, type: 3}
+  m_Name: Map2Part1Rules
+  m_EditorClassIdentifier: Sephiroth.Runtime::SceneNumericalRuleConfig
+  sceneName: Map2-part1
+  ruleStrings:
+  - 2 * PlayerBigObject.Player.Luck + 2 * PlayerBigObject.Player.ATK + 1 * PlayerBigObject.Player.Health
+    + 2 * NPC3BigObject.NPC3.Luck = CONST

@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: NPC5Data
   m_EditorClassIdentifier: Sephiroth.Runtime::NPCStaticData
   objectName: 
-  ownerBigObject: {fileID: 0}
   propertyBlueprints:
   - name: Health
     initialValue: 100
@@ -36,25 +35,47 @@ MonoBehaviour:
   - HardLabel()
   interactionRange: 3
   dialogueNodes:
-  - npcContent: hello
+  - npcContent: "\u6211\u770B\u4F60\u8FD1\u6765\u8FD0\u52BF\u4E0D\u9519\uFF0C\u8981\u4E0D\u8981\u6765\u70B9\u597D\u4E1C\u897F"
     hasOptions: 0
     nextNodeIndex: 1
     options: []
     enterActions: []
-  - npcContent: test option
-    hasOptions: 0
-    nextNodeIndex: 2
+  - npcContent: 
+    hasOptions: 1
+    nextNodeIndex: -1
     options:
-    - text: option 1
+    - text: "\u6211\u559C\u6B22\u8D2D\u7269"
       targetNodeIndex: 2
       rewardProperty: 
       rewardAmount: 0
-    - text: option 2
-      targetNodeIndex: 0
+    - text: "\u611F\u89C9\u6709\u8BC8"
+      targetNodeIndex: -1
       rewardProperty: 
       rewardAmount: 0
     enterActions: []
-  - npcContent: seeyou
+  - npcContent: 
+    hasOptions: 0
+    nextNodeIndex: -1
+    options:
+    - text: "\u82B1\u8D39100\u70B9Luck\u503C\u83B7\u5F9720\u4E2ALuckCoin"
+      targetNodeIndex: 3
+      rewardProperty: 
+      rewardAmount: 0
+    - text: "\u82B1\u8D3950\u70B9Luck\u503C\u83B7\u5F9710\u4E2ALuckCoin"
+      targetNodeIndex: 3
+      rewardProperty: 
+      rewardAmount: 0
+    - text: "\u82B1\u8D3920\u70B9Luck\u503C\u83B7\u5F974\u4E2ALuckCoin"
+      targetNodeIndex: 3
+      rewardProperty: 
+      rewardAmount: 0
+    enterActions: []
+  - npcContent: "\u8C22\u8C22\u60E0\u987E"
+    hasOptions: 0
+    nextNodeIndex: -1
+    options: []
+    enterActions: []
+  - npcContent: "\u60F3\u83B7\u53D6\u8FD9\u4E48\u591ALuckCoin\u4E0D\u591FLucky\u662F\u4E0D\u884C\u7684\u54E6"
     hasOptions: 0
     nextNodeIndex: -1
     options: []

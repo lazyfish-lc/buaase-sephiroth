@@ -66,10 +66,12 @@ public class NumericalMaintainConstantRule : NumericalRule {
         plannedValues = new List<PlannedValue>();
 
         if (request == null) {
+            Debug.LogWarning("守恒规则拒绝修改：修改请求为空");
             return false;
         }
 
         if (managedProperties.Count == 0 || managedWeights.Count == 0) {
+            Debug.LogWarning("守恒规则拒绝修改：规则未初始化或没有管理属性");
             return false;
         }
 
@@ -90,6 +92,7 @@ public class NumericalMaintainConstantRule : NumericalRule {
             int index = directIndices[i];
             SmallObjectProperty property = managedProperties[index];
             if (!request.TryGetModification(property, out float requestedValue)) {
+                Debug.LogWarning($"守恒规则检查失败：请求中缺少属性 {property.name} 的修改");
                 return false;
             }
 
@@ -103,10 +106,12 @@ public class NumericalMaintainConstantRule : NumericalRule {
                 int index = directIndices[i];
                 SmallObjectProperty property = managedProperties[index];
                 if (!request.TryGetModification(property, out float requestedValue)) {
+                    Debug.LogWarning($"守恒规则拒绝修改：请求中缺少属性 {property.name} 的修改");
                     return false;
                 }
 
                 if (requestedValue < property.minValue - Epsilon || requestedValue > property.maxValue + Epsilon) {
+                    Debug.LogWarning($"守恒规则拒绝修改：属性 {property.name} 新值 {requestedValue} 超出范围 [{property.minValue}, {property.maxValue}]");
                     return false;
                 }
 
@@ -129,6 +134,7 @@ public class NumericalMaintainConstantRule : NumericalRule {
         }
 
         if (Mathf.Abs(unmodifiedWeightSum) < Epsilon) {
+            Debug.LogWarning("守恒规则拒绝修改：未修改属性权重之和为 0，无法计算补偿");
             return false;
         }
 
@@ -140,6 +146,7 @@ public class NumericalMaintainConstantRule : NumericalRule {
 
             if (directIndexSet.Contains(i)) {
                 if (!request.TryGetModification(property, out plannedValue)) {
+                    Debug.LogWarning($"守恒规则拒绝修改：请求中缺少属性 {property.name} 的修改");
                     return false;
                 }
             } else if (Mathf.Abs(managedWeights[i]) < Epsilon) {
@@ -149,6 +156,7 @@ public class NumericalMaintainConstantRule : NumericalRule {
             }
 
             if (plannedValue < property.minValue - Epsilon || plannedValue > property.maxValue + Epsilon) {
+                Debug.LogWarning($"守恒规则拒绝修改：属性 {property.name} 计算值 {plannedValue} 超出范围 [{property.minValue}, {property.maxValue}]");
                 return false;
             }
 

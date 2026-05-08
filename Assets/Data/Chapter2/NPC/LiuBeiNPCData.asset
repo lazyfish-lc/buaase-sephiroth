@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: LiuBeiNPCData
   m_EditorClassIdentifier: Sephiroth.Runtime::NPCStaticData
   objectName: 
-  ownerBigObject: {fileID: 0}
-  propertyBlueprints: []
+  propertyBlueprints:
+  - name: Luck
+    initialValue: 100
+    minValue: 0
+    maxValue: 999
   labelBlueprints: []
   interactionRange: 3
   dialogueNodes:

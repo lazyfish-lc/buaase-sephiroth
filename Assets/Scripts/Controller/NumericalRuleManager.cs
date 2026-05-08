@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 public static class NumericalRuleManager {
     private static List<NumericalRule> rules = new List<NumericalRule>();
+    private const float ZeroEpsilon = 1e-6f;
 
     /// <summary>
     /// 注册规则列表。
@@ -54,6 +55,14 @@ public static class NumericalRuleManager {
         }
     }
 
+    public static void ClearRules() {
+        if (rules == null || rules.Count == 0) {
+            return;
+        }
+
+        rules.Clear();
+    }
+
     public static bool TryModifyProperty(SmallObjectProperty property, float newValue) {
         if (property == null) {
             Debug.LogWarning("属性修改失败：属性为空");
@@ -72,6 +81,11 @@ public static class NumericalRuleManager {
         if (request == null || request.Count == 0) {
             Debug.LogWarning("修改请求失败：请求为空");
             return false;
+        }
+
+        request = FilterZeroToZeroModifications(request);
+        if (request.Count == 0) {
+            return true;
         }
 
         if (!ValidateRequestUnique(request)) {
@@ -119,6 +133,25 @@ public static class NumericalRuleManager {
         }
 
         return true;
+    }
+
+    private static NumericalModificationRequest FilterZeroToZeroModifications(NumericalModificationRequest request) {
+        NumericalModificationRequest filtered = new NumericalModificationRequest();
+        for (int i = 0; i < request.Count; i++) {
+            var modification = request.Modifications[i];
+            if (modification == null) {
+                continue;
+            }
+
+            if (modification.property != null
+                && Mathf.Abs(modification.property.value - modification.newValue) <= ZeroEpsilon) {
+                continue;
+            }
+
+            filtered.AddModification(modification.property, modification.newValue);
+        }
+
+        return filtered;
     }
 
     private static bool ValidateRequestUnique(NumericalModificationRequest request) {

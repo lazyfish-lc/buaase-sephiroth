@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 277450357793929224}
   - component: {fileID: 5174544385037438567}
   - component: {fileID: 481014797907188812}
-  - component: {fileID: 4244153182559385304}
   - component: {fileID: 2577731653638507968}
+  - component: {fileID: 5530241326925088559}
   m_Layer: 11
   m_Name: NPC5
   m_TagString: Untagged
@@ -182,24 +182,6 @@ CapsuleCollider2D:
   m_Offset: {x: -0.012442827, y: 0.2792627}
   m_Size: {x: 0.36575556, y: 0.7406178}
   m_Direction: 0
---- !u!114 &4244153182559385304
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 567716466442867070}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f76fb00e63a6898439bd0ed8ca8e6520, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Sephiroth.Runtime::NPCObject
-  staticData: {fileID: 11400000, guid: 70aec1d6f5cebaf41afe5de464bbed1a, type: 2}
-  dynamicState:
-    isDestroyed: 0
-    smallObjectLabels: []
-    isHurt: 0
-  view: {fileID: 2577731653638507968}
 --- !u!114 &2577731653638507968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,3 +195,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Sephiroth.Runtime::NPCView
   animator: {fileID: 277450357793929224}
+--- !u!114 &5530241326925088559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 567716466442867070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d486e1d52de4684da470a12cc8fab93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Sephiroth.Runtime::LuckyChoiceNPCObject
+  staticData: {fileID: 11400000, guid: 70aec1d6f5cebaf41afe5de464bbed1a, type: 2}
+  dynamicState:
+    isDestroyed: 0
+    smallObjectLabels: []
+    isHurt: 0
+  ownerBigObject: {fileID: 0}
+  persistID: 8e76ebcbf18d4de4b665a1c4697801d5
+  view: {fileID: 2577731653638507968}
+  luckPropertyName: Luck
+  rewardItemName: LuckCoin
+  insufficientNodeIndex: 4
+  exchangeNodeIndex: 2
+  optionRules:
+  - optionIndex: 0
+    luckCost: 100
+    rewardAmount: 20
+  - optionIndex: 1
+    luckCost: 50
+    rewardAmount: 10
+  - optionIndex: 2
+    luckCost: 20
+    rewardAmount: 4

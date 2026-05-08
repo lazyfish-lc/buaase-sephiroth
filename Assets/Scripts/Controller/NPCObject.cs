@@ -124,7 +124,7 @@ public class NPCObject : SmallObject {
     /// <summary>
     /// UI在有选项状态下，玩家点击具体按钮时调用
     /// </summary>
-    public void SelectOption(int optionIndex) {
+    public virtual void SelectOption(int optionIndex) {
         if (!NPCState.isInConversation) return;
 
         DialogueOption option = GetCurrentOptions()[optionIndex];
@@ -137,7 +137,7 @@ public class NPCObject : SmallObject {
         TransitionToNode(option.targetNodeIndex);
     }
 
-    private void TransitionToNode(int nodeIndex) {
+    protected void TransitionToNode(int nodeIndex) {
         if (nodeIndex == -1) {
             EndConversation();
         } else {
@@ -147,7 +147,7 @@ public class NPCObject : SmallObject {
         }
     }
 
-    private void ExecuteCurrentNodeActions() {
+    protected void ExecuteCurrentNodeActions() {
         if (NPCData == null || NPCData.dialogueNodes == null) return;
         if (NPCState.currentNodeIndex < 0 || NPCState.currentNodeIndex >= NPCData.dialogueNodes.Count) return;
 
