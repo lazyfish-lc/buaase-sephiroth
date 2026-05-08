@@ -433,7 +433,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: df
+  m_text: "\u8BF7\u8F93\u5165\u4FEE\u6539\u503C"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b2f89d20123d94e49a92f5ab727534f4, type: 2}
   m_sharedMaterial: {fileID: -3424850955699073042, guid: b2f89d20123d94e49a92f5ab727534f4, type: 2}
