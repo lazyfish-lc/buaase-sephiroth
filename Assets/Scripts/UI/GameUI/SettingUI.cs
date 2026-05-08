@@ -157,7 +157,7 @@ public class SettingUI : FatherUI
     {
         PlayClickSFX();
         Debug.Log("打开按键设置界面");
-        //KeySettingUI.Instance.OpenAndClose();
+        KeysetUI.Instance.OpenAndClose();
     }
     
 }
