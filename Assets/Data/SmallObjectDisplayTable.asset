@@ -22,3 +22,12 @@ MonoBehaviour:
   - name: NPC1
     icon: {fileID: 0}
     description: "\u4E00\u4E2Anpc"
+  - name: Monster3
+    icon: {fileID: 0}
+    description: "\u517D\u4EBA"
+  - name: Monster4
+    icon: {fileID: 0}
+    description: "\u98DF\u4EBA\u82B1"
+  - name: Monster5
+    icon: {fileID: 0}
+    description: "\u7194\u5CA9\u53F2\u83B1\u59C6"

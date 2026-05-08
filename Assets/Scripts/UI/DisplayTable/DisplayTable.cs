@@ -29,17 +29,19 @@ public class DisplayTable : MonoBehaviour
     }
     public DisplayInfo GetDisplayInfo(string name,string type)
     {
+        // 去除-后的内容
+        string classname = name.Split('-')[0];
         if(type == "Item")
         {
-            return GetItemInfo(name);
+            return GetItemInfo(classname);
         }
         else if(type == "Label")
         {
-            return GetLabelInfo(name);
+            return GetLabelInfo(classname);
         }
         else if(type == "SmallObject")
         {
-            return GetSmallObjectInfo(name);
+            return GetSmallObjectInfo(classname);
         }
         else
         {
