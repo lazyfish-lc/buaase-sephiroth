@@ -1402,8 +1402,8 @@ Transform:
   - {fileID: 5832249536062246708}
   - {fileID: 2655023042803449757}
   - {fileID: 1347347129652903172}
-  - {fileID: 4491081007015913374}
   - {fileID: 3972976003744757777}
+  - {fileID: 4491081007015913374}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8830523292602972659
@@ -1427,7 +1427,7 @@ MonoBehaviour:
   statusUI: {fileID: 1247653223617902109}
   propertyUI: {fileID: 5672924851993827074}
   labelUI: {fileID: 953668398591376048}
-  keysetUI: {fileID: 0}
+  keysetUI: {fileID: 7463217607762340853}
 --- !u!114 &2858181751139748842
 MonoBehaviour:
   m_ObjectHideFlags: 0
