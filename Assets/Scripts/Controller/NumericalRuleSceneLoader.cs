@@ -7,6 +7,7 @@ public class NumericalRuleSceneLoader : MonoBehaviour {
     [SerializeField] private string resourcesPath = "NumericalRuleConfigs";
     [SerializeField] private List<SceneNumericalRuleConfig> configs = new List<SceneNumericalRuleConfig>();
     [SerializeField] private bool preferResources = true;
+    [SerializeField] private int loadDelayFrames = 1;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
     private static void Bootstrap() {
@@ -17,11 +18,20 @@ public class NumericalRuleSceneLoader : MonoBehaviour {
 
         var go = new GameObject("NumericalRuleSceneLoader");
         go.AddComponent<NumericalRuleSceneLoader>();
+        Debug.Log("NumericalRuleSceneLoader: bootstrap created loader instance.");
     }
 
     private void Awake() {
         DontDestroyOnLoad(gameObject);
         SceneManager.sceneLoaded += OnSceneLoaded;
+        Debug.Log("NumericalRuleSceneLoader: Awake and listening to sceneLoaded.");
+    }
+
+    private void Start() {
+        var activeScene = SceneManager.GetActiveScene();
+        if (activeScene.IsValid()) {
+            StartCoroutine(LoadRulesAfterDelay(activeScene.name));
+        }
     }
 
     private void OnDestroy() {
@@ -29,17 +39,22 @@ public class NumericalRuleSceneLoader : MonoBehaviour {
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
-        StartCoroutine(LoadRulesAfterFrame(scene.name));
+        StartCoroutine(LoadRulesAfterDelay(scene.name));
     }
 
-    private IEnumerator LoadRulesAfterFrame(string sceneName) {
-        yield return null;
+    private IEnumerator LoadRulesAfterDelay(string sceneName) {
+        int frames = Mathf.Max(0, loadDelayFrames);
+        for (int i = 0; i < frames; i++) {
+            yield return null;
+        }
         LoadRulesForScene(sceneName);
     }
 
     private void LoadRulesForScene(string sceneName) {
         var matched = GetConfigsForScene(sceneName);
+        Debug.Log($"场景 {sceneName} 的数值规则配置匹配结果：共 {matched.Count} 条配置");
         if (matched.Count == 0) {
+            Debug.Log($"场景 {sceneName} 没有匹配的数值规则配置");
             return;
         }
 
@@ -53,11 +68,13 @@ public class NumericalRuleSceneLoader : MonoBehaviour {
                 NumericalRuleManager.BuildAndRegisterRules(cfg.ruleStrings[i]);
             }
         }
+        Debug.Log($"已加载场景 {sceneName} 的数值规则配置，共 {matched.Count} 条配置");
     }
 
     private List<SceneNumericalRuleConfig> GetConfigsForScene(string sceneName) {
         if (preferResources || configs.Count == 0) {
             configs = new List<SceneNumericalRuleConfig>(Resources.LoadAll<SceneNumericalRuleConfig>(resourcesPath));
+            Debug.Log($"NumericalRuleSceneLoader: loaded {configs.Count} configs from Resources/{resourcesPath}.");
         }
 
         var result = new List<SceneNumericalRuleConfig>();

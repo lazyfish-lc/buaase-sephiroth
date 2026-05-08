@@ -34,3 +34,6 @@ MonoBehaviour:
   - name: Player
     icon: {fileID: 0}
     description: "\u73A9\u5BB6"
+  - name: NPC3
+    icon: {fileID: 0}
+    description: "\u5218\u5907"
