@@ -6,7 +6,7 @@ public class IOSubsystem : MonoBehaviour {
     void Awake() { Instance = this; }
     void Update() {
         //鼠标下是否是UI元素，如果鼠标下是非游戏物体不触发
-        if(!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject() && LoadingUI.Instance != null && !LoadingUI.isLoading) {
+        if(!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject() && !LoadingUI.isLoading) {
             dealAttack();
         }
         // 如果鼠标下是UI元素，并且是Action面板的背景，则触发动作面板的点击事件
@@ -14,7 +14,7 @@ public class IOSubsystem : MonoBehaviour {
             dealActionClick();
         }
         // 只在游戏中处理设置、菜单、背包和动作面板的输入
-        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "StartMenuScene" && LoadingUI.Instance != null && !LoadingUI.isLoading) {
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "StartMenuScene" && !LoadingUI.isLoading) {
             dealSettings();
             dealMenu();
             dealBackpack();
