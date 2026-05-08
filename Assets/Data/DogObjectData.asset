@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: DogObjectData
   m_EditorClassIdentifier: Assembly-CSharp::MonsterObjectStaticData
   objectName: Dog
-  ownerBigObject: {fileID: 0}
   propertyBlueprints:
   - name: Health
     initialValue: 1000
@@ -41,4 +40,4 @@ MonoBehaviour:
   baseAttackCooldown: 1
   castLockTime: 2
   dropItemBlueprints: []
-  animatorController: {fileID: 9100000, guid: 4b9b95d97070f38429667de82dcd28de, type: 2}
+  animatorController: {fileID: 22100000, guid: d21dee067666441459e1f0cd851853ae, type: 2}

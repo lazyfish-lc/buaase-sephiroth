@@ -318,7 +318,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 5
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -8075368094052267863, guid: 92e6fa2276f7c054dbd45ed49b0c361b, type: 3}
+  m_Sprite: {fileID: -8983024677097580929, guid: d997c09251683524ca0d9c8024461740, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -417,7 +417,7 @@ Animator:
   m_GameObject: {fileID: 6348409967498636545}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: d21dee067666441459e1f0cd851853ae, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -446,6 +446,8 @@ MonoBehaviour:
     isDestroyed: 0
     smallObjectLabels: []
     isHurt: 0
+  ownerBigObject: {fileID: 0}
+  persistID: b606f69cdf484f2eadba086a379f66fd
   monsterView: {fileID: 773403690865612332}
   sensorPivot: {fileID: 8803475475572729041}
   detectSensor: {fileID: 4036173514521511412}
@@ -527,7 +529,7 @@ CapsuleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: -0.0000009536743, y: -1.6903293}
-  m_Size: {x: 4.758193, y: 6.2974706}
+  m_Size: {x: 40, y: 40}
   m_Direction: 0
 --- !u!114 &4036173514521511412
 MonoBehaviour:
