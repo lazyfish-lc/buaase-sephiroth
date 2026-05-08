@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: ArcherMonsterObjectData
   m_EditorClassIdentifier: Sephiroth.Runtime::ArcherMonsterObjectStaticData
   objectName: ArcherMonster1
-  ownerBigObject: {fileID: 0}
   propertyBlueprints:
   - name: Health
     initialValue: 100
@@ -35,11 +34,7 @@ MonoBehaviour:
     initialValue: 2
     minValue: 0
     maxValue: 50
-  labelBlueprints:
-  - FragileLabel()
-  - FragileLabel()
-  - FragileLabel()
-  - FragileLabel()
+  labelBlueprints: []
   baseAttackCooldown: 5
   castLockTime: 0.5
   dropItemBlueprints: []

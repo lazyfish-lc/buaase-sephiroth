@@ -25,3 +25,9 @@ MonoBehaviour:
   - name: Glow
     icon: {fileID: -7035624447169631724, guid: 7036dcaf5893f8c46893752596b08261, type: 3}
     description: "\u53D1\u5149\u7684\u6807\u7B7E"
+  - name: Docile
+    icon: {fileID: 3354881411262198767, guid: 7036dcaf5893f8c46893752596b08261, type: 3}
+    description: "\u6E29\u987A\u7684\u6807\u7B7E"
+  - name: Berserk
+    icon: {fileID: 7724826089305417903, guid: 7036dcaf5893f8c46893752596b08261, type: 3}
+    description: "\u72C2\u66B4\u7684\u6807\u7B7E"

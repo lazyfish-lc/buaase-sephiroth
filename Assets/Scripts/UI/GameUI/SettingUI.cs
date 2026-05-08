@@ -97,6 +97,7 @@ public class SettingUI : FatherUI
     }
     public void OpenAndCloseMusic()
     {
+        PlayClickSFX();
         if(isMusicOn)
         {
             MusicButton.image.sprite = MusicOffSprite;
@@ -115,6 +116,7 @@ public class SettingUI : FatherUI
     }
     public void OpenAndCloseSound()
     {
+        PlayClickSFX();
         if(isSoundOn)
         {
             SoundButton.image.sprite = SoundOffSprite;

@@ -30,9 +30,7 @@ MonoBehaviour:
     initialValue: 1
     minValue: 0
     maxValue: 20
-  labelBlueprints:
-  - HardLabel()
-  - HardLabel()
+  labelBlueprints: []
   interactionRange: 3
   dialogueNodes:
   - npcContent: "\u6211\u770B\u4F60\u8FD1\u6765\u8FD0\u52BF\u4E0D\u9519\uFF0C\u8981\u4E0D\u8981\u6765\u70B9\u597D\u4E1C\u897F"
@@ -57,15 +55,15 @@ MonoBehaviour:
     hasOptions: 0
     nextNodeIndex: -1
     options:
-    - text: "\u82B1\u8D39100\u70B9Luck\u503C\u83B7\u5F9720\u4E2ALuckCoin"
+    - text: "\u82B1\u8D39100\u70B9Luck\u503C\\n\u83B7\u5F9720\u4E2ALuckCoin"
       targetNodeIndex: 3
       rewardProperty: 
       rewardAmount: 0
-    - text: "\u82B1\u8D3950\u70B9Luck\u503C\u83B7\u5F9710\u4E2ALuckCoin"
+    - text: "\u82B1\u8D3950\u70B9Luck\u503C\\n\u83B7\u5F9710\u4E2ALuckCoin"
       targetNodeIndex: 3
       rewardProperty: 
       rewardAmount: 0
-    - text: "\u82B1\u8D3920\u70B9Luck\u503C\u83B7\u5F974\u4E2ALuckCoin"
+    - text: "\u82B1\u8D3920\u70B9Luck\u503C\\n\u83B7\u5F974\u4E2ALuckCoin"
       targetNodeIndex: 3
       rewardProperty: 
       rewardAmount: 0

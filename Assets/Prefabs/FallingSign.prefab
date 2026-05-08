@@ -94,7 +94,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -4}
+  m_Offset: {x: 0.06315112, y: -4}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -104,7 +104,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2, y: 1}
+  m_Size: {x: 4.455852, y: 1}
   m_EdgeRadius: 0
 --- !u!1 &5669131627653645233
 GameObject:
@@ -191,7 +191,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 6712107096716190547, guid: 6607c4794619fee4a881a8bc77be1eaf, type: 3}
+  m_Sprite: {fileID: -3691500932216307620, guid: 4ff962c0c58e1514abbbfe1728c80518, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -218,13 +218,17 @@ MonoBehaviour:
     isDestroyed: 0
     smallObjectLabels: []
     isHurt: 0
+  ownerBigObject: {fileID: 0}
+  persistID: fe30e875c3794275b8e24b172ebcf7b4
   signRigidbody: {fileID: 7059960424662500751}
   signCollider: {fileID: 3400756073118133248}
   detectionTrigger: {fileID: 7969794852807284432}
   dropDelay: 0.25
+  fallDuration: 2
   impactDamage: 25
   impactKnockback: 35
   dropOnlyOnce: 1
+  detectionCheckInterval: 0.05
 --- !u!50 &7059960424662500751
 Rigidbody2D:
   serializedVersion: 5
@@ -286,15 +290,15 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.00000023841858, y: 0.015105188}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.5625, y: 1.8125}
+    oldSize: {x: 4.5, y: 1.625}
     newSize: {x: 2.5625, y: 1.8125}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2, y: 1.5}
+  m_Size: {x: 4.5578246, y: 1.671193}
   m_EdgeRadius: 0

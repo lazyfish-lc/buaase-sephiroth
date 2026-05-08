@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: SmallObjectDisplayTable
   m_EditorClassIdentifier: Sephiroth.Runtime::SmallObjectDisplayTable
   smallObjectInfos:
+  - name: Player
+    icon: {fileID: 0}
+    description: "\u73A9\u5BB6"
   - name: Monster1
     icon: {fileID: 0}
     description: "\u5438\u8840\u9B3C"
   - name: Monster2
     icon: {fileID: 0}
     description: "\u5438\u8840\u9B3C\u6CD5\u5E08"
-  - name: NPC1
-    icon: {fileID: 0}
-    description: "\u4E00\u4E2Anpc"
   - name: Monster3
     icon: {fileID: 0}
     description: "\u517D\u4EBA"
@@ -31,9 +31,27 @@ MonoBehaviour:
   - name: Monster5
     icon: {fileID: 0}
     description: "\u7194\u5CA9\u53F2\u83B1\u59C6"
-  - name: Player
+  - name: TownMayerNPC
     icon: {fileID: 0}
-    description: "\u73A9\u5BB6"
+    description: "\u6751\u957F"
+  - name: NPC1
+    icon: {fileID: 0}
+    description: "\u795E\u79D8\u7684\u4FEE\u58EB"
+  - name: NPC2
+    icon: {fileID: 0}
+    description: "\u5DE5\u623F\u7684\u5C0F\u59D0"
   - name: NPC3
     icon: {fileID: 0}
     description: "\u5218\u5907"
+  - name: NPC5
+    icon: {fileID: 0}
+    description: "\u5356\u4E1C\u897F\u7684\u9E21"
+  - name: NPC6
+    icon: {fileID: 0}
+    description: "\u6559\u4F1A\u7684\u4FEE\u58EB"
+  - name: SceneNPC
+    icon: {fileID: 0}
+    description: "\u8BAF\u606F"
+  - name: Dog
+    icon: {fileID: 0}
+    description: "\u91CE\u732A"
