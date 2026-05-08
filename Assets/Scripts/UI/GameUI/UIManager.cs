@@ -12,7 +12,6 @@ public class UIManager : MonoBehaviour
     public StatusUI statusUI;
     public PropertyUI propertyUI;
     public LabelUI labelUI;
-
     public KeysetUI keysetUI;
     void Awake()
     {
