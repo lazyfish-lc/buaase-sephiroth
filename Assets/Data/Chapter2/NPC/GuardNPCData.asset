@@ -61,7 +61,7 @@ MonoBehaviour:
     nextNodeIndex: 5
     options: []
     enterActions:
-    - {fileID: 11400000, guid: 394a02ba45d1d4047ab96ec7377b4691, type: 2}
+    - {fileID: 11400000, guid: 9af821a16d9f4b54f91fa61a9606ed62, type: 2}
   - npcContent: "\u4F60\u7684\u901A\u884C\u8BC1\u5462\uFF1F"
     hasOptions: 0
     nextNodeIndex: 6
@@ -75,4 +75,4 @@ MonoBehaviour:
   requiredItems:
   - PassChapter2
   startNodeIfHasRequiredItems: 1
-  animatorController: {fileID: 22100000, guid: e4d011e978c21c240a38d41f57131ce3, type: 2}
+  animatorController: {fileID: 9100000, guid: f7318d184eedef044958577690af2ad0, type: 2}

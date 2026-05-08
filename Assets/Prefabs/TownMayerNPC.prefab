@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 3794595552119072108}
   - component: {fileID: 2488061281611732667}
   - component: {fileID: 22704739721508000}
-  - component: {fileID: 2493025526342578279}
   - component: {fileID: 6302767683279945129}
+  - component: {fileID: 3272922084733040204}
   m_Layer: 11
   m_Name: TownMayerNPC
   m_TagString: Untagged
@@ -191,26 +191,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2.2257466, y: 1.9389541}
   m_EdgeRadius: 0
---- !u!114 &2493025526342578279
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8956657257984082875}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f76fb00e63a6898439bd0ed8ca8e6520, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Sephiroth.Runtime::NPCObject
-  staticData: {fileID: 11400000, guid: ab82a693ca2c4b145a7f4150db804286, type: 2}
-  dynamicState:
-    isDestroyed: 0
-    smallObjectLabels: []
-    isHurt: 0
-  ownerBigObject: {fileID: 0}
-  persistID: 66edf52629104bb6917cba248a91b212
-  view: {fileID: 6302767683279945129}
 --- !u!114 &6302767683279945129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,3 +204,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Sephiroth.Runtime::NPCView
   animator: {fileID: 3794595552119072108}
+--- !u!114 &3272922084733040204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8956657257984082875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcbaf69746c045e49957473c0da13bfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Sephiroth.Runtime::MayorNPCObject
+  staticData: {fileID: 11400000, guid: ab82a693ca2c4b145a7f4150db804286, type: 2}
+  dynamicState:
+    isDestroyed: 0
+    smallObjectLabels: []
+    isHurt: 0
+  ownerBigObject: {fileID: 0}
+  persistID: 8a7582dbe2ea483d9bc3e44e0f0313ad
+  view: {fileID: 6302767683279945129}
+  luckCoinItemName: LuckCoin
+  passportItemName: PassChapter2
+  docileLabelCount: 20
+  exchangeOptionIndex: 0
+  successNodeIndex: 2
+  failureNodeIndex: 1
+  choiceNodeIndex: 3
