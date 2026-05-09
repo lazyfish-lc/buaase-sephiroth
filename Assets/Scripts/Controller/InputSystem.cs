@@ -142,12 +142,34 @@ public class IOSubsystem : MonoBehaviour {
     }
 
     void dealActionClick() {
-        if (Input.GetButtonDown(InputConfig.ActionClick)) {
+        if (Input.GetButtonDown(InputConfig.ActionClick) && !IsPointerOverUIButton()) {
             if (ActionUI.Instance != null) {
                 Debug.Log("动作面板被调用");
                 ActionUI.Instance.OnBackgroundClick();
             }
         }
+    }
+
+    private bool IsPointerOverUIButton() {
+        var es = UnityEngine.EventSystems.EventSystem.current;
+        if (es == null) return false;
+
+        var pointerData = new UnityEngine.EventSystems.PointerEventData(es) {
+            position = Input.mousePosition
+        };
+
+        var results = new System.Collections.Generic.List<UnityEngine.EventSystems.RaycastResult>();
+        es.RaycastAll(pointerData, results);
+
+        for (int i = 0; i < results.Count; i++) {
+            var go = results[i].gameObject;
+            if (go == null) continue;
+            if (go.GetComponentInParent<UnityEngine.UI.Button>() != null) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private SmallObject GetObjectUnderMouse() {

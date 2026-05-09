@@ -13,33 +13,51 @@ MonoBehaviour:
   m_Name: ItemDisplayTable
   m_EditorClassIdentifier: Sephiroth.Runtime::ItemDisplayInfo
   itemInfos:
-  - name: sword
+  - name: "\u5251"
+    displayname: "\u5251"
     icon: {fileID: -8369547123586657644, guid: 7745bae0a365b7d4d8375e0fb7a637ea, type: 3}
-    description: "\u6751\u597D\u5251"
-  - name: "\u8840\u74F6"
+    description: "\u6751\u597D\u5251\\n\u5251\u4E0A\u57FA\u672C\u6CA1\u6709\u7455\u75B5\uFF0C\u662F\u628A\u597D\u5251"
+  - name: "\u53EF\u53E3\u53EF\u4E50"
+    displayname: "\u53EF\u53E3\u53EF\u4E50"
     icon: {fileID: 6519190929727653930, guid: 7745bae0a365b7d4d8375e0fb7a637ea, type: 3}
-    description: "\u53EA\u662F\u53EF\u53E3\u53EF\u4E50"
-  - name: "\u84DD\u74F6"
+    description: "\u767E\u4E8B\u72D7\u90FD\u4E0D\u559D"
+  - name: "\u767E\u4E8B\u53EF\u4E50"
+    displayname: "\u767E\u4E8B\u53EF\u4E50"
     icon: {fileID: 3605249943430155902, guid: 7745bae0a365b7d4d8375e0fb7a637ea, type: 3}
-    description: "\u53EA\u662F\u767E\u4E8B\u53EF\u4E50"
+    description: "\u53EF\u53E3\u72D7\u90FD\u4E0D\u559D"
+  - name: "\u95F7\u5B50"
+    displayname: "\u95F7\u5B50"
+    icon: {fileID: 7379551783457848927, guid: 0d387d0739259214c8a055b467d3e7aa, type: 3}
+    description: "\u80F6\u539F\u86CB\u767D\u548C\u8089\u6C41\uFF0C\u5F97\u5C31\u7740\u849C\u5403"
+  - name: "\u70B8\u9E21"
+    displayname: "\u987A\u6CBB\u9E22\u5C3E\u9E21"
+    icon: {fileID: 4049532678699090874, guid: 0d387d0739259214c8a055b467d3e7aa, type: 3}
+    description: "\u7ECF\u5178\u53E3\u5473\u3002"
   - name: TruthLens
+    displayname: "\u771F\u7406\u900F\u955C"
     icon: {fileID: 8978743727367540467, guid: c1535a95ad37d3f469b7599e144684c2, type: 3}
-    description: "\u771F\u7406\u900F\u955C - \u6D1E\u6089\u4E16\u754C\u7684\u6784\u6210"
+    description: "\u900F\u955C\u9690\u9690\u6CDB\u7740\u84DD\u5149\uFF0C\u5176\u8EAB\u4E0A\u6709\u4E00\u79CD\u795E\u79D8\u7684\u529B\u91CF\uFF0C\u80FD\u591F\u8BA9\u6301\u6709\u8005\u6D1E\u6089\u4E16\u754C\u7684\u6784\u6210\u3002"
   - name: LensPartA
+    displayname: "\u6B8B\u7F3A\u7684\u900F\u955C"
     icon: {fileID: -8565037548407736960, guid: c1535a95ad37d3f469b7599e144684c2, type: 3}
     description: "\u4E00\u5757\u4E0D\u77E5\u540D\u7684\u73BB\u7483\u788E\u7247\uFF0C\u4F3C\u4E4E\u662F\u539F\u672C\u7684\u4E09\u5206\u4E4B\u4E00"
   - name: LensPartB
+    displayname: "\u6B8B\u7F3A\u7684\u900F\u955C"
     icon: {fileID: 1925759326, guid: c1535a95ad37d3f469b7599e144684c2, type: 3}
     description: "\u4E00\u5757\u4E0D\u77E5\u540D\u7684\u73BB\u7483\u788E\u7247\uFF0C\u4F3C\u4E4E\u662F\u539F\u672C\u7684\u4E09\u5206\u4E4B\u4E00"
   - name: LensPartC
+    displayname: "\u6B8B\u7F3A\u7684\u900F\u955C"
     icon: {fileID: -1631308994, guid: c1535a95ad37d3f469b7599e144684c2, type: 3}
     description: "\u4E00\u5757\u4E0D\u77E5\u540D\u7684\u73BB\u7483\u788E\u7247\uFF0C\u4F3C\u4E4E\u662F\u539F\u672C\u7684\u4E09\u5206\u4E4B\u4E00"
   - name: KeyChapter1
+    displayname: "\u5730\u7262\u7684\u94A5\u5319"
     icon: {fileID: 3736144612295991437, guid: 360371061fdbf8c439e71484f09b516f, type: 3}
-    description: "\u94A5\u5319\uFF0C\u4F3C\u4E4E\u80FD\u6253\u5F00\u67D0\u4E9B\u95E8"
+    description: "\u9EC4\u94DC\u5236\u4F5C\u7684\u94A5\u5319\u3002\\n\u6709\u4E86\u5B83\u5C31\u80FD\u5728\u5730\u7262\u7545\u901A\u65E0\u963B"
   - name: LuckCoin
+    displayname: "\u5E78\u8FD0\u786C\u5E01"
     icon: {fileID: 1029129698335283115, guid: 9896c5803c9ba774a9acb3a0d78f3780, type: 3}
-    description: "\u94A5\u5319\uFF0C\u4F3C\u4E4E\u80FD\u6253\u5F00\u67D0\u4E9B\u95E8"
+    description: "\u5E26\u6765\u201C\u597D\u8FD0\u201D\u7684\u786C\u5E01\\n\u91D1\u707F\u707F\u7684"
   - name: PassChapter2
+    displayname: "\u901A\u884C\u8BC1"
     icon: {fileID: -8233694251485885053, guid: b1ea574ad931c1e4c9611507f5a30326, type: 3}
-    description: "\u901A\u884C\u8BC1\uFF0C\u6709\u4E86\u5B83\u5C31\u80FD\u7545\u901A\u65E0\u963B"
+    description: "\u5370\u6709\u5B98\u6587\u7684\u901A\u884C\u8BC1\uFF0C\u6709\u4E86\u5B83\u5C31\u80FD\u901A\u8FC7\u8FB9\u754C\u3002\\n\u5E94\u8BE5\u5427\u3002\u3002\u3002"

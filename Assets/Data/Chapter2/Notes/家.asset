@@ -10,15 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2716b9197589a9b4ebc9867440969c23, type: 3}
-  m_Name: CabinetSceneData
+  m_Name: "\u5BB6"
   m_EditorClassIdentifier: Sephiroth.Runtime::NPCStaticData
   objectName: 
-  ownerBigObject: {fileID: 0}
   propertyBlueprints: []
   labelBlueprints: []
   interactionRange: 3
   dialogueNodes:
-  - npcContent: "\u67DC\u5B50\u4E0A\u6709\u4E00\u4E9B\u98DF\u7269\uFF0C\u5728\u91CC\u9762\u5F85\u4E0A\u51E0\u5929\u8FD8\u662F\u8DB3\u591F\u7684"
+  - npcContent: "\u5BB6\uFF0C\u6E29\u99A8\u7684\u5BB6"
     hasOptions: 0
     nextNodeIndex: -1
     options: []
