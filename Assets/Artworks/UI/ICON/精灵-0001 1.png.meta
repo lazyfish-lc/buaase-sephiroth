@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 65f00526fae87a440b5bb7a9f007d40b
+guid: 5bd712a4a53383f4482e7e053b4f85b8
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5605674744370884852
-    second: "\u7F51\u7AD9\u80CC\u666F_0"
+      213: -2203404596273023444
+    second: "\u7CBE\u7075-0001 1_0"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -24,7 +24,7 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
     flipGreenChannel: 0
-  isReadable: 0
+  isReadable: 1
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -37,12 +37,12 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
-    wrapU: 0
-    wrapV: 0
-    wrapW: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -57,7 +57,7 @@ TextureImporter:
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
-  textureType: 8
+  textureType: 7
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\u7F51\u7AD9\u80CC\u666F_0"
+      name: "\u7CBE\u7075-0001 1_0"
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1200
-        height: 2160
+        x: 26
+        y: 23
+        width: 44
+        height: 50
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c0f05672584a432b0800000000000000
-      internalID: -5605674744370884852
+      spriteID: c26feae913feb61e0800000000000000
+      internalID: -2203404596273023444
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      "\u7F51\u7AD9\u80CC\u666F_0": -5605674744370884852
+      "\u7CBE\u7075-0001 1_0": -2203404596273023444
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
