@@ -26,7 +26,7 @@ MonoBehaviour:
       rewardProperty: 
       rewardAmount: 0
     - text: "\u7B97\u4E86"
-      targetNodeIndex: 2
+      targetNodeIndex: 3
       rewardProperty: 
       rewardAmount: 0
     enterActions: []

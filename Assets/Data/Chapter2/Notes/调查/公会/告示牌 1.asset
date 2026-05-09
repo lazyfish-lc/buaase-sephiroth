@@ -39,13 +39,9 @@ MonoBehaviour:
       rewardAmount: 0
     enterActions: []
   - npcContent: "\u4EC0\u4E48\u6807\u70B9\u5728\u7834\u6298\u53F7\u524D\u9762\uFF1F"
-    hasOptions: 1
+    hasOptions: 0
     nextNodeIndex: 2
-    options:
-    - text: "\u770B\u770B\u5176\u4ED6\u680F\u76EE"
-      targetNodeIndex: 0
-      rewardProperty: 
-      rewardAmount: 0
+    options: []
     enterActions: []
   - npcContent: "\u5192\u53F7\uFF0C\u56E0\u4E3A\u201C\u5192\u9669\u8005(\u5148\u6298)\u201D"
     hasOptions: 1
@@ -53,6 +49,10 @@ MonoBehaviour:
     options:
     - text: "\u770B\u770B\u5176\u4ED6\u680F\u76EE"
       targetNodeIndex: 0
+      rewardProperty: 
+      rewardAmount: 0
+    - text: "\u4E0D\u770B\u4E86"
+      targetNodeIndex: -1
       rewardProperty: 
       rewardAmount: 0
     enterActions: []
@@ -64,6 +64,10 @@ MonoBehaviour:
       targetNodeIndex: 0
       rewardProperty: 
       rewardAmount: 0
+    - text: "\u4E0D\u770B\u4E86"
+      targetNodeIndex: -1
+      rewardProperty: 
+      rewardAmount: 0
     enterActions: []
   - npcContent: "\u60F3\u8981\u51FA\u53BB\u5C0F\u9547\uFF0C\u5FC5\u987B\u5148\u6709\u6751\u957F\u7684\u901A\u884C\u8BC1\uFF0C\u4F46\u662F\u6751\u957F\u4F3C\u4E4E\u662F\u4E2A\u8D2A\u8D22\u7684\u4EBA"
     hasOptions: 1
@@ -73,6 +77,10 @@ MonoBehaviour:
       targetNodeIndex: 0
       rewardProperty: 
       rewardAmount: 0
+    - text: "\u4E0D\u770B\u4E86"
+      targetNodeIndex: -1
+      rewardProperty: 
+      rewardAmount: 0
     enterActions: []
   - npcContent: "\u6700\u8FD1\u6709\u65F6\u4F1A\u522E\u8D77\u5927\u98CE\uFF0C\u5C0F\u5FC3\u624B\u91CC\u7684\u4E1C\u897F"
     hasOptions: 1
@@ -80,6 +88,10 @@ MonoBehaviour:
     options:
     - text: "\u770B\u770B\u5176\u4ED6\u680F\u76EE"
       targetNodeIndex: 0
+      rewardProperty: 
+      rewardAmount: 0
+    - text: "\u4E0D\u770B\u4E86"
+      targetNodeIndex: -1
       rewardProperty: 
       rewardAmount: 0
     enterActions: []

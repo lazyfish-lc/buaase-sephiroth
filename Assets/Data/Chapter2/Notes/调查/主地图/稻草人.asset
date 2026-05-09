@@ -22,11 +22,6 @@ MonoBehaviour:
     nextNodeIndex: 1
     options: []
     enterActions: []
-  - npcContent: "\u7B2C\u4E00\uFF0C\u8FD9\u662F\u7A3B\u8349\u4EBA"
-    hasOptions: 0
-    nextNodeIndex: -1
-    options: []
-    enterActions: []
   - npcContent: "\u7B2C\u4E8C\uFF0C\u8FD9\u662F\u7A3B\u8349\u4EBA"
     hasOptions: 0
     nextNodeIndex: 2
