@@ -133,10 +133,10 @@ public class ActionUI : FatherUI
     }
     // 6. 处理非选项节点的点击翻页
     public void OnBackgroundClick() {
-        PlayClickSFX();
         List<DialogueOption> options = currentNPC != null ? (currentNPC.GetCurrentOptions() ?? new List<DialogueOption>()) : null;
         if (currentNPC != null && options.Count == 0) {
             currentNPC.AdvanceToNextNode();
+            PlayClickSFX();
         }
     }
     private void HandleDialogueEnd() {

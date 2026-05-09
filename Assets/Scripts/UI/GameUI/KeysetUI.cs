@@ -16,7 +16,8 @@ public class KeysetUI : FatherUI
     }
     void Start()
     {
-        KeysetCanvas.gameObject.SetActive(false);
+        // 初始状态下显示按键指导
+        KeysetCanvas.gameObject.SetActive(true);
     }
     void OnDestroy()
     {
