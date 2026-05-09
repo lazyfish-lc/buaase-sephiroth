@@ -52,12 +52,16 @@ MonoBehaviour:
     hasOptions: 0
     nextNodeIndex: -1
     options: []
-    enterActions: []
+    enterActions:
+    - {fileID: 11400000, guid: dea4aadcad586564fb1b753f1f54304d, type: 2}
+    - {fileID: 11400000, guid: a85d13f5c28aff84fb9b5cee3d1b72b1, type: 2}
+    - {fileID: 11400000, guid: 8fe5561f0e77a63469d3398935719e7c, type: 2}
   - npcContent: "\u80C3\u73CD\u8DB3"
     hasOptions: 0
     nextNodeIndex: -1
     options: []
-    enterActions: []
+    enterActions:
+    - {fileID: 11400000, guid: c11494e0b1b36b5428e2723b41c0d71a, type: 2}
   requiredItems: []
   startNodeIfHasRequiredItems: -1
   animatorController: {fileID: 0}
