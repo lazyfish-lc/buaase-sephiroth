@@ -13,12 +13,16 @@ MonoBehaviour:
   m_Name: MonkNPCData
   m_EditorClassIdentifier: Sephiroth.Runtime::NPCStaticData
   objectName: 
-  ownerBigObject: {fileID: 0}
   propertyBlueprints: []
   labelBlueprints: []
   interactionRange: 3
   dialogueNodes:
   - npcContent: "\u613F\u5723\u5149\u629A\u5E73\u4F60\u7684\u4F24\u75DB\uFF0C\u4E5F\u613F\u4F60\u7684\u7075\u9B42\u5728\u7EB7\u4E89\u4E2D\u4F9D\u65E7\u4FDD\u6301\u7EAF\u51C0\u3002"
+    hasOptions: 0
+    nextNodeIndex: 1
+    options: []
+    enterActions: []
+  - npcContent: "\u4E3B\u6559\u5927\u4EBA\u51FA\u53BB\u8C03\u67E5\u9057\u8FF9\u4E86\uFF0C\u73B0\u5728\u662F\u6751\u957F\u5728\u6559\u5802\u503C\u5B88"
     hasOptions: 0
     nextNodeIndex: -1
     options: []

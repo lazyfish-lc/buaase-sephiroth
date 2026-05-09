@@ -33,7 +33,7 @@ MonoBehaviour:
   labelBlueprints: []
   interactionRange: 3
   dialogueNodes:
-  - npcContent: "\u6211\u770B\u4F60\u8FD1\u6765\u8FD0\u52BF\u4E0D\u9519\uFF0C\u8981\u4E0D\u8981\u6765\u70B9\u597D\u4E1C\u897F"
+  - npcContent: "\u5495\u5495\uFF0C\u6211\u770B\u4F60\u8FD1\u6765\u8FD0\u52BF\u4E0D\u9519\uFF0C\u8981\u4E0D\u8981\u6765\u70B9\u597D\u4E1C\u897F"
     hasOptions: 0
     nextNodeIndex: 1
     options: []
@@ -68,12 +68,12 @@ MonoBehaviour:
       rewardProperty: 
       rewardAmount: 0
     enterActions: []
-  - npcContent: "\u8C22\u8C22\u60E0\u987E"
+  - npcContent: "\u5495\u5495\uFF0C\u8C22\u8C22\u60E0\u987E"
     hasOptions: 0
     nextNodeIndex: -1
     options: []
     enterActions: []
-  - npcContent: "\u60F3\u83B7\u53D6\u8FD9\u4E48\u591ALuckCoin\u4E0D\u591FLucky\u662F\u4E0D\u884C\u7684\u54E6"
+  - npcContent: "\u5495\u5495\uFF0C\u60F3\u83B7\u53D6\u8FD9\u4E48\u591ALuckCoin\u4E0D\u591FLucky\u662F\u4E0D\u884C\u7684\u54E6"
     hasOptions: 0
     nextNodeIndex: -1
     options: []
