@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: StrangeNPCData
   m_EditorClassIdentifier: Sephiroth.Runtime::NPCStaticData
   objectName: 
-  ownerBigObject: {fileID: 0}
   propertyBlueprints: []
   labelBlueprints: []
   interactionRange: 3
@@ -28,7 +27,7 @@ MonoBehaviour:
     nextNodeIndex: 2
     options: []
     enterActions: []
-  - npcContent: "\u8981\u6765\u4E00\u5757\u770B\u770B\u5417\uFF1F"
+  - npcContent: "\u8981\u6765\u4E00\u5757\u7814\u7A76\u770B\u770B\u5417\uFF1F"
     hasOptions: 0
     nextNodeIndex: -1
     options: []
