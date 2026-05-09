@@ -40,15 +40,6 @@ MonoBehaviour:
     maxValue: 99999
   labelBlueprints: []
   baseAttackCooldown: 0.5
-  labelBackpackBlueprints:
-  - Fragile
-  - Hard
-  - 
-  - 
-  - 
+  labelBackpackBlueprints: []
   itemBackpackBlueprints:
   - itemName: "\u5251"
-  - itemName: "\u70B8\u9E21"
-  - itemName: "\u53EF\u53E3\u53EF\u4E50"
-  - itemName: "\u767E\u4E8B\u53EF\u4E50"
-  - itemName: "\u95F7\u5B50"
