@@ -51,11 +51,6 @@ public class DoorSmallObject : SmallObject, IDialogueActionReceiver {
             : gameObject.name;
 
     public void ReceiveDialogueAction() {
-        if (!HasRequiredItem()) {
-            Debug.Log($"玩家背包缺少 {requiredItemName}，无法打开门");
-            return;
-        }
-
         OpenDoor();
     }
 

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be681dcc80b56e6469bdd3ff2e6e323a, type: 3}
   m_Name: LabeledDoor2ObjectData
   m_EditorClassIdentifier: Sephiroth.Runtime::DoorStaticData
-  objectName: DoorChapter2
+  objectName: 
   propertyBlueprints:
   - name: Health
     initialValue: 100
@@ -33,5 +33,5 @@ MonoBehaviour:
   labelBlueprints:
   - HardLabel()
   - LockLabel()
-  doorName: NoKey
+  doorName: DoorChapter2
   initiallyOpen: 0

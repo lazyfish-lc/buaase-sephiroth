@@ -23,7 +23,7 @@ public class IOSubsystem : MonoBehaviour {
             dealShowLabel();
             dealShowProperty();
             dealSwitchTime();
-            dealScroll();
+            // dealScroll();
         }
     }
 
@@ -110,7 +110,7 @@ public class IOSubsystem : MonoBehaviour {
     void dealScroll() {
         float scrollDelta = Input.GetAxis(InputConfig.Scroll);
         if (Mathf.Abs(scrollDelta) > 0.01f) {
-            Debug.Log("滚轮输入，增量: " + scrollDelta);
+            // Debug.Log("滚轮输入，增量: " + scrollDelta);
             // TODO: 处理滚轮输入，触发数值修改事件
         }
     }

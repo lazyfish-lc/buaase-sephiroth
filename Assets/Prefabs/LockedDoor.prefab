@@ -871,11 +871,14 @@ MonoBehaviour:
     isDestroyed: 0
     smallObjectLabels: []
     isHurt: 0
+  ownerBigObject: {fileID: 0}
+  persistID: d6b710a4ac5e4e40a76384bae04628c5
   lockCollider: {fileID: 4717140699935576729}
   lockedTilemap: {fileID: 4216614318809342696}
   openTilemap: {fileID: 8444857783346082293}
   lockedTilemapTop: {fileID: 6367949797688685929}
   openTilemapTop: {fileID: 7885539404513709948}
+  requiredItemName: 
 --- !u!50 &5225936333334074606
 Rigidbody2D:
   serializedVersion: 5
@@ -937,7 +940,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.0068078637, y: 0.20423603}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -947,5 +950,5 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.4, y: 1}
+  m_Size: {x: 1.1957641, y: 0.99152803}
   m_EdgeRadius: 0

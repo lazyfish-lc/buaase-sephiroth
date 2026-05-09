@@ -224,11 +224,12 @@ MonoBehaviour:
   signCollider: {fileID: 3400756073118133248}
   detectionTrigger: {fileID: 7969794852807284432}
   dropDelay: 0.25
-  fallDuration: 2
+  fallDuration: 1
   impactDamage: 25
   impactKnockback: 35
   dropOnlyOnce: 1
   detectionCheckInterval: 0.05
+  luckThreshold: 20
 --- !u!50 &7059960424662500751
 Rigidbody2D:
   serializedVersion: 5
