@@ -40,17 +40,6 @@ MonoBehaviour:
     maxValue: 99999
   labelBlueprints: []
   baseAttackCooldown: 0.5
-  labelBackpackBlueprints:
-  - HardLabel()
-  - FragileLabel()
-  - LockLabel()
-  - LockLabel()
-  - LockLabel()
-  - FragileLabel()
+  labelBackpackBlueprints: []
   itemBackpackBlueprints:
-  - itemName: sword
-  - itemName: "\u8840\u74F6"
-  - itemName: "\u8840\u74F6"
-  - itemName: "\u84DD\u74F6"
-  - itemName: "\u8840\u74F6"
-  - itemName: "\u84DD\u74F6"
+  - itemName: "\u5251"
