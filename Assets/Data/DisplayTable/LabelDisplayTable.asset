@@ -14,20 +14,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: Sephiroth.Runtime::LabelDisplayInfo
   labelInfos:
   - name: Hard
+    displayname: "\u575A\u786C\u7684\u6807\u7B7E"
     icon: {fileID: -7956794561628759053, guid: 7036dcaf5893f8c46893752596b08261, type: 3}
-    description: "\u575A\u786C\u7684\u6807\u7B7E"
+    description: "\u4F3C\u4E4E\u6709\u8BA9\u88AB\u9644\u7740\u7684\u5BF9\u8C61\u575A\u786C\u7684\u6548\u679C\\n\\n--\u91D1\u521A\u4E0D\u574F\uFF01"
   - name: Fragile
+    displayname: "\u6613\u788E\u7684\u6807\u7B7E"
     icon: {fileID: -3134281872950015806, guid: 7036dcaf5893f8c46893752596b08261, type: 3}
-    description: "\u6613\u788E\u7684\u6807\u7B7E"
+    description: "\u4F3C\u4E4E\u6709\u8BA9\u88AB\u9644\u7740\u7684\u5BF9\u8C61\u5F00\u88C2\u7684\u6548\u679C\\n\\n--\u4E0D\u662Farc\u7684\u6B8B\u7247"
   - name: Lock
+    displayname: "\u4E0A\u9501\u7684\u6807\u7B7E"
     icon: {fileID: 4209703216500004321, guid: 7036dcaf5893f8c46893752596b08261, type: 3}
-    description: "\u4E0A\u9501\u7684\u6807\u7B7E"
+    description: "\u4F3C\u4E4E\u6709\u8BA9\u88AB\u9644\u7740\u7684\u5BF9\u8C61\u4E0A\u9501\u7684\u6548\u679C\\n\\n--\u95EE\u5C31\u662F\u95E8\u65E0\u6CD5\u4ECE\u8FD9\u4E00\u4FA7\u6253\u5F00"
   - name: Glow
+    displayname: "\u53D1\u5149\u7684\u6807\u7B7E"
     icon: {fileID: -7035624447169631724, guid: 7036dcaf5893f8c46893752596b08261, type: 3}
-    description: "\u53D1\u5149\u7684\u6807\u7B7E"
+    description: "\u4F3C\u4E4E\u6709\u8BA9\u88AB\u9644\u7740\u7684\u5BF9\u8C61\u53D1\u5149\u7684\u6548\u679C\\n\\n--\u4F60\u76F8\u4FE1\u5149\u5417?"
   - name: Docile
+    displayname: "\u6E29\u987A\u7684\u6807\u7B7E"
     icon: {fileID: 3354881411262198767, guid: 7036dcaf5893f8c46893752596b08261, type: 3}
-    description: "\u6E29\u987A\u7684\u6807\u7B7E"
+    description: "\u4F3C\u4E4E\u6709\u8BA9\u88AB\u9644\u7740\u7684\u5BF9\u8C61\u6E29\u987A\u7684\u6548\u679C\\n\\n--\u6363\u86CB\u9B3C\u522B\u6363\u86CB\uFF01"
   - name: Berserk
+    displayname: "\u72C2\u66B4\u7684\u6807\u7B7E"
     icon: {fileID: 7724826089305417903, guid: 7036dcaf5893f8c46893752596b08261, type: 3}
-    description: "\u72C2\u66B4\u7684\u6807\u7B7E"
+    description: "\u4F3C\u4E4E\u6709\u8BA9\u88AB\u9644\u7740\u7684\u5BF9\u8C61\u72C2\u66B4\u7684\u6548\u679C\\n\\n--\u54C8\u6C14\u5E95\u5C42\u4EE3\u7801"

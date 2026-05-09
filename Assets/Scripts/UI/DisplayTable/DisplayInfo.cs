@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DisplayInfo {
     public string name;
+    public string displayname;
     public Sprite icon;
     public string description;
 }

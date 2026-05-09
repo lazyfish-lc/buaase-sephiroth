@@ -212,10 +212,10 @@ public class BackpackUI : FatherUI
         if (clickedInfo != null)
         {
             
-            Debug.Log($"点击了格子 [{index}]：物品 = {clickedInfo.name}");
+            Debug.Log($"点击了格子 [{index}]：物品 = {clickedInfo.name}/{clickedInfo.displayname}");
             DisplayImage.color = new Color(1, 1, 1, 1); // 设置为不透明
             DisplayImage.sprite = clickedInfo.icon;
-            DisplayName.text = clickedInfo.name;
+            DisplayName.text = clickedInfo.displayname;
             DisplayDescription.text = clickedInfo.description;
             // 这里可以触发信息面板显示、使用物品等逻辑
         }

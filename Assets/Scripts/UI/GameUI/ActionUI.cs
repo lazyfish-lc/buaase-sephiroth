@@ -99,7 +99,9 @@ public class ActionUI : FatherUI
         ActionText.text = currentNPC.GetCurrentContent();
         Sprite npcSprite = currentNPC.GetCurrentSprite();
         if (ActionImage != null && npcSprite != null) {
-            ActionImage.sprite = npcSprite;
+            ActionImage.preserveAspect = true; // 缩放以适配正方形显示
+            var spriteRenderer = npcSprite;
+            ActionImage.sprite = spriteRenderer != null ? npcSprite : null; // 数据不存储，直接获取显示物体的图片
             ActionImage.gameObject.SetActive(true);
         } else if (ActionImage != null) {
             ActionImage.gameObject.SetActive(false);

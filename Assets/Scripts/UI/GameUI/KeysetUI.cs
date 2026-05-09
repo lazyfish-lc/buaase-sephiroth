@@ -17,7 +17,16 @@ public class KeysetUI : FatherUI
     void Start()
     {
         // 初始状态下显示按键指导
-        KeysetCanvas.gameObject.SetActive(true);
+        // 判断是否是特定场景或条件下显示按键指导，例如在主菜单或特定关卡
+        Debug.Log($"当前场景: {UnityEngine.SceneManagement.SceneManager.GetActiveScene().name}");
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Map1")
+        {
+            KeysetCanvas.gameObject.SetActive(true);
+        }
+        else
+        {
+            KeysetCanvas.gameObject.SetActive(false);
+        }
     }
     void OnDestroy()
     {

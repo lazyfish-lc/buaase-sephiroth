@@ -35,9 +35,10 @@ public class PropertyUI : FatherUI{
     void Start()
     {
         //不可见且不可交互
-       PropertyCanvas.alpha = 0;
-       PropertyCanvas.interactable = false;
-       PropertyCanvas.blocksRaycasts = false;
+        PropertyCanvas.alpha = 0;
+        PropertyCanvas.interactable = false;
+        PropertyCanvas.blocksRaycasts = false;
+        DisplayImage.preserveAspect = true;
     }
     public void OpenAndClose()
     {
@@ -99,8 +100,10 @@ public class PropertyUI : FatherUI{
             if (info != null)
             {
                 DisplayImage.color = new Color(1, 1, 1, 1); // 设置为不透明
-                DisplayImage.sprite = currentSmallObject.GetComponent<SpriteRenderer>()?.sprite; // 数据不存储，直接获取显示物体的图片
-                DisplayName.text = info.name;
+                DisplayImage.preserveAspect = true; // 缩放以适配正方形显示
+                var spriteRenderer = currentSmallObject.GetComponent<SpriteRenderer>();
+                DisplayImage.sprite = spriteRenderer != null ? spriteRenderer.sprite : null; // 数据不存储，直接获取显示物体的图片
+                DisplayName.text = info.displayname;
                 DisplayDescription.text = info.description;
                 // 这里可以根据实际需求将 SmallObject 的属性显示在输入框中
                 // 先获取 SmallObject 的属性数量（默认不超过8个）
