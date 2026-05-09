@@ -17,9 +17,19 @@ MonoBehaviour:
   labelBlueprints: []
   interactionRange: 3
   dialogueNodes:
-  - npcContent: "\u5DE8\u5927\u7684\u86C7\u9AA8\u76D8\u7ED5\u5728\u4E2D\u592E\u7684\u684C\u5B50\u5468\u56F4\uFF0C\u4E0A\u65B9\u6302\u6709\u516C\u4F1A\u7684\u65D7\u5E1C\uFF0C\u4F46\u662F\u5E76\u6CA1\u6709\u4EBA\u5728"
+  - npcContent: "\u5DE8\u5927\u7684\u86C7\u9AA8\u76D8\u7ED5\u5728\u4E2D\u592E\u7684\u684C\u5B50\u5468\u56F4"
     hasOptions: 0
-    nextNodeIndex: 0
+    nextNodeIndex: 1
+    options: []
+    enterActions: []
+  - npcContent: "\u4E0A\u65B9\u6302\u6709\u516C\u4F1A\u7684\u65D7\u5E1C"
+    hasOptions: 0
+    nextNodeIndex: 2
+    options: []
+    enterActions: []
+  - npcContent: "\u4F46\u662F\u5E76\u6CA1\u6709\u4EBA\u5728"
+    hasOptions: 0
+    nextNodeIndex: -1
     options: []
     enterActions: []
   requiredItems: []
