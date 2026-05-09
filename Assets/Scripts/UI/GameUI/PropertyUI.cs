@@ -185,6 +185,7 @@ public class PropertyUI : FatherUI{
             }
             // ...
             Debug.Log("属性已保存");
+            ShowProperty();
         }
         else
         {
