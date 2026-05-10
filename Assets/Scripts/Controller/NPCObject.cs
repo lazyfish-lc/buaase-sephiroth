@@ -106,6 +106,23 @@ public class NPCObject : SmallObject {
             if (hasAll && NPCData.startNodeIfHasRequiredItems >= 0) startIndex = NPCData.startNodeIfHasRequiredItems;
         }
 
+        if (NPCData != null && NPCData.requiredItems2 != null && NPCData.requiredItems2.Count > 0) {
+            bool hasAll = true;
+            var player = NPCState.currentInteractingPlayer;
+            if (player != null) {
+                foreach (var req in NPCData.requiredItems2) {
+                    if (!player.HasItemInBackpack(req)) {
+                        hasAll = false;
+                        break;
+                    }
+                }
+            } else {
+                hasAll = false;
+            }
+
+            if (hasAll && NPCData.startNodeIfHasRequiredItems2 >= 0) startIndex = NPCData.startNodeIfHasRequiredItems2;
+        }
+
         return startIndex;
     }
 
