@@ -46,6 +46,10 @@ public class SaveManager : MonoBehaviour {
         LoadGame(saveFileName);
     }
 
+    public bool HasSaveFile() {
+        return File.Exists(GetSavePath(saveFileName));
+    }
+
     public void LoadGame(string fileName) {
         string path = GetSavePath(fileName);
         if (!File.Exists(path)) {
