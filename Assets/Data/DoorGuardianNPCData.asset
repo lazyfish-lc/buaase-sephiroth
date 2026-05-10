@@ -38,7 +38,7 @@ MonoBehaviour:
     nextNodeIndex: 1
     options: []
     enterActions: []
-  - npcContent: "\u6536\u96C6\u771F\u7406\u900F\u955C\u7684\u788E\u7247\uFF0C\u6211\u5C06\u7ED9\u4F60\u770B\u6E05\u4E16\u754C\u7684\u529B\u91CF"
+  - npcContent: "\u51FB\u8D25\u602A\u7269\u6536\u96C6\u771F\u7406\u900F\u955C\u7684\u788E\u7247\uFF0C\u6211\u5C06\u7ED9\u4F60\u770B\u6E05\u4E16\u754C\u7684\u529B\u91CF"
     hasOptions: 0
     nextNodeIndex: -1
     options: []

@@ -238,6 +238,11 @@ public class PlayerSmallObject : SmallObject {
         base.OnDeath();
         Debug.Log("玩家死亡，游戏结束");
         // 玩家死亡后读取存档
-        SaveManager.Instance.LoadGame();
+        if (SaveManager.Instance.HasSaveFile()) {
+            SaveManager.Instance.LoadGame();
+        } else
+        {
+            FindFirstObjectByType<LoadingUI>().LoadScene("StartMenuScene");
+        }
     }
 }
