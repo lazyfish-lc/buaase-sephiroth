@@ -245,6 +245,7 @@ GameObject:
   - component: {fileID: 773403690865612332}
   - component: {fileID: 6762839985216383280}
   - component: {fileID: 1348001939465875670}
+  - component: {fileID: 9205741181793740739}
   m_Layer: 10
   m_Name: Dog
   m_TagString: Untagged
@@ -353,7 +354,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!70 &8352348440160539551
 CapsuleCollider2D:
@@ -389,8 +390,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.035770774, y: 0.45287973}
-  m_Size: {x: 0.54690194, y: 1.079491}
+  m_Offset: {x: 0.016438723, y: -0.00068867207}
+  m_Size: {x: 0.65132093, y: 0.73360443}
   m_Direction: 0
 --- !u!114 &773403690865612332
 MonoBehaviour:
@@ -457,11 +458,23 @@ MonoBehaviour:
     m_Bits: 512
   hitPoint: {fileID: 1599938930160489508}
   rb: {fileID: 2318891472865322266}
-  navMeshAgent: {fileID: 0}
   luckThreshold: 50
   chaseSpeed: 3.5
   berserkSpeedMultiplier: 1.5
   berserkAttackCooldownMultiplier: 0.75
+--- !u!114 &9205741181793740739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6348409967498636545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9415d0b4d2f830e479f844af24cd3c27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Sephiroth.Runtime::HeightMember
+  currentLevel: 0
 --- !u!1 &7874041530002442077
 GameObject:
   m_ObjectHideFlags: 0

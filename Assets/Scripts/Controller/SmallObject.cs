@@ -112,7 +112,7 @@ public abstract class SmallObject : MonoBehaviour, ILabelOwner {
         var player = IOSubsystem.Instance?.playerObject;
         if (player == null) return;
         float dist = Vector3.Distance(transform.position, player.transform.position);
-        float range = 2f;
+        float range = 5f;
         if (dist <= range) {
             ActivateShowLabel();
         } else {
@@ -130,7 +130,7 @@ public abstract class SmallObject : MonoBehaviour, ILabelOwner {
         var player = IOSubsystem.Instance?.playerObject;
         if (player == null) return;
         float dist = Vector3.Distance(transform.position, player.transform.position);
-        float range = 2f;
+        float range = 5f;
         if (dist <= range) {
             ActivateShowProperty();
         } else {

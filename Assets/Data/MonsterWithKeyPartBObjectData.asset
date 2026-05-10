@@ -13,18 +13,17 @@ MonoBehaviour:
   m_Name: MonsterWithKeyPartBObjectData
   m_EditorClassIdentifier: Sephiroth.Runtime::MonsterObjectStaticData
   objectName: 
-  ownerBigObject: {fileID: 0}
   propertyBlueprints:
   - name: Health
-    initialValue: 30
+    initialValue: 50
     minValue: 0
     maxValue: 99999
   - name: ATK
-    initialValue: 20
+    initialValue: 30
     minValue: 0
     maxValue: 99999
   - name: DEF
-    initialValue: 10
+    initialValue: 0
     minValue: 0
     maxValue: 99999
   - name: AttackSpeed

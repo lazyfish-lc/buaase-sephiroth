@@ -469,7 +469,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!70 &2468531971641699346
 CapsuleCollider2D:
@@ -525,6 +525,8 @@ MonoBehaviour:
     isDestroyed: 0
     smallObjectLabels: []
     isHurt: 0
+  ownerBigObject: {fileID: 0}
+  persistID: 3e5fde88251e4933bfb94e95c408994c
   monsterView: {fileID: 0}
   sensorPivot: {fileID: 452261775836191423}
   detectSensor: {fileID: 2098007541845647252}

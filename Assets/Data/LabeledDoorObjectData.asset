@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: LabeledDoorObjectData
   m_EditorClassIdentifier: Sephiroth.Runtime::DoorStaticData
   objectName: LabeledDoorChapter1
-  ownerBigObject: {fileID: 0}
   propertyBlueprints:
   - name: Health
-    initialValue: 100
+    initialValue: 300
     minValue: 0
     maxValue: 99999
   - name: ATK
@@ -24,11 +23,11 @@ MonoBehaviour:
     minValue: 0
     maxValue: 99999
   - name: DEF
-    initialValue: 20
+    initialValue: 10
     minValue: 0
     maxValue: 99999
   - name: AttackSpeed
-    initialValue: 1
+    initialValue: 0
     minValue: 0
     maxValue: 20
   labelBlueprints:

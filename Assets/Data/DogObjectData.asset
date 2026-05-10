@@ -19,7 +19,7 @@ MonoBehaviour:
     minValue: 0
     maxValue: 99999
   - name: ATK
-    initialValue: 30
+    initialValue: 20
     minValue: 0
     maxValue: 99999
   - name: DEF
@@ -31,13 +31,13 @@ MonoBehaviour:
     minValue: 0
     maxValue: 20
   - name: moveSpeed
-    initialValue: 2
+    initialValue: 3
     minValue: 0
     maxValue: 50
   labelBlueprints:
   - HardLabel()
   - DocileLabel()
-  baseAttackCooldown: 1
+  baseAttackCooldown: 5
   castLockTime: 2
   dropItemBlueprints: []
   animatorController: {fileID: 22100000, guid: d21dee067666441459e1f0cd851853ae, type: 2}

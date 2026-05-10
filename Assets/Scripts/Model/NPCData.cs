@@ -4,7 +4,7 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "NPCData", menuName = "Game/NPCStaticData")]
 public class NPCStaticData : SmallObjectStaticData {
-    public float interactionRange = 3f;
+    public float interactionRange = 7f;
     public List<DialogueNode> dialogueNodes = new List<DialogueNode>();
     // 要求玩家身上必须拥有的物品名（例如钥匙的三部分）
     public List<string> requiredItems = new List<string>();

@@ -13,18 +13,17 @@ MonoBehaviour:
   m_Name: MonsterObjectData
   m_EditorClassIdentifier: Assembly-CSharp::MonsterObjectStaticData
   objectName: Monster1
-  ownerBigObject: {fileID: 0}
   propertyBlueprints:
   - name: Health
-    initialValue: 1000
+    initialValue: 70
     minValue: 0
     maxValue: 99999
   - name: ATK
-    initialValue: 30
+    initialValue: 20
     minValue: 0
     maxValue: 99999
   - name: DEF
-    initialValue: 10
+    initialValue: 0
     minValue: 0
     maxValue: 99999
   - name: AttackSpeed

@@ -9,17 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 572d9fdbe2937104e9380adf326c53ea, type: 3}
-  m_Name: ArcherMonsterObjectData
-  m_EditorClassIdentifier: Sephiroth.Runtime::ArcherMonsterObjectStaticData
-  objectName: ArcherMonster1
+  m_Script: {fileID: 11500000, guid: 079da9934063b964ba5a8b422561fd73, type: 3}
+  m_Name: Monster3BObjectData
+  m_EditorClassIdentifier: Assembly-CSharp::MonsterObjectStaticData
+  objectName: Monster1
   propertyBlueprints:
   - name: Health
-    initialValue: 40
+    initialValue: 100
     minValue: 0
     maxValue: 99999
   - name: ATK
-    initialValue: 40
+    initialValue: 15
     minValue: 0
     maxValue: 99999
   - name: DEF
@@ -35,7 +35,7 @@ MonoBehaviour:
     minValue: 0
     maxValue: 50
   labelBlueprints: []
-  baseAttackCooldown: 5
-  castLockTime: 0.5
+  baseAttackCooldown: 3
+  castLockTime: 2
   dropItemBlueprints: []
-  animatorController: {fileID: 9100000, guid: bf539ad8ecf8d6d4dbf1d8e0a1a4d791, type: 2}
+  animatorController: {fileID: 22100000, guid: 5ccd3b2ea5b3a294d9728c29f83db96c, type: 2}

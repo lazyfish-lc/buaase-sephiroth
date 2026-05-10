@@ -13,14 +13,13 @@ MonoBehaviour:
   m_Name: Monster3ObjectData
   m_EditorClassIdentifier: Assembly-CSharp::MonsterObjectStaticData
   objectName: Monster1
-  ownerBigObject: {fileID: 0}
   propertyBlueprints:
   - name: Health
-    initialValue: 1000
+    initialValue: 100
     minValue: 0
     maxValue: 99999
   - name: ATK
-    initialValue: 30
+    initialValue: 15
     minValue: 0
     maxValue: 99999
   - name: DEF
@@ -37,7 +36,7 @@ MonoBehaviour:
     maxValue: 50
   labelBlueprints:
   - HardLabel()
-  baseAttackCooldown: 1
+  baseAttackCooldown: 3
   castLockTime: 2
   dropItemBlueprints: []
   animatorController: {fileID: 22100000, guid: 5ccd3b2ea5b3a294d9728c29f83db96c, type: 2}
