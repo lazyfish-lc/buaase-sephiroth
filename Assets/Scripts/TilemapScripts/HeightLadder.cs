@@ -7,7 +7,7 @@ public class HeightLadder : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        HeightMember member = other.GetComponentInParent<HeightMember>();
+        HeightMember member = other.GetComponent<HeightMember>();
         if (member == null) return;
 
         // 进入楼梯：开启过渡态（认为同时在 low 和 high 层）
@@ -16,7 +16,7 @@ public class HeightLadder : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        HeightMember member = other.GetComponentInParent<HeightMember>();
+        HeightMember member = other.GetComponent<HeightMember>();
         if (member == null) return;
 
         // 离开楼梯判定（基于之前讨论的 Y 轴中心判定）

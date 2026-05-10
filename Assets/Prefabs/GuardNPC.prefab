@@ -219,7 +219,7 @@ MonoBehaviour:
   passInspectionNodeIndex: 3
   passItemName: PassChapter2
   luckPropertyName: Luck
-  luckTriggerValue: 0
+  luckTriggerValue: 20
   passBlownAwayMessage: "\u901A\u884C\u8BC1\u88AB\u98CE\u5439\u8D70\u4E86\u3002"
   flyAwayDuration: 0.75
   flyAwayDistance: 5

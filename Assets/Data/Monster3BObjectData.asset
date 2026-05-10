@@ -34,9 +34,8 @@ MonoBehaviour:
     initialValue: 2
     minValue: 0
     maxValue: 50
-  labelBlueprints:
-  - HardLabel()
-  baseAttackCooldown: 1
+  labelBlueprints: []
+  baseAttackCooldown: 3
   castLockTime: 2
   dropItemBlueprints: []
   animatorController: {fileID: 22100000, guid: 5ccd3b2ea5b3a294d9728c29f83db96c, type: 2}

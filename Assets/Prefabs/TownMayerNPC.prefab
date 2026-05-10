@@ -226,7 +226,7 @@ MonoBehaviour:
   view: {fileID: 6302767683279945129}
   luckCoinItemName: LuckCoin
   passportItemName: PassChapter2
-  docileLabelCount: 20
+  docileLabelCount: 40
   exchangeOptionIndex: 0
   successNodeIndex: 2
   failureNodeIndex: 1

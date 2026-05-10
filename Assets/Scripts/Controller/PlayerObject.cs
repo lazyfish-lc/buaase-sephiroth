@@ -166,7 +166,7 @@ public class PlayerSmallObject : SmallObject {
             SmallObject target = targetCollider.GetComponent<SmallObject>();
             if (target != null) {
                 // 计算击退方向：从攻击者指向被攻击者
-                Vector2 knockback = (target.transform.position - transform.position).normalized * 50f;
+                Vector2 knockback = (target.transform.position - transform.position).normalized * 10f;
                 
                 DamagePacket packet = new DamagePacket(this, currentAtk, knockback);
                 
@@ -232,5 +232,12 @@ public class PlayerSmallObject : SmallObject {
             ? playerState.GetPropertyValueWithAffect(propertyName)
             : playerState.propertyMap[propertyName].value;
         return true;
+    }
+
+    protected override void OnDeath() {
+        base.OnDeath();
+        Debug.Log("玩家死亡，游戏结束");
+        // 玩家死亡后读取存档
+        SaveManager.Instance.LoadGame();
     }
 }

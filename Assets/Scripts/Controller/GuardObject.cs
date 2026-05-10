@@ -35,7 +35,7 @@ public class GuardObject : NPCObject, IDialogueActionReceiver {
     protected override int ResolveStartNodeIndex() {
         var player = CurrentInteractingPlayer;
         if (player != null && player.HasItemInBackpack(passItemName) && TryGetPlayerLuck(player, out float luck)) {
-            if (Mathf.Approximately(luck, luckTriggerValue)) {
+            if (luck - luckTriggerValue <= Mathf.Epsilon) {
                 return Mathf.Max(0, passInspectionNodeIndex);
             }
         }
