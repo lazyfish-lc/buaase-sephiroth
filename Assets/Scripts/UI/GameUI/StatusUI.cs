@@ -34,15 +34,15 @@ public class StatusUI : FatherUI
     {
         if (UIManager.Instance.player != null)
         {
-            // 超过1000血即为100%，根据实际情况调整
+            // 超过100血即为100%，根据实际情况调整
             float Health = GetPlayerHealth(); // 默认值，防止属性缺失导致错误
-            if (Health > 1000f)
+            if (Health > 100f)
             {
                 HPSlider.value = 1f;
             }
             else
             {
-                HPSlider.value = Health / 1000f;
+                HPSlider.value = Health / 100f;
             }
         }
     }

@@ -21,7 +21,10 @@ public class IOSubsystem : MonoBehaviour {
             dealMovement();
             dealInteract();
             dealShowLabel();
-            dealShowProperty();
+            if(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Map1")
+            {
+                dealShowProperty();
+            }
             dealSwitchTime();
             // dealScroll();
         }

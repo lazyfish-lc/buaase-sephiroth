@@ -51,8 +51,8 @@ MonoBehaviour:
       rewardProperty: 
       rewardAmount: 0
     enterActions: []
-  - npcContent: 
-    hasOptions: 0
+  - npcContent: "\u5495\u5495\uFF0C\u4F60\u60F3\u4E70\u4EC0\u4E48\uFF1F"
+    hasOptions: 1
     nextNodeIndex: -1
     options:
     - text: "\u82B1\u8D39100\u70B9Luck\u503C\\n\u83B7\u5F9720\u4E2ALuckCoin"
