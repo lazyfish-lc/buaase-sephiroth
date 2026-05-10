@@ -30,15 +30,15 @@ public class GlowLabel : ObjectLabel {
             glowObject = null;
         }
 
-        // 优先尝试从 Resources 加载运行时可用的预制体（名称为 "SpotLight"）
-        GameObject prefab = Resources.Load<GameObject>("SpotLight");
+        // 优先使用序列化引用（场景中的 GlowLabelRegistry）
+        GameObject prefab = GlowLabelRegistry.Instance != null
+            ? GlowLabelRegistry.Instance.spotLightPrefab
+            : null;
 
-        // 编辑器中，如果 Resources 中未放置预制体，则从项目路径加载（编辑器专用）
-#if UNITY_EDITOR
+        // 兜底：若未配置，则尝试从 Resources 加载
         if (prefab == null) {
-            prefab = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/SpotLight.prefab");
+            prefab = Resources.Load<GameObject>("SpotLight");
         }
-#endif
 
         if (prefab != null) {
             glowObject = Object.Instantiate(prefab, comp.transform);
