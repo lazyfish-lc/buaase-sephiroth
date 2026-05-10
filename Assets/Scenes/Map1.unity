@@ -131874,6 +131874,10 @@ PrefabInstance:
       propertyPath: persistID
       value: 3e5fde88251e4933bfb94e95c408994c2
       objectReference: {fileID: 0}
+    - target: {fileID: 1444380735157777081, guid: 03bdb7225f7a67f469d2af80d5355666, type: 3}
+      propertyPath: staticData
+      value: 
+      objectReference: {fileID: 11400000, guid: 1eb7ba42cb6f9eb4cb08a3909932974e, type: 2}
     - target: {fileID: 7010900511884479555, guid: 03bdb7225f7a67f469d2af80d5355666, type: 3}
       propertyPath: m_Name
       value: Monster3-B

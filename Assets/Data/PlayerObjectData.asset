@@ -15,11 +15,11 @@ MonoBehaviour:
   objectName: Player
   propertyBlueprints:
   - name: Health
-    initialValue: 1000
+    initialValue: 100
     minValue: 0
     maxValue: 99999
   - name: ATK
-    initialValue: 30
+    initialValue: 20
     minValue: 0
     maxValue: 99999
   - name: DEF

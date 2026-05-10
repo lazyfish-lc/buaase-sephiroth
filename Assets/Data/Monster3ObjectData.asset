@@ -13,14 +13,13 @@ MonoBehaviour:
   m_Name: Monster3ObjectData
   m_EditorClassIdentifier: Assembly-CSharp::MonsterObjectStaticData
   objectName: Monster1
-  ownerBigObject: {fileID: 0}
   propertyBlueprints:
   - name: Health
-    initialValue: 1000
+    initialValue: 100
     minValue: 0
     maxValue: 99999
   - name: ATK
-    initialValue: 30
+    initialValue: 15
     minValue: 0
     maxValue: 99999
   - name: DEF
