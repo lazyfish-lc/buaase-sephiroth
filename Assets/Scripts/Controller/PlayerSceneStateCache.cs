@@ -169,7 +169,7 @@ public static class PlayerSceneStateCache {
         try {
             var label = LabelFactory.Build(data.labelType);
             if (label is LockLabel lockLabel && !data.lockIsLocked) {
-                return null;
+                lockLabel.Unlock();
             }
             if (label is GlowLabel glow) {
                 glow.color = data.glowColor;
