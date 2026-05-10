@@ -10,50 +10,37 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2716b9197589a9b4ebc9867440969c23, type: 3}
-  m_Name: "\u8D27\u67B6"
+  m_Name: "\u4E95"
   m_EditorClassIdentifier: Sephiroth.Runtime::NPCStaticData
   objectName: 
   propertyBlueprints: []
   labelBlueprints: []
   interactionRange: 3
   dialogueNodes:
-  - npcContent: "\u6709\u4E00\u4E9B\u98DF\u7269\uFF0C\u8981\u4E0D\u8981\u8981\u5403\u4E00\u70B9"
-    hasOptions: 1
-    nextNodeIndex: -1
-    options:
-    - text: "\u5403\u4E00\u70B9"
-      targetNodeIndex: 1
-      rewardProperty: 
-      rewardAmount: 0
-    - text: "\u4E0D\u5403"
-      targetNodeIndex: 2
-      rewardProperty: 
-      rewardAmount: 0
+  - npcContent: "\u6C34\u4E95\uFF0C\u6C34\u662F\u751F\u547D\u4E4B\u6E90"
+    hasOptions: 0
+    nextNodeIndex: 1
+    options: []
     enterActions: []
-  - npcContent: "\u662F\u554A\uFF0C\u5403\u4EC0\u4E48"
+  - npcContent: "\u8981\u559D\u4E00\u53E3\u5417\uFF1F"
     hasOptions: 1
     nextNodeIndex: 1
     options:
-    - text: "\u6073\u5F97\u9E21"
+    - text: "\u559D"
+      targetNodeIndex: 2
+      rewardProperty: 
+      rewardAmount: 0
+    - text: "\u4E0D\u559D"
       targetNodeIndex: 3
       rewardProperty: 
       rewardAmount: 0
-    - text: "\u95F7\u5B50"
-      targetNodeIndex: 4
-      rewardProperty: 
-      rewardAmount: 0
     enterActions: []
-  - npcContent: "\u543E\u4E0D\u5931\u55DF\u6765\u4E4B\u98DF"
+  - npcContent: "\u751C\u751C\u7684\u3002"
     hasOptions: 0
     nextNodeIndex: -1
     options: []
     enterActions: []
-  - npcContent: "\u5C01\u6846\u8165\u8D77\u53F8\uFF0C\u4E3A\u6211\u8BEF\u98DF"
-    hasOptions: 0
-    nextNodeIndex: -1
-    options: []
-    enterActions: []
-  - npcContent: "\u80C3\u73CD\u8DB3"
+  - npcContent: "\u6211\u53EA\u559D\u65E5\u672C\u751F\u53EF\u4E50\u3002"
     hasOptions: 0
     nextNodeIndex: -1
     options: []

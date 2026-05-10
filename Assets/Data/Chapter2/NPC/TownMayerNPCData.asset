@@ -17,7 +17,7 @@ MonoBehaviour:
   labelBlueprints: []
   interactionRange: 3
   dialogueNodes:
-  - npcContent: "\u6CA1\u94B1\u53EF\u522B\u60F3\u5728\u6211\u8FD9\u635E\u597D\u5904\uFF01"
+  - npcContent: "\u60F3\u8981\u901A\u884C\u8BC1\uFF1F\u6CA1\u94B1\u53EF\u522B\u60F3\u5728\u6211\u8FD9\u635E\u597D\u5904!"
     hasOptions: 0
     nextNodeIndex: 3
     options: []

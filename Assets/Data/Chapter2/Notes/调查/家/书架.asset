@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2716b9197589a9b4ebc9867440969c23, type: 3}
+  m_Name: "\u4E66\u67B6"
+  m_EditorClassIdentifier: Sephiroth.Runtime::NPCStaticData
+  objectName: 
+  propertyBlueprints: []
+  labelBlueprints: []
+  interactionRange: 3
+  dialogueNodes:
+  - npcContent: "\u4E66\u67B6\u4E0A\u6446\u6EE1\u4E86\u4E66\uFF0C\u8981\u770B\u770B\u6709\u4EC0\u4E48\u5417\uFF1F"
+    hasOptions: 1
+    nextNodeIndex: 0
+    options:
+    - text: "\u8981"
+      targetNodeIndex: 1
+      rewardProperty: 
+      rewardAmount: 0
+    - text: "\u7B97\u4E86"
+      targetNodeIndex: 3
+      rewardProperty: 
+      rewardAmount: 0
+    enterActions: []
+  - npcContent: "\u300A\u4E09\u4F53\u300B\u3001\u300A\u9AD8\u7B49\u6570\u5B66\u300B\u3001\u300A\u767E\u5E74\u5B64\u72EC\u300B"
+    hasOptions: 0
+    nextNodeIndex: 2
+    options: []
+    enterActions: []
+  - npcContent: "\u90FD\u662F\u597D\u4E66"
+    hasOptions: 0
+    nextNodeIndex: -1
+    options: []
+    enterActions: []
+  - npcContent: "\u4E0D\u60F3\u8BFB\u4E66"
+    hasOptions: 0
+    nextNodeIndex: -1
+    options: []
+    enterActions: []
+  requiredItems: []
+  startNodeIfHasRequiredItems: -1
+  animatorController: {fileID: 0}
