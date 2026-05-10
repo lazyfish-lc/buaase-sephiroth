@@ -59,9 +59,9 @@ public class MayorNPCObject : NPCObject {
         player.AddItemToBackpack(new Item { itemName = passportItemName });
 
         // 给予玩家2个温顺标签
-        for (int i = 0; i < 2; i++) {
-            player.playerState.labelBackpack.Add(new DocileLabel());
-        }
+        //for (int i = 0; i < 2; i++) {
+            //player.playerState.labelBackpack.Add(new DocileLabel());
+        //}
 
         Debug.Log($"玩家 {player.name} 获得了1个{passportItemName}和2个温顺标签");
 
