@@ -98338,6 +98338,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4169176698818808433, guid: cb67bf315107c5b4da85f849ce26827a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -102.401855
+      objectReference: {fileID: 0}
     - target: {fileID: 4248149743678524635, guid: cb67bf315107c5b4da85f849ce26827a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -106377,6 +106381,51 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7707445231148042641, guid: f8a6accd49debea4b99ba76f115a83e3, type: 3}
   m_PrefabInstance: {fileID: 1039635419}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1052228588
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1052228589}
+  - component: {fileID: 1052228590}
+  m_Layer: 0
+  m_Name: GlowLabel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1052228589
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1052228588}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1052228590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1052228588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 457e6e2ba0a7c064aa292f5c77b4e565, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Sephiroth.Runtime::GlowLabelRegistry
+  spotLightPrefab: {fileID: 33138657375959062, guid: 836d7f91202d9ad4bb134469f50d16f2, type: 3}
 --- !u!1001 &1061021849
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -137206,6 +137255,7 @@ SceneRoots:
   - {fileID: 694717702}
   - {fileID: 355395563}
   - {fileID: 243058052}
+  - {fileID: 1052228589}
   - {fileID: 792298678}
   - {fileID: 1844446889}
   - {fileID: 528569568}
