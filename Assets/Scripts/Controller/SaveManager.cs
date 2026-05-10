@@ -47,8 +47,7 @@ public class SaveManager : MonoBehaviour {
     }
 
     public bool HasSaveFile() {
-        string path = GetSavePath(saveFileName);
-        return File.Exists(path);
+        return File.Exists(GetSavePath(saveFileName));
     }
 
     public void LoadGame(string fileName) {
@@ -395,7 +394,7 @@ public class SaveManager : MonoBehaviour {
         try {
             var label = LabelFactory.Build(data.labelType);
             if (label is LockLabel lockLabel && !data.lockIsLocked) {
-                return null;
+                lockLabel.Unlock();
             }
             if (label is GlowLabel glow) {
                 glow.color = data.glowColor;
