@@ -68,4 +68,5 @@ public class GameSavePackage {
     public string sceneName;
     public bool isPresentTime; // 当前是现在还是过去
     public List<SmallObjectSaveData> objectStates = new List<SmallObjectSaveData>();
+    public List<string> triggeredTutorialIds = new List<string>();
 }

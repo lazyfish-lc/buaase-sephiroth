@@ -17,4 +17,5 @@ public class DialogueNode {
     public int nextNodeIndex;       // hasOptions为false时的默认跳转节点
     public List<DialogueOption> options;
     public List<DialogueNodeActionSO> enterActions = new List<DialogueNodeActionSO>();
+    public List<DialogueNodeActionSO> exitActions = new List<DialogueNodeActionSO>();
 }
