@@ -95,6 +95,5 @@ MonoBehaviour:
       rewardProperty: 
       rewardAmount: 0
     enterActions: []
-  requiredItems: []
-  startNodeIfHasRequiredItems: -1
+  requiredItemGroups: []
   animatorController: {fileID: 0}

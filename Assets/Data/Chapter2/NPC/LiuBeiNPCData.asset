@@ -32,6 +32,5 @@ MonoBehaviour:
     options: []
     enterActions:
     - {fileID: 0}
-  requiredItems: []
-  startNodeIfHasRequiredItems: -1
+  requiredItemGroups: []
   animatorController: {fileID: 22100000, guid: 48e70e544f731d040940f13edd531eb0, type: 2}

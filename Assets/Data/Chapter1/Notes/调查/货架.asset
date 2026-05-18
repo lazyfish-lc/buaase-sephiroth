@@ -62,6 +62,5 @@ MonoBehaviour:
     options: []
     enterActions:
     - {fileID: 11400000, guid: c11494e0b1b36b5428e2723b41c0d71a, type: 2}
-  requiredItems: []
-  startNodeIfHasRequiredItems: -1
+  requiredItemGroups: []
   animatorController: {fileID: 0}

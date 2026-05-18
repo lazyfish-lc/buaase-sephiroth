@@ -70,7 +70,8 @@ MonoBehaviour:
     nextNodeIndex: -1
     options: []
     enterActions: []
-  requiredItems:
-  - PassChapter2
-  startNodeIfHasRequiredItems: 1
+  requiredItemGroups:
+  - requiredItems:
+    - PassChapter2
+    startNodeIfHasRequiredItems: 1
   animatorController: {fileID: 9100000, guid: f7318d184eedef044958577690af2ad0, type: 2}

@@ -22,6 +22,5 @@ MonoBehaviour:
     nextNodeIndex: 0
     options: []
     enterActions: []
-  requiredItems: []
-  startNodeIfHasRequiredItems: -1
+  requiredItemGroups: []
   animatorController: {fileID: 0}
