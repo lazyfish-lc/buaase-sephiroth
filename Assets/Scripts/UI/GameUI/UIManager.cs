@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour
     public PropertyUI propertyUI;
     public LabelUI labelUI;
     public KeysetUI keysetUI;
+    public HintUI hintUI;
     void Awake()
     {
         if(Instance != null)
