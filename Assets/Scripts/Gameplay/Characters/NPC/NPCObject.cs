@@ -89,38 +89,25 @@ public class NPCObject : SmallObject {
     protected virtual int ResolveStartNodeIndex() {
         // 如果配置了 requiredItems，则检查玩家是否满足条件以决定起始节点
         int startIndex = 0;
-        if (NPCData != null && NPCData.requiredItems != null && NPCData.requiredItems.Count > 0) {
-            bool hasAll = true;
+        if (NPCData != null && NPCData.requiredItemGroups != null && NPCData.requiredItemGroups.Count > 0) {
             var player = NPCState.currentInteractingPlayer;
-            if (player != null) {
-                foreach (var req in NPCData.requiredItems) {
-                    if (!player.HasItemInBackpack(req)) {
-                        hasAll = false;
-                        break;
+            foreach (var group in NPCData.requiredItemGroups) {
+                if (group == null || group.requiredItems == null || group.requiredItems.Count == 0) continue;
+
+                bool hasAll = true;
+                if (player != null) {
+                    foreach (var req in group.requiredItems) {
+                        if (!player.HasItemInBackpack(req)) {
+                            hasAll = false;
+                            break;
+                        }
                     }
+                } else {
+                    hasAll = false;
                 }
-            } else {
-                hasAll = false;
+
+                if (hasAll && group.startNodeIfHasRequiredItems >= 0) startIndex = group.startNodeIfHasRequiredItems;
             }
-
-            if (hasAll && NPCData.startNodeIfHasRequiredItems >= 0) startIndex = NPCData.startNodeIfHasRequiredItems;
-        }
-
-        if (NPCData != null && NPCData.requiredItems2 != null && NPCData.requiredItems2.Count > 0) {
-            bool hasAll = true;
-            var player = NPCState.currentInteractingPlayer;
-            if (player != null) {
-                foreach (var req in NPCData.requiredItems2) {
-                    if (!player.HasItemInBackpack(req)) {
-                        hasAll = false;
-                        break;
-                    }
-                }
-            } else {
-                hasAll = false;
-            }
-
-            if (hasAll && NPCData.startNodeIfHasRequiredItems2 >= 0) startIndex = NPCData.startNodeIfHasRequiredItems2;
         }
 
         return startIndex;

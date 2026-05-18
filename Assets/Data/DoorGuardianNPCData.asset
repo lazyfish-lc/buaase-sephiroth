@@ -55,12 +55,13 @@ MonoBehaviour:
     nextNodeIndex: -1
     options: []
     enterActions: []
-  requiredItems:
-  - LensPartA
-  - LensPartB
-  - LensPartC
-  startNodeIfHasRequiredItems: 2
-  requiredItems2:
-  - TruthLens
-  startNodeIfHasRequiredItems2: 3
+  requiredItemGroups:
+  - requiredItems:
+    - LensPartA
+    - LensPartB
+    - LensPartC
+    startNodeIfHasRequiredItems: 2
+  - requiredItems:
+    - TruthLens
+    startNodeIfHasRequiredItems: 3
   animatorController: {fileID: 0}

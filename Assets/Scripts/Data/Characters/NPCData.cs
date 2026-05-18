@@ -6,12 +6,15 @@ using UnityEngine;
 public class NPCStaticData : SmallObjectStaticData {
     public float interactionRange = 7f;
     public List<DialogueNode> dialogueNodes = new List<DialogueNode>();
-    // 要求玩家身上必须拥有的物品名（例如钥匙的三部分）
-    public List<string> requiredItems = new List<string>();
-    // 当玩家满足 requiredItems 时，从该节点开始对话（-1 表示使用默认 0）
-    public int startNodeIfHasRequiredItems = -1;
-    public List<string> requiredItems2 = new List<string>();
-    public int startNodeIfHasRequiredItems2 = -1;
+    // 可配置的物品组：若玩家包含组内全部物品，则从对应节点开始对话
+    [Serializable]
+    public class RequiredItemGroup {
+        public List<string> requiredItems = new List<string>();
+        // 当玩家满足 requiredItems 时，从该节点开始对话（-1 表示使用默认 0）
+        public int startNodeIfHasRequiredItems = -1;
+    }
+
+    public List<RequiredItemGroup> requiredItemGroups = new List<RequiredItemGroup>();
     public RuntimeAnimatorController animatorController;
 }
 
