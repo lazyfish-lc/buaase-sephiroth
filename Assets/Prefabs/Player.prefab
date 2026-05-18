@@ -180,6 +180,7 @@ MonoBehaviour:
   hitPoint: {fileID: 2435546783638844553}
   sensorPivot: {fileID: 8121286637750139319}
   linearVelocity: {x: 0, y: 0}
+  mirrorItemName: TruthLens
   stepCycle: 0.5
 --- !u!114 &7971711699152502211
 MonoBehaviour:

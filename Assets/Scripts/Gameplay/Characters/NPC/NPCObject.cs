@@ -142,6 +142,9 @@ public class NPCObject : SmallObject {
     }
 
     protected void TransitionToNode(int nodeIndex) {
+        foreach (var action in NPCData.dialogueNodes[NPCState.currentNodeIndex].exitActions) {
+            action?.Execute(this);
+        }
         if (nodeIndex == -1) {
             EndConversation();
         } else {

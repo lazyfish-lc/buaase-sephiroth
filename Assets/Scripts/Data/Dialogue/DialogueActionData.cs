@@ -14,4 +14,9 @@ public class DialogueNodeActionSO : ScriptableObject {
     public int amount = 1;
     [Header("Remove Items (when kind == RemoveItems)")]
     public List<string> itemsToRemove = new List<string>();
+
+    [Header("UI Actions (when kind == UIActions)")]
+    public string uiActionId;
+    public TutorialContent tutorialContent = new TutorialContent();
+    public bool hasShown;
 }

@@ -111,7 +111,8 @@ public class SaveManager : MonoBehaviour {
         var package = new GameSavePackage {
             sceneName = SceneManager.GetActiveScene().name,
             isPresentTime = GameSceneManager.Instance != null ? GameSceneManager.Instance.isPresent : true,
-            objectStates = new List<SmallObjectSaveData>()
+            objectStates = new List<SmallObjectSaveData>(),
+            triggeredTutorialIds = new List<string>(DialogueNodeActionSOActions.GetTriggeredTutorialIds())
         };
 
         var smallObjects = FindAllSmallObjects();
@@ -188,6 +189,8 @@ public class SaveManager : MonoBehaviour {
         if (GameSceneManager.Instance != null) {
             GameSceneManager.Instance.SetTimeVision(package.isPresentTime);
         }
+
+        DialogueNodeActionSOActions.ApplyTriggeredTutorialIds(package.triggeredTutorialIds);
 
         var smallObjects = FindAllSmallObjects();
         var map = new Dictionary<string, SmallObject>(StringComparer.Ordinal);

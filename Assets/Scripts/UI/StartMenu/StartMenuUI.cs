@@ -9,6 +9,7 @@ public class StartMenuUI : FatherUI
     {
         // 加载游戏场景
         PlayClickSFX();
+        DialogueNodeActionSOActions.ApplyTriggeredTutorialIds(null);
         FindFirstObjectByType<LoadingUI>().LoadScene("Map1");
     }
     public void GameLoad()

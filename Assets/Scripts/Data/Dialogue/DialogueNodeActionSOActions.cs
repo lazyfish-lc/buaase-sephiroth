@@ -1,7 +1,26 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public static class DialogueNodeActionSOActions {
+    public static event Action<NPCObject, string, TutorialContent> TutorialPopupRequested;
+    private static readonly HashSet<string> TriggeredTutorialIds = new HashSet<string>(StringComparer.Ordinal);
+
+    public static IReadOnlyCollection<string> GetTriggeredTutorialIds() {
+        return TriggeredTutorialIds;
+    }
+
+    public static void ApplyTriggeredTutorialIds(IEnumerable<string> ids) {
+        TriggeredTutorialIds.Clear();
+        if (ids == null) return;
+
+        foreach (var id in ids) {
+            if (!string.IsNullOrWhiteSpace(id)) {
+                TriggeredTutorialIds.Add(id);
+            }
+        }
+    }
+
     public static void Execute(this DialogueNodeActionSO action, NPCObject npc) {
         switch (action.kind) {
             case DialogueActionKind.TriggerReceiver:
@@ -13,10 +32,37 @@ public static class DialogueNodeActionSOActions {
             case DialogueActionKind.RemoveItems:
                 ExecuteRemoveItems(action, npc);
                 break;
+            case DialogueActionKind.UIActions:
+                // 未来可以在这里添加 UI 相关的对话动作执行逻辑
+                ExecuteUIActions(action, npc);
+                break;
             default:
                 Debug.LogWarning($"未知的 DialogueActionKind: {action.kind}");
                 break;
         }
+    }
+
+    private static void ExecuteUIActions(DialogueNodeActionSO action, NPCObject npc) {
+        if (action == null) return;
+        if (npc == null) {
+            Debug.LogWarning("DialogueNodeActionSO UIActions 执行失败：npc 为空");
+            return;
+        }
+
+        string actionId = string.IsNullOrWhiteSpace(action.uiActionId) ? action.name : action.uiActionId;
+        if (string.IsNullOrWhiteSpace(actionId)) {
+            Debug.LogWarning("DialogueNodeActionSO UIActions 缺少 uiActionId");
+            return;
+        }
+
+        action.hasShown = TriggeredTutorialIds.Contains(actionId);
+        if (action.hasShown) {
+            return;
+        }
+
+        TriggeredTutorialIds.Add(actionId);
+        action.hasShown = true;
+        TutorialPopupRequested?.Invoke(npc, actionId, action.tutorialContent);
     }
 
     private static void ExecuteTriggerReceiver(DialogueNodeActionSO action, NPCObject npc) {
