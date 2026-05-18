@@ -108,6 +108,11 @@ public class MenuUI : FatherUI
         FindFirstObjectByType<LoadingUI>().LoadScene(SceneManager.GetActiveScene().name);
         PlayClickSFX();
     }
+    public void OpenGuide()
+    {
+        GuideUI.Instance.OpenAndClose();
+        PlayClickSFX();
+    }
     public void SaveGame()
     {
         PlayClickSFX();

@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour
     public LabelUI labelUI;
     public KeysetUI keysetUI;
     public HintUI hintUI;
+    public GuideUI guideUI;
     void Awake()
     {
         if(Instance != null)
