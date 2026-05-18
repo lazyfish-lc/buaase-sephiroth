@@ -75,7 +75,7 @@ public static class DialogueNodeActionSOActions {
             for (int i = 0; i < player.playerState.itemBackpack.Count; i++) {
                 var it = player.playerState.itemBackpack[i];
                 if (it != null && string.Equals(it.itemName, name, StringComparison.Ordinal)) {
-                    player.playerState.itemBackpack.RemoveAt(i);
+                    player.RemoveItemFromBackpack(name, 1);
                     removed = true;
                     Debug.Log($"从玩家背包移除了物品: {name}");
                     break;
