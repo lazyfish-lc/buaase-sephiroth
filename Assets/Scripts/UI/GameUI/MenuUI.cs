@@ -104,9 +104,10 @@ public class MenuUI : FatherUI
     }
     public void RestartGame()
     {
+        PlayClickSFX();
+        HintUI.PendingHintMessage = "已重新开始";
         //重启当前场景
         FindFirstObjectByType<LoadingUI>().LoadScene(SceneManager.GetActiveScene().name);
-        PlayClickSFX();
     }
     public void OpenGuide()
     {
@@ -123,6 +124,7 @@ public class MenuUI : FatherUI
 
         SaveManager.Instance.SaveGame();
         Debug.Log("游戏已保存");
+        HintUI.Instance?.ShowHint("存档成功");
     }
     public void LoadGame()
     {
@@ -132,8 +134,23 @@ public class MenuUI : FatherUI
             return;
         }
 
+        if (!SaveManager.Instance.HasSaveFile())
+        {
+            Debug.LogWarning("没有可用的存档");
+            return;
+        }
+
+        // 设置跨场景提示，场景重载后 HintUI 会自动显示
+        HintUI.PendingHintMessage = "存档加载成功";
         SaveManager.Instance.LoadGame();
         Debug.Log("游戏存档已加载");
+
+        // 同一场景直接加载（无 loading 画面），立即显示提示
+        if (!LoadingUI.isLoading)
+        {
+            HintUI.Instance?.ShowHint("存档加载成功");
+            HintUI.PendingHintMessage = null;
+        }
     }
     
 }

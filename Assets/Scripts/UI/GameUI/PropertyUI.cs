@@ -188,6 +188,7 @@ public class PropertyUI : FatherUI{
             }
             // ...
             Debug.Log("属性已保存");
+            HintUI.Instance?.ShowHint("属性修改已保存");
             ShowProperty();
         }
         else

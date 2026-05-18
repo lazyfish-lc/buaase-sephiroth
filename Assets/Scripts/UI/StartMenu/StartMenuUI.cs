@@ -21,6 +21,13 @@ public class StartMenuUI : FatherUI
             return;
         }
 
+        if (!SaveManager.Instance.HasSaveFile())
+        {
+            Debug.LogWarning("没有可用的存档");
+            return;
+        }
+
+        HintUI.PendingHintMessage = "存档加载成功";
         SaveManager.Instance.LoadGame();
     }
     public void GameSettings()

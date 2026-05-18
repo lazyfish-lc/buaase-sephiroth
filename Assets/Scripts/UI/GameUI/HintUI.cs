@@ -11,6 +11,11 @@ public class HintUI : FatherUI
     public TMP_Text HintText;
     public static bool isOpen = false;
 
+    /// <summary>
+    /// 跨场景传递的待显示提示。场景重载前设置，新 HintUI 的 Start 会消费它。
+    /// </summary>
+    public static string PendingHintMessage;
+
     [Header("提示动画设置")]
     public float displayDuration = 2f;
     public float fadeInDuration = 0.3f;
@@ -43,6 +48,26 @@ public class HintUI : FatherUI
         Debug.Log("[HintUI] Start 执行");
         InitHintCanvas();
         TrySubscribeToPlayerEvents();
+
+        // 跨场景待显示消息：等待 loading 结束再弹
+        if (!string.IsNullOrEmpty(PendingHintMessage))
+        {
+            string msg = PendingHintMessage;
+            PendingHintMessage = null;
+            StartCoroutine(ShowAfterLoading(msg));
+        }
+    }
+
+    private IEnumerator ShowAfterLoading(string message)
+    {
+        // 等待加载界面完全关闭
+        while (LoadingUI.isLoading)
+        {
+            yield return null;
+        }
+        // 再等一帧确保场景完全就绪
+        yield return null;
+        ShowHint(message);
     }
 
     void OnEnable()

@@ -146,6 +146,8 @@ public class SettingUI : FatherUI
         PlayerPrefs.SetFloat("SoundVolume", SoundSlider.value);
         PlayerPrefs.SetInt("IsMusicOn", isMusicOn ? 1 : 0);
         PlayerPrefs.SetInt("IsSoundOn", isSoundOn ? 1 : 0);
+        PlayerPrefs.Save();
+        HintUI.Instance?.ShowHint("音量设置已保存");
     }
     public int GetMusicVolume(float volume)
     {
