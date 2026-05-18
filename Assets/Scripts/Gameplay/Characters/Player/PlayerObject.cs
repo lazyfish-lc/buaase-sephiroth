@@ -17,6 +17,9 @@ public class PlayerSmallObject : SmallObject {
 
     public Vector2 linearVelocity;
 
+    public event Action<Item> ItemAddedToBackpack;
+    public event Action<string, int> ItemRemovedFromBackpack;
+
     // 跑步音效相关
     private Vector3 lastPosition;
     public float stepCycle = 0.5f;     // 脚步循环间隔（秒）
@@ -183,8 +186,12 @@ public class PlayerSmallObject : SmallObject {
 
     public void AddItemToBackpack(Item item) {
         if (item == null) return;
+        if (playerState.itemBackpack == null) {
+            playerState.itemBackpack = new List<Item>();
+        }
         playerState.itemBackpack.Add(item);
         Debug.Log($"玩家获得了物品: {item.itemName}");
+        ItemAddedToBackpack?.Invoke(item);
     }
 
     public bool HasItemInBackpack(string itemName) {
@@ -215,6 +222,7 @@ public class PlayerSmallObject : SmallObject {
 
         if (removedCount > 0) {
             Debug.Log($"玩家背包中移除了 {itemName} x{removedCount}");
+            ItemRemovedFromBackpack?.Invoke(itemName, removedCount);
             return true;
         }
 
