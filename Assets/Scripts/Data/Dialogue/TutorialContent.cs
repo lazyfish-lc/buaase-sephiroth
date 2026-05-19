@@ -3,4 +3,5 @@ using UnityEngine;
 public class TutorialContent {
     public string title;
     public string body;
+    public Sprite image;
 }

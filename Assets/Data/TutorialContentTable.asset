@@ -13,14 +13,9 @@ MonoBehaviour:
   m_Name: TutorialContentTable
   m_EditorClassIdentifier: Sephiroth.Runtime::TutorialContentTable
   tutorials:
-  - title: Lable Tutor
-    body: Lable TutorLable TutorLable TutorLable TutorLable TutorLable TutorLable
-      TutorLable TutorLable TutorLable TutorLable TutorLable TutorLable TutorLable
-      TutorLable TutorLable TutorLable TutorLable TutorLable TutorLable TutorLable
-      TutorLable TutorLable TutorLable TutorLable TutorLable TutorLable TutorLable
-      TutorLable TutorLable Tutor
-  - title: Numerical Tutor
-    body: 'Numerical Tutor Numerical Tutor Numerical Tutor Numerical Tutor Numerical
-      Tutor Numerical Tutor Numerical Tutor Numerical Tutor Numerical Tutor Numerical
-      Tutor Numerical Tutor Numerical Tutor Numerical Tutor Numerical Tutor Numerical
-      Tutor Numerical Tutor  '
+  - title: "\u6559\u7A0B\uFF1A\u6807\u7B7E"
+    body: "\u5C06\u9F20\u6807\u653E\u7F6E\u5728\u5BF9\u8C61\u4E0A\uFF0C\u6309\u4E0BQ\u952E\uFF0C\u6253\u5F00\u5BF9\u8C61\u7684\u6807\u7B7E\u69FD\u3002\\n\u53EF\u4EE5\u6253\u5F00\u80CC\u5305\u754C\u9762\uFF0C\u62D6\u52A8\u5230\u80CC\u5305\u3002\\n\u5BF9\u81EA\u5DF1\u6253\u5F00\uFF0C\u53EF\u4EE5\u62D6\u52A8\u80CC\u5305\u5185\u6807\u7B7E\u4ED8\u7ED9\u81EA\u5DF1\u3002"
+    image: {fileID: -8119495617071696138, guid: 3cc7037a8e164dc44b5086f8e4512999, type: 3}
+  - title: "\u6559\u7A0B\uFF1A\u5C5E\u6027"
+    body: "\u5C06\u9F20\u6807\u653E\u7F6E\u5728\u5BF9\u8C61\u4E0A\uFF0C\u6309\u4E0BQ\u952E\uFF0C\u6253\u5F00\u5BF9\u8C61\u7684\u5C5E\u6027\u9762\u677F\u3002\\n\u53EF\u4EE5\u81EA\u884C\u4FEE\u6539\u5C5E\u6027\u5E76\u4FDD\u5B58\uFF0C\u4F46\u662F\u4F1A\u6709\u4E00\u5B9A\u7EA6\u675F\uFF0C\u9700\u8981\u4F60\u81EA\u884C\u63A2\u7D22\u3002"
+    image: {fileID: -6876742758057078468, guid: db899df4812bdaa439579626b7e6dd08, type: 3}

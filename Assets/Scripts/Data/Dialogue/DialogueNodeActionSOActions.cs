@@ -38,6 +38,7 @@ public static class DialogueNodeActionSOActions {
     }
 
     public static void Execute(this DialogueNodeActionSO action, NPCObject npc) {
+        Debug.Log($"[DialogueAction.Execute] action={action?.name}, kind={action?.kind}, npc={npc?.name}");
         switch (action.kind) {
             case DialogueActionKind.TriggerReceiver:
                 ExecuteTriggerReceiver(action, npc);
@@ -59,6 +60,7 @@ public static class DialogueNodeActionSOActions {
     }
 
     private static void ExecuteUIActions(DialogueNodeActionSO action, NPCObject npc) {
+        Debug.Log($"[ExecuteUIActions] called — actionName={action?.name}, kind={action?.kind}, uiActionId={action?.uiActionId}, tutorialIndex={action?.tutorialIndex}");
         if (action == null) return;
         if (npc == null) {
             Debug.LogWarning("DialogueNodeActionSO UIActions 执行失败：npc 为空");
@@ -72,7 +74,9 @@ public static class DialogueNodeActionSOActions {
         }
 
         action.hasShown = TriggeredTutorialIds.Contains(actionId);
+        Debug.Log($"[ExecuteUIActions] actionId={actionId}, hasShown={action.hasShown}, triggeredIds count={TriggeredTutorialIds.Count}");
         if (action.hasShown) {
+            Debug.Log($"[ExecuteUIActions] actionId={actionId} already triggered, skipping");
             return;
         }
 
@@ -80,7 +84,9 @@ public static class DialogueNodeActionSOActions {
         action.hasShown = true;
         if (action.tutorialIndex >= 0) {
             VisibleTutorialIndices.Add(action.tutorialIndex);
+            Debug.Log($"[ExecuteUIActions] added tutorialIndex={action.tutorialIndex} to VisibleTutorialIndices (now {VisibleTutorialIndices.Count} entries)");
         }
+        Debug.Log($"[ExecuteUIActions] invoking TutorialPopupRequested — subscribers={TutorialPopupRequested != null}");
         TutorialPopupRequested?.Invoke(npc, actionId, action.tutorialIndex);
     }
 
