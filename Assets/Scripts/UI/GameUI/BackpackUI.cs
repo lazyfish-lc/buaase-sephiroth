@@ -19,8 +19,10 @@ public class BackpackUI : FatherUI
     public TMP_Text DisplayDescription; // 显示物品描述的UI组件
     public Button LabelButton; // 显示标签的按钮
     public Button ItemButton; // 显示物品的按钮
+    public Button UseItemButton; // 使用物品的按钮
     private Dictionary<string, int> LabelCount = new Dictionary<string, int>();// 物品标签及其数量的字典
     private Dictionary<string, int> ItemCount = new Dictionary<string, int>();// 物品及其数量的字典
+    private Item currentSelectedItem; // 当前选中（大图展示）的物品，null 表示没有选中
     private String currentDisplayType = "Label"; // 当前显示类型，"Label" 或 "Item"
     public static bool isOpen = false;
     public bool IsLabelModeOpen => isOpen && currentDisplayType == "Label";
@@ -43,6 +45,8 @@ public class BackpackUI : FatherUI
     void Start()
     {
         BackpackCanvas.gameObject.SetActive(false);
+        if (UseItemButton != null)
+            UseItemButton.gameObject.SetActive(false);
     }
     public void OpenAndClose()
     {
@@ -186,12 +190,14 @@ public class BackpackUI : FatherUI
     {
         PlayClickSFX();
         currentPage = 1; // 切换显示类型时重置页码
+        cleanDisplay();
         ShowBackpack("Label");
     }
     public void SwitchToItem()
     {
         PlayClickSFX();
         currentPage = 1; // 切换显示类型时重置页码
+        cleanDisplay();
         ShowBackpack("Item");
     }
     void CleanSlot(int index)
@@ -217,7 +223,21 @@ public class BackpackUI : FatherUI
             DisplayImage.sprite = clickedInfo.icon;
             DisplayName.text = clickedInfo.displayname;
             DisplayDescription.text = clickedInfo.description;
-            // 这里可以触发信息面板显示、使用物品等逻辑
+
+            // 在 Item 模式下，从背包中找到实际的 Item 对象，判断是否可使用的恢复类物品
+            if (currentDisplayType == "Item")
+            {
+                currentSelectedItem = FindItemInBackpack(clickedInfo.name);
+                bool canUse = currentSelectedItem != null && currentSelectedItem.itemType == ItemType.Recover;
+                if (UseItemButton != null)
+                    UseItemButton.gameObject.SetActive(canUse);
+            }
+            else
+            {
+                currentSelectedItem = null;
+                if (UseItemButton != null)
+                    UseItemButton.gameObject.SetActive(false);
+            }
         }
         else
         {
@@ -225,10 +245,67 @@ public class BackpackUI : FatherUI
             cleanDisplay();
         }
     }
+
+    /// <summary>
+    /// 从玩家背包中根据物品名查找第一个匹配的 Item。DisplayTable 使用类名（- 前的部分），故需模糊匹配。
+    /// </summary>
+    private Item FindItemInBackpack(string clickedName)
+    {
+        var backpack = UIManager.Instance.player?.playerState?.itemBackpack;
+        if (backpack == null) return null;
+
+        foreach (var item in backpack)
+        {
+            if (item == null || string.IsNullOrWhiteSpace(item.itemName)) continue;
+            if (string.Equals(item.itemName, clickedName, StringComparison.Ordinal))
+                return item;
+        }
+
+        // 回退：DisplayTable 有时用 - 前的类名，所以再次尝试包含匹配
+        foreach (var item in backpack)
+        {
+            if (item == null || string.IsNullOrWhiteSpace(item.itemName)) continue;
+            if (item.itemName.Contains(clickedName) || clickedName.Contains(item.itemName))
+                return item;
+        }
+
+        return null;
+    }
     void cleanDisplay()
     {
         DisplayImage.color = new Color(1, 1, 1, 0); // 初始为透明
         DisplayName.text = "";
         DisplayDescription.text = "";
+        currentSelectedItem = null;
+        if (UseItemButton != null)
+            UseItemButton.gameObject.SetActive(false);
+    }
+
+    /// <summary>
+    /// 使用当前选中的物品（仅 RecoverItem 可调用，由 UseItemButton 绑定）。
+    /// 使用后刷新背包显示。
+    /// </summary>
+    public void UseCurrentItem()
+    {
+        PlayClickSFX();
+        if (currentSelectedItem == null || currentSelectedItem.itemType != ItemType.Recover)
+        {
+            Debug.LogWarning("[BackpackUI] UseCurrentItem — 当前没有可使用的物品");
+            return;
+        }
+
+        var player = UIManager.Instance?.player;
+        if (player == null)
+        {
+            Debug.LogWarning("[BackpackUI] UseCurrentItem — player 为空");
+            return;
+        }
+
+        string usedName = currentSelectedItem.itemName;
+        player.UseRecoverItem(currentSelectedItem as RecoverItem);
+        cleanDisplay();
+
+        // 刷新背包以反映物品数量变化
+        ShowBackpack(currentDisplayType);
     }
 }
