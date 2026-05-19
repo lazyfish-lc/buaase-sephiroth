@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb1b8e8758b27674b93df236dcc9ee1e, type: 3}
+  m_Name: TutorialContentTable
+  m_EditorClassIdentifier: Sephiroth.Runtime::TutorialContentTable
+  tutorials:
+  - title: Lable Tutor
+    body: Lable TutorLable TutorLable TutorLable TutorLable TutorLable TutorLable
+      TutorLable TutorLable TutorLable TutorLable TutorLable TutorLable TutorLable
+      TutorLable TutorLable TutorLable TutorLable TutorLable TutorLable TutorLable
+      TutorLable TutorLable TutorLable TutorLable TutorLable TutorLable TutorLable
+      TutorLable TutorLable Tutor
+  - title: Numerical Tutor
+    body: 'Numerical Tutor Numerical Tutor Numerical Tutor Numerical Tutor Numerical
+      Tutor Numerical Tutor Numerical Tutor Numerical Tutor Numerical Tutor Numerical
+      Tutor Numerical Tutor Numerical Tutor Numerical Tutor Numerical Tutor Numerical
+      Tutor Numerical Tutor  '

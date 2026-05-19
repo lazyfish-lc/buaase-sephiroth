@@ -56,7 +56,7 @@ public class MayorNPCObject : NPCObject {
         Debug.Log($"玩家 {player.name} 交易成功，消耗了 {luckCoinCount} 个 {luckCoinItemName}");
 
         // 给予玩家1个通行证
-        player.AddItemToBackpack(new Item { itemName = passportItemName });
+        player.AddItemToBackpack(Item.Create(passportItemName));
 
         // 给予玩家2个温顺标签
         //for (int i = 0; i < 2; i++) {

@@ -15,5 +15,12 @@ MonoBehaviour:
   kind: 1
   receiverId: 
   itemName: "\u53EF\u53E3\u53EF\u4E50"
+  itemType: 1
+  recoverAmount: 20
   amount: 1
   itemsToRemove: []
+  uiActionId: 
+  tutorialContent:
+    title: 
+    body: 
+  hasShown: 0

@@ -15,10 +15,10 @@ MonoBehaviour:
   kind: 3
   receiverId: 
   itemName: 
+  itemType: 0
+  recoverAmount: 0
   amount: 1
   itemsToRemove: []
   uiActionId: NumericalTutor
-  tutorialContent:
-    title: NumericalTutor
-    body: testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest
+  tutorialIndex: 1
   hasShown: 0

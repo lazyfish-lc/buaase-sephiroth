@@ -15,9 +15,10 @@ MonoBehaviour:
   kind: 3
   receiverId: 
   itemName: 
+  itemType: 0
+  recoverAmount: 0
   amount: 1
   itemsToRemove: []
   uiActionId: LableTutor
-  tutorialContent:
-    title: Lable
-    body: how to use
+  tutorialIndex: 0
+  hasShown: 0

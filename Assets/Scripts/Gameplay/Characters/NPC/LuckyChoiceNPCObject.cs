@@ -101,7 +101,7 @@ public class LuckyChoiceNPCObject : NPCObject {
         }
 
         for (int i = 0; i < amount; i++) {
-            player.AddItemToBackpack(new Item { itemName = rewardItemName });
+            player.AddItemToBackpack(Item.Create(rewardItemName));
         }
     }
 

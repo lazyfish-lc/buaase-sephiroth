@@ -112,7 +112,8 @@ public class SaveManager : MonoBehaviour {
             sceneName = SceneManager.GetActiveScene().name,
             isPresentTime = GameSceneManager.Instance != null ? GameSceneManager.Instance.isPresent : true,
             objectStates = new List<SmallObjectSaveData>(),
-            triggeredTutorialIds = new List<string>(DialogueNodeActionSOActions.GetTriggeredTutorialIds())
+            triggeredTutorialIds = new List<string>(DialogueNodeActionSOActions.GetTriggeredTutorialIds()),
+            visibleTutorialIndices = new List<int>(DialogueNodeActionSOActions.GetVisibleTutorialIndices())
         };
 
         var smallObjects = FindAllSmallObjects();
@@ -151,7 +152,8 @@ public class SaveManager : MonoBehaviour {
                     isRunning = player.playerState.isRunning,
                     facingDirection = player.playerState.facingDirection,
                     labelBackpack = SaveLabels(player.playerState.labelBackpack),
-                    itemBackpack = SaveItems(player.playerState.itemBackpack)
+                    itemBackpack = SaveItems(player.playerState.itemBackpack),
+                    itemBackpackLegacy = SaveItemNames(player.playerState.itemBackpack)
                 };
             }
 
@@ -191,6 +193,7 @@ public class SaveManager : MonoBehaviour {
         }
 
         DialogueNodeActionSOActions.ApplyTriggeredTutorialIds(package.triggeredTutorialIds);
+        DialogueNodeActionSOActions.ApplyVisibleTutorialIndices(package.visibleTutorialIndices);
 
         var smallObjects = FindAllSmallObjects();
         var map = new Dictionary<string, SmallObject>(StringComparer.Ordinal);
@@ -296,11 +299,21 @@ public class SaveManager : MonoBehaviour {
             player.playerState.itemBackpack = new List<Item>();
         }
         player.playerState.itemBackpack.Clear();
-        foreach (var itemName in data.itemBackpack) {
-            if (string.IsNullOrWhiteSpace(itemName)) {
-                continue;
+        if (data.itemBackpack != null && data.itemBackpack.Count > 0) {
+            foreach (var itemData in data.itemBackpack) {
+                if (itemData == null || string.IsNullOrWhiteSpace(itemData.itemName)) {
+                    continue;
+                }
+
+                player.playerState.itemBackpack.Add(Item.Create(itemData.itemName, itemData.itemType, itemData.recoverAmount));
             }
-            player.playerState.itemBackpack.Add(new Item { itemName = itemName });
+        } else if (data.itemBackpackLegacy != null && data.itemBackpackLegacy.Count > 0) {
+            foreach (var itemName in data.itemBackpackLegacy) {
+                if (string.IsNullOrWhiteSpace(itemName)) {
+                    continue;
+                }
+                player.playerState.itemBackpack.Add(new Item { itemName = itemName });
+            }
         }
 
         Vector2 dir = OrientationToVector(data.facingDirection);
@@ -310,7 +323,37 @@ public class SaveManager : MonoBehaviour {
         }
     }
 
-    private List<string> SaveItems(List<Item> items) {
+    private List<ItemSaveData> SaveItems(List<Item> items) {
+        var result = new List<ItemSaveData>();
+        if (items == null) {
+            return result;
+        }
+
+        foreach (var item in items) {
+            if (item == null || string.IsNullOrWhiteSpace(item.itemName)) {
+                continue;
+            }
+
+            var itemType = item.itemType;
+            float recoverAmount = 0f;
+            if (item is RecoverItem recoverItem) {
+                recoverAmount = recoverItem.recoverAmount;
+                if (itemType != ItemType.Recover) {
+                    itemType = ItemType.Recover;
+                }
+            }
+
+            result.Add(new ItemSaveData {
+                itemName = item.itemName,
+                itemType = itemType,
+                recoverAmount = recoverAmount
+            });
+        }
+
+        return result;
+    }
+
+    private List<string> SaveItemNames(List<Item> items) {
         var result = new List<string>();
         if (items == null) {
             return result;
