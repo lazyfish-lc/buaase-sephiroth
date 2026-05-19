@@ -111,8 +111,14 @@ public class MenuUI : FatherUI
     }
     public void OpenGuide()
     {
-        GuideUI.Instance.OpenAndClose();
+        Debug.Log($"[MenuUI] OpenGuide called — GuideUI.Instance={GuideUI.Instance}, GuideUI.isOpen={GuideUI.isOpen}");
         PlayClickSFX();
+        if (!GuideUI.isOpen)
+        {
+            Debug.Log("[MenuUI] OpenGuide — GuideUI is closed, calling ShowAllVisibleTutorials");
+            GuideUI.Instance.ShowAllVisibleTutorials();
+        }
+        GuideUI.Instance.OpenAndClose();
     }
     public void SaveGame()
     {
