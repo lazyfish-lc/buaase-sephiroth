@@ -96,7 +96,15 @@ public static class DialogueNodeActionSOActions {
         }
 
         for (int i = 0; i < action.amount; i++) {
-            npc.CurrentInteractingPlayer.AddItemToBackpack(new Item { itemName = action.itemName });
+            if (action.itemType == ItemType.Recover) {
+                npc.CurrentInteractingPlayer.AddItemToBackpack(new RecoverItem {
+                    itemName = action.itemName,
+                    itemType = action.itemType,
+                    recoverAmount = action.recoverAmount
+                });
+            } else {
+                npc.CurrentInteractingPlayer.AddItemToBackpack(Item.Create(action.itemName, action.itemType));
+            }
         }
 
         Debug.Log($"对话动作发放物品：{action.itemName} x{action.amount}");

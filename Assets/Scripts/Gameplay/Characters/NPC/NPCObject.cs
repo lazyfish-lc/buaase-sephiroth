@@ -135,7 +135,7 @@ public class NPCObject : SmallObject {
 
         // 核心玩法1：物品/数值赠予 (利用数值守恒系统)
         if (!string.IsNullOrEmpty(option.rewardProperty)) {
-            NPCState.currentInteractingPlayer.AddItemToBackpack(new Item { itemName = option.rewardProperty });
+            NPCState.currentInteractingPlayer.AddItemToBackpack(Item.Create(option.rewardProperty));
         }
 
         TransitionToNode(option.targetNodeIndex);

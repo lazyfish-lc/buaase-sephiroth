@@ -5,7 +5,7 @@ using UnityEngine.Rendering.Universal;
 
 public static class PlayerSceneStateCache {
     private static readonly Dictionary<string, float> cachedProperties = new Dictionary<string, float>();
-    private static readonly List<string> cachedItems = new List<string>();
+    private static readonly List<ItemSaveData> cachedItems = new List<ItemSaveData>();
     private static readonly List<LabelSaveData> cachedBackpackLabels = new List<LabelSaveData>();
     private static readonly List<LabelSaveData> cachedObjectLabels = new List<LabelSaveData>();
     private static bool hasCache;
@@ -66,7 +66,20 @@ public static class PlayerSceneStateCache {
             if (item == null || string.IsNullOrWhiteSpace(item.itemName)) {
                 continue;
             }
-            cachedItems.Add(item.itemName);
+            var itemType = item.itemType;
+            float recoverAmount = 0f;
+            if (item is RecoverItem recoverItem) {
+                recoverAmount = recoverItem.recoverAmount;
+                if (itemType != ItemType.Recover) {
+                    itemType = ItemType.Recover;
+                }
+            }
+
+            cachedItems.Add(new ItemSaveData {
+                itemName = item.itemName,
+                itemType = itemType,
+                recoverAmount = recoverAmount
+            });
         }
     }
 
@@ -80,7 +93,11 @@ public static class PlayerSceneStateCache {
         }
         state.itemBackpack.Clear();
         for (int i = 0; i < cachedItems.Count; i++) {
-            state.itemBackpack.Add(new Item { itemName = cachedItems[i] });
+            var itemData = cachedItems[i];
+            if (itemData == null || string.IsNullOrWhiteSpace(itemData.itemName)) {
+                continue;
+            }
+            state.itemBackpack.Add(Item.Create(itemData.itemName, itemData.itemType, itemData.recoverAmount));
         }
     }
 

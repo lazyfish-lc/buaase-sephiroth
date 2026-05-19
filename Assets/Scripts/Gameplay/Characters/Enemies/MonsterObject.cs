@@ -56,7 +56,7 @@ public class MonsterSmallObject : SmallObject {
         if (attacker != null && monsterStaticData != null && monsterStaticData.dropItemBlueprints != null) {
             foreach (var bp in monsterStaticData.dropItemBlueprints) {
                 if (bp == null || string.IsNullOrWhiteSpace(bp.itemName)) continue;
-                attacker.AddItemToBackpack(new Item { itemName = bp.itemName });
+                attacker.AddItemToBackpack(Item.CreateFrom(bp));
             }
         }
 

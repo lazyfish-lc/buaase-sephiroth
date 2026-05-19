@@ -43,7 +43,16 @@ public class PlayerSaveData {
     public bool isRunning;
     public Orientation facingDirection;
     public List<LabelSaveData> labelBackpack = new List<LabelSaveData>();
-    public List<string> itemBackpack = new List<string>();
+    public List<ItemSaveData> itemBackpack = new List<ItemSaveData>();
+    public List<string> itemBackpackLegacy = new List<string>();
+}
+
+[Serializable]
+public class ItemSaveData {
+    public string itemName;
+    public ItemType itemType;
+    public float recoverAmount;
+    public string extraJson;
 }
 
 [Serializable]

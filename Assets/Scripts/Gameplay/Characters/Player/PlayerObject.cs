@@ -62,7 +62,7 @@ public class PlayerSmallObject : SmallObject {
             if (playerState.itemBackpack == null) playerState.itemBackpack = new List<Item>();
             foreach (var item in playerStaticData.itemBackpackBlueprints) {
                 if (item == null || string.IsNullOrWhiteSpace(item.itemName)) continue;
-                playerState.itemBackpack.Add(new Item { itemName = item.itemName });
+                playerState.itemBackpack.Add(Item.CreateFrom(item));
             }
         }
     }
@@ -190,7 +190,7 @@ public class PlayerSmallObject : SmallObject {
             playerState.itemBackpack = new List<Item>();
         }
         playerState.itemBackpack.Add(item);
-        Debug.Log($"玩家获得了物品: {item.itemName}");
+        Debug.Log($"玩家获得了物品: {item.itemName}， 类别: {item.itemType}");
         ItemAddedToBackpack?.Invoke(item);
     }
 
@@ -252,5 +252,13 @@ public class PlayerSmallObject : SmallObject {
         {
             FindFirstObjectByType<LoadingUI>().LoadScene("StartMenuScene");
         }
+    }
+
+    public void UseRecoverItem(RecoverItem item) {
+        if (item == null) return;
+        float recoverAmount = item.recoverAmount;
+        playerState.propertyMap["Health"].value += recoverAmount;
+        Debug.Log($"使用了恢复物品 {item.itemName}，恢复了 {recoverAmount} 点生命值，当前HP: {playerState.propertyMap["Health"].value}");
+        RemoveItemFromBackpack(item.itemName, 1);
     }
 }

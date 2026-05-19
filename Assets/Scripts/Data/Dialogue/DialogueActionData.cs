@@ -11,6 +11,9 @@ public class DialogueNodeActionSO : ScriptableObject {
 
     [Header("Give Item (when kind == GiveItem)")]
     public string itemName;
+    public  ItemType itemType;
+    [Header("Recover Item Specific (when itemType == Recover)")]
+    public float recoverAmount; // 仅当 itemType == ItemType.Recover 时有效
     public int amount = 1;
     [Header("Remove Items (when kind == RemoveItems)")]
     public List<string> itemsToRemove = new List<string>();
