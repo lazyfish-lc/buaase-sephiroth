@@ -112,7 +112,8 @@ public class SaveManager : MonoBehaviour {
             sceneName = SceneManager.GetActiveScene().name,
             isPresentTime = GameSceneManager.Instance != null ? GameSceneManager.Instance.isPresent : true,
             objectStates = new List<SmallObjectSaveData>(),
-            triggeredTutorialIds = new List<string>(DialogueNodeActionSOActions.GetTriggeredTutorialIds())
+            triggeredTutorialIds = new List<string>(DialogueNodeActionSOActions.GetTriggeredTutorialIds()),
+            visibleTutorialIndices = new List<int>(DialogueNodeActionSOActions.GetVisibleTutorialIndices())
         };
 
         var smallObjects = FindAllSmallObjects();
@@ -192,6 +193,7 @@ public class SaveManager : MonoBehaviour {
         }
 
         DialogueNodeActionSOActions.ApplyTriggeredTutorialIds(package.triggeredTutorialIds);
+        DialogueNodeActionSOActions.ApplyVisibleTutorialIndices(package.visibleTutorialIndices);
 
         var smallObjects = FindAllSmallObjects();
         var map = new Dictionary<string, SmallObject>(StringComparer.Ordinal);

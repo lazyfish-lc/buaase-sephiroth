@@ -20,6 +20,6 @@ public class DialogueNodeActionSO : ScriptableObject {
 
     [Header("UI Actions (when kind == UIActions)")]
     public string uiActionId;
-    public TutorialContent tutorialContent = new TutorialContent();
+    public int tutorialIndex = -1;
     public bool hasShown;
 }

@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public static class DialogueNodeActionSOActions {
-    public static event Action<NPCObject, string, TutorialContent> TutorialPopupRequested;
+    public static event Action<NPCObject, string, int> TutorialPopupRequested;
     private static readonly HashSet<string> TriggeredTutorialIds = new HashSet<string>(StringComparer.Ordinal);
+    private static readonly HashSet<int> VisibleTutorialIndices = new HashSet<int>();
 
     public static IReadOnlyCollection<string> GetTriggeredTutorialIds() {
         return TriggeredTutorialIds;
@@ -17,6 +18,21 @@ public static class DialogueNodeActionSOActions {
         foreach (var id in ids) {
             if (!string.IsNullOrWhiteSpace(id)) {
                 TriggeredTutorialIds.Add(id);
+            }
+        }
+    }
+
+    public static IReadOnlyCollection<int> GetVisibleTutorialIndices() {
+        return VisibleTutorialIndices;
+    }
+
+    public static void ApplyVisibleTutorialIndices(IEnumerable<int> indices) {
+        VisibleTutorialIndices.Clear();
+        if (indices == null) return;
+
+        foreach (var index in indices) {
+            if (index >= 0) {
+                VisibleTutorialIndices.Add(index);
             }
         }
     }
@@ -62,7 +78,10 @@ public static class DialogueNodeActionSOActions {
 
         TriggeredTutorialIds.Add(actionId);
         action.hasShown = true;
-        TutorialPopupRequested?.Invoke(npc, actionId, action.tutorialContent);
+        if (action.tutorialIndex >= 0) {
+            VisibleTutorialIndices.Add(action.tutorialIndex);
+        }
+        TutorialPopupRequested?.Invoke(npc, actionId, action.tutorialIndex);
     }
 
     private static void ExecuteTriggerReceiver(DialogueNodeActionSO action, NPCObject npc) {
