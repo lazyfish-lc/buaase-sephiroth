@@ -396,6 +396,18 @@ public class SaveManager : MonoBehaviour {
                 data.glowLocalPosition = glow.localPosition;
             }
 
+            if (label is NPCLabelBase npcLabel) {
+                // 通过反射获取 overrideConfig 字段
+                var field = typeof(NPCLabelBase).GetField("overrideConfig", 
+                    System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+                if (field != null) {
+                    var config = field.GetValue(npcLabel) as NPCAppearanceOverride;
+                    if (config != null) {
+                        data.npcOverrideConfigName = config.name;
+                    }
+                }
+            }
+
             result.Add(data);
         }
 
@@ -448,6 +460,22 @@ public class SaveManager : MonoBehaviour {
                 glow.range = data.glowRange;
                 glow.lightType = (LightType)data.glowLightType;
                 glow.localPosition = data.glowLocalPosition;
+            }
+            if (label is NPCLabelBase npcLabel) {
+                // 根据保存的配置名称加载 NPCAppearanceOverride asset
+                if (!string.IsNullOrWhiteSpace(data.npcOverrideConfigName)) {
+                    var config = Resources.Load<NPCAppearanceOverride>($"NPCAppearanceOverrides/{data.npcOverrideConfigName}");
+                    if (config != null) {
+                        // 通过反射设置 overrideConfig 字段
+                        var field = typeof(NPCLabelBase).GetField("overrideConfig", 
+                            System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+                        if (field != null) {
+                            field.SetValue(npcLabel, config);
+                        }
+                    } else {
+                        Debug.LogWarning($"SaveManager: failed to load NPCAppearanceOverride asset: {data.npcOverrideConfigName}");
+                    }
+                }
             }
             return label;
         } catch (Exception ex) {

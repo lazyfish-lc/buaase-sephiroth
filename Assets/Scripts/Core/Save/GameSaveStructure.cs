@@ -35,6 +35,8 @@ public class LabelSaveData {
     public float glowRange;
     public int glowLightType;
     public Vector3 glowLocalPosition;
+    // NPC 标签专用字段：覆盖配置的资产名称
+    public string npcOverrideConfigName;
 }
 
 [Serializable]
