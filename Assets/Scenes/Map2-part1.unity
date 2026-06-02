@@ -384170,7 +384170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Sephiroth.Runtime::SwitchScene
   locationName: 
-  sceneName: StartMenuScene
+  sceneName: Map3
 --- !u!1 &1691196672
 GameObject:
   m_ObjectHideFlags: 0
