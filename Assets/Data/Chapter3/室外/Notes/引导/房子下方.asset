@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2716b9197589a9b4ebc9867440969c23, type: 3}
+  m_Name: "\u623F\u5B50\u4E0B\u65B9"
+  m_EditorClassIdentifier: Sephiroth.Runtime::NPCStaticData
+  objectName: 
+  propertyBlueprints: []
+  labelBlueprints: []
+  interactionRange: 3
+  dialogueNodes:
+  - npcContent: "\u4E24\u5C42\u7684\u5B85\u90B8\u5341\u5206\u9AD8\u5927\uFF0C\u623F\u5C4B\u7684\u4E3B\u4EBA\u80AF\u5B9A\u5341\u5206\u5BCC\u6709"
+    hasOptions: 0
+    nextNodeIndex: 1
+    options: []
+    enterActions: []
+    exitActions: []
+  - npcContent: "\u5899\u58C1\u548C\u7A97\u6237\u90FD\u5341\u5206\u5962\u534E\uFF0C\u5E94\u8BE5\u9020\u4EF7\u4E0D\u83F2"
+    hasOptions: 0
+    nextNodeIndex: -1
+    options: []
+    enterActions: []
+    exitActions: []
+  requiredItemGroups: []
+  animatorController: {fileID: 0}
