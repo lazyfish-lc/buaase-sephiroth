@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2716b9197589a9b4ebc9867440969c23, type: 3}
+  m_Name: ChiefNPCData
+  m_EditorClassIdentifier: Sephiroth.Runtime::NPCStaticData
+  objectName: 
+  propertyBlueprints:
+  - name: Health
+    initialValue: 100
+    minValue: 0
+    maxValue: 99999
+  - name: ATK
+    initialValue: 30
+    minValue: 0
+    maxValue: 99999
+  - name: DEF
+    initialValue: 10
+    minValue: 0
+    maxValue: 99999
+  - name: AttackSpeed
+    initialValue: 1
+    minValue: 0
+    maxValue: 20
+  labelBlueprints: []
+  interactionRange: 7
+  dialogueNodes:
+  - npcContent: "\u52A9\u624B\u5DF2\u7ECF\u81EA\u9996\u4E86\u3002\u4F60\u770B\u662F\u76F4\u63A5\u7ED3\u6848\uFF0C\u8FD8\u662F\u7EE7\u7EED\u67E5\u4E00\u67E5\uFF1F"
+    hasOptions: 0
+    nextNodeIndex: -1
+    options: []
+    enterActions: []
+    exitActions: []
+  requiredItemGroups: []
+  animatorController: {fileID: 22100000, guid: 779b90598fff9504d9bb143c9f25efc3, type: 2}

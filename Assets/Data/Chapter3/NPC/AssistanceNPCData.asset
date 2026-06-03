@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2716b9197589a9b4ebc9867440969c23, type: 3}
+  m_Name: AssistanceNPCData
+  m_EditorClassIdentifier: Sephiroth.Runtime::NPCStaticData
+  objectName: 
+  propertyBlueprints:
+  - name: Health
+    initialValue: 100
+    minValue: 0
+    maxValue: 99999
+  - name: ATK
+    initialValue: 30
+    minValue: 0
+    maxValue: 99999
+  - name: DEF
+    initialValue: 10
+    minValue: 0
+    maxValue: 99999
+  - name: AttackSpeed
+    initialValue: 1
+    minValue: 0
+    maxValue: 20
+  labelBlueprints: []
+  interactionRange: 7
+  dialogueNodes:
+  - npcContent: "\u662F\u6211\uFF0C\u4E03\u70B9\u6574\uFF0C\u6211\u7528\u5341\u5B57\u5F29\u5C04\u4E2D\u4E86\u4ED6\u3002\u539F\u56E0\u5F88\u7B80\u5355\u2014\u2014\u6211\u7231\u4E0A\u4E86\u4ED6\u7684\u59BB\u5B50\u3002"
+    hasOptions: 0
+    nextNodeIndex: 1
+    options: []
+    enterActions: []
+    exitActions: []
+  - npcContent: "\u6211\u65E9\u5C31\u8BA1\u5212\u597D\u4E86\uFF0C\u6CA1\u6709\u522B\u4EBA\uFF0C\u5C31\u662F\u6211\u5E72\u7684\u3002\u4F60\u4EEC\u6293\u6211\u5427\u3002"
+    hasOptions: 0
+    nextNodeIndex: 2
+    options: []
+    enterActions: []
+    exitActions: []
+  - npcContent: "\u4EC0\u4E48\u4E0D\u5728\u573A\u8BC1\u660E\uFF1F\u6211\u4E0D\u9700\u8981\u90A3\u79CD\u4E1C\u897F\u3002\u6211\u8BF4\u4E86\u662F\u6211\u6740\u7684\u3002"
+    hasOptions: 0
+    nextNodeIndex: 3
+    options: []
+    enterActions: []
+    exitActions: []
+  - npcContent: "\u522B\u95EE\u4E86\u2026\u2026\u53CD\u6B63\u6211\u8BA4\u7F6A\u3002\u52A8\u673A\uFF1F\u7231\u4E00\u4E2A\u4EBA\u9700\u8981\u7406\u7531\u5417\uFF1F"
+    hasOptions: 0
+    nextNodeIndex: 4
+    options: []
+    enterActions: []
+    exitActions: []
+  - npcContent: "\u4F60\u4EEC\u518D\u8C03\u67E5\u4E5F\u662F\u6D6A\u8D39\u65F6\u95F4\u3002\u7ED3\u6848\u5427\uFF0C\u6211\u5C31\u662F\u51F6\u624B\u3002"
+    hasOptions: 0
+    nextNodeIndex: -1
+    options: []
+    enterActions: []
+    exitActions: []
+  requiredItemGroups: []
+  animatorController: {fileID: 22100000, guid: 62703c28c481bbf4d8ad128997fea3eb, type: 2}

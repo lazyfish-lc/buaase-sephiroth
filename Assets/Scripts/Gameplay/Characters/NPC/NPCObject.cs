@@ -17,25 +17,139 @@ public class NPCObject : SmallObject {
 
     public NPCView view;
 
+    // 运行时对话副本（标签挂载时会覆盖这些值）
+    private List<DialogueNode> runtimeDialogueNodes;
+    private List<NPCStaticData.RequiredItemGroup> runtimeRequiredItemGroups;
+
+    /// <summary>
+    /// 供外部（如标签）访问原始 NPCData
+    /// </summary>
+    public NPCStaticData GetNPCData() {
+        return NPCData;
+    }
+
     protected override SmallObjectDynamicState CreateDynamicState() {
         return new NPCDynamicState();
     }
 
     protected override void Awake() {
+        // 1. 先初始化运行时对话副本（只在未初始化时）
+        // 这确保在标签附加之前，运行时副本已存在
+        if (runtimeDialogueNodes == null) {
+            InitializeRuntimeDialogueData();
+        }
+
+        // 2. 调用 base.Awake 加载并附加标签
+        // 标签的 OnAttach() 会调用 SetRuntimeDialogueNodes() 覆盖运行时副本
         base.Awake();
 
-        // 2. 核心修改：从静态数据初始化动画表现
+        // 3. 初始化动画表现（如果未被标签覆盖）
         if (staticData != null && view != null) {
             view.SetController(NPCData.animatorController);
         }
+
+        // 4. 确保所有标签加载完成后，UI 被正确刷新
+        // 标签已在 OnAttach() 中调用 ApplyOverride()，ApplyOverride() 现在总是调用 TriggerNodeChanged()
+        // 这里再次确保外观状态完整无误
+        if (dynamicState?.smallObjectLabels != null && dynamicState.smallObjectLabels.Count > 0) {
+            // 再次触发以确保 UI 完全同步
+            TriggerNodeChanged();
+        }
+    }
+
+    /// <summary>
+    /// 初始化运行时对话副本（从 NPCData 深拷贝）
+    /// 只在未初始化时进行初始化，避免覆盖已应用的标签覆盖
+    /// </summary>
+    private void InitializeRuntimeDialogueData() {
+        // 只在未初始化时才执行初始化
+        if (runtimeDialogueNodes != null || runtimeRequiredItemGroups != null) {
+            return;
+        }
+
+        // 深拷贝对话节点
+        if (NPCData != null && NPCData.dialogueNodes != null) {
+            runtimeDialogueNodes = new List<DialogueNode>();
+            foreach (var node in NPCData.dialogueNodes) {
+                runtimeDialogueNodes.Add(CopyDialogueNode(node));
+            }
+        } else {
+            runtimeDialogueNodes = new List<DialogueNode>();
+        }
+
+        // 深拷贝必需物品组
+        if (NPCData != null && NPCData.requiredItemGroups != null) {
+            runtimeRequiredItemGroups = new List<NPCStaticData.RequiredItemGroup>();
+            foreach (var group in NPCData.requiredItemGroups) {
+                runtimeRequiredItemGroups.Add(CopyRequiredItemGroup(group));
+            }
+        } else {
+            runtimeRequiredItemGroups = new List<NPCStaticData.RequiredItemGroup>();
+        }
+    }
+
+    /// <summary>
+    /// 获取当前使用的对话列表（运行时副本）
+    /// </summary>
+    public List<DialogueNode> GetCurrentDialogueNodes() {
+        return runtimeDialogueNodes ?? new List<DialogueNode>();
+    }
+
+    /// <summary>
+    /// 获取当前使用的必需物品组列表（运行时副本）
+    /// </summary>
+    private List<NPCStaticData.RequiredItemGroup> GetCurrentRequiredItemGroups() {
+        return runtimeRequiredItemGroups ?? new List<NPCStaticData.RequiredItemGroup>();
+    }
+
+    /// <summary>
+    /// 供标签调用：设置运行时对话列表
+    /// </summary>
+    public void SetRuntimeDialogueNodes(List<DialogueNode> nodes) {
+        runtimeDialogueNodes = nodes != null ? new List<DialogueNode>(nodes) : new List<DialogueNode>();
+    }
+
+    /// <summary>
+    /// 供标签调用：设置运行时必需物品组列表
+    /// </summary>
+    public void SetRuntimeRequiredItemGroups(List<NPCStaticData.RequiredItemGroup> groups) {
+        runtimeRequiredItemGroups = groups != null ? new List<NPCStaticData.RequiredItemGroup>(groups) : new List<NPCStaticData.RequiredItemGroup>();
+    }
+
+    /// <summary>
+    /// 供标签调用：设置当前节点索引
+    /// </summary>
+    public void SetCurrentNodeIndex(int index) {
+        NPCState.currentNodeIndex = index;
+    }
+
+    /// <summary>
+    /// 供标签调用：触发节点变化事件（用于 UI 刷新）
+    /// </summary>
+    public void TriggerNodeChanged() {
+        OnNodeChanged?.Invoke();
     }
 
     // --- 给 UI 调用的数据接口 (Getter) ---
-    public string GetCurrentContent() => NPCData.dialogueNodes[NPCState.currentNodeIndex].npcContent;
+    public string GetCurrentContent() {
+        var nodes = GetCurrentDialogueNodes();
+        if (NPCState.currentNodeIndex < 0 || NPCState.currentNodeIndex >= nodes.Count) return "";
+        return nodes[NPCState.currentNodeIndex].npcContent;
+    }
 
     public Sprite GetCurrentSprite() => gameObject.GetComponent<SpriteRenderer>()?.sprite;
-    public List<DialogueOption> GetCurrentOptions() => NPCData.dialogueNodes[NPCState.currentNodeIndex].options;
-    public bool CurrentNodeHasOptions() => NPCData.dialogueNodes[NPCState.currentNodeIndex].hasOptions;
+    
+    public List<DialogueOption> GetCurrentOptions() {
+        var nodes = GetCurrentDialogueNodes();
+        if (NPCState.currentNodeIndex < 0 || NPCState.currentNodeIndex >= nodes.Count) return new List<DialogueOption>();
+        return nodes[NPCState.currentNodeIndex].options ?? new List<DialogueOption>();
+    }
+    
+    public bool CurrentNodeHasOptions() {
+        var nodes = GetCurrentDialogueNodes();
+        if (NPCState.currentNodeIndex < 0 || NPCState.currentNodeIndex >= nodes.Count) return false;
+        return nodes[NPCState.currentNodeIndex].hasOptions;
+    }
     public bool IsInConversation() => NPCState.isInConversation;
     public int GetCurrentNodeIndex() => NPCState.currentNodeIndex;
 
@@ -43,8 +157,9 @@ public class NPCObject : SmallObject {
         NPCState.isInConversation = isInConversation;
 
         int maxIndex = 0;
-        if (NPCData != null && NPCData.dialogueNodes != null && NPCData.dialogueNodes.Count > 0) {
-            maxIndex = NPCData.dialogueNodes.Count - 1;
+        var nodes = GetCurrentDialogueNodes();
+        if (nodes != null && nodes.Count > 0) {
+            maxIndex = nodes.Count - 1;
         }
         NPCState.currentNodeIndex = Mathf.Clamp(nodeIndex, 0, maxIndex);
 
@@ -89,9 +204,10 @@ public class NPCObject : SmallObject {
     protected virtual int ResolveStartNodeIndex() {
         // 如果配置了 requiredItems，则检查玩家是否满足条件以决定起始节点
         int startIndex = 0;
-        if (NPCData != null && NPCData.requiredItemGroups != null && NPCData.requiredItemGroups.Count > 0) {
+        var groups = GetCurrentRequiredItemGroups();
+        if (groups != null && groups.Count > 0) {
             var player = NPCState.currentInteractingPlayer;
-            foreach (var group in NPCData.requiredItemGroups) {
+            foreach (var group in groups) {
                 if (group == null || group.requiredItems == null || group.requiredItems.Count == 0) continue;
 
                 bool hasAll = true;
@@ -121,7 +237,10 @@ public class NPCObject : SmallObject {
     public void AdvanceToNextNode() {
         if (!NPCState.isInConversation || CurrentNodeHasOptions()) return;
 
-        int next = NPCData.dialogueNodes[NPCState.currentNodeIndex].nextNodeIndex;
+        var nodes = GetCurrentDialogueNodes();
+        if (NPCState.currentNodeIndex < 0 || NPCState.currentNodeIndex >= nodes.Count) return;
+
+        int next = nodes[NPCState.currentNodeIndex].nextNodeIndex;
         TransitionToNode(next);
     }
 
@@ -142,9 +261,13 @@ public class NPCObject : SmallObject {
     }
 
     protected void TransitionToNode(int nodeIndex) {
-        foreach (var action in NPCData.dialogueNodes[NPCState.currentNodeIndex].exitActions) {
-            action?.Execute(this);
+        var nodes = GetCurrentDialogueNodes();
+        if (NPCState.currentNodeIndex >= 0 && NPCState.currentNodeIndex < nodes.Count) {
+            foreach (var action in nodes[NPCState.currentNodeIndex].exitActions) {
+                action?.Execute(this);
+            }
         }
+        
         if (nodeIndex == -1) {
             EndConversation();
         } else {
@@ -155,10 +278,11 @@ public class NPCObject : SmallObject {
     }
 
     protected void ExecuteCurrentNodeActions() {
-        if (NPCData == null || NPCData.dialogueNodes == null) return;
-        if (NPCState.currentNodeIndex < 0 || NPCState.currentNodeIndex >= NPCData.dialogueNodes.Count) return;
+        var nodes = GetCurrentDialogueNodes();
+        if (nodes == null) return;
+        if (NPCState.currentNodeIndex < 0 || NPCState.currentNodeIndex >= nodes.Count) return;
 
-        DialogueNode node = NPCData.dialogueNodes[NPCState.currentNodeIndex];
+        DialogueNode node = nodes[NPCState.currentNodeIndex];
         if (node == null || node.enterActions == null) return;
 
         foreach (var action in node.enterActions) {
@@ -181,5 +305,33 @@ public class NPCObject : SmallObject {
                 EndConversation();
             }
         }
+    }
+
+    /// <summary>
+    /// 深拷贝一个对话节点
+    /// </summary>
+    private DialogueNode CopyDialogueNode(DialogueNode original) {
+        if (original == null) return null;
+
+        return new DialogueNode {
+            npcContent = original.npcContent,
+            hasOptions = original.hasOptions,
+            nextNodeIndex = original.nextNodeIndex,
+            options = original.options != null ? new List<DialogueOption>(original.options) : new List<DialogueOption>(),
+            enterActions = original.enterActions != null ? new List<DialogueNodeActionSO>(original.enterActions) : new List<DialogueNodeActionSO>(),
+            exitActions = original.exitActions != null ? new List<DialogueNodeActionSO>(original.exitActions) : new List<DialogueNodeActionSO>()
+        };
+    }
+
+    /// <summary>
+    /// 深拷贝一个必需物品组
+    /// </summary>
+    private NPCStaticData.RequiredItemGroup CopyRequiredItemGroup(NPCStaticData.RequiredItemGroup original) {
+        if (original == null) return null;
+
+        return new NPCStaticData.RequiredItemGroup {
+            requiredItems = original.requiredItems != null ? new List<string>(original.requiredItems) : new List<string>(),
+            startNodeIfHasRequiredItems = original.startNodeIfHasRequiredItems
+        };
     }
 }
