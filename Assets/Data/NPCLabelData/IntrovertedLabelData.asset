@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 440a7eca8e86e424d86aa1e225ff4622, type: 3}
+  m_Name: IntrovertedLabelData
+  m_EditorClassIdentifier: Sephiroth.Runtime::NPCAppearanceOverride
+  overrideSprite: {fileID: 0}
+  overrideAnimatorController: {fileID: 0}
+  overrideDialogueNodes:
+  - npcContent: "\u6211\u2026\u2026\u6211\u4E03\u70B9\u534A\u624D\u5230\u5BB6\uFF0C\u76F4\u63A5\u56DE\u623F\u95F4\u4E86\uFF0C\u4EC0\u4E48\u90FD\u4E0D\u77E5\u9053\u3002"
+    hasOptions: 0
+    nextNodeIndex: 1
+    options: []
+    enterActions: []
+    exitActions: []
+  - npcContent: "\u4F5C\u5BB6\u4ED6\u2026\u2026\u5BF9\u6211\u4E0D\u597D\uFF0C\u4F46\u6211\u771F\u7684\u6CA1\u6709\u6740\u4ED6\u3002\u4F60\u522B\u95EE\u4E86\u2026\u2026"
+    hasOptions: 0
+    nextNodeIndex: 2
+    options: []
+    enterActions: []
+    exitActions: []
+  - npcContent: "\u52A9\u624B\u9001\u6211\u82B1\uFF1F\u662F\u2026\u2026\u662F\u9001\u8FC7\uFF0C\u90A3\u53C8\u600E\u6837\uFF1F\u6211\u4E0D\u559C\u6B22\u4ED6\u3002"
+    hasOptions: 0
+    nextNodeIndex: 3
+    options: []
+    enterActions: []
+    exitActions: []
+  - npcContent: "\u6211\u6CA1\u6709\u8BC1\u636E\u8BC1\u660E\u81EA\u5DF1\u4E0D\u5728\u573A\u3002\u53EF\u6211\u8BF4\u7684\u90FD\u662F\u5B9E\u8BDD\u3002"
+    hasOptions: 0
+    nextNodeIndex: 4
+    options: []
+    enterActions: []
+    exitActions: []
+  - npcContent: "\u6C42\u4F60\u4E86\uFF0C\u522B\u903C\u6211\u4E86\u2026\u2026\u6211\u4EC0\u4E48\u90FD\u4E0D\u77E5\u9053\u3002"
+    hasOptions: 0
+    nextNodeIndex: -1
+    options: []
+    enterActions: []
+    exitActions: []
+  overrideRequiredItemGroups: []

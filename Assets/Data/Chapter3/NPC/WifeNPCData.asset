@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2716b9197589a9b4ebc9867440969c23, type: 3}
+  m_Name: WifeNPCData
+  m_EditorClassIdentifier: Sephiroth.Runtime::NPCStaticData
+  objectName: 
+  propertyBlueprints:
+  - name: Health
+    initialValue: 100
+    minValue: 0
+    maxValue: 99999
+  - name: ATK
+    initialValue: 30
+    minValue: 0
+    maxValue: 99999
+  - name: DEF
+    initialValue: 10
+    minValue: 0
+    maxValue: 99999
+  - name: AttackSpeed
+    initialValue: 1
+    minValue: 0
+    maxValue: 20
+  labelBlueprints:
+  - IntrovertedLabel()
+  interactionRange: 7
+  dialogueNodes:
+  - npcContent: "\u6211\u4E03\u70B9\u534A\u5230\u5BB6\uFF0C\u76F4\u63A5\u8FDB\u4E86\u623F\u95F4\u3002\u4E5D\u70B9\u542C\u89C1\u5973\u4EC6\u5C16\u53EB\uFF0C\u624D\u77E5\u9053\u4ED6\u6B7B\u4E86\u3002"
+    hasOptions: 0
+    nextNodeIndex: 1
+    options: []
+    enterActions: []
+    exitActions: []
+  - npcContent: "\u6211\u548C\u4F5C\u5BB6\u611F\u60C5\u65E9\u5C31\u7834\u88C2\u4E86\u3002\u4ED6\u53EA\u77E5\u9053\u8D44\u52A9\u90A3\u4E2A\u52A9\u624B\uFF0C\u5BF9\u6211\u89C6\u82E5\u65E0\u7779\u3002"
+    hasOptions: 0
+    nextNodeIndex: 2
+    options: []
+    enterActions: []
+    exitActions: []
+  - npcContent: "\u52A9\u624B\u7231\u6211\uFF1F\u522B\u6076\u5FC3\u4E86\u3002\u4ED6\u770B\u6211\u7684\u773C\u795E\u91CC\u53EA\u6709\u5AC9\u5992\u548C\u9119\u89C6\u3002"
+    hasOptions: 0
+    nextNodeIndex: 3
+    options: []
+    enterActions: []
+    exitActions: []
+  - npcContent: "\u4F5C\u5BB6\u786E\u5B9E\u662F\u4E2A\u597D\u4EBA\u2026\u2026\u597D\u5230\u5BF9\u8EAB\u8FB9\u6700\u4EB2\u8FD1\u7684\u4EBA\u4E0D\u95FB\u4E0D\u95EE\u3002\u8FD9\u5C31\u662F\u4ED6\u7684\u201C\u5584\u826F\u201D\u3002"
+    hasOptions: 0
+    nextNodeIndex: 4
+    options: []
+    enterActions: []
+    exitActions: []
+  - npcContent: "\u6211\u7684\u8BDD\u5C31\u662F\u8FD9\u4E9B\u3002\u4FE1\u4E0D\u4FE1\u7531\u4F60\uFF0C\u53CD\u6B63\u6211\u6CA1\u6740\u4EBA\u3002"
+    hasOptions: 0
+    nextNodeIndex: -1
+    options: []
+    enterActions: []
+    exitActions: []
+  requiredItemGroups: []
+  animatorController: {fileID: 22100000, guid: 6d815a03ee46b974ab534317d792ce8f, type: 2}
