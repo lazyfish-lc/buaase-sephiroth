@@ -13,6 +13,7 @@ public class Chapter3ClueTarget : MonoBehaviour {
 
     private bool isClockCorrected;
     private bool isIceWeaponRevealed;
+    private bool isDiaryRevealed;
 
     public void RevealIceWeapon() {
         if (isIceWeaponRevealed) return;
@@ -38,6 +39,18 @@ public class Chapter3ClueTarget : MonoBehaviour {
         Chapter3Events.RaiseClockCorrected();
     }
 
+    public void RevealDiary() {
+        if (isDiaryRevealed) return;
+        isDiaryRevealed = true;
+
+        if (hideOwnerWhenRevealed) {
+            gameObject.SetActive(false);
+        }
+
+        Chapter3Events.RaiseDiaryRevealed();
+    }
+
     public bool HasCorrectedClock => isClockCorrected;
     public bool HasRevealedIceWeapon => isIceWeaponRevealed;
+    public bool HasRevealedDiary => isDiaryRevealed;
 }

@@ -68,4 +68,33 @@ public class Chapter3_SceneController : MonoBehaviour {
         accusationPromptShown = false;
         AccusationPromptStateChanged?.Invoke(false);
     }
+
+    /// <summary>
+    /// 构建存档数据
+    /// </summary>
+    public Chapter3ClueSaveData GetClueSaveData() {
+        return new Chapter3ClueSaveData {
+            hasIceWeapon = hasIceWeapon,
+            hasClockCorrected = hasClockCorrected,
+            hasDiaryRevealed = hasDiaryRevealed,
+            accusationPromptShown = accusationPromptShown
+        };
+    }
+
+    /// <summary>
+    /// 从存档恢复线索状态，并重新评估是否可弹出指认提示
+    /// </summary>
+    public void ApplyClueSaveData(Chapter3ClueSaveData data) {
+        if (data == null) return;
+
+        hasIceWeapon = data.hasIceWeapon;
+        hasClockCorrected = data.hasClockCorrected;
+        hasDiaryRevealed = data.hasDiaryRevealed;
+        accusationPromptShown = data.accusationPromptShown;
+
+        // 如果已经触发过指认提示，重新通知 UI
+        if (accusationPromptShown) {
+            AccusationPromptStateChanged?.Invoke(true);
+        }
+    }
 }
