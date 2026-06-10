@@ -35,17 +35,41 @@ public class Chapter3_SceneController : MonoBehaviour {
 
     private void HandleIceWeaponRevealed() {
         hasIceWeapon = true;
+        TryAddClueItemToPlayer("Frostbolt");
         TryOfferAccuseOption();
     }
 
     private void HandleClockCorrected() {
         hasClockCorrected = true;
+        TryAddClueItemToPlayer("FastForwardClock");
         TryOfferAccuseOption();
     }
 
     private void HandleDiaryRevealed() {
         hasDiaryRevealed = true;
+        TryAddClueItemToPlayer("AssistantDiary");
         TryOfferAccuseOption();
+    }
+
+    /// <summary>
+    /// 若玩家物品背包中不存在指定名称的物品，则向背包中添加该物品
+    /// </summary>
+    private void TryAddClueItemToPlayer(string itemName) {
+        if (string.IsNullOrWhiteSpace(itemName)) return;
+
+        var player = FindFirstObjectByType<PlayerSmallObject>();
+        if (player == null) {
+            Debug.LogWarning("Chapter3_SceneController: 无法找到 PlayerSmallObject，无法添加线索物品。");
+            return;
+        }
+
+        if (player.HasItemInBackpack(itemName)) {
+            Debug.Log($"Chapter3_SceneController: 玩家背包中已有 '{itemName}'，跳过添加。");
+            return;
+        }
+
+        player.AddItemToBackpack(Item.Create(itemName));
+        Debug.Log($"Chapter3_SceneController: 已向玩家背包添加线索物品 '{itemName}'。");
     }
 
     private void TryOfferAccuseOption() {
