@@ -180,6 +180,11 @@ public class SaveManager : MonoBehaviour {
             package.objectStates.Add(data);
         }
 
+        // 保存第三章线索触发进度
+        if (Chapter3_SceneController.Instance != null) {
+            package.chapter3ClueData = Chapter3_SceneController.Instance.GetClueSaveData();
+        }
+
         return package;
     }
 
@@ -214,6 +219,11 @@ public class SaveManager : MonoBehaviour {
             }
 
             ApplySmallObjectSave(target, saved);
+        }
+
+        // 恢复第三章线索触发进度
+        if (package.chapter3ClueData != null && Chapter3_SceneController.Instance != null) {
+            Chapter3_SceneController.Instance.ApplyClueSaveData(package.chapter3ClueData);
         }
     }
 

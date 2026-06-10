@@ -75,10 +75,19 @@ public class DoorSaveData {
 }
 
 [Serializable]
+public class Chapter3ClueSaveData {
+    public bool hasIceWeapon;
+    public bool hasClockCorrected;
+    public bool hasDiaryRevealed;
+    public bool accusationPromptShown;
+}
+
+[Serializable]
 public class GameSavePackage {
     public string sceneName;
     public bool isPresentTime; // 当前是现在还是过去
     public List<SmallObjectSaveData> objectStates = new List<SmallObjectSaveData>();
     public List<string> triggeredTutorialIds = new List<string>();
     public List<int> visibleTutorialIndices = new List<int>();
+    public Chapter3ClueSaveData chapter3ClueData; // 第三章线索触发进度
 }
