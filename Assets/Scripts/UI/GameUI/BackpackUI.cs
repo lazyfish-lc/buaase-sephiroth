@@ -78,7 +78,7 @@ public class BackpackUI : FatherUI
     }
     public void RightPage()
     {
-        PlayClickSFX();
+        PlayPageTurnSFX();
         if(currentPage < totalPages)
         {
             currentPage++;
@@ -87,7 +87,7 @@ public class BackpackUI : FatherUI
     }
     public void LeftPage()
     {
-        PlayClickSFX();
+        PlayPageTurnSFX();
         if(currentPage > 1)
         {
             currentPage--;

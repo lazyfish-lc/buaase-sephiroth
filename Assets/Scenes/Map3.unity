@@ -24798,7 +24798,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f62f5f3db08967c489f3a57b1e9de9ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Sephiroth.Runtime::SceneMusicController
-  bgmForThisScene: {fileID: 8300000, guid: 18c8b19400b829c499b23e885f9a7497, type: 3}
+  bgmForThisScene: {fileID: 8300000, guid: c49ecdcb3ca041f4c831e33af53f158b, type: 3}
 --- !u!4 &308540417
 Transform:
   m_ObjectHideFlags: 0
@@ -282892,7 +282892,7 @@ Transform:
   m_GameObject: {fileID: 945473554}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -22.140003, y: 49.62874, z: -10}
+  m_LocalPosition: {x: -0.5699929, y: -0.42407632, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

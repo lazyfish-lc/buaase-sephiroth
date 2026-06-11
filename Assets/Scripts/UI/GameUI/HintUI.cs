@@ -190,6 +190,7 @@ public class HintUI : FatherUI
         if (pendingAddedNames.Count == 0) return;
         string merged = $"获得物品：{string.Join("、", pendingAddedNames)}";
         Debug.Log($"[HintUI] 合并输出 - {merged}");
+        PlayItemGetSFX();
         ShowHint(merged);
         pendingAddedNames.Clear();
     }
@@ -199,6 +200,7 @@ public class HintUI : FatherUI
         if (pendingRemovedNames.Count == 0) return;
         string merged = $"失去物品：{string.Join("、", pendingRemovedNames)}";
         Debug.Log($"[HintUI] 合并输出 - {merged}");
+        PlayItemUseSFX();
         ShowHint(merged);
         pendingRemovedNames.Clear();
     }
@@ -240,6 +242,7 @@ public class HintUI : FatherUI
         while (messageQueue.Count > 0)
         {
             string message = messageQueue.Dequeue();
+            PlayHintUISFX();
             HintText.text = message;
 
             // === 淡入 ===
