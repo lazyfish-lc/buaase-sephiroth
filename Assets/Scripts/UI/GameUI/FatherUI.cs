@@ -22,4 +22,32 @@ public class FatherUI : MonoBehaviour
             UIManager.Instance.PlayClickSFX();
         }
     }
+    public void PlayPageTurnSFX()
+    {
+        if (UIManager.Instance != null)
+        {
+            UIManager.Instance.PlayPageTurnSFX();
+        }
+    }
+    public void PlayItemGetSFX()
+    {
+        if (UIManager.Instance != null)
+        {
+            UIManager.Instance.PlayItemGetSFX();
+        }
+    }
+    public void PlayItemUseSFX()
+    {
+        if (UIManager.Instance != null)
+        {
+            UIManager.Instance.PlayItemUseSFX();
+        }
+    }
+    public void PlayHintUISFX()
+    {
+        if (UIManager.Instance != null)
+        {
+            UIManager.Instance.PlayHintUISFX();
+        }
+    }
 }

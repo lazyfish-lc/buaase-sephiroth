@@ -52,4 +52,32 @@ public class UIManager : MonoBehaviour
             SFXPlayer.PlayClickSFX();
         }
     }
+    public void PlayPageTurnSFX()
+    {
+        if (SFXPlayer != null)
+        {
+            SFXPlayer.PlayPageTurnSFX();
+        }
+    }
+    public void PlayItemGetSFX()
+    {
+        if (SFXPlayer != null)
+        {
+            SFXPlayer.PlayItemGetSFX();
+        }
+    }
+    public void PlayItemUseSFX()
+    {
+        if (SFXPlayer != null)
+        {
+            SFXPlayer.PlayItemUseSFX();
+        }
+    }
+    public void PlayHintUISFX()
+    {
+        if (SFXPlayer != null)
+        {
+            SFXPlayer.PlayHintUISFX();
+        }
+    }
 }
