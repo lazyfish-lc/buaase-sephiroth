@@ -182,7 +182,13 @@ public class GuideUI : FatherUI
         
         if(!isOpen)
         {
-            Open();
+            RefreshVisibleIndices();
+            if (totalPages > 0)
+            {
+                currentPage = 1;
+                ShowCurrentTutorial();
+                Open();
+            }
         }
         else
         {
