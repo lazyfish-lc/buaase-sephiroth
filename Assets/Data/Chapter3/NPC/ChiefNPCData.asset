@@ -33,6 +33,22 @@ MonoBehaviour:
   labelBlueprints: []
   interactionRange: 7
   dialogueNodes:
+  - npcContent: "\u6211\u662F\u8FD9\u4E2A\u5C0F\u9547\u7684\u8B66\u957F\uFF0C\u4ECA\u5929\u516B\u70B9\uFF0C\u5C0F\u9547\u91CC\u5FB7\u9AD8\u671B\u91CD\u7684\u4F5C\u5BB6\u6B7B\u5728\u4E86\u81EA\u5DF1\u7684\u623F\u95F4\u91CC\u3002"
+    hasOptions: 0
+    nextNodeIndex: 1
+    options: []
+    enterActions: []
+    exitActions: []
+  - npcContent: "\u4F46\u662F\u6CA1\u6709\u8BC1\u636E\uFF0C\u6CA1\u6709\u52A8\u673A\uFF0C\u4F60\u80FD\u5E2E\u6211\u67E5\u6848\u5417\uFF1F"
+    hasOptions: 1
+    nextNodeIndex: 1
+    options:
+    - text: "\u597D\u7684"
+      targetNodeIndex: 2
+      rewardProperty: "\u6CA1\u529E\u6CD5\u62D2\u7EDD\u3002\u3002\u3002"
+      rewardAmount: 2
+    enterActions: []
+    exitActions: []
   - npcContent: "\u52A9\u624B\u5DF2\u7ECF\u81EA\u9996\u4E86\u3002\u4F60\u770B\u662F\u76F4\u63A5\u7ED3\u6848\uFF0C\u8FD8\u662F\u7EE7\u7EED\u67E5\u4E00\u67E5\uFF1F"
     hasOptions: 0
     nextNodeIndex: -1

@@ -68,7 +68,7 @@ MonoBehaviour:
   - name: SceneNPC
     displayname: "\u8BAF\u606F"
     icon: {fileID: 0}
-    description: "\u9ED1#\u4E4B#\uFF1F\u4F55\u65F6\u6765\u7684"
+    description: "\u4E0D\u662F\u5750\u706B\u70B9\u3002\u3002\u3002"
   - name: GuardNPC
     displayname: "\u5B88\u536B\u7684\u9A91\u58EB"
     icon: {fileID: 0}
@@ -77,3 +77,19 @@ MonoBehaviour:
     displayname: "\u91CE\u732A"
     icon: {fileID: 0}
     description: "\u732A\u7A81\u731B\u8FDB\uFF01\uFF01\uFF01\uFF01\uFF01"
+  - name: AssistanceNPC
+    displayname: "\u52A9\u624B"
+    icon: {fileID: 0}
+    description: "\u4F5C\u5BB6\u7684\u52A9\u624B\uFF0C\u4F3C\u4E4E\u662F\u4F5C\u5BB6\u8D44\u52A9\u7684\u4EBA\u4E4B\u4E00\u3002"
+  - name: ChiefNPC
+    displayname: "\u8B66\u957F"
+    icon: {fileID: 0}
+    description: "\u5C0F\u9547\u7684\u8B66\u957F\uFF0C\u6765\u5230\u6B64\u5904\u8C03\u67E5\u6848\u4EF6\u3002"
+  - name: MaidNPC
+    displayname: "\u75AF\u5973\u4EC6"
+    icon: {fileID: 0}
+    description: "\u4F5C\u5BB6\u7684\u5973\u4EC6\uFF0C\u5E73\u65E5\u91CC\u75AF\u75AF\u766B\u766B\u7684\u3002"
+  - name: WifeNPC
+    displayname: "\u4F5C\u5BB6\u7684\u59BB\u5B50"
+    icon: {fileID: 0}
+    description: "\u4F5C\u5BB6\u7684\u59BB\u5B50\uFF0C\u4F3C\u4E4E\u548C\u4F5C\u5BB6\u611F\u60C5\u4E0D\u597D\u3002"
