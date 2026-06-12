@@ -37,3 +37,23 @@ MonoBehaviour:
     displayname: "\u72C2\u66B4\u7684\u6807\u7B7E"
     icon: {fileID: 7724826089305417903, guid: 7036dcaf5893f8c46893752596b08261, type: 3}
     description: "\u4F3C\u4E4E\u6709\u8BA9\u88AB\u9644\u7740\u7684\u5BF9\u8C61\u72C2\u66B4\u7684\u6548\u679C\\n\\n--\u54C8\u6C14\u5E95\u5C42\u4EE3\u7801"
+  - name: Honest
+    displayname: "\u75AF\u72C2\u7684\u6807\u7B7E"
+    icon: {fileID: 2742398032111135639, guid: 7036dcaf5893f8c46893752596b08261, type: 3}
+    description: "\u4F3C\u4E4E\u6709\u8BA9\u88AB\u9644\u7740\u7684\u5BF9\u8C61\u75AF\u75AF\u766B\u766B\u7684\u6548\u679C"
+  - name: Melt
+    displayname: "\u878D\u5316\u7684\u6807\u7B7E"
+    icon: {fileID: 616437759516791609, guid: 7036dcaf5893f8c46893752596b08261, type: 3}
+    description: "\u4F3C\u4E4E\u6709\u8BA9\u88AB\u9644\u7740\u7684\u5BF9\u8C61\u878D\u5316\u7684\u6548\u679C"
+  - name: Introverted
+    displayname: "\u5185\u5411\u7684\u6807\u7B7E"
+    icon: {fileID: -2325575381815842104, guid: 7036dcaf5893f8c46893752596b08261, type: 3}
+    description: "\u4F3C\u4E4E\u6709\u8BA9\u88AB\u9644\u7740\u7684\u5BF9\u8C61\u5185\u5411\u7684\u6548\u679C"
+  - name: Vain
+    displayname: "\u865A\u4F2A\u7684\u6807\u7B7E"
+    icon: {fileID: 427370637957560526, guid: 7036dcaf5893f8c46893752596b08261, type: 3}
+    description: "\u4F3C\u4E4E\u6709\u8BA9\u88AB\u9644\u7740\u7684\u5BF9\u8C61\u865A\u4F2A\u7684\u6548\u679C"
+  - name: FastForward
+    displayname: "\u5FEB\u8FDB\u7684\u6807\u7B7E"
+    icon: {fileID: -3914398992953758278, guid: 7036dcaf5893f8c46893752596b08261, type: 3}
+    description: "\u4F3C\u4E4E\u6709\u8BA9\u88AB\u9644\u7740\u7684\u5BF9\u8C61\u5FEB\u8FDB\u7684\u6548\u679C"

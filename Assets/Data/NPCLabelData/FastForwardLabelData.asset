@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 440a7eca8e86e424d86aa1e225ff4622, type: 3}
   m_Name: FastForwardLabelData
   m_EditorClassIdentifier: Sephiroth.Runtime::NPCAppearanceOverride
-  overrideSprite: {fileID: -1581394468032106382, guid: 7745bae0a365b7d4d8375e0fb7a637ea, type: 3}
+  overrideSprite: {fileID: -2966200626249415253, guid: ad364cc3182f3b64fa77f611ec306804, type: 3}
   overrideAnimatorController: {fileID: 0}
   overrideDialogueNodes:
   - npcContent: "\u5899\u4E0A\u7684\u949F\u8868\uFF0C\u65F6\u9488\u6307\u5411\u4E86\u5341\u4E00\u70B9\u3002"
