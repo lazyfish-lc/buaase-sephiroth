@@ -260,5 +260,9 @@ public class ActionUI : FatherUI
         CloseEndingMode();
         // TODO：根据 endingIndex 显示结局画面或过场动画
         Debug.Log($"ActionUI: 结局 {endingIndex} 已触发，准备显示结局内容。");
+        EndUI.PendingEndingId = endingIndex;
+        // 切换到结局展示场景（假设场景名为 "EndingScene"）
+        UnityEngine.SceneManagement.SceneManager.LoadScene("EndScene");
+
     }
 }

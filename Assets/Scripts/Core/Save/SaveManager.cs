@@ -11,7 +11,9 @@ public class SaveManager : MonoBehaviour {
 
     [SerializeField] private string saveFileName = "save.json";
 
-    private GameSavePackage pendingLoad;
+    private GameSavePackage pendingLoad;                     // 用于 LoadGame 的跨场景待恢复包
+    private Dictionary<string, GameSavePackage> sceneStates  // 自动保存：sceneName → 最近一次离开时的状态
+        = new Dictionary<string, GameSavePackage>(StringComparer.Ordinal);
     private bool isLoadingSave;
     private Coroutine loadingFlagRoutine;
 
@@ -24,6 +26,23 @@ public class SaveManager : MonoBehaviour {
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDestroy() {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    /// <summary>
+    /// 构建当前场景的存档包并存入内存（按场景名索引）。
+    /// 切换场景时会自动恢复离开时的状态，标签/物品等不会丢失。
+    /// 应在切换场景前调用。
+    /// </summary>
+    public void SaveCurrentToPending() {
+        var package = BuildSavePackage();
+        if (package == null) return;
+        sceneStates[package.sceneName] = package;
+        Debug.Log($"[SaveManager] 已保存场景状态: {package.sceneName}");
     }
 
     public void SaveGame() {
@@ -68,7 +87,7 @@ public class SaveManager : MonoBehaviour {
         if (!string.Equals(currentScene, package.sceneName, StringComparison.Ordinal)) {
             pendingLoad = package;
             isLoadingSave = true;
-            SceneManager.sceneLoaded += OnSceneLoaded;
+            // OnSceneLoaded 已在 Awake 中全局订阅，无需重复
             FindFirstObjectByType<LoadingUI>().LoadScene(package.sceneName);
             return;
         }
@@ -79,15 +98,28 @@ public class SaveManager : MonoBehaviour {
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-        if (pendingLoad == null) {
-            isLoadingSave = false;
+        string sceneName = scene.name;
+
+        // LoadGame 跨场景恢复优先（手动读档优先级高于自动保存）
+        if (pendingLoad != null && string.Equals(sceneName, pendingLoad.sceneName, StringComparison.Ordinal))
+        {
+            Debug.Log($"[SaveManager] 恢复 LoadGame 存档: {sceneName}");
+            ApplySavePackage(pendingLoad);
+            pendingLoad = null;
+            // 同时清除对应场景的自动保存，避免覆盖读档结果
+            sceneStates.Remove(sceneName);
+            ScheduleClearLoadingFlag();
             return;
         }
 
-        ApplySavePackage(pendingLoad);
-        pendingLoad = null;
-        ScheduleClearLoadingFlag();
+        // 自动恢复：离开场景时保存的状态
+        if (sceneStates.TryGetValue(sceneName, out var saved))
+        {
+            Debug.Log($"[SaveManager] 自动恢复场景状态: {sceneName}");
+            ApplySavePackage(saved);
+            sceneStates.Remove(sceneName);
+            ScheduleClearLoadingFlag();
+        }
     }
 
     private void ScheduleClearLoadingFlag() {
@@ -149,7 +181,7 @@ public class SaveManager : MonoBehaviour {
             if (small is PlayerSmallObject player) {
                 data.player = new PlayerSaveData {
                     lastAttackTime = player.playerState.lastAttackTime,
-                    isRunning = player.playerState.isRunning,
+                    isRunning = false,                     // 强制：不保存速度
                     facingDirection = player.playerState.facingDirection,
                     labelBackpack = SaveLabels(player.playerState.labelBackpack),
                     itemBackpack = SaveItems(player.playerState.itemBackpack),
@@ -291,7 +323,7 @@ public class SaveManager : MonoBehaviour {
         }
 
         player.playerState.lastAttackTime = data.lastAttackTime;
-        player.playerState.isRunning = data.isRunning;
+        player.playerState.isRunning = false;              // 强制：加载时不恢复速度
         player.playerState.facingDirection = data.facingDirection;
 
         if (player.playerState.labelBackpack == null) {
@@ -329,7 +361,7 @@ public class SaveManager : MonoBehaviour {
         Vector2 dir = OrientationToVector(data.facingDirection);
         player.UpdateOrientation(dir);
         if (player.playerView != null) {
-            player.playerView.UpdateMovement(dir, data.isRunning);
+            player.playerView.UpdateMovement(dir, false);  // 强制：加载后不奔跑
         }
     }
 
