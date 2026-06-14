@@ -63,6 +63,7 @@ MonoBehaviour:
     nextNodeIndex: -1
     options: []
     enterActions: []
-    exitActions: []
+    exitActions:
+    - {fileID: 11400000, guid: 33ca5ac7eaa496a4ba6dbd6ad459da8c, type: 2}
   requiredItemGroups: []
   animatorController: {fileID: 22100000, guid: 6d815a03ee46b974ab534317d792ce8f, type: 2}

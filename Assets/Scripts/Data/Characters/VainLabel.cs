@@ -25,9 +25,12 @@ public class VainLabel : Chapter3ClueNPCLabelBase {
         var clueTarget = smallObject.GetComponent<Chapter3ClueTarget>();
         if (clueTarget != null) {
             clueTarget.RevealDiary();
-            return;
+        } else {
+            Chapter3Events.RaiseDiaryRevealed();
         }
 
-        Chapter3Events.RaiseDiaryRevealed();
+        // VainLabel 在日记上代表"虚伪的"语义 — 同时通知真相揭露
+        Chapter3Events.RaiseTrueMotiveRevealed();
+        Chapter3_SceneController.NotifyTrueMotiveRevealed();
     }
 }

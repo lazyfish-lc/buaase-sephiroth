@@ -20,5 +20,6 @@ MonoBehaviour:
     nextNodeIndex: -1
     options: []
     enterActions: []
-    exitActions: []
+    exitActions:
+    - {fileID: 11400000, guid: c5086c24dacb72142b98d59fdd05d657, type: 2}
   overrideRequiredItemGroups: []

@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
+
 public class ActionUI : FatherUI
 {
     public static ActionUI Instance;
@@ -10,8 +11,22 @@ public class ActionUI : FatherUI
     public TMP_Text ActionText;
     public Image ActionImage;
     public Button[] Buttons; // 存放选项按钮的数组，假设有4个按钮命名为 "Button1", "Button2", "Button3", "Button4"
-    // 重点：UI 内部持有的当前 NPC 引用
+
+    // ─── NPC 对话模式 ──────────────────────────────────────
     private NPCObject currentNPC;
+
+    // ─── 结局指认模式 ──────────────────────────────────────
+    private bool _isEndingMode;
+    private int _currentEndingStage = -1;
+
+    private static readonly string[] EndingStageDescriptions = {
+        "助手已自首。你是否相信他就是真凶？\n\n（选择「指认」进入结局A；选择「继续调查」寻找更多线索）",
+        "妻子支支吾吾，似乎有所隐瞒。你是否要指认她是凶手？\n\n（选择「指认」进入结局B；选择「继续调查」寻找更多线索）",
+        "你已发现凶器是冰弩箭，时间也被动过手脚。现在指认助手吗？\n\n（选择「指认」进入结局C；选择「继续调查」寻找动机）",
+        "你找到了助手的原稿和日记。动机似乎清楚了，指认他吗？\n\n（选择「指认」进入结局D；选择「继续调查」挖掘更深真相）",
+        "你撕下了「虚伪的」标签，看到了真正的动机。真相只有一个——指认凶手吧。\n\n（选择「指认」进入结局E——真相结局）"
+    };
+
     void Awake()
     {
         if(Instance != null)
@@ -65,12 +80,17 @@ public class ActionUI : FatherUI
     }
     
     private void OnEnable() {
-        // 1. 订阅场景中所有 NPC 的实例事件
-        // 当任何 NPC 触发对话时，这个方法会被调用，且参数就是那个 NPC
+        // 订阅 NPC 对话事件
         var npcs = FindObjectsByType<NPCObject>(FindObjectsSortMode.None);
         foreach (var npc in npcs) {
             npc.OnDialogueStarted += HandleDialogueStart;
             npc.OnDialogueEnded += HandleDialogueEnd;
+        }
+
+        // 订阅第三章结局指认事件
+        if (Chapter3_SceneController.Instance != null) {
+            Chapter3_SceneController.Instance.EndingChoiceAvailable += ShowEndingChoice;
+            Chapter3_SceneController.Instance.EndingTriggered += OnEndingTriggered;
         }
     }
     private void OnDisable() {
@@ -79,14 +99,20 @@ public class ActionUI : FatherUI
             npc.OnDialogueStarted -= HandleDialogueStart;
             npc.OnDialogueEnded -= HandleDialogueEnd;
         }
+
+        if (Chapter3_SceneController.Instance != null) {
+            Chapter3_SceneController.Instance.EndingChoiceAvailable -= ShowEndingChoice;
+            Chapter3_SceneController.Instance.EndingTriggered -= OnEndingTriggered;
+        }
     }
+
+    // ─── NPC 对话模式 ──────────────────────────────────────
     private void HandleDialogueStart(NPCObject npc) {
-        // 2. 捕获 NPC 引用
+        if (_isEndingMode) return;
+
         currentNPC = npc;
         Open();
-        // 3. 订阅该特定 NPC 的节点变化事件
         currentNPC.OnNodeChanged += RefreshUI;
-        
         RefreshUI();
     }
     private void RefreshUI() {
@@ -95,27 +121,22 @@ public class ActionUI : FatherUI
             Debug.LogError("ActionUI 缺少 ActionText 引用，无法刷新对话文本");
             return;
         }
-        // 4. 通过接口获取数据并显示
         ActionText.text = currentNPC.GetCurrentContent();
         Sprite npcSprite = currentNPC.GetCurrentSprite();
         if (ActionImage != null && npcSprite != null) {
-            ActionImage.preserveAspect = true; // 缩放以适配正方形显示
-            var spriteRenderer = npcSprite;
-            ActionImage.sprite = spriteRenderer != null ? npcSprite : null; // 数据不存储，直接获取显示物体的图片
+            ActionImage.preserveAspect = true;
+            ActionImage.sprite = npcSprite;
             ActionImage.gameObject.SetActive(true);
         } else if (ActionImage != null) {
             ActionImage.gameObject.SetActive(false);
         }
-        // 5. 处理选项生成
         ClearOptions();
         List<DialogueOption> options = currentNPC.GetCurrentOptions() ?? new List<DialogueOption>();
         if (options.Count > 0) {
             for (int i = 0; i < options.Count; i++) {
-                int index = i; // 闭包陷阱处理
-                
-                //绑定按钮1-4的点击事件
+                int index = i;
                 if (index < Buttons.Length) {
-                    Buttons[index].GetComponentInChildren<TMP_Text>().text = options[index].text; // 设置按钮文本
+                    Buttons[index].GetComponentInChildren<TMP_Text>().text = options[index].text;
                     Buttons[index].gameObject.SetActive(true);
                     Buttons[index].onClick.RemoveAllListeners();
                     Buttons[index].onClick.AddListener(() => {
@@ -125,7 +146,6 @@ public class ActionUI : FatherUI
             }
         }
         else {
-            // 没有选项时隐藏按钮
             for (int i = 0; i < Buttons.Length; i++) {
                 if (Buttons[i] != null) {
                     Buttons[i].gameObject.SetActive(false);
@@ -133,8 +153,8 @@ public class ActionUI : FatherUI
             }
         }
     }
-    // 6. 处理非选项节点的点击翻页
     public void OnBackgroundClick() {
+        if (_isEndingMode) return;
         List<DialogueOption> options = currentNPC != null ? (currentNPC.GetCurrentOptions() ?? new List<DialogueOption>()) : null;
         if (currentNPC != null && options.Count == 0) {
             currentNPC.AdvanceToNextNode();
@@ -142,10 +162,23 @@ public class ActionUI : FatherUI
         }
     }
     private void HandleDialogueEnd() {
+        // 结局指认模式由自己管理 UI 状态，不在此处关闭
+        if (_isEndingMode) return;
         if (currentNPC != null) {
             currentNPC.OnNodeChanged -= RefreshUI;
         }
         currentNPC = null;
+        Close();
+    }
+
+    /// <summary>
+    /// 强制结束 NPC 对话模式（不触发 EndConversation，只是清理 UI 层状态）
+    /// </summary>
+    private void ForceEndDialogueMode() {
+        if (currentNPC != null) {
+            currentNPC.OnNodeChanged -= RefreshUI;
+            currentNPC = null;
+        }
         Close();
     }
     private void ClearOptions() {
@@ -155,5 +188,77 @@ public class ActionUI : FatherUI
             }
         }
     }
-    
+
+    // ─── 结局指认模式（复用同一套 ActionUI 面板） ──────────
+    public void ShowEndingChoice(int stage) {
+        if (_isEndingMode) return;
+        if (stage < 0 || stage >= EndingStageDescriptions.Length) return;
+
+        // 如果 NPC 对话正在打开，先强制结束对话模式
+        // （时序说明：退出对话节点的 exit action 触发此事件时，
+        //  EndConversation() 尚未执行，所以对话仍处于打开状态）
+        if (isOpen && currentNPC != null) {
+            Debug.Log("ActionUI: 对话中收到结局指认请求，强制结束对话模式以显示结局选择。");
+            ForceEndDialogueMode();
+        }
+        if (isOpen) return;
+
+        _isEndingMode = true;
+        _currentEndingStage = stage;
+
+        if (ActionText != null) {
+            ActionText.text = EndingStageDescriptions[stage];
+        }
+        if (ActionImage != null) {
+            ActionImage.gameObject.SetActive(false);
+        }
+
+        ClearOptions();
+        if (Buttons.Length >= 2) {
+            Buttons[0].GetComponentInChildren<TMP_Text>().text = "指认凶手";
+            Buttons[0].gameObject.SetActive(true);
+            Buttons[0].onClick.RemoveAllListeners();
+            Buttons[0].onClick.AddListener(OnAccuseClicked);
+
+            // 最后一个结局（stage 4 = 真相）不允许继续调查
+            bool isFinalStage = stage == 4;
+            if (!isFinalStage) {
+                Buttons[1].GetComponentInChildren<TMP_Text>().text = "继续调查";
+                Buttons[1].gameObject.SetActive(true);
+                Buttons[1].onClick.RemoveAllListeners();
+                Buttons[1].onClick.AddListener(OnContinueClicked);
+            } else {
+                Buttons[1].gameObject.SetActive(false);
+            }
+        }
+
+        Open();
+        Time.timeScale = 0f;
+    }
+
+    private void OnAccuseClicked() {
+        if (!_isEndingMode || _currentEndingStage < 0) return;
+        if (Chapter3_SceneController.Instance == null) return;
+        Chapter3_SceneController.Instance.AccuseAtStage(_currentEndingStage);
+    }
+
+    private void OnContinueClicked() {
+        if (!_isEndingMode || _currentEndingStage < 0) return;
+        if (Chapter3_SceneController.Instance == null) return;
+        Chapter3_SceneController.Instance.ContinueInvestigation(_currentEndingStage);
+        CloseEndingMode();
+    }
+
+    private void CloseEndingMode() {
+        _isEndingMode = false;
+        _currentEndingStage = -1;
+        Close();
+        Time.timeScale = 1f;
+    }
+
+    private void OnEndingTriggered(int endingIndex) {
+        CloseEndingMode();
+        // TODO：根据 endingIndex 显示结局画面或过场动画
+        Debug.Log($"ActionUI: 结局 {endingIndex} 已触发，准备显示结局内容。");
+    }
 }

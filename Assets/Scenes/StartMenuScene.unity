@@ -1843,6 +1843,54 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -540}
   m_SizeDelta: {x: 1554.78, y: 194.3475}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &2098247521
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2098247523}
+  - component: {fileID: 2098247522}
+  m_Layer: 0
+  m_Name: Chapter3SceneController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2098247522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2098247521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7322e4c8bbfae90428ec4d51a704958d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Sephiroth.Runtime::Chapter3_SceneController
+  hasIceWeapon: 0
+  hasClockCorrected: 0
+  hasDiaryRevealed: 0
+  accusationPromptShown: 0
+--- !u!4 &2098247523
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2098247521}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -36.21178, y: 21.29565, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2121985161
 GameObject:
   m_ObjectHideFlags: 0
@@ -2252,3 +2300,4 @@ SceneRoots:
   - {fileID: 1187310725}
   - {fileID: 250247022}
   - {fileID: 849821814}
+  - {fileID: 2098247523}

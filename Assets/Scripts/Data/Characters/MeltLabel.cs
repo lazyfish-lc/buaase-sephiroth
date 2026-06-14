@@ -25,9 +25,11 @@ public class MeltLabel : Chapter3ClueNPCLabelBase {
         var clueTarget = smallObject.GetComponent<Chapter3ClueTarget>();
         if (clueTarget != null) {
             clueTarget.RevealIceWeapon();
-            return;
+        } else {
+            Chapter3Events.RaiseIceWeaponRevealed();
         }
 
-        Chapter3Events.RaiseIceWeaponRevealed();
+        // 直达路径：不依赖事件订阅
+        Chapter3_SceneController.NotifyIceWeaponRevealed();
     }
 }

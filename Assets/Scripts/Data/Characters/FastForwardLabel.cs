@@ -25,9 +25,11 @@ public class FastForwardLabel : Chapter3ClueNPCLabelBase {
         var clueTarget = smallObject.GetComponent<Chapter3ClueTarget>();
         if (clueTarget != null) {
             clueTarget.CorrectClock();
-            return;
+        } else {
+            Chapter3Events.RaiseClockCorrected();
         }
 
-        Chapter3Events.RaiseClockCorrected();
+        // 直达路径：不依赖事件订阅
+        Chapter3_SceneController.NotifyClockCorrected();
     }
 }
