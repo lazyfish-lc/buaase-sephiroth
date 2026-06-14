@@ -19,6 +19,29 @@ public class EndUI : MonoBehaviour
     public RawImage creditsRawImage;               // 谢幕图片（RawImage）
     public float creditsScrollSpeed = 60f;          // 预留参数：滚动速度（像素/秒）
 
+    [Header("谢幕信息文字")]
+    public TMP_Text creditsInfoText;                // 谢幕信息文字（TMP_Text，循环淡入淡出）
+    public CanvasGroup creditsInfoCanvasGroup;      // 谢幕信息的 CanvasGroup
+    public string[] creditsInfoTexts = new string[] // 谢幕信息内容（按顺序循环切换）
+    {
+        "策划：\n    XXX",
+        "程序：\n    XXX",
+        "美术：\n    XXX",
+        "音乐：\n    XXX",
+        "特别鸣谢：\n    XXX",
+        "感谢游玩！",
+    };
+    public float creditsInfoFadeIn = 1f;            // 谢幕信息淡入时间
+    public float creditsInfoDisplay = 2f;           // 谢幕信息保持时间
+    public float creditsInfoFadeOut = 1f;           // 谢幕信息淡出时间
+
+    [Header("预设结局文字")]
+    [TextArea(3, 10)]
+    public string[] endingTexts = new string[]
+    {
+        //预设结局文字，长度应至少与可能的结局编号数量一致，超出范围时使用最后一条作为兜底
+    };
+
     [Header("时间设置")]
     public float blackFadeInDuration = 1f;   // 黑屏淡入时长
     public float textFadeInDuration = 1f;    // 文字淡入时长
@@ -26,6 +49,9 @@ public class EndUI : MonoBehaviour
     public float textFadeOutDuration = 1f;   // 文字淡出时长
     public float blackFadeOutDuration = 1f;  // 黑屏淡出时长
     public float creditsScrollDuration = 0f;  // 谢幕滚动总时长（0 = 按 speed 自动计算）
+
+    [Header("结局后黑幕")]
+    public float finalBlackDuration = 2f;   // 谢幕结束后黑屏停留时长
 
     [Header("场景切换")]
     public string startMenuSceneName = "StartMenuScene"; // 谢幕结束后切换的目标场景
@@ -86,12 +112,19 @@ public class EndUI : MonoBehaviour
         if (creditsRawImage != null)
         {
             creditsRawImage.gameObject.SetActive(false);
-
-            // 诊断：检查谢幕图片是否有纹理
             if (creditsRawImage.texture == null)
-                Debug.LogWarning("[EndUI] creditsRawImage 没有纹理！请在 Inspector 中拖入谢幕图片");
+                Debug.LogWarning("[EndUI] creditsRawImage 没有纹理！");
         }
         else Debug.LogWarning("[EndUI] creditsRawImage 未赋值！");
+
+        // 初始隐藏谢幕信息
+        if (creditsInfoText != null)
+            creditsInfoText.gameObject.SetActive(false);
+        if (creditsInfoCanvasGroup != null)
+        {
+            creditsInfoCanvasGroup.alpha = 0f;
+            creditsInfoCanvasGroup.gameObject.SetActive(false);
+        }
 
         // 不在这里 StartCoroutine —— 交给 TryPlay
     }
@@ -180,11 +213,49 @@ public class EndUI : MonoBehaviour
         if (endingText != null)
         {
             endingText.text = text;
+            endingText.color = Color.white;
+            endingText.enabled = true;
+            endingText.gameObject.SetActive(true);
+
+            // 自动修复 Rect：全屏居中，留边距
+            RectTransform textRt = endingText.rectTransform;
+            textRt.anchorMin = new Vector2(0f, 0f);
+            textRt.anchorMax = new Vector2(1f, 1f);
+            textRt.offsetMin = new Vector2(80f, 80f);
+            textRt.offsetMax = new Vector2(-80f, -80f);
+
+            Debug.Log($"[EndUI] 文字渲染诊断 — font={endingText.font?.name ?? "NULL"}, " +
+                      $"size={endingText.fontSize}, color={endingText.color}, " +
+                      $"alignment={endingText.alignment}, textLen={text.Length}, " +
+                      $"endingText.activeSelf={endingText.gameObject.activeSelf}, " +
+                      $"fontAtlas={endingText.font?.atlasTexture?.name ?? "NULL"}");
+
+            // 检查字体是否支持中文
+            if (endingText.font != null && text.Length > 0)
+            {
+                bool hasChar = endingText.font.HasCharacter(text[0]);
+                Debug.Log($"[EndUI] 首个字符 '{text[0]}' (U+{(int)text[0]:X4}) 字体匹配={(hasChar ? "OK" : "缺失!")}");
+                if (!hasChar)
+                    Debug.LogError($"[EndUI] ❌ 当前字体 '{endingText.font.name}' 不支持中文字符！请换用支持中文的 TMP 字体。");
+            }
         }
+        else Debug.LogError("[EndUI] ❌ endingText 未赋值！");
+
         if (textCanvasGroup != null)
         {
+            // 确保 CanvasGroup 所在物体激活
+            textCanvasGroup.gameObject.SetActive(true);
+            textCanvasGroup.transform.SetAsLastSibling();
+
+            Debug.Log($"[EndUI] textCanvasGroup 状态 — activeSelf={textCanvasGroup.gameObject.activeSelf}, " +
+                      $"alpha 淡入前={textCanvasGroup.alpha}, siblingIndex={textCanvasGroup.transform.GetSiblingIndex()}");
+
             yield return StartCoroutine(FadeCanvasGroup(textCanvasGroup, 0f, 1f, textFadeInDuration));
+
+            Debug.Log($"[EndUI] textCanvasGroup 淡入后 alpha={textCanvasGroup.alpha}");
         }
+        else Debug.LogError("[EndUI] ❌ textCanvasGroup 未赋值！");
+
         Debug.Log("[EndUI] 文字淡入完成 — 保持显示");
 
         // ========== 5. 保持显示 ==========
@@ -259,91 +330,149 @@ public class EndUI : MonoBehaviour
                 Debug.Log($"[EndUI] 已修复父级 CanvasGroup '{parentCg.name}' alpha → 1");
             }
 
-            // 逐帧移动图片向上
+            // 初始化谢幕信息文字
+            if (creditsInfoText != null && creditsInfoCanvasGroup != null && creditsInfoTexts != null && creditsInfoTexts.Length > 0)
+            {
+                creditsInfoText.gameObject.SetActive(true);
+                creditsInfoText.text = creditsInfoTexts[0];
+                creditsInfoText.color = Color.white;
+                creditsInfoText.enabled = true;
+                creditsInfoCanvasGroup.gameObject.SetActive(true);
+                creditsInfoCanvasGroup.alpha = 0f;
+                creditsInfoCanvasGroup.transform.SetAsLastSibling();
+                Debug.Log($"[EndUI] 谢幕信息就绪 — {creditsInfoTexts.Length} 条信息");
+            }
+
+            // 逐帧移动图片 + 顺序播放谢幕文字（仅一轮）
             float elapsed = 0f;
+            int infoIndex = 0;
+            float infoTimer = 0f;
+            int infoPhase = 0; // 0=淡入, 1=保持, 2=淡出
+            bool infoFinished = false; // 全部文字播完标记
+
             while (elapsed < duration)
             {
-                elapsed += Time.deltaTime;
+                float dt = Time.deltaTime;
+                elapsed += dt;
+
+                // 图片滚动
                 float t = elapsed / duration;
                 rt.anchoredPosition = new Vector2(0f, scrollDistance * t);
+
+                // 谢幕信息文字顺序播放（仅一轮，播完停留在最后一条淡出状态）
+                if (!infoFinished && creditsInfoText != null && creditsInfoCanvasGroup != null && creditsInfoTexts != null && creditsInfoTexts.Length > 0)
+                {
+                    infoTimer += dt;
+
+                    if (infoPhase == 0) // 淡入
+                    {
+                        float fadeT = infoTimer / Mathf.Max(creditsInfoFadeIn, 0.01f);
+                        creditsInfoCanvasGroup.alpha = Mathf.Clamp01(fadeT);
+                        if (fadeT >= 1f)
+                        {
+                            infoTimer = 0f;
+                            infoPhase = 1;
+                        }
+                    }
+                    else if (infoPhase == 1) // 保持显示
+                    {
+                        if (infoTimer >= creditsInfoDisplay)
+                        {
+                            infoTimer = 0f;
+                            infoPhase = 2;
+                        }
+                    }
+                    else // 淡出
+                    {
+                        float fadeT = infoTimer / Mathf.Max(creditsInfoFadeOut, 0.01f);
+                        creditsInfoCanvasGroup.alpha = 1f - Mathf.Clamp01(fadeT);
+                        if (fadeT >= 1f)
+                        {
+                            infoIndex++;
+                            if (infoIndex >= creditsInfoTexts.Length)
+                            {
+                                // 全部播完，保持隐藏
+                                creditsInfoCanvasGroup.alpha = 0f;
+                                infoFinished = true;
+                            }
+                            else
+                            {
+                                infoTimer = 0f;
+                                infoPhase = 0;
+                                creditsInfoText.text = creditsInfoTexts[infoIndex];
+                            }
+                        }
+                    }
+                }
+
                 yield return null;
             }
             rt.anchoredPosition = new Vector2(0f, scrollDistance);
 
             creditsRawImage.gameObject.SetActive(false);
+            if (creditsInfoCanvasGroup != null) creditsInfoCanvasGroup.alpha = 0f;
             Debug.Log("[EndUI] 谢幕滚动结束");
+
+            // ========== 9. 黑屏淡入 + 停 BGM ==========
+            Debug.Log("[EndUI] 谢幕结束，黑屏淡入");
+            if (blackOverlay != null)
+            {
+                blackOverlay.gameObject.SetActive(true);
+                blackOverlay.alpha = 0f;
+                blackOverlay.interactable = true;
+                blackOverlay.blocksRaycasts = true;
+                blackOverlay.transform.SetAsLastSibling();
+                yield return StartCoroutine(FadeCanvasGroup(blackOverlay, 0f, 1f, blackFadeInDuration));
+            }
+
+            // 停止 BGM
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance.Stop();
+                Debug.Log("[EndUI] BGM 已停止");
+            }
+
+            // 黑屏停留
+            yield return new WaitForSeconds(finalBlackDuration);
+
+            // ========== 10. 切换到 StartMenu 场景 ==========
+            Debug.Log($"[EndUI] 切换到场景: {startMenuSceneName}");
+            SceneManager.LoadScene(startMenuSceneName);
         }
         else
         {
             Debug.LogWarning("[EndUI] creditsRawImage 为空，跳过谢幕");
+            // 无谢幕时直接过渡到黑屏
+            if (blackOverlay != null)
+            {
+                blackOverlay.gameObject.SetActive(true);
+                blackOverlay.alpha = 0f;
+                blackOverlay.interactable = true;
+                blackOverlay.blocksRaycasts = true;
+                blackOverlay.transform.SetAsLastSibling();
+                yield return StartCoroutine(FadeCanvasGroup(blackOverlay, 0f, 1f, blackFadeInDuration));
+            }
+            if (AudioManager.Instance != null) AudioManager.Instance.Stop();
+            yield return new WaitForSeconds(finalBlackDuration);
+            SceneManager.LoadScene(startMenuSceneName);
         }
-
-        // ========== 9. 切换到 StartMenu 场景 ==========
-        Debug.Log($"[EndUI] 切换到场景: {startMenuSceneName}");
-        SceneManager.LoadScene(startMenuSceneName);
     }
 
     /// <summary>
-    /// 根据结局编号获取对应的硬编码结局文字。
+    /// 根据结局编号获取对应的预设文字。
     /// </summary>
     private string GetEndingText(int endingId)
     {
-        switch (endingId)
+        if (endingTexts == null || endingTexts.Length == 0)
         {
-            case 0: return
-                "结局 A：草率的正义\n\n"
-                + "你相信了助手的自首。\n"
-                + "案件以「为爱杀人」的名义结案，助手被带走。\n\n"
-                + "然而，作家妻子始终没有不在场证明，\n"
-                + "座钟的异常无人追问，地上的水渍也无人深究。\n\n"
-                + "真正的凶手，依然逍遥法外。\n"
-                + "—— 有些真相，一旦错过就不再。";
-
-            case 1: return
-                "结局 B：沉默的替罪羊\n\n"
-                + "你认定妻子因感情破裂而杀害了作家。\n"
-                + "内向而不幸的她，在审讯中百口莫辩。\n\n"
-                + "疯女仆的证词只能证明她七点半到家，\n"
-                + "却无法为她洗脱「没有不在场证明」的嫌疑。\n\n"
-                + "真相被掩埋在冰冷的玫瑰花瓣之下。\n"
-                + "—— 偏见，有时比凶器更锋利。";
-
-            case 2: return
-                "结局 C：未完成的拼图\n\n"
-                + "你揭穿了惊人的手法——\n"
-                + "冰弩箭是凶器，快进标签制造了假不在场证明。\n"
-                + "助手就是真凶，无可辩驳。\n\n"
-                + "但为什么？\n"
-                + "作案手法已经水落石出，\n"
-                + "可真正的动机，还隐藏在黑暗之中……\n\n"
-                + "—— 知道「如何」，却不知道「为何」。";
-
-            case 3: return
-                "结局 D：被掩埋的声音\n\n"
-                + "助手的原稿和日记揭示了惊人的事实——\n"
-                + "那些轰动文坛的作品，竟全部出自助手之手。\n"
-                + "作家只是一个窃取者，而助手是影子写手。\n\n"
-                + "你以「嫉妒与报复」结案。\n"
-                + "可是，日记里还有一些字句，\n"
-                + "被一层若有若无的「虚伪」所笼罩……\n\n"
-                + "—— 真相之上，还有真相。";
-
-            case 4: return
-                "结局 E：恶意的形状\n\n"
-                + "你移走了那层「虚伪」的标签。\n"
-                + "真相的最后一角，终于露出全貌。\n\n"
-                + "助手从未被剽窃。那些手稿是他精心伪造的——\n"
-                + "花费数年模仿笔迹，只为栽赃。\n"
-                + "没有什么影子写手，只有纯粹的恨。\n\n"
-                + "作家太善良、太优秀、太无私了。\n"
-                + "而正是这光芒，刺痛了助手的自卑与嫉妒。\n\n"
-                + "「好好好，我一定要让你付出代价。」\n\n"
-                + "凶器会融化，钟表会倒转，\n"
-                + "但恶意——永远不会自己消失。\n"
-                + "—— 完整真相，终见天日。";
-
-            default: return "结局";
+            return "结局";
         }
+        if (endingId >= 0 && endingId < endingTexts.Length)
+        {
+            return endingTexts[endingId];
+        }
+        // 超出范围时返回最后一个结局文字作为兜底
+        return endingTexts[endingTexts.Length - 1];
     }
 
     void Update()

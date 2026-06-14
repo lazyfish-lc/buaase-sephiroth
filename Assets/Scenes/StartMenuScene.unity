@@ -1874,8 +1874,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Sephiroth.Runtime::Chapter3_SceneController
   hasIceWeapon: 0
   hasClockCorrected: 0
-  hasDiaryRevealed: 0
-  accusationPromptShown: 0
+  currentEndingStage: 0
+  endingTriggered: 0
+  triggeredEndingIndex: -1
+  fakeLabelRemoved: 0
+  assistantRoomEntered: 0
 --- !u!4 &2098247523
 Transform:
   m_ObjectHideFlags: 0
