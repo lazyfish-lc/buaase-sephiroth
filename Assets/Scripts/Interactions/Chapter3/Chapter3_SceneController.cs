@@ -201,20 +201,29 @@ public class Chapter3_SceneController : MonoBehaviour {
     }
 
     private bool ArePrerequisitesMetForStage(int stage) {
+        var player = FindFirstObjectByType<PlayerSmallObject>();
         switch (stage) {
             case STAGE_HALL:
                 return true;
             case STAGE_WIFE:
                 return true;
             case STAGE_WRITER:
-                return hasIceWeapon && hasClockCorrected;
+                return PlayerHasItem(player, ITEM_FROSTBOLT)
+                    || PlayerHasItem(player, ITEM_FAST_FORWARD_CLOCK);
             case STAGE_ASSISTANT:
-                return hasIceWeapon && hasClockCorrected && !fakeLabelRemoved;
+                return PlayerHasItem(player, ITEM_FROSTBOLT)
+                    || PlayerHasItem(player, ITEM_FAST_FORWARD_CLOCK);
             case STAGE_TRUTH:
-                return hasIceWeapon && hasClockCorrected && fakeLabelRemoved;
+                return (PlayerHasItem(player, ITEM_FROSTBOLT)
+                     || PlayerHasItem(player, ITEM_FAST_FORWARD_CLOCK))
+                    && fakeLabelRemoved;
             default:
                 return false;
         }
+    }
+
+    private static bool PlayerHasItem(PlayerSmallObject player, string itemName) {
+        return player != null && player.HasItemInBackpack(itemName);
     }
 
     public bool IsStagePrompted(int stage) {
