@@ -309,16 +309,12 @@ MonoBehaviour:
   textCanvasGroup: {fileID: 593207669}
   creditsRawImage: {fileID: 1471383662}
   creditsScrollSpeed: 100
-  endingTexts:
-  - "\u7ED3\u5C40\u4E00\uFF1A\u9884\u8BBE\u6587\u5B57\u672A\u914D\u7F6E"
-  - "\u7ED3\u5C40\u4E8C\uFF1A\u9884\u8BBE\u6587\u5B57\u672A\u914D\u7F6E"
-  - "\u7ED3\u5C40\u4E09\uFF1A\u9884\u8BBE\u6587\u5B57\u672A\u914D\u7F6E"
   blackFadeInDuration: 1
   textFadeInDuration: 1
-  textDisplayDuration: 3
+  textDisplayDuration: 6
   textFadeOutDuration: 1
-  blackFadeOutDuration: 1
-  creditsScrollDuration: 0
+  blackFadeOutDuration: 0.5
+  creditsScrollDuration: 60
   startMenuSceneName: StartMenuScene
 --- !u!1 &593207664
 GameObject:
@@ -975,7 +971,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 65f00526fae87a440b5bb7a9f007d40b, type: 3}
+  m_Texture: {fileID: 2800000, guid: 210302d434e125f4a9a50f7f085629d5, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0

@@ -19,15 +19,6 @@ public class EndUI : MonoBehaviour
     public RawImage creditsRawImage;               // 谢幕图片（RawImage）
     public float creditsScrollSpeed = 60f;          // 预留参数：滚动速度（像素/秒）
 
-    [Header("预设结局文字")]
-    [TextArea(3, 10)]
-    public string[] endingTexts = new string[]
-    {
-        "结局一：预设文字未配置",
-        "结局二：预设文字未配置",
-        "结局三：预设文字未配置",
-    };
-
     [Header("时间设置")]
     public float blackFadeInDuration = 1f;   // 黑屏淡入时长
     public float textFadeInDuration = 1f;    // 文字淡入时长
@@ -293,20 +284,66 @@ public class EndUI : MonoBehaviour
     }
 
     /// <summary>
-    /// 根据结局编号获取对应的预设文字。
+    /// 根据结局编号获取对应的硬编码结局文字。
     /// </summary>
     private string GetEndingText(int endingId)
     {
-        if (endingTexts == null || endingTexts.Length == 0)
+        switch (endingId)
         {
-            return "结局";
+            case 0: return
+                "结局 A：草率的正义\n\n"
+                + "你相信了助手的自首。\n"
+                + "案件以「为爱杀人」的名义结案，助手被带走。\n\n"
+                + "然而，作家妻子始终没有不在场证明，\n"
+                + "座钟的异常无人追问，地上的水渍也无人深究。\n\n"
+                + "真正的凶手，依然逍遥法外。\n"
+                + "—— 有些真相，一旦错过就不再。";
+
+            case 1: return
+                "结局 B：沉默的替罪羊\n\n"
+                + "你认定妻子因感情破裂而杀害了作家。\n"
+                + "内向而不幸的她，在审讯中百口莫辩。\n\n"
+                + "疯女仆的证词只能证明她七点半到家，\n"
+                + "却无法为她洗脱「没有不在场证明」的嫌疑。\n\n"
+                + "真相被掩埋在冰冷的玫瑰花瓣之下。\n"
+                + "—— 偏见，有时比凶器更锋利。";
+
+            case 2: return
+                "结局 C：未完成的拼图\n\n"
+                + "你揭穿了惊人的手法——\n"
+                + "冰弩箭是凶器，快进标签制造了假不在场证明。\n"
+                + "助手就是真凶，无可辩驳。\n\n"
+                + "但为什么？\n"
+                + "作案手法已经水落石出，\n"
+                + "可真正的动机，还隐藏在黑暗之中……\n\n"
+                + "—— 知道「如何」，却不知道「为何」。";
+
+            case 3: return
+                "结局 D：被掩埋的声音\n\n"
+                + "助手的原稿和日记揭示了惊人的事实——\n"
+                + "那些轰动文坛的作品，竟全部出自助手之手。\n"
+                + "作家只是一个窃取者，而助手是影子写手。\n\n"
+                + "你以「嫉妒与报复」结案。\n"
+                + "可是，日记里还有一些字句，\n"
+                + "被一层若有若无的「虚伪」所笼罩……\n\n"
+                + "—— 真相之上，还有真相。";
+
+            case 4: return
+                "结局 E：恶意的形状\n\n"
+                + "你移走了那层「虚伪」的标签。\n"
+                + "真相的最后一角，终于露出全貌。\n\n"
+                + "助手从未被剽窃。那些手稿是他精心伪造的——\n"
+                + "花费数年模仿笔迹，只为栽赃。\n"
+                + "没有什么影子写手，只有纯粹的恨。\n\n"
+                + "作家太善良、太优秀、太无私了。\n"
+                + "而正是这光芒，刺痛了助手的自卑与嫉妒。\n\n"
+                + "「好好好，我一定要让你付出代价。」\n\n"
+                + "凶器会融化，钟表会倒转，\n"
+                + "但恶意——永远不会自己消失。\n"
+                + "—— 完整真相，终见天日。";
+
+            default: return "结局";
         }
-        if (endingId >= 0 && endingId < endingTexts.Length)
-        {
-            return endingTexts[endingId];
-        }
-        // 超出范围时返回最后一个结局文字作为兜底
-        return endingTexts[endingTexts.Length - 1];
     }
 
     void Update()
