@@ -76,10 +76,23 @@ public class DoorSaveData {
 
 [Serializable]
 public class Chapter3ClueSaveData {
+    // 原有线索状态（向后兼容）
     public bool hasIceWeapon;
     public bool hasClockCorrected;
     public bool hasDiaryRevealed;
     public bool accusationPromptShown;
+
+    // 多阶段指认系统 (Stage 0=大厅, 1=妻子, 2=作家, 3=助手, 4=真相)
+    public int endingStage;              // 当前调查进度阶段 (0-5, 5=全部完成)
+    public bool stage0Prompted;          // 大厅阶段指认面板是否已弹出
+    public bool stage1Prompted;          // 妻子阶段指认面板是否已弹出
+    public bool stage2Prompted;          // 作家阶段指认面板是否已弹出
+    public bool stage3Prompted;          // 助手阶段指认面板是否已弹出
+    public bool stage4Prompted;          // 真相阶段指认面板是否已弹出
+    public bool endingTriggered;         // 是否已触发结局
+    public int triggeredEndingIndex;     // 触发的结局索引 (0=A~4=E, -1=未触发)
+    public bool fakeLabelRemoved;        // 虚伪标签是否已被移除
+    public bool assistantRoomEntered;    // 是否已进入助手房间
 }
 
 [Serializable]

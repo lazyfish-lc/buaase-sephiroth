@@ -29,6 +29,7 @@ public class Chapter3ClueTarget : MonoBehaviour {
         }
 
         Chapter3Events.RaiseIceWeaponRevealed();
+        Chapter3_SceneController.NotifyIceWeaponRevealed();
     }
 
     public void CorrectClock() {
@@ -37,6 +38,7 @@ public class Chapter3ClueTarget : MonoBehaviour {
             clockText.text = correctedClockText;
         }
         Chapter3Events.RaiseClockCorrected();
+        Chapter3_SceneController.NotifyClockCorrected();
     }
 
     public void RevealDiary() {
