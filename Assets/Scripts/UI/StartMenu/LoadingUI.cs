@@ -114,6 +114,12 @@ public class LoadingUI : MonoBehaviour
         if (isLoading) return;
         AudioManager.Instance.Stop();
 
+        // 保存当前场景状态，以便返回时恢复（标签、物品等不会丢失）
+        if (SaveManager.Instance != null)
+        {
+            SaveManager.Instance.SaveCurrentToPending();
+        }
+
         // 同步设置初始状态，下一帧协程直接开始动画，消除延迟
         if (loadingCanvas != null)
             loadingCanvas.SetActive(true);
