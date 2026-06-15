@@ -45,8 +45,12 @@ MonoBehaviour:
     options:
     - text: "\u597D\u7684"
       targetNodeIndex: 2
-      rewardProperty: "\u6CA1\u529E\u6CD5\u62D2\u7EDD\u3002\u3002\u3002"
-      rewardAmount: 2
+      rewardProperty: 
+      rewardAmount: 0
+    - text: "\u6CA1\u529E\u6CD5\u62D2\u7EDD"
+      targetNodeIndex: 2
+      rewardProperty: 
+      rewardAmount: 0
     enterActions: []
     exitActions: []
   - npcContent: "\u52A9\u624B\u5DF2\u7ECF\u81EA\u9996\u4E86\u3002\u4F60\u770B\u662F\u76F4\u63A5\u7ED3\u6848\uFF0C\u8FD8\u662F\u7EE7\u7EED\u67E5\u4E00\u67E5\uFF1F"

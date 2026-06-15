@@ -90,7 +90,7 @@ public class Chapter3ClueSaveData {
     public bool stage3Prompted;          // 助手阶段指认面板是否已弹出
     public bool stage4Prompted;          // 真相阶段指认面板是否已弹出
     public bool endingTriggered;         // 是否已触发结局
-    public int triggeredEndingIndex;     // 触发的结局索引 (0=A~4=E, -1=未触发)
+    public int triggeredEndingIndex = -1; // 触发的结局索引 (0=A~4=E, -1=未触发)
     public bool fakeLabelRemoved;        // 虚伪标签是否已被移除
     public bool assistantRoomEntered;    // 是否已进入助手房间
 }

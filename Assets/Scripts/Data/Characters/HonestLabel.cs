@@ -26,6 +26,7 @@ public class HonestLabel : Chapter3ClueNPCLabelBase {
 
     protected override void OnDetachFromClueObject(SmallObject smallObject) {
         Debug.Log($"HonestLabel: detached from {smallObject.name}");
-        Chapter3Events.RaiseDiaryRevealed();
+        // 女仆标签剥离仅恢复 NPC 原始外观/对话（由 NPCLabelBase.OnDetach 处理），
+        // 不触发日记相关事件。日记线索应由助手日记上的 VainLabel 剥离触发。
     }
 }

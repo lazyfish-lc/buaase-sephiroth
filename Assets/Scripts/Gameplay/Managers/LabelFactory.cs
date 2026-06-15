@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text.RegularExpressions;
+using UnityEngine;
 
 public static class LabelFactory {
     private static readonly Dictionary<string, Type> typeCache;
@@ -13,10 +14,21 @@ public static class LabelFactory {
     static LabelFactory() {
         var types = new Dictionary<string, Type>(StringComparer.OrdinalIgnoreCase);
         foreach (var asm in AppDomain.CurrentDomain.GetAssemblies()) {
-            foreach (var t in asm.GetTypes()) {
-                if (typeof(ObjectLabel).IsAssignableFrom(t) && !t.IsAbstract) {
-                    types[t.Name] = t;
+            try {
+                foreach (var t in asm.GetTypes()) {
+                    if (typeof(ObjectLabel).IsAssignableFrom(t) && !t.IsAbstract) {
+                        types[t.Name] = t;
+                    }
                 }
+            } catch (ReflectionTypeLoadException ex) {
+                Debug.LogWarning($"LabelFactory: 程序集 {asm.GetName().Name} 部分类型加载失败: {ex.Message}");
+                foreach (var t in ex.Types) {
+                    if (t != null && typeof(ObjectLabel).IsAssignableFrom(t) && !t.IsAbstract) {
+                        types[t.Name] = t;
+                    }
+                }
+            } catch (Exception ex) {
+                Debug.LogWarning($"LabelFactory: 程序集 {asm.GetName().Name} 扫描失败: {ex.Message}");
             }
         }
         typeCache = types;
