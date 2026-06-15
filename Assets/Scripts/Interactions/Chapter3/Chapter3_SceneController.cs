@@ -371,6 +371,18 @@ public class Chapter3_SceneController : MonoBehaviour {
         Debug.Log("Chapter3_SceneController: 所有进度已重置。");
     }
 
+    /// <summary>
+    /// 静态重置：清空跨场景持久数据（新游戏时调用，不依赖 Instance 是否存在）。
+    /// 同时重置当前 Instance 的实例字段（如果存在）。
+    /// </summary>
+    public static void ResetStaticProgress() {
+        persistentData = new Chapter3ClueSaveData();
+        if (Instance != null) {
+            Instance.ResetProgress();
+        }
+        Debug.Log("Chapter3_SceneController: 静态进度已重置（新游戏）。");
+    }
+
     // ========================================================
     // 跨场景持久化
     // ========================================================

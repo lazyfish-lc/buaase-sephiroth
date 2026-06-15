@@ -9,7 +9,7 @@ using UnityEngine;
 /// </summary>
 [Serializable]
 public class IntrovertedLabel : Chapter3ClueNPCLabelBase {
-    private const string CONFIG_RESOURCES_PATH = "NPCAppearanceOverrides/IntrovertedConfig";
+    private const string CONFIG_RESOURCES_PATH = "NPCAppearanceOverrides/IntrovertedLabelData";
     private const string CONFIG_EDITOR_ASSET_PATH = "Assets/Data/NPCLabelData/IntrovertedLabelData.asset";
 
     private static NPCAppearanceOverride cachedConfig;

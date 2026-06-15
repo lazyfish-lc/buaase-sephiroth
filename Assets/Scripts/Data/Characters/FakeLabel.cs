@@ -12,7 +12,7 @@ using UnityEngine;
 /// </summary>
 [Serializable]
 public class FakeLabel : Chapter3ClueNPCLabelBase {
-    private const string CONFIG_RESOURCES_PATH = "NPCAppearanceOverrides/FakeConfig";
+    private const string CONFIG_RESOURCES_PATH = "NPCAppearanceOverrides/FakeLabelData";
     private const string CONFIG_EDITOR_ASSET_PATH = "Assets/Data/NPCLabelData/FakeLabelData.asset";
 
     private static NPCAppearanceOverride cachedConfig;

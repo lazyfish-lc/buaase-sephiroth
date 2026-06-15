@@ -27,9 +27,9 @@ public class HintUI : FatherUI
     private bool isWaitingForPlayer;
     private readonly Queue<string> messageQueue = new Queue<string>();
 
-    // 合并缓冲区
-    private readonly List<string> pendingAddedNames = new List<string>();
-    private readonly List<string> pendingRemovedNames = new List<string>();
+    // 合并缓冲区 — 按物品名称统计数量
+    private readonly Dictionary<string, int> pendingAddedCounts = new Dictionary<string, int>();
+    private readonly Dictionary<string, int> pendingRemovedCounts = new Dictionary<string, int>();
     private Coroutine mergeAddedCoroutine;
     private Coroutine mergeRemovedCoroutine;
 
@@ -160,7 +160,10 @@ public class HintUI : FatherUI
         if (item == null || string.IsNullOrWhiteSpace(item.itemName)) return;
         string displayName = GetDisplayName(item.itemName);
         Debug.Log($"[HintUI] 加入合并缓冲区 - 获得物品：{displayName}");
-        pendingAddedNames.Add(displayName);
+        if (pendingAddedCounts.ContainsKey(displayName))
+            pendingAddedCounts[displayName]++;
+        else
+            pendingAddedCounts[displayName] = 1;
         mergeAddedCoroutine = RestartMergeCoroutine(mergeAddedCoroutine, FlushAdded);
     }
 
@@ -168,8 +171,11 @@ public class HintUI : FatherUI
     {
         if (string.IsNullOrWhiteSpace(itemName)) return;
         string displayName = GetDisplayName(itemName);
-        Debug.Log($"[HintUI] 加入合并缓冲区 - 失去物品：{displayName}");
-        pendingRemovedNames.Add(displayName);
+        Debug.Log($"[HintUI] 加入合并缓冲区 - 失去物品：{displayName} x{amount}");
+        if (pendingRemovedCounts.ContainsKey(displayName))
+            pendingRemovedCounts[displayName] += amount;
+        else
+            pendingRemovedCounts[displayName] = amount;
         mergeRemovedCoroutine = RestartMergeCoroutine(mergeRemovedCoroutine, FlushRemoved);
     }
 
@@ -187,22 +193,38 @@ public class HintUI : FatherUI
 
     private void FlushAdded()
     {
-        if (pendingAddedNames.Count == 0) return;
-        string merged = $"获得物品：{string.Join("、", pendingAddedNames)}";
+        if (pendingAddedCounts.Count == 0) return;
+        string merged = "获得物品：" + FormatCounts(pendingAddedCounts);
         Debug.Log($"[HintUI] 合并输出 - {merged}");
         PlayItemGetSFX();
         ShowHint(merged);
-        pendingAddedNames.Clear();
+        pendingAddedCounts.Clear();
     }
 
     private void FlushRemoved()
     {
-        if (pendingRemovedNames.Count == 0) return;
-        string merged = $"失去物品：{string.Join("、", pendingRemovedNames)}";
+        if (pendingRemovedCounts.Count == 0) return;
+        string merged = "失去物品：" + FormatCounts(pendingRemovedCounts);
         Debug.Log($"[HintUI] 合并输出 - {merged}");
         PlayItemUseSFX();
         ShowHint(merged);
-        pendingRemovedNames.Clear();
+        pendingRemovedCounts.Clear();
+    }
+
+    /// <summary>
+    /// 将计数字典格式化为 "名称*数量、名称*数量"，数量为 1 时省略 *1
+    /// </summary>
+    private static string FormatCounts(Dictionary<string, int> counts)
+    {
+        var parts = new List<string>();
+        foreach (var kv in counts)
+        {
+            if (kv.Value == 1)
+                parts.Add(kv.Key);
+            else
+                parts.Add($"{kv.Key}*{kv.Value}");
+        }
+        return string.Join("、", parts);
     }
 
     private string GetDisplayName(string itemName)

@@ -3,7 +3,7 @@ using UnityEngine;
 
 [Serializable]
 public class VainLabel : Chapter3ClueNPCLabelBase {
-    private const string CONFIG_RESOURCES_PATH = "NPCAppearanceOverrides/VainConfig";
+    private const string CONFIG_RESOURCES_PATH = "NPCAppearanceOverrides/VainLabelData";
     private const string CONFIG_EDITOR_ASSET_PATH = "Assets/Data/NPCLabelData/VainLabelData.asset";
 
     private static NPCAppearanceOverride cachedConfig;

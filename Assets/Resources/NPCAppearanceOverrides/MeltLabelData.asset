@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 440a7eca8e86e424d86aa1e225ff4622, type: 3}
+  m_Name: MeltLabelData
+  m_EditorClassIdentifier: Sephiroth.Runtime::NPCAppearanceOverride
+  overrideSprite: {fileID: -671267810956342075, guid: 16918a8fba1038841a2844d6e29a59bf, type: 3}
+  overrideAnimatorController: {fileID: 0}
+  overrideDialogueNodes:
+  - npcContent: "\u662F\u4E00\u6EE9\u6C34\uFF0C\u662F\u4ECE\u65C1\u8FB9\u7684\u6C34\u676F\u91CC\u6D12\u4E0B\u6765\u7684\u5417\uFF1F"
+    hasOptions: 0
+    nextNodeIndex: -1
+    options: []
+    enterActions: []
+    exitActions: []
+  overrideRequiredItemGroups: []

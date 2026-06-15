@@ -45,6 +45,16 @@ public class SaveManager : MonoBehaviour {
         Debug.Log($"[SaveManager] 已保存场景状态: {package.sceneName}");
     }
 
+    /// <summary>
+    /// 新游戏：清空所有自动保存的场景状态，清空 pendingLoad，
+    /// 确保新游戏不会恢复旧进度的物品、标签、章节进度等。
+    /// </summary>
+    public void ClearAllSceneStates() {
+        sceneStates.Clear();
+        pendingLoad = null;
+        Debug.Log("[SaveManager] 已清空所有场景状态，新游戏开始。");
+    }
+
     public void SaveGame() {
         SaveGame(saveFileName);
     }
