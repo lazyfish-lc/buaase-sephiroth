@@ -1,0 +1,15 @@
+<linker>
+  <!-- 保留所有标签类型，防止 IL2CPP 构建时因纯反射使用而被剥离 -->
+  <assembly fullname="Sephiroth.Runtime" preserve="all">
+    <type fullname="*Label" preserve="all" />
+    <type fullname="NPCLabelBase" preserve="all" />
+    <type fullname="Chapter3ClueNPCLabelBase" preserve="all" />
+    <type fullname="ObjectLabel" preserve="all" />
+  </assembly>
+  <assembly fullname="Assembly-CSharp" preserve="all">
+    <type fullname="*Label" preserve="all" />
+    <type fullname="NPCLabelBase" preserve="all" />
+    <type fullname="Chapter3ClueNPCLabelBase" preserve="all" />
+    <type fullname="ObjectLabel" preserve="all" />
+  </assembly>
+</linker>
