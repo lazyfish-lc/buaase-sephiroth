@@ -8,7 +8,7 @@ using UnityEngine;
 /// </summary>
 [Serializable]
 public class HonestLabel : Chapter3ClueNPCLabelBase {
-    private const string CONFIG_RESOURCES_PATH = "NPCAppearanceOverrides/HonestConfig";
+    private const string CONFIG_RESOURCES_PATH = "NPCAppearanceOverrides/HonestLabelData";
     private const string CONFIG_EDITOR_ASSET_PATH = "Assets/Data/NPCLabelData/HonestLabelData.asset";
 
     private static NPCAppearanceOverride cachedConfig;

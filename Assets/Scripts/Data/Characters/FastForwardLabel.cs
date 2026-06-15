@@ -3,7 +3,7 @@ using UnityEngine;
 
 [Serializable]
 public class FastForwardLabel : Chapter3ClueNPCLabelBase {
-    private const string CONFIG_RESOURCES_PATH = "NPCAppearanceOverrides/FastForwardConfig";
+    private const string CONFIG_RESOURCES_PATH = "NPCAppearanceOverrides/FastForwardLabelData";
     private const string CONFIG_EDITOR_ASSET_PATH = "Assets/Data/NPCLabelData/FastForwardLabelData.asset";
 
     private static NPCAppearanceOverride cachedConfig;

@@ -3,7 +3,7 @@ using UnityEngine;
 
 [Serializable]
 public class MeltLabel : Chapter3ClueNPCLabelBase {
-    private const string CONFIG_RESOURCES_PATH = "NPCAppearanceOverrides/MeltConfig";
+    private const string CONFIG_RESOURCES_PATH = "NPCAppearanceOverrides/MeltLabelData";
     private const string CONFIG_EDITOR_ASSET_PATH = "Assets/Data/NPCLabelData/MeltLabelData.asset";
 
     private static NPCAppearanceOverride cachedConfig;

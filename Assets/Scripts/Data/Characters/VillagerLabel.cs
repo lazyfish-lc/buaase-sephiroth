@@ -17,7 +17,7 @@ public class VillagerLabel : NPCLabelBase {
     /// <summary>
     /// 首选 Resources 路径（运行时加载），备选编辑器路径用于直接加载测试资产
     /// </summary>
-    private const string CONFIG_RESOURCES_PATH = "NPCAppearanceOverrides/VillagerConfig";
+    private const string CONFIG_RESOURCES_PATH = "NPCAppearanceOverrides/VillagerOverride";
     private const string CONFIG_EDITOR_ASSET_PATH = "Assets/Data/LabelTest/VillagerOverride.asset";
 
     public VillagerLabel() {
